@@ -77,6 +77,117 @@ export function HomePage() {
       {/* Impact Stats */}
       <ImpactStats />
 
+      {/* Featured Programs with Images */}
+      <section className="py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Programs</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Supporting communities through sustainable development
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Program 1 - Orphan Care */}
+            <Link to="/orphan-sponsorship" className="group relative aspect-[4/5] rounded-2xl overflow-hidden">
+              <img 
+                src="/images/community-queue.jpg" 
+                alt="Orphan sponsorship program"
+                className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <span className="inline-block px-3 py-1 bg-orange-500 text-white text-sm font-semibold rounded-full mb-3">
+                  £35/month
+                </span>
+                <h3 className="text-2xl font-bold text-white mb-2">Orphan Sponsorship</h3>
+                <p className="text-white/80">Provide education, healthcare, and hope</p>
+              </div>
+            </Link>
+
+            {/* Program 2 - Water */}
+            <Link to="/water" className="group relative aspect-[4/5] rounded-2xl overflow-hidden">
+              <img 
+                src="/images/impact-2.jpg" 
+                alt="Water projects"
+                className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <span className="inline-block px-3 py-1 bg-blue-500 text-white text-sm font-semibold rounded-full mb-3">
+                  From £300
+                </span>
+                <h3 className="text-2xl font-bold text-white mb-2">Water for Life</h3>
+                <p className="text-white/80">Build wells and provide clean water</p>
+              </div>
+            </Link>
+
+            {/* Program 3 - Food */}
+            <Link to="/appeals" className="group relative aspect-[4/5] rounded-2xl overflow-hidden md:col-span-2 lg:col-span-1">
+              <img 
+                src="/images/food-distribution-ramadan.jpg" 
+                alt="Food distribution"
+                className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <span className="inline-block px-3 py-1 bg-amber-500 text-white text-sm font-semibold rounded-full mb-3">
+                  From £50
+                </span>
+                <h3 className="text-2xl font-bold text-white mb-2">Food Security</h3>
+                <p className="text-white/80">Feed families in need around the world</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission Section with Large Image */}
+      <section className="py-16 md:py-24 bg-[#F3F4F6]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <img 
+                src="/images/about-hero.jpg" 
+                alt="Our mission"
+                className="rounded-2xl shadow-xl w-full"
+              />
+              <div className="absolute -bottom-6 -right-6 bg-orange-500 text-white p-6 rounded-xl shadow-lg hidden md:block">
+                <div className="text-4xl font-bold">10+</div>
+                <div className="text-sm">Years of Impact</div>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+                Making Your Sacrifice Simple
+              </h2>
+              <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                Qurbani Easy is dedicated to simplifying Islamic charitable giving while maximizing 
+                impact for those in need around the world. We work in over 30 countries, delivering 
+                aid to the most vulnerable communities.
+              </p>
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                <div>
+                  <div className="text-3xl font-bold text-orange-500">30+</div>
+                  <div className="text-slate-600">Countries</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-orange-500">2.5M</div>
+                  <div className="text-slate-600">People Helped</div>
+                </div>
+              </div>
+              <Link 
+                to="/about" 
+                className="inline-flex items-center gap-2 font-semibold text-orange-500 hover:gap-3 transition-all"
+              >
+                Learn About Our Story
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Islamic Giving Section */}
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -158,27 +269,92 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* Photo Gallery */}
+      <section className="py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Work in Action</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              See the impact of your donations around the world
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="col-span-2 row-span-2">
+              <img 
+                src="/images/hero-2.jpg" 
+                alt="Aid distribution"
+                className="w-full h-full object-cover rounded-2xl"
+              />
+            </div>
+            <div>
+              <img 
+                src="/images/campaign-1.jpg" 
+                alt="Campaign 1"
+                className="w-full h-full object-cover rounded-xl aspect-square"
+              />
+            </div>
+            <div>
+              <img 
+                src="/images/campaign-2.jpg" 
+                alt="Campaign 2"
+                className="w-full h-full object-cover rounded-xl aspect-square"
+              />
+            </div>
+            <div>
+              <img 
+                src="/images/campaign-3.jpg" 
+                alt="Campaign 3"
+                className="w-full h-full object-cover rounded-xl aspect-square"
+              />
+            </div>
+            <div>
+              <img 
+                src="/images/impact-1.jpg" 
+                alt="Impact"
+                className="w-full h-full object-cover rounded-xl aspect-square"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 mt-4">
+            <img src="/images/news-1.jpg" alt="News 1" className="w-full aspect-square object-cover rounded-xl" />
+            <img src="/images/news-2.jpg" alt="News 2" className="w-full aspect-square object-cover rounded-xl" />
+            <img src="/images/news-3.jpg" alt="News 3" className="w-full aspect-square object-cover rounded-xl" />
+            <img src="/images/iftaar-distribution.jpg" alt="Iftaar" className="w-full aspect-square object-cover rounded-xl" />
+            <img src="/images/aid-distribution-elderly.jpg" alt="Aid" className="w-full aspect-square object-cover rounded-xl" />
+            <img src="/images/team.jpg" alt="Team" className="w-full aspect-square object-cover rounded-xl" />
+          </div>
+        </div>
+      </section>
+
       {/* Partners */}
       <PartnerLogos />
 
-      {/* Final CTA */}
+      {/* Final CTA with Background Image */}
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl bg-orange-500 p-8 md:p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Make a Difference Today
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Your donation can provide food, water, healthcare, and hope to those in need.
-              Every contribution matters.
-            </p>
-            <Link
-              to="/donate"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-bold text-orange-500 hover:shadow-lg transition-shadow"
-            >
-              <Heart className="h-5 w-5" />
-              Donate Now
-            </Link>
+          <div 
+            className="relative rounded-2xl overflow-hidden p-8 md:p-16 text-center"
+            style={{ backgroundImage: 'url(/images/hero-1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+          >
+            <div className="absolute inset-0 bg-orange-500/90" />
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Make a Difference Today
+              </h2>
+              <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                Your donation can provide food, water, healthcare, and hope to those in need.
+                Every contribution matters.
+              </p>
+              <Link
+                to="/donate"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-bold text-orange-500 hover:shadow-lg transition-shadow"
+              >
+                <Heart className="h-5 w-5" />
+                Donate Now
+              </Link>
+            </div>
           </div>
         </div>
       </section>
