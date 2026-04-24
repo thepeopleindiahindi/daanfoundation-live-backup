@@ -55,11 +55,11 @@ export function Footer() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white placeholder:text-slate-500 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500/20"
+                className="flex-1 rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white placeholder:text-slate-500 focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400/20"
               />
               <button
                 type="submit"
-                className="rounded-xl bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-3 font-semibold text-white hover:opacity-90 transition-opacity"
+                className="rounded-xl bg-orange-500 hover:bg-orange-600 px-6 py-3 font-semibold text-white transition-colors"
               >
                 Subscribe
               </button>
@@ -74,14 +74,14 @@ export function Footer() {
           {/* Logo & contact */}
           <div className="col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-orange-600 to-orange-700 flex items-center justify-center">
+              <div className="h-11 w-11 rounded-xl bg-orange-500 flex items-center justify-center">
                 <Heart className="h-6 w-6 text-white" fill="white" />
               </div>
               <div className="leading-tight">
                 <span className="block text-xl font-bold text-white tracking-tight">
                   Qurbani Easy
                 </span>
-                <span className="block text-[10px] font-medium tracking-widest text-slate-500 uppercase">
+                <span className="block text-[10px] font-semibold tracking-widest text-slate-500 uppercase">
                   Making your sacrifice simple
                 </span>
               </div>
@@ -104,7 +104,7 @@ export function Footer() {
 
           {/* Link columns */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Appeals</h4>
+            <h4 className="font-bold text-white mb-4">Appeals</h4>
             <ul className="space-y-2">
               {footerLinks.appeals.map((link) => (
                 <li key={link.href}>
@@ -117,7 +117,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-white mb-4">Ways to Give</h4>
+            <h4 className="font-bold text-white mb-4">Ways to Give</h4>
             <ul className="space-y-2">
               {footerLinks.giving.map((link) => (
                 <li key={link.href}>
@@ -130,7 +130,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-white mb-4">Resources</h4>
+            <h4 className="font-bold text-white mb-4">Resources</h4>
             <ul className="space-y-2">
               {footerLinks.resources.map((link) => (
                 <li key={link.href}>
@@ -143,7 +143,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-white mb-4">About</h4>
+            <h4 className="font-bold text-white mb-4">About</h4>
             <ul className="space-y-2">
               {footerLinks.about.map((link) => (
                 <li key={link.href}>
@@ -175,7 +175,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-orange-600 hover:text-white transition-colors"
+                  className="h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-orange-500 hover:text-white transition-colors"
                 >
                   <Icon className="h-5 w-5" />
                 </a>

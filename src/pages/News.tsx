@@ -12,7 +12,7 @@ export function News() {
       <Breadcrumbs items={[{ label: "News" }]} />
 
       {/* Hero */}
-      <section className="py-12 md:py-16 bg-slate-50">
+      <section className="py-12 md:py-16 bg-[#F3F4F6]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
             News & Stories
@@ -62,7 +62,7 @@ export function News() {
       </section>
 
       {/* Article grid */}
-      <section className="py-12 md:py-16 bg-slate-50">
+      <section className="py-12 md:py-16 bg-[#F3F4F6]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-slate-900 mb-8">Latest Articles</h2>
 

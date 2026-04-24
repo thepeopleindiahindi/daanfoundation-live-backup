@@ -37,9 +37,7 @@ export function ImpactStats() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Our Impact
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Impact</h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
             Together, we're making a real difference in the lives of those who need it most
           </p>
@@ -48,10 +46,7 @@ export function ImpactStats() {
         {/* Stats grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map(({ number, label, description, icon: Icon, image }) => (
-            <div
-              key={label}
-              className="group relative rounded-2xl overflow-hidden"
-            >
+            <div key={label} className="group relative rounded-2xl overflow-hidden">
               {/* Background image */}
               <div className="absolute inset-0">
                 <img
@@ -64,18 +59,12 @@ export function ImpactStats() {
 
               {/* Content */}
               <div className="relative p-6 text-center">
-                <div className="h-14 w-14 rounded-xl bg-orange-600/20 flex items-center justify-center mx-auto mb-4">
+                <div className="h-14 w-14 rounded-xl bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
                   <Icon className="h-7 w-7 text-orange-400" />
                 </div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                  {number}
-                </div>
-                <div className="text-lg font-semibold text-orange-400 mb-2">
-                  {label}
-                </div>
-                <p className="text-sm text-slate-400">
-                  {description}
-                </p>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">{number}</div>
+                <div className="text-lg font-semibold text-orange-400 mb-2">{label}</div>
+                <p className="text-sm text-slate-400">{description}</p>
               </div>
             </div>
           ))}

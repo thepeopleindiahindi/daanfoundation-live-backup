@@ -14,14 +14,13 @@ export function QurbaniHero() {
     <section className="relative min-h-[650px] md:min-h-[700px] overflow-hidden">
       {/* Background with image */}
       <div className="absolute inset-0">
-        {/* Hero background image */}
-        <img 
-          src="/images/hero-1.jpg" 
-          alt="Community receiving aid" 
+        <img
+          src="/images/hero-1.jpg"
+          alt="Community receiving aid"
           className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          onError={(e) => console.error('Image failed to load:', e)}
         />
-
-        {/* Gradient overlays for depth */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-900/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent" />
       </div>
@@ -31,27 +30,23 @@ export function QurbaniHero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[500px]">
           {/* Left: Text content */}
           <div className="text-white">
-            {/* Badge */}
             <span className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-white mb-6">
               <span className="h-2 w-2 rounded-full bg-amber-300 animate-pulse" />
               Dhul Hijjah 1447 • Limited Time
             </span>
 
-            {/* Headline */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6">
               Share Your{" "}
               <span className="text-amber-300">Qurbani</span>{" "}
               This Eid ul-Adha
             </h1>
 
-            {/* Description */}
             <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-8 max-w-xl">
-              Your sacrifice reaches those who need it most. We deliver fresh, 
-              nutritious Qurbani meat to families across 30+ countries, ensuring 
+              Your sacrifice reaches those who need it most. We deliver fresh,
+              nutritious Qurbani meat to families across 30+ countries, ensuring
               your act of worship brings joy to those in need.
             </p>
 
-            {/* Stats row */}
             <div className="flex flex-wrap gap-8 mb-8">
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-white">30+</div>
@@ -67,11 +62,10 @@ export function QurbaniHero() {
               </div>
             </div>
 
-            {/* CTA buttons */}
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 to="/qurbani"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-base font-bold text-amber-600 shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-base font-bold text-orange-500 shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
               >
                 Learn More
                 <ArrowRight className="h-5 w-5" />
@@ -87,7 +81,7 @@ export function QurbaniHero() {
 
           {/* Right: Donation widget */}
           <div className="lg:justify-self-end w-full max-w-md">
-            <div className="rounded-3xl bg-white p-6 md:p-8 shadow-2xl">
+            <div className="rounded-2xl bg-white p-6 md:p-8 shadow-2xl">
               <h3 className="text-xl font-bold text-slate-900 text-center mb-2">
                 Give Your Qurbani
               </h3>
@@ -106,7 +100,7 @@ export function QurbaniHero() {
                     }}
                     className={`py-3 rounded-xl text-sm font-bold transition-all ${
                       selectedAmount === amount && !customAmount
-                        ? "bg-orange-600 text-white shadow-lg shadow-orange-600/30"
+                        ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
                         : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                     }`}
                   >
@@ -128,16 +122,16 @@ export function QurbaniHero() {
                     setCustomAmount(e.target.value);
                     setSelectedAmount(null);
                   }}
-                  className="w-full rounded-xl border-2 border-slate-200 py-3 pl-8 pr-4 text-lg font-medium text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:outline-none focus:ring-4 focus:ring-orange-500/10 transition-all"
+                  className="w-full rounded-xl border-2 border-slate-200 py-3 pl-8 pr-4 text-lg font-medium text-slate-900 placeholder:text-slate-400 focus:border-orange-400 focus:outline-none focus:ring-4 focus:ring-orange-400/10 transition-all"
                 />
               </div>
 
               {/* Fund selector */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
                   Select Qurbani Type
                 </label>
-                <select className="w-full rounded-xl border-2 border-slate-200 py-3 px-4 text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-4 focus:ring-orange-500/10">
+                <select className="w-full rounded-xl border-2 border-slate-200 py-3 px-4 text-slate-900 focus:border-orange-400 focus:outline-none focus:ring-4 focus:ring-orange-400/10">
                   <option>Small Animal (1 share) - £39</option>
                   <option>Large Animal (1/7 share) - £70</option>
                   <option>Whole Cow (7 shares) - £490</option>
@@ -146,9 +140,7 @@ export function QurbaniHero() {
               </div>
 
               {/* Donate button */}
-              <button
-                className="w-full rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 py-4 text-lg font-bold text-white shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:scale-[1.02] active:scale-[0.98] transition-all"
-              >
+              <button className="w-full rounded-xl bg-amber-500 hover:bg-amber-600 py-4 text-lg font-bold text-white shadow-md hover:shadow-lg active:scale-[0.98] transition-all">
                 Donate {currentAmount ? `£${currentAmount}` : "Now"}
               </button>
 
@@ -156,7 +148,11 @@ export function QurbaniHero() {
               <div className="mt-6 flex items-center justify-center gap-4 text-xs text-slate-500">
                 <span className="flex items-center gap-1">
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                    <path
+                      fillRule="evenodd"
+                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                   Secure
                 </span>

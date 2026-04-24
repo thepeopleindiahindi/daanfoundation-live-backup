@@ -2,29 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* Design tokens — all colors in HSL */
 @layer base {
   :root {
     /* 🟧 Primary Orange: #F97316 */
     --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
 
-    /* ⬛ Black: #111111 */
+    /* ⬛ Heading / Foreground: #111111 */
     --foreground: 0 0% 6.7%;
 
-    /* ⬜ White Background: #FFFFFF */
+    /* ⬜ Background: #FFFFFF */
     --background: 0 0% 100%;
 
-    /* ◻️ Light Grey Section: #F3F4F6 */
-    --secondary: 220 14% 96%;
+    /* ◻️ Section Background: #F3F4F6 */
+    --secondary: 220 13% 96%;
     --secondary-foreground: 0 0% 6.7%;
-    --muted: 220 14% 96%;
+    --muted: 220 13% 96%;
     --muted-foreground: 0 0% 40%;
 
-    /* 🟫 Soft Beige Highlight: #FFF7ED */
+    /* 🟫 Highlight Section: #FFF7ED */
     --accent: 33 100% 97%;
     --accent-foreground: 0 0% 6.7%;
 
@@ -60,6 +57,7 @@ All colors MUST be HSL.
   }
 
   body {
+    font-family: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
     @apply bg-background text-foreground;
   }
 }

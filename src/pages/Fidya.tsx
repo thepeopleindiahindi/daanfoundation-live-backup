@@ -105,7 +105,7 @@ export function Fidya() {
       </section>
 
       {/* Calculator */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      <section className="py-16 md:py-24 bg-[#F3F4F6]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-lg mx-auto text-center">
             <div className="h-14 w-14 rounded-xl bg-purple-100 flex items-center justify-center mx-auto mb-4">
@@ -157,7 +157,7 @@ export function Fidya() {
 
           <Accordion type="single" collapsible className="space-y-3">
             {fidyaFAQs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="bg-slate-50 rounded-xl px-6">
+              <AccordionItem key={index} value={`item-${index}`} className="bg-[#F3F4F6] rounded-xl px-6">
                 <AccordionTrigger className="text-left font-semibold hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>

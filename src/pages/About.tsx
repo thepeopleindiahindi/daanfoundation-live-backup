@@ -73,7 +73,7 @@ export function About() {
                   { icon: Users, label: "Community" },
                   { icon: Award, label: "Excellence" },
                 ].map(({ icon: Icon, label }) => (
-                  <div key={label} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50">
+                  <div key={label} className="flex items-center gap-3 p-3 rounded-xl bg-[#F3F4F6]">
                     <div className="h-10 w-10 rounded-lg bg-orange-100 flex items-center justify-center">
                       <Icon className="h-5 w-5 text-orange-600" />
                     </div>
@@ -87,7 +87,7 @@ export function About() {
       </section>
 
       {/* SECTION: Impact Statistics */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      <section className="py-16 md:py-24 bg-[#F3F4F6]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
@@ -161,7 +161,7 @@ export function About() {
       </section>
 
       {/* SECTION: Team (Placeholder) */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      <section className="py-16 md:py-24 bg-[#F3F4F6]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">

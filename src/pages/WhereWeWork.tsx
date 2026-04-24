@@ -73,7 +73,7 @@ export function WhereWeWork() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {regions.map((region) => (
-              <div key={region.name} className="bg-slate-50 rounded-2xl p-6">
+              <div key={region.name} className="bg-[#F3F4F6] rounded-2xl p-6">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">{region.name}</h3>
                 <div className="flex flex-wrap gap-2">
                   {region.countries.map((country) => (

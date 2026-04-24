@@ -30,7 +30,7 @@ const stories = [
 
 export function ImpactStories() {
   return (
-    <section className="py-16 md:py-24 bg-slate-50">
+    <section className="py-16 md:py-24 bg-[#F3F4F6]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
@@ -38,13 +38,11 @@ export function ImpactStories() {
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
               How Your Donations Are Changing Lives
             </h2>
-            <p className="text-lg text-slate-600">
-              Real stories from the communities we serve
-            </p>
+            <p className="text-lg text-slate-600">Real stories from the communities we serve</p>
           </div>
           <Link
             to="/news"
-            className="inline-flex items-center gap-2 text-orange-600 font-semibold hover:text-orange-700 transition-colors"
+            className="inline-flex items-center gap-2 text-orange-500 font-semibold hover:text-orange-600 transition-colors"
           >
             View all stories
             <ArrowRight className="h-4 w-4" />
@@ -73,7 +71,7 @@ export function ImpactStories() {
               {story.hasVideo && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="h-16 w-16 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Play className="h-6 w-6 text-orange-600 ml-1" fill="currentColor" />
+                    <Play className="h-6 w-6 text-orange-500 ml-1" fill="currentColor" />
                   </div>
                 </div>
               )}

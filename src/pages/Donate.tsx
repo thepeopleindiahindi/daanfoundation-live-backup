@@ -209,7 +209,7 @@ export function Donate() {
                 <h2 className="text-lg font-bold text-slate-900">Payment Method</h2>
 
                 {/* Summary */}
-                <div className="p-4 bg-slate-50 rounded-xl">
+                <div className="p-4 bg-[#F3F4F6] rounded-xl">
                   <div className="flex justify-between mb-2">
                     <span className="text-slate-600">Donation</span>
                     <span className="font-semibold">£{finalAmount}</span>

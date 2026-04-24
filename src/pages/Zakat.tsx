@@ -75,7 +75,7 @@ export function Zakat() {
                 </blockquote>
               </div>
             </div>
-            <div className="bg-slate-50 rounded-2xl p-8">
+            <div className="bg-[#F3F4F6] rounded-2xl p-8">
               <h3 className="text-xl font-bold text-slate-900 mb-6">Nisab Threshold</h3>
               <div className="space-y-4">
                 <div className="bg-white rounded-xl p-4 shadow-sm">
@@ -96,7 +96,7 @@ export function Zakat() {
       </section>
 
       {/* How we use Zakat */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      <section className="py-16 md:py-24 bg-[#F3F4F6]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">How We Use Your Zakat</h2>

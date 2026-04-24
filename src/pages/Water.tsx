@@ -71,7 +71,7 @@ export function Water() {
       </section>
 
       {/* Water projects */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      <section className="py-16 md:py-24 bg-[#F3F4F6]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">
             Water Projects

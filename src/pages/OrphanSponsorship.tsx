@@ -56,7 +56,7 @@ export function OrphanSponsorship() {
               { icon: Utensils, title: "Nutrition", description: "Nutritious food and clean water" },
               { icon: Users, title: "Support", description: "Emotional care and guidance" },
             ].map(({ icon: Icon, title, description }) => (
-              <div key={title} className="bg-slate-50 rounded-2xl p-6 text-center">
+              <div key={title} className="bg-[#F3F4F6] rounded-2xl p-6 text-center">
                 <div className="h-14 w-14 rounded-xl bg-orange-100 flex items-center justify-center mx-auto mb-4">
                   <Icon className="h-7 w-7 text-orange-600" />
                 </div>

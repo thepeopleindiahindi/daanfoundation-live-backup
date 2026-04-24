@@ -7,7 +7,7 @@ const quickActions = [
     title: "Calculate Zakat",
     description: "See how much zakat you owe",
     href: "/zakat-calculator",
-    gradient: "from-orange-600 to-orange-700",
+    gradient: "from-orange-500 to-orange-600",
   },
   {
     icon: Heart,
@@ -42,7 +42,7 @@ const quickActions = [
     title: "Sadaqah Jariyah",
     description: "Give a gift that keeps on giving",
     href: "/sadaqah-jariyah",
-    gradient: "from-cyan-500 to-orange-600",
+    gradient: "from-cyan-500 to-teal-600",
   },
 ];
 
@@ -74,16 +74,14 @@ export function QuickActions() {
               </div>
 
               {/* Content */}
-              <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors">
+              <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-orange-500 transition-colors">
                 {title}
               </h3>
-              <p className="text-sm text-slate-600">
-                {description}
-              </p>
+              <p className="text-sm text-slate-600">{description}</p>
 
               {/* Hover arrow */}
               <div className="absolute right-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                <svg className="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>

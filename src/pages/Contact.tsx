@@ -90,7 +90,7 @@ export function Contact() {
 
             {/* Contact form */}
             <div className="lg:col-span-2">
-              <div className="bg-slate-50 rounded-2xl p-8">
+              <div className="bg-[#F3F4F6] rounded-2xl p-8">
                 <h2 className="text-2xl font-bold text-slate-900 mb-6">Send Us a Message</h2>
                 
                 {submitted ? (
