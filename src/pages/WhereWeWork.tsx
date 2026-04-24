@@ -97,7 +97,7 @@ export function WhereWeWork() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <img
-                src="/images/food-parcel-distribution.jpg"
+                src="/images/aid-distribution-elderly.jpg"
                 alt="Aid distribution"
                 className="rounded-2xl shadow-lg"
               />

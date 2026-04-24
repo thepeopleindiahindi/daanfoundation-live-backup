@@ -35,7 +35,7 @@ export function Fidya() {
             </div>
             <div className="hidden lg:block">
               <img
-                src="/images/food-distribution.jpg"
+                src="/images/food-distribution-ramadan.jpg"
                 alt="Food distribution"
                 className="rounded-2xl shadow-2xl"
               />
