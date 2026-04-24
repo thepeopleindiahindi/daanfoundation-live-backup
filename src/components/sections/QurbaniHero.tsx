@@ -11,22 +11,16 @@ export function QurbaniHero() {
   const currentAmount = customAmount ? Number(customAmount) : selectedAmount;
 
   return (
-    <section className="relative min-h-[650px] md:min-h-[700px] overflow-hidden">
-      {/* Background with image */}
-      <div className="absolute inset-0">
-        <img
-          src="/images/hero-1.jpg"
-          alt="Community receiving aid"
-          className="absolute inset-0 h-full w-full object-cover"
-          loading="eager"
-          onError={(e) => console.error('Image failed to load:', e)}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-900/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent" />
-      </div>
+    <section 
+      className="relative min-h-[650px] md:min-h-[700px] overflow-hidden"
+      style={{ backgroundImage: 'url(/images/hero-1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
+      {/* Gradient overlays */}
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-900/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent" />
 
       {/* Content */}
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[500px]">
           {/* Left: Text content */}
           <div className="text-white">

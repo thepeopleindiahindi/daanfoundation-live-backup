@@ -75,7 +75,7 @@ export function CampaignCards() {
                 className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
               >
                 {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden bg-slate-200">
                   <img
                     src={campaign.image}
                     alt={campaign.title}
