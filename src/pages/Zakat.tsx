@@ -15,7 +15,7 @@ export function Zakat() {
       <Breadcrumbs items={[{ label: "Zakat" }]} />
 
       {/* Hero */}
-      <section className="relative py-16 md:py-24 bg-gradient-to-br from-emerald-600 to-teal-700 overflow-hidden">
+      <section className="relative py-16 md:py-24 bg-gradient-to-br from-orange-600 to-orange-700 overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zM22.344 0L13.858 8.485 15.272 9.9l9.9-9.9h-2.828zM32 0l-3.486 3.485 1.414 1.415L searching34.97 0H32z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`,
         }} />
@@ -32,7 +32,7 @@ export function Zakat() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/zakat-calculator"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-bold text-emerald-600 hover:shadow-lg transition-shadow"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-bold text-orange-600 hover:shadow-lg transition-shadow"
                 >
                   <Calculator className="h-5 w-5" />
                   Calculate Your Zakat
@@ -69,7 +69,7 @@ export function Zakat() {
                 <p>
                   The word "Zakat" means purification and growth. By giving 2.5% of your wealth to those in need, you purify your remaining wealth and help it grow in blessings.
                 </p>
-                <blockquote className="border-l-4 border-emerald-500 pl-4 italic text-slate-600">
+                <blockquote className="border-l-4 border-orange-500 pl-4 italic text-slate-600">
                   "And establish prayer and give Zakat, and whatever good you put forward for yourselves – you will find it with Allah."
                   <footer className="text-sm mt-2">— Quran 2:110</footer>
                 </blockquote>
@@ -147,7 +147,7 @@ export function Zakat() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-emerald-600 to-teal-700">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-orange-600 to-orange-700">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Pay Your Zakat?</h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
@@ -156,7 +156,7 @@ export function Zakat() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               to="/zakat-calculator"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-bold text-emerald-600"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-bold text-orange-600"
             >
               <Calculator className="h-5 w-5" />
               Calculate Zakat

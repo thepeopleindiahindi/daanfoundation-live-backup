@@ -64,13 +64,13 @@ export function ImpactStats() {
 
               {/* Content */}
               <div className="relative p-6 text-center">
-                <div className="h-14 w-14 rounded-xl bg-emerald-600/20 flex items-center justify-center mx-auto mb-4">
-                  <Icon className="h-7 w-7 text-emerald-400" />
+                <div className="h-14 w-14 rounded-xl bg-orange-600/20 flex items-center justify-center mx-auto mb-4">
+                  <Icon className="h-7 w-7 text-orange-400" />
                 </div>
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2">
                   {number}
                 </div>
-                <div className="text-lg font-semibold text-emerald-400 mb-2">
+                <div className="text-lg font-semibold text-orange-400 mb-2">
                   {label}
                 </div>
                 <p className="text-sm text-slate-400">

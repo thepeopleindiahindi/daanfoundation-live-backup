@@ -44,7 +44,7 @@ export function ImpactStories() {
           </div>
           <Link
             to="/news"
-            className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors"
+            className="inline-flex items-center gap-2 text-orange-600 font-semibold hover:text-orange-700 transition-colors"
           >
             View all stories
             <ArrowRight className="h-4 w-4" />
@@ -73,7 +73,7 @@ export function ImpactStories() {
               {story.hasVideo && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="h-16 w-16 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Play className="h-6 w-6 text-emerald-600 ml-1" fill="currentColor" />
+                    <Play className="h-6 w-6 text-orange-600 ml-1" fill="currentColor" />
                   </div>
                 </div>
               )}
@@ -83,7 +83,7 @@ export function ImpactStories() {
                 <span className="inline-block rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-white mb-3">
                   {story.category}
                 </span>
-                <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                <h3 className="text-xl font-bold text-white group-hover:text-orange-300 transition-colors">
                   {story.title}
                 </h3>
               </div>

@@ -55,11 +55,11 @@ export function Footer() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white placeholder:text-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="flex-1 rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white placeholder:text-slate-500 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500/20"
               />
               <button
                 type="submit"
-                className="rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 px-6 py-3 font-semibold text-white hover:opacity-90 transition-opacity"
+                className="rounded-xl bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-3 font-semibold text-white hover:opacity-90 transition-opacity"
               >
                 Subscribe
               </button>
@@ -74,7 +74,7 @@ export function Footer() {
           {/* Logo & contact */}
           <div className="col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center">
+              <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-orange-600 to-orange-700 flex items-center justify-center">
                 <Heart className="h-6 w-6 text-white" fill="white" />
               </div>
               <div className="leading-tight">
@@ -87,11 +87,11 @@ export function Footer() {
               </div>
             </Link>
             <div className="space-y-3 text-sm text-slate-400">
-              <a href="tel:+441211234567" className="flex items-center gap-2 hover:text-emerald-400 transition-colors">
+              <a href="tel:+441211234567" className="flex items-center gap-2 hover:text-orange-400 transition-colors">
                 <Phone className="h-4 w-4" />
                 +44 121 123 4567
               </a>
-              <a href="mailto:info@qurbanieasy.org" className="flex items-center gap-2 hover:text-emerald-400 transition-colors">
+              <a href="mailto:info@qurbanieasy.org" className="flex items-center gap-2 hover:text-orange-400 transition-colors">
                 <Mail className="h-4 w-4" />
                 info@qurbanieasy.org
               </a>
@@ -108,7 +108,7 @@ export function Footer() {
             <ul className="space-y-2">
               {footerLinks.appeals.map((link) => (
                 <li key={link.href}>
-                  <Link to={link.href} className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">
+                  <Link to={link.href} className="text-sm text-slate-400 hover:text-orange-400 transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -121,7 +121,7 @@ export function Footer() {
             <ul className="space-y-2">
               {footerLinks.giving.map((link) => (
                 <li key={link.href}>
-                  <Link to={link.href} className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">
+                  <Link to={link.href} className="text-sm text-slate-400 hover:text-orange-400 transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -134,7 +134,7 @@ export function Footer() {
             <ul className="space-y-2">
               {footerLinks.resources.map((link) => (
                 <li key={link.href}>
-                  <Link to={link.href} className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">
+                  <Link to={link.href} className="text-sm text-slate-400 hover:text-orange-400 transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -147,7 +147,7 @@ export function Footer() {
             <ul className="space-y-2">
               {footerLinks.about.map((link) => (
                 <li key={link.href}>
-                  <Link to={link.href} className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">
+                  <Link to={link.href} className="text-sm text-slate-400 hover:text-orange-400 transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -175,7 +175,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-emerald-600 hover:text-white transition-colors"
+                  className="h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-orange-600 hover:text-white transition-colors"
                 >
                   <Icon className="h-5 w-5" />
                 </a>

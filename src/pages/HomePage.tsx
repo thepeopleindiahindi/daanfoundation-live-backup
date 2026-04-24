@@ -28,7 +28,7 @@ export function HomePage() {
             </div>
             <Link
               to="/appeals"
-              className="hidden sm:inline-flex items-center gap-2 font-semibold text-emerald-600 hover:text-emerald-700"
+              className="hidden sm:inline-flex items-center gap-2 font-semibold text-orange-600 hover:text-orange-700"
             >
               View All Appeals
               <ArrowRight className="h-4 w-4" />
@@ -38,7 +38,7 @@ export function HomePage() {
           <div className="mt-6 text-center sm:hidden">
             <Link
               to="/appeals"
-              className="inline-flex items-center gap-2 font-semibold text-emerald-600"
+              className="inline-flex items-center gap-2 font-semibold text-orange-600"
             >
               View All Appeals
               <ArrowRight className="h-4 w-4" />
@@ -94,7 +94,7 @@ export function HomePage() {
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">{title}</h3>
                 <p className="text-slate-600 mb-4">{description}</p>
-                <span className="inline-flex items-center gap-1 font-semibold text-emerald-600 group-hover:gap-2 transition-all">
+                <span className="inline-flex items-center gap-1 font-semibold text-orange-600 group-hover:gap-2 transition-all">
                   Learn More
                   <ArrowRight className="h-4 w-4" />
                 </span>
@@ -105,7 +105,7 @@ export function HomePage() {
       </section>
 
       {/* Zakat Calculator Preview */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-emerald-600 to-teal-700">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-orange-600 to-orange-700">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-white">
@@ -148,7 +148,7 @@ export function HomePage() {
             </div>
             <Link
               to="/news"
-              className="hidden sm:inline-flex items-center gap-2 font-semibold text-emerald-600 hover:text-emerald-700"
+              className="hidden sm:inline-flex items-center gap-2 font-semibold text-orange-600 hover:text-orange-700"
             >
               View All News
               <ArrowRight className="h-4 w-4" />

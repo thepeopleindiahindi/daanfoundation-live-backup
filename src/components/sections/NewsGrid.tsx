@@ -47,7 +47,7 @@ export function NewsGrid() {
           </div>
           <Link
             to="/news"
-            className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors"
+            className="inline-flex items-center gap-2 text-orange-600 font-semibold hover:text-orange-700 transition-colors"
           >
             View all news
             <ArrowRight className="h-4 w-4" />
@@ -85,7 +85,7 @@ export function NewsGrid() {
                   {item.date}
                 </div>
 
-                <h3 className={`font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors ${
+                <h3 className={`font-bold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors ${
                   index === 0 ? "text-2xl md:text-3xl" : "text-lg"
                 }`}>
                   {item.title}

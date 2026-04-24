@@ -12,7 +12,7 @@ export function Appeals() {
       <Breadcrumbs items={[{ label: "Appeals" }]} />
 
       {/* Hero */}
-      <section className="relative py-16 md:py-20 bg-gradient-to-br from-emerald-600 to-teal-700">
+      <section className="relative py-16 md:py-20 bg-gradient-to-br from-orange-600 to-orange-700">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
             Emergency Appeals
@@ -38,7 +38,7 @@ export function Appeals() {
                 <Link
                   key={appeal.id}
                   to={`/appeals/${appeal.slug}`}
-                  className="group bg-white rounded-2xl overflow-hidden shadow-sm ring-1 ring-slate-200 hover:shadow-xl hover:ring-emerald-200 transition-all"
+                  className="group bg-white rounded-2xl overflow-hidden shadow-sm ring-1 ring-slate-200 hover:shadow-xl hover:ring-orange-200 transition-all"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img
@@ -54,7 +54,7 @@ export function Appeals() {
                     <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-900/80 to-transparent">
                       <div className="h-1.5 bg-white/30 rounded-full overflow-hidden">
                         <div
-                          className="h-full bg-emerald-400 rounded-full"
+                          className="h-full bg-orange-400 rounded-full"
                           style={{ width: `${progress}%` }}
                         />
                       </div>
@@ -65,13 +65,13 @@ export function Appeals() {
                     </div>
                   </div>
                   <div className="p-5">
-                    <h3 className="font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                    <h3 className="font-bold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors">
                       {appeal.title}
                     </h3>
                     <p className="text-sm text-slate-600 line-clamp-2 mb-4">
                       {appeal.description}
                     </p>
-                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-emerald-600">
+                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-orange-600">
                       Donate now
                       <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </span>
@@ -103,7 +103,7 @@ export function Appeals() {
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                  <h3 className="font-bold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors">
                     {appeal.title}
                   </h3>
                   <p className="text-sm text-slate-600 line-clamp-2">{appeal.description}</p>

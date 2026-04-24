@@ -106,7 +106,7 @@ export function QurbaniHero() {
                     }}
                     className={`py-3 rounded-xl text-sm font-bold transition-all ${
                       selectedAmount === amount && !customAmount
-                        ? "bg-emerald-600 text-white shadow-lg shadow-emerald-600/30"
+                        ? "bg-orange-600 text-white shadow-lg shadow-orange-600/30"
                         : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                     }`}
                   >
@@ -128,7 +128,7 @@ export function QurbaniHero() {
                     setCustomAmount(e.target.value);
                     setSelectedAmount(null);
                   }}
-                  className="w-full rounded-xl border-2 border-slate-200 py-3 pl-8 pr-4 text-lg font-medium text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all"
+                  className="w-full rounded-xl border-2 border-slate-200 py-3 pl-8 pr-4 text-lg font-medium text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:outline-none focus:ring-4 focus:ring-orange-500/10 transition-all"
                 />
               </div>
 
@@ -137,7 +137,7 @@ export function QurbaniHero() {
                 <label className="block text-sm font-medium text-slate-700 mb-2">
                   Select Qurbani Type
                 </label>
-                <select className="w-full rounded-xl border-2 border-slate-200 py-3 px-4 text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10">
+                <select className="w-full rounded-xl border-2 border-slate-200 py-3 px-4 text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-4 focus:ring-orange-500/10">
                   <option>Small Animal (1 share) - £39</option>
                   <option>Large Animal (1/7 share) - £70</option>
                   <option>Whole Cow (7 shares) - £490</option>

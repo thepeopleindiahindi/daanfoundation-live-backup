@@ -38,10 +38,10 @@ export function News() {
               />
             </div>
             <div>
-              <span className="inline-block rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 mb-4">
+              <span className="inline-block rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700 mb-4">
                 {featuredArticle.category}
               </span>
-              <h2 className="text-3xl font-bold text-slate-900 mb-4 group-hover:text-emerald-600 transition-colors">
+              <h2 className="text-3xl font-bold text-slate-900 mb-4 group-hover:text-orange-600 transition-colors">
                 {featuredArticle.title}
               </h2>
               <p className="text-lg text-slate-600 mb-4">{featuredArticle.excerpt}</p>
@@ -84,7 +84,7 @@ export function News() {
                   <span className="inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 mb-3">
                     {article.category}
                   </span>
-                  <h3 className="font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors line-clamp-2">
+                  <h3 className="font-bold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors line-clamp-2">
                     {article.title}
                   </h3>
                   <p className="text-sm text-slate-600 line-clamp-2 mb-4">{article.excerpt}</p>

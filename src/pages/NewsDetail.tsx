@@ -13,7 +13,7 @@ export function NewsDetail() {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-slate-900 mb-2">Article Not Found</h1>
           <p className="text-slate-600 mb-4">The article you're looking for doesn't exist.</p>
-          <Link to="/news" className="text-emerald-600 font-semibold hover:underline">
+          <Link to="/news" className="text-orange-600 font-semibold hover:underline">
             View all news
           </Link>
         </div>
@@ -37,13 +37,13 @@ export function NewsDetail() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Link
             to="/news"
-            className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-emerald-600 mb-6"
+            className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-orange-600 mb-6"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to News
           </Link>
 
-          <span className="inline-block rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 mb-4">
+          <span className="inline-block rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700 mb-4">
             {article.category}
           </span>
 
@@ -96,14 +96,14 @@ export function NewsDetail() {
           {/* Share */}
           <div className="mt-8 pt-8 border-t border-slate-200">
             <div className="flex items-center justify-between">
-              <button className="flex items-center gap-2 text-slate-600 hover:text-emerald-600">
+              <button className="flex items-center gap-2 text-slate-600 hover:text-orange-600">
                 <Share2 className="h-5 w-5" />
                 Share this article
               </button>
 
               <Link
                 to="/donate"
-                className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-bold text-white hover:bg-emerald-700"
+                className="inline-flex items-center gap-2 rounded-full bg-orange-600 px-6 py-2.5 text-sm font-bold text-white hover:bg-orange-700"
               >
                 Donate Now
               </Link>
@@ -132,7 +132,7 @@ export function NewsDetail() {
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="font-bold text-slate-900 line-clamp-2 group-hover:text-emerald-600 transition-colors">
+                  <h3 className="font-bold text-slate-900 line-clamp-2 group-hover:text-orange-600 transition-colors">
                     {related.title}
                   </h3>
                 </div>

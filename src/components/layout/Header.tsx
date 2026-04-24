@@ -43,7 +43,7 @@ const navItems = [
         title: "Zakat Calculator",
         description: "Calculate your Zakat obligation",
         href: "/zakat-calculator",
-        gradient: "from-emerald-600 to-teal-700",
+        gradient: "from-orange-600 to-orange-700",
       },
       columns: [
         {
@@ -141,13 +141,13 @@ export function Header() {
             <div className="flex items-center gap-4">
               <span>Registered Charity No. 123456</span>
               <span className="text-slate-300">|</span>
-              <a href="tel:+441onal21-123-4567" className="hover:text-emerald-600">
+              <a href="tel:+441onal21-123-4567" className="hover:text-orange-600">
                 +44 121 123 4567
               </a>
             </div>
             <div className="flex items-center gap-4">
-              <a href="/contact" className="hover:text-emerald-600">Contact</a>
-              <a href="/volunteer" className="hover:text-emerald-600">Volunteer</a>
+              <a href="/contact" className="hover:text-orange-600">Contact</a>
+              <a href="/volunteer" className="hover:text-orange-600">Volunteer</a>
             </div>
           </div>
         </div>
@@ -158,7 +158,7 @@ export function Header() {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 shrink-0">
-            <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center">
+            <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-orange-600 to-orange-700 flex items-center justify-center">
               <Heart className="h-6 w-6 text-white" fill="white" />
             </div>
             <div className="leading-tight">
@@ -184,8 +184,8 @@ export function Header() {
                   to={item.href}
                   className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
                     activeMenu === item.label
-                      ? "text-emerald-600 bg-emerald-50"
-                      : "text-slate-700 hover:text-emerald-600 hover:bg-slate-50"
+                      ? "text-orange-600 bg-orange-50"
+                      : "text-slate-700 hover:text-orange-600 hover:bg-slate-50"
                   }`}
                 >
                   {item.label}
@@ -236,7 +236,7 @@ export function Header() {
                                   <li key={link.href}>
                                     <Link
                                       to={link.href}
-                                      className="text-sm text-slate-700 hover:text-emerald-600 transition-colors"
+                                      className="text-sm text-slate-700 hover:text-orange-600 transition-colors"
                                     >
                                       {link.label}
                                     </Link>
@@ -341,12 +341,12 @@ function MobileNavItem({ item }: { item: typeof navItems[0] }) {
         />
       </button>
       {expanded && (
-        <div className="ml-4 pl-4 border-l-2 border-emerald-200 space-y-1 py-2">
+        <div className="ml-4 pl-4 border-l-2 border-orange-200 space-y-1 py-2">
           {allLinks.map((link) => (
             <Link
               key={link.href}
               to={link.href}
-              className="block py-2 px-4 text-base text-slate-600 hover:text-emerald-600 rounded-lg"
+              className="block py-2 px-4 text-base text-slate-600 hover:text-orange-600 rounded-lg"
             >
               {link.label}
             </Link>

@@ -8,26 +8,31 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    /* 🟧 Primary Orange: #F97316 */
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    /* ⬛ Black: #111111 */
     --foreground: 0 0% 6.7%;
+
+    /* ⬜ White Background: #FFFFFF */
+    --background: 0 0% 100%;
+
+    /* ◻️ Light Grey Section: #F3F4F6 */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 0 0% 6.7%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    /* 🟫 Soft Beige Highlight: #FFF7ED */
+    --accent: 33 100% 97%;
+    --accent-foreground: 0 0% 6.7%;
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 6.7%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 6.7%;
-
-    --primary: 25 95% 53%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 0 0% 6.7%;
-
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 0 0% 40%;
-
-    --accent: 33 100% 96.5%;
-    --accent-foreground: 0 0% 6.7%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;

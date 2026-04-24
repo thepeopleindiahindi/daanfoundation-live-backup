@@ -56,7 +56,7 @@ export function CampaignCards() {
           </div>
           <Link
             to="/appeals"
-            className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors"
+            className="inline-flex items-center gap-2 text-orange-600 font-semibold hover:text-orange-700 transition-colors"
           >
             View all appeals
             <ArrowRight className="h-4 w-4" />
@@ -91,7 +91,7 @@ export function CampaignCards() {
                     </div>
                     <div className="h-1.5 bg-white/30 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-emerald-400 rounded-full transition-all duration-500"
+                        className="h-full bg-orange-400 rounded-full transition-all duration-500"
                         style={{ width: `${progress}%` }}
                       />
                     </div>
@@ -100,13 +100,13 @@ export function CampaignCards() {
 
                 {/* Content */}
                 <div className="p-5">
-                  <h3 className="font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                  <h3 className="font-bold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors">
                     {campaign.title}
                   </h3>
                   <p className="text-sm text-slate-600 line-clamp-2 mb-4">
                     {campaign.description}
                   </p>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-orange-600">
                     Donate now
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </span>

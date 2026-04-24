@@ -19,7 +19,7 @@ export function Contact() {
       <Breadcrumbs items={[{ label: "Contact Us" }]} />
 
       {/* Hero */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-emerald-600 to-teal-700">
+      <section className="py-16 md:py-20 bg-gradient-to-br from-orange-600 to-orange-700">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
             Get in Touch
@@ -40,8 +40,8 @@ export function Contact() {
               
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-5 w-5 text-emerald-600" />
+                  <div className="h-10 w-10 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-5 w-5 text-orange-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Address</h3>
@@ -54,8 +54,8 @@ export function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-5 w-5 text-emerald-600" />
+                  <div className="h-10 w-10 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0">
+                    <Phone className="h-5 w-5 text-orange-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Phone</h3>
@@ -64,8 +64,8 @@ export function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-5 w-5 text-emerald-600" />
+                  <div className="h-10 w-10 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-5 w-5 text-orange-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Email</h3>
@@ -74,8 +74,8 @@ export function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-5 w-5 text-emerald-600" />
+                  <div className="h-10 w-10 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0">
+                    <Clock className="h-5 w-5 text-orange-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Office Hours</h3>
@@ -95,8 +95,8 @@ export function Contact() {
                 
                 {submitted ? (
                   <div className="text-center py-12">
-                    <div className="h-16 w-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">
-                      <Send className="h-8 w-8 text-emerald-600" />
+                    <div className="h-16 w-16 rounded-full bg-orange-100 flex items-center justify-center mx-auto mb-4">
+                      <Send className="h-8 w-8 text-orange-600" />
                     </div>
                     <h3 className="text-xl font-bold text-slate-900 mb-2">Message Sent!</h3>
                     <p className="text-slate-600">
@@ -137,7 +137,7 @@ export function Contact() {
                       />
                     </div>
 
-                    <Button type="submit" className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700">
+                    <Button type="submit" className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700">
                       Send Message
                     </Button>
                   </form>

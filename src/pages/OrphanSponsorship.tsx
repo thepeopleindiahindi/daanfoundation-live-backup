@@ -57,8 +57,8 @@ export function OrphanSponsorship() {
               { icon: Users, title: "Support", description: "Emotional care and guidance" },
             ].map(({ icon: Icon, title, description }) => (
               <div key={title} className="bg-slate-50 rounded-2xl p-6 text-center">
-                <div className="h-14 w-14 rounded-xl bg-emerald-100 flex items-center justify-center mx-auto mb-4">
-                  <Icon className="h-7 w-7 text-emerald-600" />
+                <div className="h-14 w-14 rounded-xl bg-orange-100 flex items-center justify-center mx-auto mb-4">
+                  <Icon className="h-7 w-7 text-orange-600" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2">{title}</h3>
                 <p className="text-sm text-slate-600">{description}</p>
@@ -69,21 +69,21 @@ export function OrphanSponsorship() {
       </section>
 
       {/* Impact */}
-      <section className="py-16 md:py-24 bg-emerald-600">
+      <section className="py-16 md:py-24 bg-orange-600">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-12">Our Impact</h2>
           <div className="grid sm:grid-cols-3 gap-8">
             <div>
               <div className="text-5xl font-bold text-white mb-2">5,000+</div>
-              <div className="text-emerald-100">Orphans Currently Sponsored</div>
+              <div className="text-orange-100">Orphans Currently Sponsored</div>
             </div>
             <div>
               <div className="text-5xl font-bold text-white mb-2">15</div>
-              <div className="text-emerald-100">Countries Reached</div>
+              <div className="text-orange-100">Countries Reached</div>
             </div>
             <div>
               <div className="text-5xl font-bold text-white mb-2">98%</div>
-              <div className="text-emerald-100">School Attendance Rate</div>
+              <div className="text-orange-100">School Attendance Rate</div>
             </div>
           </div>
         </div>

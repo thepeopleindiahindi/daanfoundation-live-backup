@@ -15,7 +15,7 @@ export function WhereMostNeeded() {
             alt="Aid distribution"
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/80 via-emerald-800/60 to-emerald-700/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-900/80 via-orange-800/60 to-orange-700/40" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
@@ -49,8 +49,8 @@ export function WhereMostNeeded() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">
-                <Heart className="h-8 w-8 text-emerald-600" />
+              <div className="h-16 w-16 rounded-full bg-orange-100 flex items-center justify-center mx-auto mb-4">
+                <Heart className="h-8 w-8 text-orange-600" />
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-2">You Donate</h3>
               <p className="text-slate-600">
@@ -58,8 +58,8 @@ export function WhereMostNeeded() {
               </p>
             </div>
             <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">
-                <Globe className="h-8 w-8 text-emerald-600" />
+              <div className="h-16 w-16 rounded-full bg-orange-100 flex items-center justify-center mx-auto mb-4">
+                <Globe className="h-8 w-8 text-orange-600" />
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-2">We Assess</h3>
               <p className="text-slate-600">
@@ -67,8 +67,8 @@ export function WhereMostNeeded() {
               </p>
             </div>
             <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">
-                <ArrowRight className="h-8 w-8 text-emerald-600" />
+              <div className="h-16 w-16 rounded-full bg-orange-100 flex items-center justify-center mx-auto mb-4">
+                <ArrowRight className="h-8 w-8 text-orange-600" />
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-2">Aid Reaches</h3>
               <p className="text-slate-600">
@@ -117,7 +117,7 @@ export function WhereMostNeeded() {
           </p>
           <Link
             to="/donate"
-            className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-8 py-4 font-bold text-white hover:bg-emerald-700"
+            className="inline-flex items-center gap-2 rounded-full bg-orange-600 px-8 py-4 font-bold text-white hover:bg-orange-700"
           >
             Donate to Where Most Needed
             <ArrowRight className="h-5 w-5" />

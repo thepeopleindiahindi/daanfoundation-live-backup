@@ -132,7 +132,7 @@ export function ZakatCalculator() {
     <div className="w-full max-w-3xl mx-auto">
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-700 mb-4">
+        <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-gradient-to-br from-orange-600 to-orange-700 mb-4">
           <Calculator className="h-8 w-8 text-white" />
         </div>
         <h2 className="text-3xl font-bold text-slate-900 mb-2">
@@ -147,7 +147,7 @@ export function ZakatCalculator() {
       {/* Nisab selector */}
       <div className="bg-slate-50 rounded-2xl p-6 mb-6">
         <div className="flex items-start gap-3 mb-4">
-          <Info className="h-5 w-5 text-emerald-600 mt-0.5 shrink-0" />
+          <Info className="h-5 w-5 text-orange-600 mt-0.5 shrink-0" />
           <div>
             <h3 className="font-semibold text-slate-900 mb-1">Nisab Threshold</h3>
             <p className="text-sm text-slate-600">
@@ -160,7 +160,7 @@ export function ZakatCalculator() {
             onClick={() => setNisabType("silver")}
             className={`p-4 rounded-xl border-2 transition-all text-left ${
               nisabType === "silver"
-                ? "border-emerald-500 bg-emerald-50"
+                ? "border-orange-500 bg-orange-50"
                 : "border-slate-200 hover:border-slate-300"
             }`}
           >
@@ -172,7 +172,7 @@ export function ZakatCalculator() {
             onClick={() => setNisabType("gold")}
             className={`p-4 rounded-xl border-2 transition-all text-left ${
               nisabType === "gold"
-                ? "border-emerald-500 bg-emerald-50"
+                ? "border-orange-500 bg-orange-50"
                 : "border-slate-200 hover:border-slate-300"
             }`}
           >
@@ -207,7 +207,7 @@ export function ZakatCalculator() {
                 </div>
                 <div className="flex items-center gap-4">
                   {sectionTotal > 0 && (
-                    <span className="text-lg font-bold text-emerald-600">
+                    <span className="text-lg font-bold text-orange-600">
                       £{sectionTotal.toLocaleString()}
                     </span>
                   )}
@@ -240,7 +240,7 @@ export function ZakatCalculator() {
                           value={values[field.id] || ""}
                           onChange={(e) => handleInputChange(field.id, e.target.value)}
                           placeholder={field.placeholder}
-                          className="w-full rounded-xl border-2 border-slate-200 py-3 pl-8 pr-4 text-slate-900 placeholder:text-slate-300 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all"
+                          className="w-full rounded-xl border-2 border-slate-200 py-3 pl-8 pr-4 text-slate-900 placeholder:text-slate-300 focus:border-orange-500 focus:outline-none focus:ring-4 focus:ring-orange-500/10 transition-all"
                         />
                       </div>
                       {field.helpText && (
@@ -279,7 +279,7 @@ export function ZakatCalculator() {
                       value={values[field.id] || ""}
                       onChange={(e) => handleInputChange(field.id, e.target.value)}
                       placeholder={field.placeholder}
-                      className="w-full rounded-xl border-2 border-slate-200 py-3 pl-8 pr-4 text-slate-900 placeholder:text-slate-300 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all"
+                      className="w-full rounded-xl border-2 border-slate-200 py-3 pl-8 pr-4 text-slate-900 placeholder:text-slate-300 focus:border-orange-500 focus:outline-none focus:ring-4 focus:ring-orange-500/10 transition-all"
                     />
                   </div>
                 </div>
@@ -292,7 +292,7 @@ export function ZakatCalculator() {
       {/* Results panel */}
       <div className={`rounded-2xl p-6 ${
         calculations.isZakatDue 
-          ? "bg-gradient-to-br from-emerald-600 to-teal-700" 
+          ? "bg-gradient-to-br from-orange-600 to-orange-700" 
           : "bg-slate-100"
       }`}>
         <div className="flex items-center justify-between mb-6">
@@ -349,7 +349,7 @@ export function ZakatCalculator() {
               <div className="text-4xl font-bold text-white mb-3">
                 £{calculations.zakatPayable.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </div>
-              <button className="w-full rounded-xl bg-white py-3 text-base font-bold text-emerald-600 hover:bg-emerald-50 transition-colors">
+              <button className="w-full rounded-xl bg-white py-3 text-base font-bold text-orange-600 hover:bg-orange-50 transition-colors">
                 Pay Your Zakat Now
               </button>
             </>

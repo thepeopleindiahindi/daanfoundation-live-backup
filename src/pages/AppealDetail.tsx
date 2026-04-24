@@ -15,7 +15,7 @@ export function AppealDetail() {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-slate-900 mb-2">Appeal Not Found</h1>
           <p className="text-slate-600 mb-4">The appeal you're looking for doesn't exist.</p>
-          <Link to="/appeals" className="text-emerald-600 font-semibold hover:underline">
+          <Link to="/appeals" className="text-orange-600 font-semibold hover:underline">
             View all appeals
           </Link>
         </div>
@@ -117,7 +117,7 @@ export function AppealDetail() {
                   </div>
                   <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full transition-all duration-500"
+                      className="h-full bg-gradient-to-r from-orange-500 to-orange-600 rounded-full transition-all duration-500"
                       style={{ width: `${Math.min(progress, 100)}%` }}
                     />
                   </div>
@@ -131,7 +131,7 @@ export function AppealDetail() {
                   {presetAmounts.map((amount) => (
                     <button
                       key={amount}
-                      className="py-3 rounded-xl text-sm font-bold bg-slate-100 text-slate-700 hover:bg-emerald-100 hover:text-emerald-700 transition-colors"
+                      className="py-3 rounded-xl text-sm font-bold bg-slate-100 text-slate-700 hover:bg-orange-100 hover:text-orange-700 transition-colors"
                     >
                       £{amount}
                     </button>
@@ -144,7 +144,7 @@ export function AppealDetail() {
                   <input
                     type="number"
                     placeholder="Other amount"
-                    className="w-full rounded-xl border-2 border-slate-200 py-3 pl-8 pr-4 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10"
+                    className="w-full rounded-xl border-2 border-slate-200 py-3 pl-8 pr-4 focus:border-orange-500 focus:outline-none focus:ring-4 focus:ring-orange-500/10"
                   />
                 </div>
 
@@ -182,7 +182,7 @@ export function AppealDetail() {
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  <h3 className="font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
                     {related.title}
                   </h3>
                   <p className="text-sm text-slate-600 mt-1 line-clamp-2">{related.description}</p>

@@ -34,7 +34,7 @@ export function Donate() {
       <Breadcrumbs items={[{ label: "Donate" }]} />
 
       {/* Hero */}
-      <section className="py-12 md:py-16 bg-gradient-to-br from-emerald-600 to-teal-700">
+      <section className="py-12 md:py-16 bg-gradient-to-br from-orange-600 to-orange-700">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
             Make a Donation
@@ -54,10 +54,10 @@ export function Donate() {
               {["Amount", "Details", "Payment"].map((label, idx) => (
                 <div 
                   key={label}
-                  className={`flex items-center gap-2 ${idx + 1 <= step ? "text-emerald-600" : "text-slate-400"}`}
+                  className={`flex items-center gap-2 ${idx + 1 <= step ? "text-orange-600" : "text-slate-400"}`}
                 >
                   <div className={`h-8 w-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                    idx + 1 <= step ? "bg-emerald-600 text-white" : "bg-slate-200 text-slate-500"
+                    idx + 1 <= step ? "bg-orange-600 text-white" : "bg-slate-200 text-slate-500"
                   }`}>
                     {idx + 1}
                   </div>
@@ -67,7 +67,7 @@ export function Donate() {
             </div>
             <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-emerald-600 transition-all duration-300" 
+                className="h-full bg-orange-600 transition-all duration-300" 
                 style={{ width: `${(step / 3) * 100}%` }}
               />
             </div>
@@ -89,7 +89,7 @@ export function Donate() {
                         onClick={() => setFrequency(id)}
                         className={`py-3 px-4 rounded-xl border-2 font-semibold transition-colors ${
                           frequency === id
-                            ? "border-emerald-600 bg-emerald-50 text-emerald-700"
+                            ? "border-orange-600 bg-orange-50 text-orange-700"
                             : "border-slate-200 hover:border-slate-300"
                         }`}
                       >
@@ -109,7 +109,7 @@ export function Donate() {
                         onClick={() => { setAmount(value); setCustomAmount(""); }}
                         className={`py-3 px-4 rounded-xl border-2 font-bold text-lg transition-colors ${
                           amount === value && !customAmount
-                            ? "border-emerald-600 bg-emerald-50 text-emerald-700"
+                            ? "border-orange-600 bg-orange-50 text-orange-700"
                             : "border-slate-200 hover:border-slate-300"
                         }`}
                       >
@@ -143,7 +143,7 @@ export function Donate() {
                         key={id}
                         htmlFor={id}
                         className={`flex items-center gap-3 p-3 rounded-xl border-2 cursor-pointer transition-colors ${
-                          cause === id ? "border-emerald-600 bg-emerald-50" : "border-slate-200 hover:border-slate-300"
+                          cause === id ? "border-orange-600 bg-orange-50" : "border-slate-200 hover:border-slate-300"
                         }`}
                       >
                         <RadioGroupItem value={id} id={id} />
@@ -153,7 +153,7 @@ export function Donate() {
                   </RadioGroup>
                 </div>
 
-                <Button onClick={handleNext} className="w-full bg-emerald-600 hover:bg-emerald-700" disabled={finalAmount <= 0}>
+                <Button onClick={handleNext} className="w-full bg-orange-600 hover:bg-orange-700" disabled={finalAmount <= 0}>
                   Continue — £{finalAmount || 0} {frequency === "monthly" ? "/month" : ""}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -196,7 +196,7 @@ export function Donate() {
                   <Button variant="outline" onClick={() => setStep(1)} className="flex-1">
                     Back
                   </Button>
-                  <Button onClick={handleNext} className="flex-1 bg-emerald-600 hover:bg-emerald-700">
+                  <Button onClick={handleNext} className="flex-1 bg-orange-600 hover:bg-orange-700">
                     Continue to Payment
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -220,16 +220,16 @@ export function Donate() {
                   </div>
                   <div className="flex justify-between border-t pt-2 mt-2">
                     <span className="font-bold">Total</span>
-                    <span className="font-bold text-emerald-600">£{finalAmount}</span>
+                    <span className="font-bold text-orange-600">£{finalAmount}</span>
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <button className="flex items-center justify-center gap-2 p-4 rounded-xl border-2 border-slate-200 hover:border-emerald-600 transition-colors">
+                  <button className="flex items-center justify-center gap-2 p-4 rounded-xl border-2 border-slate-200 hover:border-orange-600 transition-colors">
                     <CreditCard className="h-5 w-5" />
                     <span className="font-medium">Card</span>
                   </button>
-                  <button className="flex items-center justify-center gap-2 p-4 rounded-xl border-2 border-slate-200 hover:border-emerald-600 transition-colors">
+                  <button className="flex items-center justify-center gap-2 p-4 rounded-xl border-2 border-slate-200 hover:border-orange-600 transition-colors">
                     <Landmark className="h-5 w-5" />
                     <span className="font-medium">Bank Transfer</span>
                   </button>
@@ -244,7 +244,7 @@ export function Donate() {
                   <Button variant="outline" onClick={() => setStep(2)} className="flex-1">
                     Back
                   </Button>
-                  <Button className="flex-1 bg-emerald-600 hover:bg-emerald-700">
+                  <Button className="flex-1 bg-orange-600 hover:bg-orange-700">
                     <Heart className="mr-2 h-4 w-4" />
                     Complete Donation
                   </Button>

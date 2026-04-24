@@ -9,7 +9,7 @@ export function About() {
 
       {/* SECTION: Hero */}
       <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 to-teal-700" />
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-600 to-orange-700" />
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20V9.5a2.5 2.5 0 015 0V12h15v2H25v2h15v2H25v2.5a2.5 2.5 0 11-5 0z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`,
         }} />
@@ -44,7 +44,7 @@ export function About() {
               </div>
               {/* Floating stat card */}
               <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 hidden md:block">
-                <div className="text-4xl font-bold text-emerald-600 mb-1">2.5M+</div>
+                <div className="text-4xl font-bold text-orange-600 mb-1">2.5M+</div>
                 <div className="text-sm text-slate-600">People helped</div>
               </div>
             </div>
@@ -74,8 +74,8 @@ export function About() {
                   { icon: Award, label: "Excellence" },
                 ].map(({ icon: Icon, label }) => (
                   <div key={label} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50">
-                    <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center">
-                      <Icon className="h-5 w-5 text-emerald-600" />
+                    <div className="h-10 w-10 rounded-lg bg-orange-100 flex items-center justify-center">
+                      <Icon className="h-5 w-5 text-orange-600" />
                     </div>
                     <span className="font-medium text-slate-900">{label}</span>
                   </div>
@@ -106,7 +106,7 @@ export function About() {
               { number: "£15M", label: "Raised in 2025", icon: Award },
             ].map(({ number, label, icon: Icon }) => (
               <div key={label} className="bg-white rounded-2xl p-6 text-center shadow-sm">
-                <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center mx-auto mb-4">
+                <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-orange-600 to-orange-700 flex items-center justify-center mx-auto mb-4">
                   <Icon className="h-7 w-7 text-white" />
                 </div>
                 <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-1">
@@ -143,14 +143,14 @@ export function About() {
               <div key={item.year} className="flex gap-6 mb-8 last:mb-0">
                 {/* Timeline line */}
                 <div className="flex flex-col items-center">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center shrink-0">
+                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-orange-600 to-orange-700 flex items-center justify-center shrink-0">
                     <Clock className="h-5 w-5 text-white" />
                   </div>
-                  {index < 5 && <div className="w-0.5 flex-1 bg-emerald-200 mt-2" />}
+                  {index < 5 && <div className="w-0.5 flex-1 bg-orange-200 mt-2" />}
                 </div>
                 {/* Content */}
                 <div className="pb-8">
-                  <span className="text-sm font-bold text-emerald-600">{item.year}</span>
+                  <span className="text-sm font-bold text-orange-600">{item.year}</span>
                   <h3 className="text-xl font-bold text-slate-900 mt-1 mb-2">{item.title}</h3>
                   <p className="text-slate-600">{item.description}</p>
                 </div>
@@ -195,7 +195,7 @@ export function About() {
       {/* SECTION: CTA */}
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-gradient-to-br from-emerald-600 to-teal-700 p-8 md:p-12 text-center">
+          <div className="rounded-3xl bg-gradient-to-br from-orange-600 to-orange-700 p-8 md:p-12 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Join Us in Making a Difference
             </h2>
@@ -206,7 +206,7 @@ export function About() {
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href="/donate"
-                className="rounded-full bg-white px-8 py-4 text-base font-bold text-emerald-600 shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
+                className="rounded-full bg-white px-8 py-4 text-base font-bold text-orange-600 shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
               >
                 Donate Now
               </a>

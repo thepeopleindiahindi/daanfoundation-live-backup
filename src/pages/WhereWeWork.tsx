@@ -21,7 +21,7 @@ const regions = [
   {
     name: "Southeast Asia",
     countries: ["Indonesia", "Myanmar", "Malaysia"],
-    color: "bg-emerald-100 text-emerald-700",
+    color: "bg-orange-100 text-orange-700",
   },
 ];
 
@@ -40,7 +40,7 @@ export function WhereWeWork() {
       {/* Hero */}
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-slate-800 to-slate-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <Globe className="h-16 w-16 text-emerald-400 mx-auto mb-6" />
+          <Globe className="h-16 w-16 text-orange-400 mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
             Where We Work
           </h1>
@@ -51,13 +51,13 @@ export function WhereWeWork() {
       </section>
 
       {/* Impact stats */}
-      <section className="py-12 bg-emerald-600">
+      <section className="py-12 bg-orange-600">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {impactStats.map(({ value, label }) => (
               <div key={label} className="text-center">
                 <div className="text-4xl font-bold text-white mb-1">{value}</div>
-                <div className="text-emerald-100">{label}</div>
+                <div className="text-orange-100">{label}</div>
               </div>
             ))}
           </div>
@@ -114,13 +114,13 @@ export function WhereWeWork() {
               </p>
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex items-center gap-2">
-                  <Users className="h-5 w-5 text-emerald-600" />
+                  <Users className="h-5 w-5 text-orange-600" />
                   <span className="text-slate-600">500,000+ people reached</span>
                 </div>
               </div>
               <Link
                 to="/appeals/palestine-emergency"
-                className="inline-flex items-center gap-2 font-semibold text-emerald-600 hover:text-emerald-700"
+                className="inline-flex items-center gap-2 font-semibold text-orange-600 hover:text-orange-700"
               >
                 Support Palestine Emergency
                 <ArrowRight className="h-4 w-4" />
@@ -141,7 +141,7 @@ export function WhereWeWork() {
           </p>
           <Link
             to="/donate"
-            className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-8 py-4 font-bold text-white hover:bg-emerald-700"
+            className="inline-flex items-center gap-2 rounded-full bg-orange-600 px-8 py-4 font-bold text-white hover:bg-orange-700"
           >
             Donate Now
             <ArrowRight className="h-5 w-5" />
