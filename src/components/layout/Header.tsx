@@ -1,0 +1,360 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Menu, X, ChevronDown, Search, Heart } from "lucide-react";
+
+/* ─── Navigation Structure ─────────────────────────────────────────────── */
+const navItems = [
+  {
+    label: "Appeals",
+    href: "/appeals",
+    megaMenu: {
+      featured: {
+        title: "Qurbani 2026",
+        description: "Share your blessings this Eid ul-Adha",
+        href: "/qurbani",
+        gradient: "from-amber-500 to-orange-600",
+      },
+      columns: [
+        {
+          heading: "Emergency Appeals",
+          links: [
+            { label: "Palestine Emergency", href: "/appeals/palestine" },
+            { label: "Sudan Crisis", href: "/appeals/sudan" },
+            { label: "Yemen Emergency", href: "/appeals/yemen" },
+            { label: "Lebanon Appeal", href: "/appeals/lebanon" },
+          ],
+        },
+        {
+          heading: "Seasonal Giving",
+          links: [
+            { label: "Qurbani", href: "/qurbani" },
+            { label: "Ramadan", href: "/ramadan" },
+            { label: "Winter Appeal", href: "/winter" },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    label: "Ways to Give",
+    href: "/give",
+    megaMenu: {
+      featured: {
+        title: "Zakat Calculator",
+        description: "Calculate your Zakat obligation",
+        href: "/zakat-calculator",
+        gradient: "from-emerald-600 to-teal-700",
+      },
+      columns: [
+        {
+          heading: "Islamic Giving",
+          links: [
+            { label: "Zakat", href: "/zakat" },
+            { label: "Sadaqah", href: "/sadaqah" },
+            { label: "Sadaqah Jariyah", href: "/sadaqah-jariyah" },
+            { label: "Fidya & Kaffarah", href: "/fidya" },
+          ],
+        },
+        {
+          heading: "Programs",
+          links: [
+            { label: "Sponsor an Orphan", href: "/orphan-sponsorship" },
+            { label: "Water for Life", href: "/water" },
+            { label: "Food Security", href: "/food" },
+            { label: "Where Most Needed", href: "/where-most-needed" },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    label: "Our Work",
+    href: "/our-work",
+    megaMenu: {
+      columns: [
+        {
+          heading: "Impact",
+          links: [
+            { label: "Where We Work", href: "/where-we-work" },
+            { label: "Our Impact", href: "/impact" },
+            { label: "Annual Reports", href: "/reports" },
+          ],
+        },
+        {
+          heading: "Focus Areas",
+          links: [
+            { label: "Emergency Response", href: "/emergency-response" },
+            { label: "Orphan Care", href: "/orphans" },
+            { label: "Livelihoods", href: "/livelihoods" },
+            { label: "Education", href: "/education" },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    label: "Resources",
+    href: "/resources",
+    links: [
+      { label: "Zakat Calculator", href: "/zakat-calculator" },
+      { label: "Islamic Resources", href: "/islamic-resources" },
+      { label: "Knowledge Base", href: "/knowledge-base" },
+    ],
+  },
+  { label: "About", href: "/about" },
+  { label: "News", href: "/news" },
+];
+
+/* ─── Header Component ─────────────────────────────────────────────────── */
+export function Header() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close mega menu when clicking outside
+  useEffect(() => {
+    const handleClick = () => setActiveMenu(null);
+    if (activeMenu) {
+      document.addEventListener("click", handleClick);
+      return () => document.removeEventListener("click", handleClick);
+    }
+  }, [activeMenu]);
+
+  return (
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white shadow-lg"
+          : "bg-white/95 backdrop-blur-sm"
+      }`}
+    >
+      {/* Top bar */}
+      <div className="hidden lg:block border-b border-slate-100 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between py-2 text-xs text-slate-600">
+            <div className="flex items-center gap-4">
+              <span>Registered Charity No. 123456</span>
+              <span className="text-slate-300">|</span>
+              <a href="tel:+441onal21-123-4567" className="hover:text-emerald-600">
+                +44 121 123 4567
+              </a>
+            </div>
+            <div className="flex items-center gap-4">
+              <a href="/contact" className="hover:text-emerald-600">Contact</a>
+              <a href="/volunteer" className="hover:text-emerald-600">Volunteer</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main header */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between py-4">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3 shrink-0">
+            <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center">
+              <Heart className="h-6 w-6 text-white" fill="white" />
+            </div>
+            <div className="leading-tight">
+              <span className="block text-xl font-bold text-slate-900 tracking-tight">
+                Qurbani Easy
+              </span>
+              <span className="block text-[10px] font-medium tracking-widest text-slate-500 uppercase">
+                Making your sacrifice simple
+              </span>
+            </div>
+          </Link>
+
+          {/* Desktop navigation */}
+          <nav className="hidden lg:flex items-center gap-1">
+            {navItems.map((item) => (
+              <div
+                key={item.label}
+                className="relative"
+                onMouseEnter={() => item.megaMenu && setActiveMenu(item.label)}
+                onMouseLeave={() => setActiveMenu(null)}
+              >
+                <Link
+                  to={item.href}
+                  className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    activeMenu === item.label
+                      ? "text-emerald-600 bg-emerald-50"
+                      : "text-slate-700 hover:text-emerald-600 hover:bg-slate-50"
+                  }`}
+                >
+                  {item.label}
+                  {item.megaMenu && (
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform ${
+                        activeMenu === item.label ? "rotate-180" : ""
+                      }`}
+                    />
+                  )}
+                </Link>
+
+                {/* Mega Menu Dropdown */}
+                {item.megaMenu && activeMenu === item.label && (
+                  <div
+                    className="absolute left-0 top-full pt-2 z-50"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className="w-[600px] rounded-2xl bg-white shadow-2xl ring-1 ring-slate-200 overflow-hidden">
+                      <div className="grid grid-cols-3 gap-0">
+                        {/* Featured section */}
+                        {item.megaMenu.featured && (
+                          <Link
+                            to={item.megaMenu.featured.href}
+                            className={`col-span-1 p-6 bg-gradient-to-br ${item.megaMenu.featured.gradient} text-white flex flex-col justify-end min-h-[200px]`}
+                          >
+                            <span className="text-xs font-semibold uppercase tracking-wider text-white/80 mb-1">
+                              Featured
+                            </span>
+                            <span className="text-lg font-bold mb-1">
+                              {item.megaMenu.featured.title}
+                            </span>
+                            <span className="text-sm text-white/90">
+                              {item.megaMenu.featured.description}
+                            </span>
+                          </Link>
+                        )}
+
+                        {/* Link columns */}
+                        <div className={`${item.megaMenu.featured ? "col-span-2" : "col-span-3"} p-6 grid grid-cols-2 gap-6`}>
+                          {item.megaMenu.columns.map((col, idx) => (
+                            <div key={idx}>
+                              <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+                                {col.heading}
+                              </h4>
+                              <ul className="space-y-2">
+                                {col.links.map((link) => (
+                                  <li key={link.href}>
+                                    <Link
+                                      to={link.href}
+                                      className="text-sm text-slate-700 hover:text-emerald-600 transition-colors"
+                                    >
+                                      {link.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+
+          {/* Right side actions */}
+          <div className="flex items-center gap-3">
+            <button
+              className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full text-slate-600 hover:bg-slate-100 transition-colors"
+              aria-label="Search"
+            >
+              <Search className="h-5 w-5" />
+            </button>
+
+            <Link
+              to="/donate"
+              className="rounded-full bg-gradient-to-r from-amber-500 to-orange-600 px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-105 transition-all"
+            >
+              Donate Now
+            </Link>
+
+            <button
+              className="lg:hidden ml-1 h-10 w-10 flex items-center justify-center rounded-lg hover:bg-slate-100"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? (
+                <X className="h-6 w-6 text-slate-700" />
+              ) : (
+                <Menu className="h-6 w-6 text-slate-700" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile navigation */}
+      {mobileOpen && (
+        <div className="lg:hidden fixed inset-0 top-[73px] z-40 bg-white overflow-y-auto">
+          <nav className="px-4 py-6 space-y-1">
+            {navItems.map((item) => (
+              <MobileNavItem key={item.label} item={item} />
+            ))}
+          </nav>
+          <div className="px-4 py-6 border-t border-slate-100">
+            <Link
+              to="/donate"
+              className="block w-full rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 py-4 text-center text-lg font-bold text-white shadow-lg"
+            >
+              Donate Now
+            </Link>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
+/* ─── Mobile Nav Item with Accordion ───────────────────────────────────── */
+function MobileNavItem({ item }: { item: typeof navItems[0] }) {
+  const [expanded, setExpanded] = useState(false);
+  const hasChildren = item.megaMenu || item.links;
+
+  if (!hasChildren) {
+    return (
+      <Link
+        to={item.href}
+        className="block py-3 px-4 text-lg font-medium text-slate-800 hover:bg-slate-50 rounded-xl"
+      >
+        {item.label}
+      </Link>
+    );
+  }
+
+  const allLinks = item.megaMenu
+    ? item.megaMenu.columns.flatMap((col) => col.links)
+    : item.links || [];
+
+  return (
+    <div>
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="w-full flex items-center justify-between py-3 px-4 text-lg font-medium text-slate-800 hover:bg-slate-50 rounded-xl"
+      >
+        {item.label}
+        <ChevronDown
+          className={`h-5 w-5 text-slate-400 transition-transform ${
+            expanded ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      {expanded && (
+        <div className="ml-4 pl-4 border-l-2 border-emerald-200 space-y-1 py-2">
+          {allLinks.map((link) => (
+            <Link
+              key={link.href}
+              to={link.href}
+              className="block py-2 px-4 text-base text-slate-600 hover:text-emerald-600 rounded-lg"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Header;
