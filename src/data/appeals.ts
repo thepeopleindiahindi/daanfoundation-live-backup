@@ -85,20 +85,6 @@ export const appeals: Appeal[] = [
     featured: false,
     urgent: false,
   },
-  {
-    id: "6",
-    slug: "qurbani-2026",
-    title: "Qurbani 2026",
-    shortTitle: "Qurbani",
-    description: "Share your Qurbani with families who rarely eat meat.",
-    longDescription: "This Eid ul-Adha, your Qurbani sacrifice will bring joy to families who can rarely afford meat. We ensure your Qurbani reaches those most in need, distributed fresh to families across 30+ countries.",
-    image: "/images/hero-1.jpg",
-    raised: 125000,
-    goal: 500000,
-    category: "seasonal",
-    featured: true,
-    urgent: false,
-  },
 ];
 
 export const getAppealBySlug = (slug: string) => appeals.find((a) => a.slug === slug);

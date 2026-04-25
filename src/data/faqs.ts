@@ -55,29 +55,6 @@ export const sadaqahFAQs: FAQ[] = [
   },
 ];
 
-export const qurbaniFAQs: FAQ[] = [
-  {
-    question: "What is Qurbani?",
-    answer: "Qurbani is the ritual sacrifice of an animal during Eid ul-Adha, commemorating Prophet Ibrahim's willingness to sacrifice his son in obedience to Allah.",
-  },
-  {
-    question: "Who must give Qurbani?",
-    answer: "Qurbani is obligatory (Wajib) for every sane Muslim who has reached puberty and possesses the Nisab amount of wealth.",
-  },
-  {
-    question: "When is Qurbani performed?",
-    answer: "Qurbani is performed during the days of Eid ul-Adha, specifically from after the Eid prayer on the 10th of Dhul Hijjah until sunset on the 13th of Dhul Hijjah.",
-  },
-  {
-    question: "What animals can be sacrificed?",
-    answer: "Acceptable animals include goats, sheep (1 share each), cows, and camels (7 shares each). The animal must meet minimum age requirements and be free from defects.",
-  },
-  {
-    question: "How is the meat distributed?",
-    answer: "The meat is traditionally divided into three parts: one-third for the family, one-third for friends and relatives, and one-third for those in need.",
-  },
-];
-
 export const fidyaFAQs: FAQ[] = [
   {
     question: "What is Fidya?",
@@ -100,6 +77,5 @@ export const fidyaFAQs: FAQ[] = [
 export const allFAQs: FAQCategory[] = [
   { topic: "Zakat", faqs: zakatFAQs },
   { topic: "Sadaqah", faqs: sadaqahFAQs },
-  { topic: "Qurbani", faqs: qurbaniFAQs },
   { topic: "Fidya & Kaffarah", faqs: fidyaFAQs },
 ];

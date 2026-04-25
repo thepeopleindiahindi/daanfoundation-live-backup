@@ -1,4 +1,4 @@
-// Route constants for the Qurbani Easy website
+// Route constants for the Daan Foundation website
 export const ROUTES = {
   // Core
   HOME: "/",
@@ -7,7 +7,6 @@ export const ROUTES = {
   // Appeals
   APPEALS: "/appeals",
   APPEAL_DETAIL: "/appeals/:slug",
-  QURBANI: "/qurbani",
   RAMADAN: "/ramadan",
   WINTER: "/winter",
 

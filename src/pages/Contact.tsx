@@ -69,7 +69,7 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Email</h3>
-                    <p className="text-slate-600">info@qurbanieasy.org</p>
+                    <p className="text-slate-600">info@daanfoundation.org</p>
                   </div>
                 </div>
 

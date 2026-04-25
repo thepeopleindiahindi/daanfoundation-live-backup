@@ -761,7 +761,6 @@ const footerCols = [
   {
     heading: "Giving",
     links: [
-      { label: "Qurbani", href: "#" },
       { label: "Zakat", href: "#" },
       { label: "Fidya", href: "#" },
       { label: "Kaffarah", href: "#" },

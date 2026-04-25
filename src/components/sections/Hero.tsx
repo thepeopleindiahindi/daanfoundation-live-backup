@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Play } from "lucide-react";
 
-const presetAmounts = [50, 100, 200, 500];
+const presetAmounts = [25, 50, 100, 250];
 
-export function QurbaniHero() {
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(100);
+export function Hero() {
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(50);
   const [customAmount, setCustomAmount] = useState("");
 
   const currentAmount = customAmount ? Number(customAmount) : selectedAmount;
@@ -26,19 +26,18 @@ export function QurbaniHero() {
           <div className="text-white">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-white mb-6">
               <span className="h-2 w-2 rounded-full bg-amber-300 animate-pulse" />
-              Dhul Hijjah 1447 • Limited Time
+              Emergency Appeal • Urgent
             </span>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6">
-              Share Your{" "}
-              <span className="text-amber-300">Qurbani</span>{" "}
-              This Eid ul-Adha
+              Transform Lives{" "}
+              <span className="text-amber-300">Today</span>
             </h1>
 
             <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-8 max-w-xl">
-              Your sacrifice reaches those who need it most. We deliver fresh,
-              nutritious Qurbani meat to families across 30+ countries, ensuring
-              your act of worship brings joy to those in need.
+              Your generosity reaches those who need it most. We deliver essential
+              aid and support to families across 30+ countries, bringing hope and
+              dignity to communities in need.
             </p>
 
             <div className="flex flex-wrap gap-8 mb-8">
@@ -48,17 +47,17 @@ export function QurbaniHero() {
               </div>
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-white">2.5M</div>
-                <div className="text-sm text-white/70">People Fed Last Year</div>
+                <div className="text-sm text-white/70">People Helped Last Year</div>
               </div>
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-white">100%</div>
-                <div className="text-sm text-white/70">Shariah Compliant</div>
+                <div className="text-sm text-white/70">Transparent Giving</div>
               </div>
             </div>
 
             <div className="flex flex-wrap items-center gap-4">
               <Link
-                to="/qurbani"
+                to="/about"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-base font-bold text-orange-500 shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
               >
                 Learn More
@@ -77,10 +76,10 @@ export function QurbaniHero() {
           <div className="lg:justify-self-end w-full max-w-md">
             <div className="rounded-2xl bg-white p-6 md:p-8 shadow-2xl">
               <h3 className="text-xl font-bold text-slate-900 text-center mb-2">
-                Give Your Qurbani
+                Make a Donation
               </h3>
               <p className="text-sm text-slate-500 text-center mb-6">
-                Prices from £39 per share
+                Every contribution makes a difference
               </p>
 
               {/* Amount selector */}
@@ -123,13 +122,14 @@ export function QurbaniHero() {
               {/* Fund selector */}
               <div className="mb-6">
                 <label className="block text-sm font-semibold text-slate-700 mb-2">
-                  Select Qurbani Type
+                  Select a Cause
                 </label>
                 <select className="w-full rounded-xl border-2 border-slate-200 py-3 px-4 text-slate-900 focus:border-orange-400 focus:outline-none focus:ring-4 focus:ring-orange-400/10">
-                  <option>Small Animal (1 share) - £39</option>
-                  <option>Large Animal (1/7 share) - £70</option>
-                  <option>Whole Cow (7 shares) - £490</option>
                   <option>Where Most Needed</option>
+                  <option>Emergency Relief</option>
+                  <option>Orphan Sponsorship</option>
+                  <option>Water & Sanitation</option>
+                  <option>Education</option>
                 </select>
               </div>
 
@@ -151,22 +151,16 @@ export function QurbaniHero() {
                   Secure
                 </span>
                 <span>•</span>
-                <span>100% Donation Policy</span>
+                <span>Registered Charity</span>
+                <span>•</span>
+                <span>Tax Deductible</span>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-white/60">
-        <span className="text-xs font-medium uppercase tracking-wider">Scroll</span>
-        <div className="h-12 w-6 rounded-full border-2 border-white/30 flex items-start justify-center p-1.5">
-          <div className="h-2 w-1 rounded-full bg-white/60 animate-bounce" />
         </div>
       </div>
     </section>
   );
 }
 
-export default QurbaniHero;
+export default Hero;

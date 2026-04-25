@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import QurbaniHero from "@/components/sections/QurbaniHero";
+import Hero from "@/components/sections/Hero";
 import CampaignCards from "@/components/sections/CampaignCards";
 import ImpactStats from "@/components/sections/ImpactStats";
 import NewsGrid from "@/components/sections/NewsGrid";
@@ -28,9 +28,9 @@ const islamicGivingItems = [
   },
   {
     icon: HandHeart,
-    title: "Qurbani",
-    description: "Share the blessings of Eid with families in need through your sacrifice.",
-    href: "/qurbani",
+    title: "Orphan Sponsorship",
+    description: "Support vulnerable children with food, shelter, and education.",
+    href: "/orphan-sponsorship",
     iconBg: "bg-rose-100",
     iconColor: "text-rose-600",
   },
@@ -40,7 +40,7 @@ export function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <QurbaniHero />
+      <Hero />
 
       {/* Quick Actions */}
       <QuickActions />
@@ -159,10 +159,10 @@ export function HomePage() {
             </div>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                Making Your Sacrifice Simple
+                Serving Humanity With Compassion
               </h2>
               <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                Qurbani Easy is dedicated to simplifying Islamic charitable giving while maximizing 
+                Daan Foundation is dedicated to simplifying charitable giving while maximizing 
                 impact for those in need around the world. We work in over 30 countries, delivering 
                 aid to the most vulnerable communities.
               </p>

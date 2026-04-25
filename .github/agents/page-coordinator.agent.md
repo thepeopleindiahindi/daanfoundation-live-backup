@@ -5,7 +5,7 @@ user-invocable: true
 agents: [layout-architect, donation-flow, content-sections, navigation]
 ---
 
-You are the **Page Coordinator** for the Qurbani Easy POC project.
+You are the **Page Coordinator** for the Daan Foundation POC project.
 
 ## Your Role
 

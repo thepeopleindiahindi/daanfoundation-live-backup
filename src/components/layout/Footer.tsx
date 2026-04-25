@@ -3,7 +3,6 @@ import { Heart, Mail, Phone, MapPin, Instagram, Youtube, Linkedin, Twitter } fro
 
 const footerLinks = {
   appeals: [
-    { label: "Qurbani", href: "/qurbani" },
     { label: "Palestine Emergency", href: "/appeals/palestine" },
     { label: "Sudan Crisis", href: "/appeals/sudan" },
     { label: "Yemen Emergency", href: "/appeals/yemen" },
@@ -79,10 +78,10 @@ export function Footer() {
               </div>
               <div className="leading-tight">
                 <span className="block text-xl font-bold text-white tracking-tight">
-                  Qurbani Easy
+                  Daan Foundation
                 </span>
                 <span className="block text-[10px] font-semibold tracking-widest text-slate-500 uppercase">
-                  Making your sacrifice simple
+                  Serving humanity with compassion
                 </span>
               </div>
             </Link>
@@ -91,9 +90,9 @@ export function Footer() {
                 <Phone className="h-4 w-4" />
                 +44 121 123 4567
               </a>
-              <a href="mailto:info@qurbanieasy.org" className="flex items-center gap-2 hover:text-orange-400 transition-colors">
+              <a href="mailto:info@daanfoundation.org" className="flex items-center gap-2 hover:text-orange-400 transition-colors">
                 <Mail className="h-4 w-4" />
-                info@qurbanieasy.org
+                info@daanfoundation.org
               </a>
               <div className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
@@ -162,7 +161,7 @@ export function Footer() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500">
-              <span>© 2026 Qurbani Easy. Registered Charity No. 123456</span>
+              <span>© 2026 Daan Foundation. Registered Charity No. 123456</span>
               <span className="hidden md:inline">•</span>
               <Link to="/privacy" className="hover:text-slate-300">Privacy Policy</Link>
               <Link to="/terms" className="hover:text-slate-300">Terms of Use</Link>

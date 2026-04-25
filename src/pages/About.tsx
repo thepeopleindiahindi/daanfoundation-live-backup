@@ -19,12 +19,12 @@ export function About() {
             Est. 2020
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-            Making Your Sacrifice{" "}
-            <span className="text-amber-300">Simple</span>
+            Serving Humanity{" "}
+            <span className="text-amber-300">With Compassion</span>
           </h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-            Qurbani Easy connects your acts of worship with communities in need, 
-            ensuring every sacrifice reaches those who need it most.
+            Daan Foundation connects your generosity with communities in need, 
+            ensuring every donation reaches those who need it most.
           </p>
         </div>
       </section>
@@ -61,7 +61,7 @@ export function About() {
                 meaningful change.
               </p>
               <p className="text-lg text-slate-600 leading-relaxed mb-8">
-                From Qurbani and Zakat to emergency relief, we work with trusted 
+                From Zakat and Sadaqah to emergency relief, we work with trusted 
                 partners in over 30 countries to deliver aid where it's needed most.
               </p>
 
@@ -102,7 +102,7 @@ export function About() {
             {[
               { number: "30+", label: "Countries Reached", icon: Globe },
               { number: "2.5M", label: "People Helped", icon: Users },
-              { number: "500K", label: "Qurbanis Delivered", icon: Heart },
+              { number: "500K", label: "Aid Packages Delivered", icon: Heart },
               { number: "£15M", label: "Raised in 2025", icon: Award },
             ].map(({ number, label, icon: Icon }) => (
               <div key={label} className="bg-white rounded-2xl p-6 text-center shadow-sm">
@@ -133,8 +133,8 @@ export function About() {
 
           <div className="max-w-3xl mx-auto">
             {[
-              { year: "2020", title: "Founded", description: "Started with a vision to make Islamic giving accessible to everyone." },
-              { year: "2021", title: "First Qurbani Campaign", description: "Delivered 10,000 Qurbanis to families across 5 countries." },
+              { year: "2020", title: "Founded", description: "Started with a vision to make charitable giving accessible to everyone." },
+              { year: "2021", title: "First Major Campaign", description: "Delivered aid packages to families across 5 countries." },
               { year: "2022", title: "Expanded Operations", description: "Grew to 15 countries and launched our Zakat distribution program." },
               { year: "2023", title: "1 Million Milestone", description: "Reached 1 million people through our various programs." },
               { year: "2024", title: "Emergency Response", description: "Provided critical aid during multiple humanitarian crises." },

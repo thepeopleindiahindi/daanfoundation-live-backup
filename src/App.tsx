@@ -14,7 +14,6 @@ import AppealDetail from "./pages/AppealDetail";
 import Zakat from "./pages/Zakat";
 import ZakatCalculatorPage from "./pages/ZakatCalculatorPage";
 import Sadaqah from "./pages/Sadaqah";
-import Qurbani from "./pages/Qurbani";
 import Fidya from "./pages/Fidya";
 import News from "./pages/News";
 import NewsDetail from "./pages/NewsDetail";
@@ -46,7 +45,6 @@ const App = () => (
             <Route path="/zakat" element={<Zakat />} />
             <Route path="/zakat-calculator" element={<ZakatCalculatorPage />} />
             <Route path="/sadaqah" element={<Sadaqah />} />
-            <Route path="/qurbani" element={<Qurbani />} />
             <Route path="/fidya" element={<Fidya />} />
             
             {/* Programs */}

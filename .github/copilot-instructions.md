@@ -1,12 +1,12 @@
-# Qurbani Easy - POC Design System
+# Daan Foundation - POC Design System
 
 This is a local POC project studying nonprofit website patterns. All content is placeholder.
 
 ## Brand
 
-- **Name**: Qurbani Easy
-- **Tagline**: "Making your sacrifice simple"
-- **Primary color**: Emerald/Teal (`emerald-600`, `teal-700`)
+- **Name**: Daan Foundation
+- **Tagline**: "Serving humanity with compassion"
+- **Primary color**: Orange (`orange-500`, `orange-600`)
 - **Accent color**: Amber/Orange (`amber-500`, `orange-600`)
 - **Neutral**: Slate (`slate-50` to `slate-900`)
 
@@ -39,7 +39,7 @@ Use Tailwind's default scale consistently:
 Use gradients instead of actual images:
 ```
 bg-gradient-to-br from-emerald-600 to-teal-700  // Appeals, general
-bg-gradient-to-br from-amber-500 to-orange-600  // Qurbani, urgent
+bg-gradient-to-br from-amber-500 to-orange-600  // Urgent, seasonal
 bg-gradient-to-br from-blue-500 to-indigo-600   // Water projects
 bg-gradient-to-br from-rose-500 to-pink-600     // Orphan care
 bg-gradient-to-br from-slate-600 to-slate-800   // News, general

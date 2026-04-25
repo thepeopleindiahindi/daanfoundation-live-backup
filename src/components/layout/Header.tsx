@@ -9,9 +9,9 @@ const navItems = [
     href: "/appeals",
     megaMenu: {
       featured: {
-        title: "Qurbani 2026",
-        description: "Share your blessings this Eid ul-Adha",
-        href: "/qurbani",
+        title: "Emergency Appeal",
+        description: "Help those affected by crisis",
+        href: "/appeals/palestine",
         gradient: "from-amber-500 to-orange-600",
       },
       columns: [
@@ -27,7 +27,6 @@ const navItems = [
         {
           heading: "Seasonal Giving",
           links: [
-            { label: "Qurbani", href: "/qurbani" },
             { label: "Ramadan", href: "/ramadan" },
             { label: "Winter Appeal", href: "/winter" },
           ],
@@ -161,10 +160,10 @@ export function Header() {
               </div>
               <div className="leading-tight">
                 <span className="block text-xl font-bold text-slate-900 tracking-tight">
-                  Qurbani Easy
+                  Daan Foundation
                 </span>
                 <span className="block text-[10px] font-semibold tracking-widest text-slate-500 uppercase">
-                  Making your sacrifice simple
+                  Serving humanity with compassion
                 </span>
               </div>
             </Link>
