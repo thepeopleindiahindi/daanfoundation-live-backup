@@ -44,11 +44,11 @@ export function Contact() {
                     <MapPin className="h-5 w-5 text-orange-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-slate-900">Address</h3>
+                    <h3 className="font-semibold text-slate-900">Registered Office</h3>
                     <p className="text-slate-600">
-                      123 Charity Lane<br />
-                      London, SW1A 1AA<br />
-                      United Kingdom
+                      Katkoi Street, Near DiwanKhana,<br />
+                      Plot No. 141, District Amroha,<br />
+                      Uttar Pradesh - 244221, India
                     </p>
                   </div>
                 </div>
@@ -59,7 +59,7 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Phone</h3>
-                    <p className="text-slate-600">+44 (0) 20 1234 5678</p>
+                    <p className="text-slate-600">+91 88991 52910</p>
                   </div>
                 </div>
 
@@ -69,7 +69,7 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Email</h3>
-                    <p className="text-slate-600">info@daanfoundation.org</p>
+                    <p className="text-slate-600">daanfoundationindia@gmail.com</p>
                   </div>
                 </div>
 

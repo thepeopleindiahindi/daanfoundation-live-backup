@@ -3,8 +3,8 @@ import { Calculator, Info, ChevronDown, ChevronUp, RefreshCw } from "lucide-reac
 
 /* ─── Nisab Values (placeholder - would fetch from API) ─────────────────── */
 const NISAB = {
-  gold: 5950, // £ value of 87.48g gold
-  silver: 450, // £ value of 612.36g silver
+  gold: 650000, // ₹ value of 87.48g gold (approx)
+  silver: 45000, // ₹ value of 612.36g silver (approx)
 };
 
 /* ─── Asset Categories ──────────────────────────────────────────────────── */
@@ -159,7 +159,7 @@ export function ZakatCalculator() {
             }`}
           >
             <div className="text-sm font-medium text-slate-600 mb-1">Silver Nisab</div>
-            <div className="text-xl font-bold text-slate-900">£{NISAB.silver.toLocaleString()}</div>
+            <div className="text-xl font-bold text-slate-900">₹{NISAB.silver.toLocaleString()}</div>
             <div className="text-xs text-slate-500 mt-1">Based on 612.36g silver</div>
           </button>
           <button
@@ -171,7 +171,7 @@ export function ZakatCalculator() {
             }`}
           >
             <div className="text-sm font-medium text-slate-600 mb-1">Gold Nisab</div>
-            <div className="text-xl font-bold text-slate-900">£{NISAB.gold.toLocaleString()}</div>
+            <div className="text-xl font-bold text-slate-900">₹{NISAB.gold.toLocaleString()}</div>
             <div className="text-xs text-slate-500 mt-1">Based on 87.48g gold</div>
           </button>
         </div>
@@ -199,7 +199,7 @@ export function ZakatCalculator() {
                 <div className="flex items-center gap-4">
                   {sectionTotal > 0 && (
                     <span className="text-lg font-bold text-orange-500">
-                      £{sectionTotal.toLocaleString()}
+                      ₹{sectionTotal.toLocaleString()}
                     </span>
                   )}
                   {isExpanded ? (
@@ -218,7 +218,7 @@ export function ZakatCalculator() {
                         {field.label}
                       </label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">£</span>
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">₹</span>
                         <input
                           id={field.id}
                           type="text"
@@ -250,7 +250,7 @@ export function ZakatCalculator() {
                     {field.label}
                   </label>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">£</span>
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">₹</span>
                     <input
                       id={field.id}
                       type="text"
@@ -293,13 +293,13 @@ export function ZakatCalculator() {
           <div className="flex justify-between">
             <span className={calculations.isZakatDue ? "text-white/80" : "text-slate-600"}>Total Assets</span>
             <span className={`font-semibold ${calculations.isZakatDue ? "text-white" : "text-slate-900"}`}>
-              £{calculations.totalAssets.toLocaleString()}
+              ₹{calculations.totalAssets.toLocaleString()}
             </span>
           </div>
           <div className="flex justify-between">
             <span className={calculations.isZakatDue ? "text-white/80" : "text-slate-600"}>Less Liabilities</span>
             <span className={`font-semibold ${calculations.isZakatDue ? "text-white" : "text-slate-900"}`}>
-              -£{calculations.totalLiabilities.toLocaleString()}
+              -₹{calculations.totalLiabilities.toLocaleString()}
             </span>
           </div>
           <div className={`border-t pt-3 ${calculations.isZakatDue ? "border-white/20" : "border-slate-200"}`}>
@@ -308,14 +308,14 @@ export function ZakatCalculator() {
                 Net Zakatable Assets
               </span>
               <span className={`font-semibold ${calculations.isZakatDue ? "text-white" : "text-slate-900"}`}>
-                £{calculations.netAssets.toLocaleString()}
+                ₹{calculations.netAssets.toLocaleString()}
               </span>
             </div>
           </div>
           <div className="flex justify-between">
             <span className={calculations.isZakatDue ? "text-white/80" : "text-slate-600"}>Nisab Threshold</span>
             <span className={`font-semibold ${calculations.isZakatDue ? "text-white" : "text-slate-900"}`}>
-              £{calculations.nisabThreshold.toLocaleString()}
+              ₹{calculations.nisabThreshold.toLocaleString()}
             </span>
           </div>
         </div>
@@ -326,7 +326,7 @@ export function ZakatCalculator() {
             <>
               <div className="text-sm text-white/80 mb-1">Your Zakat Due (2.5%)</div>
               <div className="text-4xl font-bold text-white mb-3">
-                £
+                ₹
                 {calculations.zakatPayable.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,

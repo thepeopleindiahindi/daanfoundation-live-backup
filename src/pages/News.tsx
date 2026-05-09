@@ -18,7 +18,7 @@ export function News() {
             News & Stories
           </h1>
           <p className="text-xl text-slate-600 max-w-2xl">
-            Updates from our projects, impact stories, and the latest news from around the world.
+            Updates from our projects, impact stories, and the latest news from across India.
           </p>
         </div>
       </section>

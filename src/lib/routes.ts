@@ -7,33 +7,36 @@ export const ROUTES = {
   // Appeals
   APPEALS: "/appeals",
   APPEAL_DETAIL: "/appeals/:slug",
+  COMMUNITY_KITCHEN: "/community-kitchen",
   RAMADAN: "/ramadan",
   WINTER: "/winter",
+  EID_GIFTS: "/eid-gifts",
 
   // Islamic Giving
   ZAKAT: "/zakat",
   ZAKAT_CALCULATOR: "/zakat-calculator",
+  ZAKAT_AL_FITR: "/zakat-al-fitr",
   SADAQAH: "/sadaqah",
   SADAQAH_JARIYAH: "/sadaqah-jariyah",
   FIDYA: "/fidya",
   KAFFARAH: "/kaffarah",
   WHERE_MOST_NEEDED: "/where-most-needed",
-  AQIQAH: "/aqiqah",
 
-  // Programs
-  ORPHAN_SPONSORSHIP: "/orphan-sponsorship",
-  WATER: "/water",
-  FOOD: "/food",
-  LIVELIHOODS: "/livelihoods",
-  EDUCATION: "/education",
-  EMERGENCY_RESPONSE: "/emergency-response",
+  // Our Work
+  OUR_IMPACT: "/our-work/impact",
+  CHARITY_IN_ACTION: "/our-work/charity-in-action",
+  COMMUNITY_TRUST: "/our-work/community-trust",
+  HISTORY: "/our-work/history",
+  SERVING_WITH_DIGNITY: "/our-work/serving-with-dignity",
+  SUPPORTING_WOMEN: "/our-work/supporting-women",
+  DONATION_IS_TRUST: "/our-work/donation-is-trust",
+  EMPOWERING_LIVELIHOODS: "/our-work/empowering-livelihoods",
+  WHY_TRANSPARENCY: "/our-work/why-transparency",
+  ANNUAL_REPORT: "/our-work/annual-report",
 
   // About & Content
   ABOUT: "/about",
-  WHERE_WE_WORK: "/where-we-work",
-  IMPACT: "/impact",
-  REPORTS: "/reports",
-  OUR_HISTORY: "/our-history",
+  BANK_DETAILS: "/bank-details",
 
   // News
   NEWS: "/news",
@@ -41,13 +44,6 @@ export const ROUTES = {
 
   // Utility
   CONTACT: "/contact",
-  PRIVACY: "/privacy",
-  TERMS: "/terms",
-  VOLUNTEER: "/volunteer",
-
-  // Resources
-  ISLAMIC_RESOURCES: "/islamic-resources",
-  KNOWLEDGE_BASE: "/knowledge-base",
 } as const;
 
 // Helper to generate dynamic routes

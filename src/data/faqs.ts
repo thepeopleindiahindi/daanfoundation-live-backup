@@ -70,7 +70,7 @@ export const fidyaFAQs: FAQ[] = [
   },
   {
     question: "How much is Fidya?",
-    answer: "Fidya is the cost of one meal per missed fast. The amount varies by region but is typically around £5-£7 per day.",
+    answer: "Fidya is the cost of one meal per missed fast. The amount varies by region but is typically approximately ₹59 per day (cost of one meal).",
   },
 ];
 

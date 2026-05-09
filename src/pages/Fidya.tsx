@@ -4,7 +4,7 @@ import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { fidyaFAQs } from "@/data/faqs";
 
-const fidyaAmount = 5; // per day
+const fidyaAmount = 59; // per day in INR
 
 export function Fidya() {
   const ramadanDays = 30;
@@ -70,7 +70,7 @@ export function Fidya() {
               <div className="bg-white rounded-xl p-4">
                 <div className="flex items-center justify-between">
                   <span className="text-slate-600">Fidya per day</span>
-                  <span className="text-2xl font-bold text-purple-600">£{fidyaAmount}</span>
+                  <span className="text-2xl font-bold text-purple-600">₹{fidyaAmount}</span>
                 </div>
               </div>
             </div>
@@ -96,7 +96,7 @@ export function Fidya() {
               <div className="bg-white rounded-xl p-4">
                 <div className="flex items-center justify-between">
                   <span className="text-slate-600">Kaffarah (60 meals)</span>
-                  <span className="text-2xl font-bold text-red-600">£{fidyaAmount * 60}</span>
+                  <span className="text-2xl font-bold text-red-600">₹{fidyaAmount * 60}</span>
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ export function Fidya() {
                     className="p-4 rounded-xl border-2 border-slate-200 hover:border-purple-600 transition-colors"
                   >
                     <div className="text-sm text-slate-600">{label}</div>
-                    <div className="text-xl font-bold text-purple-600">£{value}</div>
+                    <div className="text-xl font-bold text-purple-600">₹{value}</div>
                   </Link>
                 ))}
               </div>

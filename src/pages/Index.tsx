@@ -204,12 +204,12 @@ function HeroSection() {
                     : "border-gray-200 text-[#111] hover:border-[#F97316]/40"
                 }`}
               >
-                £{p}
+                ₹{p}
               </button>
             ))}
           </div>
           <div className="relative mb-3">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">£</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">₹</span>
             <input
               type="number"
               value={amount ?? ""}
@@ -239,12 +239,12 @@ function HeroSection() {
                     : "border-gray-200 text-[#111] hover:border-[#F97316]/40"
                 }`}
               >
-                £{p}
+                ₹{p}
               </button>
             ))}
           </div>
           <div className="relative mb-3">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">£</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">₹</span>
             <input
               type="number"
               value={amount ?? ""}

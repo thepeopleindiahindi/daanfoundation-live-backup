@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Calculator, Heart, Users, Droplets, Briefcase, Gift } from "lucide-react";
+import { Calculator, Heart, UtensilsCrossed, Shirt, Briefcase, Gift } from "lucide-react";
 
 const quickActions = [
   {
@@ -17,24 +17,24 @@ const quickActions = [
     gradient: "from-rose-500 to-pink-600",
   },
   {
-    icon: Users,
-    title: "Sponsor an Orphan",
-    description: "Change a child's life with monthly support",
-    href: "/orphan-sponsorship",
+    icon: UtensilsCrossed,
+    title: "Community Kitchen",
+    description: "Feed the hungry — ₹59 provides one meal",
+    href: "/community-kitchen",
     gradient: "from-amber-500 to-orange-600",
   },
   {
-    icon: Droplets,
-    title: "Water for Life",
-    description: "Provide clean water to communities in need",
-    href: "/water",
+    icon: Shirt,
+    title: "Winter Appeal",
+    description: "Blankets and warm clothing for the vulnerable",
+    href: "/winter",
     gradient: "from-blue-500 to-indigo-600",
   },
   {
     icon: Briefcase,
-    title: "Livelihoods",
-    description: "Help families build sustainable futures",
-    href: "/livelihoods",
+    title: "Fidyah & Kaffarah",
+    description: "Fulfil your Islamic obligation by feeding the needy",
+    href: "/fidya",
     gradient: "from-violet-500 to-purple-600",
   },
   {

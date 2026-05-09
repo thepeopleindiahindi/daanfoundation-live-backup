@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Play } from "lucide-react";
 
-const presetAmounts = [25, 50, 100, 250];
+const presetAmounts = [500, 1000, 2500, 5000];
 
 export function Hero() {
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(50);
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(1000);
   const [customAmount, setCustomAmount] = useState("");
 
   const currentAmount = customAmount ? Number(customAmount) : selectedAmount;
@@ -26,32 +26,37 @@ export function Hero() {
           <div className="text-white">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-white mb-6">
               <span className="h-2 w-2 rounded-full bg-amber-300 animate-pulse" />
-              Emergency Appeal • Urgent
+              Serving Humanity Since 2020
             </span>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6">
-              Transform Lives{" "}
-              <span className="text-amber-300">Today</span>
+              No One Should{" "}
+              <span className="text-amber-300">Sleep Hungry</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-8 max-w-xl">
-              Your generosity reaches those who need it most. We deliver essential
-              aid and support to families across 30+ countries, bringing hope and
-              dignity to communities in need.
+            <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-4 max-w-xl">
+              We shall provide food to one lakh beneficiaries every day across different
+              vulnerable situations in India by 2026.
+            </p>
+
+            <p className="text-base text-white/75 leading-relaxed mb-8 max-w-xl">
+              Daan Foundation delivers essential food support, community kitchen services,
+              and humanitarian aid to families across India, bringing hope and dignity
+              to communities in need.
             </p>
 
             <div className="flex flex-wrap gap-8 mb-8">
               <div>
-                <div className="text-3xl md:text-4xl font-bold text-white">30+</div>
-                <div className="text-sm text-white/70">Countries Reached</div>
+                <div className="text-3xl md:text-4xl font-bold text-white">500K+</div>
+                <div className="text-sm text-white/70">Meals Distributed</div>
               </div>
               <div>
-                <div className="text-3xl md:text-4xl font-bold text-white">2.5M</div>
-                <div className="text-sm text-white/70">People Helped Last Year</div>
+                <div className="text-3xl md:text-4xl font-bold text-white">600K+</div>
+                <div className="text-sm text-white/70">Beneficiaries Reached</div>
               </div>
               <div>
-                <div className="text-3xl md:text-4xl font-bold text-white">100%</div>
-                <div className="text-sm text-white/70">Transparent Giving</div>
+                <div className="text-3xl md:text-4xl font-bold text-white">14+</div>
+                <div className="text-sm text-white/70">Years of Service</div>
               </div>
             </div>
 
@@ -63,12 +68,15 @@ export function Hero() {
                 Learn More
                 <ArrowRight className="h-5 w-5" />
               </Link>
-              <button className="inline-flex items-center gap-2 text-white/90 hover:text-white font-medium transition-colors">
+              <Link
+                to="/community-kitchen"
+                className="inline-flex items-center gap-2 text-white/90 hover:text-white font-medium transition-colors"
+              >
                 <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
                   <Play className="h-5 w-5 fill-white text-white ml-0.5" />
                 </span>
-                Watch Our Story
-              </button>
+                Our Community Kitchen
+              </Link>
             </div>
           </div>
 
@@ -97,7 +105,7 @@ export function Hero() {
                         : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                     }`}
                   >
-                    £{amount}
+                    ₹{amount}
                   </button>
                 ))}
               </div>
@@ -105,7 +113,7 @@ export function Hero() {
               {/* Custom amount */}
               <div className="relative mb-6">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">
-                  £
+                  ₹
                 </span>
                 <input
                   type="number"
@@ -126,16 +134,16 @@ export function Hero() {
                 </label>
                 <select className="w-full rounded-xl border-2 border-slate-200 py-3 px-4 text-slate-900 focus:border-orange-400 focus:outline-none focus:ring-4 focus:ring-orange-400/10">
                   <option>Where Most Needed</option>
-                  <option>Emergency Relief</option>
-                  <option>Orphan Sponsorship</option>
-                  <option>Water & Sanitation</option>
-                  <option>Education</option>
+                  <option>Community Kitchen</option>
+                  <option>Ramadan Iftar</option>
+                  <option>Zakat</option>
+                  <option>Sadaqah</option>
                 </select>
               </div>
 
               {/* Donate button */}
               <button className="w-full rounded-xl bg-amber-500 hover:bg-amber-600 py-4 text-lg font-bold text-white shadow-md hover:shadow-lg active:scale-[0.98] transition-all">
-                Donate {currentAmount ? `£${currentAmount}` : "Now"}
+                Donate {currentAmount ? `₹${currentAmount}` : "Now"}
               </button>
 
               {/* Trust indicators */}

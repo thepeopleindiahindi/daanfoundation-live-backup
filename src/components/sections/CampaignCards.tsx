@@ -3,40 +3,40 @@ import { ArrowRight } from "lucide-react";
 
 const campaigns = [
   {
-    id: "ramadan-food",
-    title: "Ramadan Food Distribution",
-    description: "Provide Iftaar meals to families in need during the blessed month",
+    id: "community-kitchen",
+    title: "Community Kitchen",
+    description: "Free daily meals for people in need — serving with dignity since 2020",
     image: "/images/food-distribution-ramadan.jpg",
-    raised: 45000,
-    goal: 75000,
-    href: "/appeals/ramadan",
+    raised: 250000,
+    goal: 500000,
+    href: "/community-kitchen",
   },
   {
-    id: "community-aid",
-    title: "Community Aid Program",
-    description: "Essential supplies and support for underserved communities",
+    id: "ration-kits",
+    title: "Ration Kits Distribution",
+    description: "Essential food ration kits for poor families and vulnerable communities",
     image: "/images/community-queue.jpg",
-    raised: 28000,
-    goal: 50000,
-    href: "/appeals/community-aid",
+    raised: 120000,
+    goal: 250000,
+    href: "/where-most-needed",
   },
   {
-    id: "elderly-support",
-    title: "Elderly Care Initiative",
-    description: "Blankets, food parcels, and medical aid for elderly in need",
+    id: "education-support",
+    title: "Education Support",
+    description: "Helping poor children continue education and supporting families with school needs",
     image: "/images/aid-distribution-elderly.jpg",
-    raised: 18500,
-    goal: 30000,
-    href: "/appeals/elderly-care",
+    raised: 85000,
+    goal: 200000,
+    href: "/our-work/impact",
   },
   {
-    id: "iftaar-program",
-    title: "Daily Iftaar Program",
-    description: "Hot meals served daily throughout Ramadan to those fasting",
+    id: "fidya-kaffarah",
+    title: "Fidyah & Kaffarah",
+    description: "Feed the needy through Fidyah and Kaffarah — fulfil your Islamic obligation",
     image: "/images/iftaar-distribution.jpg",
-    raised: 62000,
-    goal: 80000,
-    href: "/appeals/iftaar",
+    raised: 180000,
+    goal: 300000,
+    href: "/fidya",
   },
 ];
 
@@ -51,7 +51,7 @@ export function CampaignCards() {
               Current Campaigns
             </h2>
             <p className="text-lg text-slate-600">
-              Your donations are changing lives around the world
+              Your donations are changing lives across India
             </p>
           </div>
           <Link
@@ -86,7 +86,7 @@ export function CampaignCards() {
                   {/* Progress badge */}
                   <div className="absolute bottom-3 left-3 right-3">
                     <div className="flex items-center justify-between text-white text-sm mb-1.5">
-                      <span className="font-semibold">£{campaign.raised.toLocaleString()}</span>
+                      <span className="font-semibold">₹{campaign.raised.toLocaleString()}</span>
                       <span className="text-white/80">{progress}%</span>
                     </div>
                     <div className="h-1.5 bg-white/30 rounded-full overflow-hidden">

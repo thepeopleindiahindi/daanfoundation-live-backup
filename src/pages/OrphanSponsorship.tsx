@@ -30,7 +30,7 @@ export function OrphanSponsorship() {
               to="/donate"
               className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-8 py-4 font-bold text-white hover:bg-amber-600 transition-colors"
             >
-              Start Sponsoring — £35/month
+              Start Sponsoring — ₹35/month
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
@@ -45,7 +45,7 @@ export function OrphanSponsorship() {
               What Your Sponsorship Provides
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              For just £35 a month, you can transform an orphan's life
+              For just ₹35 a month, you can transform an orphan's life
             </p>
           </div>
 
@@ -103,7 +103,7 @@ export function OrphanSponsorship() {
               to="/donate"
               className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-bold text-amber-600"
             >
-              Sponsor an Orphan — £35/month
+              Sponsor an Orphan — ₹35/month
             </Link>
           </div>
         </div>

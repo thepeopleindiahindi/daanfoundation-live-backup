@@ -18,7 +18,7 @@ export function Appeals() {
             Emergency Appeals
           </h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Your donations provide life-saving aid to communities facing crisis around the world.
+            Your donations provide life-saving aid to communities in need across India.
           </p>
         </div>
       </section>
@@ -59,7 +59,7 @@ export function Appeals() {
                         />
                       </div>
                       <div className="flex justify-between text-xs text-white mt-2">
-                        <span>£{appeal.raised.toLocaleString()} raised</span>
+                        <span>₹{appeal.raised.toLocaleString()} raised</span>
                         <span>{progress}%</span>
                       </div>
                     </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown, Search, Heart } from "lucide-react";
+import { Menu, X, ChevronDown, Search } from "lucide-react";
 
 /* ─── Navigation Structure ─────────────────────────────────────────────── */
 const navItems = [
@@ -9,25 +9,22 @@ const navItems = [
     href: "/appeals",
     megaMenu: {
       featured: {
-        title: "Emergency Appeal",
-        description: "Help those affected by crisis",
-        href: "/appeals/palestine",
+        title: "Community Kitchen",
+        description: "Free food for everyone, every day",
+        href: "/community-kitchen",
         gradient: "from-amber-500 to-orange-600",
       },
       columns: [
         {
-          heading: "Emergency Appeals",
+          heading: "Emergency Appeal",
           links: [
-            { label: "Palestine Emergency", href: "/appeals/palestine" },
-            { label: "Sudan Crisis", href: "/appeals/sudan" },
-            { label: "Yemen Emergency", href: "/appeals/yemen" },
-            { label: "Lebanon Appeal", href: "/appeals/lebanon" },
+            { label: "Community Kitchen", href: "/community-kitchen" },
           ],
         },
         {
           heading: "Seasonal Giving",
           links: [
-            { label: "Ramadan", href: "/ramadan" },
+            { label: "Ramadan Iftar", href: "/ramadan" },
             { label: "Winter Appeal", href: "/winter" },
           ],
         },
@@ -36,7 +33,7 @@ const navItems = [
   },
   {
     label: "Ways to Give",
-    href: "/give",
+    href: "/zakat",
     megaMenu: {
       featured: {
         title: "Zakat Calculator",
@@ -51,15 +48,17 @@ const navItems = [
             { label: "Zakat", href: "/zakat" },
             { label: "Sadaqah", href: "/sadaqah" },
             { label: "Sadaqah Jariyah", href: "/sadaqah-jariyah" },
-            { label: "Fidya & Kaffarah", href: "/fidya" },
+            { label: "Fidyah", href: "/fidya" },
+            { label: "Kaffarah", href: "/kaffarah" },
           ],
         },
         {
           heading: "Programs",
           links: [
-            { label: "Sponsor an Orphan", href: "/orphan-sponsorship" },
-            { label: "Water for Life", href: "/water" },
-            { label: "Food Security", href: "/food" },
+            { label: "Community Kitchen", href: "/community-kitchen" },
+            { label: "Ramadan Iftar Program", href: "/ramadan" },
+            { label: "Winter Relief", href: "/winter" },
+            { label: "Eid Gifts", href: "/eid-gifts" },
             { label: "Where Most Needed", href: "/where-most-needed" },
           ],
         },
@@ -68,40 +67,35 @@ const navItems = [
   },
   {
     label: "Our Work",
-    href: "/our-work",
+    href: "/our-work/impact",
     megaMenu: {
       columns: [
         {
-          heading: "Impact",
+          heading: "Impact for Good",
           links: [
-            { label: "Where We Work", href: "/where-we-work" },
-            { label: "Our Impact", href: "/impact" },
-            { label: "Annual Reports", href: "/reports" },
+            { label: "Our Impact", href: "/our-work/impact" },
+            { label: "Your Charity in Action", href: "/our-work/charity-in-action" },
+            { label: "Community Trust & Feedback", href: "/our-work/community-trust" },
+            { label: "The History of Daan Foundation", href: "/our-work/history" },
+            { label: "Annual Impact Report", href: "/our-work/annual-report" },
           ],
         },
         {
-          heading: "Focus Areas",
+          heading: "Stories & Values",
           links: [
-            { label: "Emergency Response", href: "/emergency-response" },
-            { label: "Orphan Care", href: "/orphans" },
-            { label: "Livelihoods", href: "/livelihoods" },
-            { label: "Education", href: "/education" },
+            { label: "Serving With Dignity", href: "/our-work/serving-with-dignity" },
+            { label: "Supporting Women With Dignity", href: "/our-work/supporting-women" },
+            { label: "Your Donation Is a Trust", href: "/our-work/donation-is-trust" },
+            { label: "Empowering Livelihoods", href: "/our-work/empowering-livelihoods" },
+            { label: "Why Transparency Matters", href: "/our-work/why-transparency" },
           ],
         },
       ],
     },
   },
-  {
-    label: "Resources",
-    href: "/resources",
-    links: [
-      { label: "Zakat Calculator", href: "/zakat-calculator" },
-      { label: "Islamic Resources", href: "/islamic-resources" },
-      { label: "Knowledge Base", href: "/knowledge-base" },
-    ],
-  },
   { label: "About", href: "/about" },
-  { label: "News", href: "/news" },
+  { label: "Contact", href: "/contact" },
+  { label: "Bank Details", href: "/bank-details" },
 ];
 
 /* ─── Header Component ─────────────────────────────────────────────────── */
@@ -130,34 +124,17 @@ export function Header() {
         scrolled ? "shadow-lg" : ""
       }`}
     >
-      {/* Top utility bar */}
-      <div className="hidden lg:block bg-[#111111]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-2 text-xs text-slate-300">
-            <div className="flex items-center gap-4">
-              <span>Registered Charity No. 123456</span>
-              <span className="text-slate-600">|</span>
-              <a href="tel:+441211234567" className="hover:text-white transition-colors">
-                +44 121 123 4567
-              </a>
-            </div>
-            <div className="flex items-center gap-4">
-              <a href="/contact" className="hover:text-white transition-colors">Contact</a>
-              <a href="/volunteer" className="hover:text-white transition-colors">Volunteer</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main header */}
       <div className="bg-white border-b border-slate-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 shrink-0">
-              <div className="h-11 w-11 rounded-xl bg-orange-500 flex items-center justify-center">
-                <Heart className="h-6 w-6 text-white" fill="white" />
-              </div>
+              <img
+                src="/images/daan-foundation-logo.png"
+                alt="Daan Foundation"
+                className="h-12 w-auto"
+              />
               <div className="leading-tight">
                 <span className="block text-xl font-bold text-slate-900 tracking-tight">
                   Daan Foundation

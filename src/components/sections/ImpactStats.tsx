@@ -2,31 +2,31 @@ import { Users, Globe, Heart, Utensils } from "lucide-react";
 
 const stats = [
   {
-    number: "2.5M+",
-    label: "People Helped",
-    description: "Beneficiaries reached through our programs",
-    icon: Users,
-    image: "/images/community-queue.jpg",
-  },
-  {
-    number: "30+",
-    label: "Countries",
-    description: "Global reach across multiple continents",
-    icon: Globe,
-    image: "/images/iftaar-distribution.jpg",
-  },
-  {
-    number: "500K",
-    label: "Meals Served",
-    description: "Hot meals distributed this Ramadan",
+    number: "500K+",
+    label: "Food Packets Distributed",
+    description: "Meals and food packets served since 2020",
     icon: Utensils,
     image: "/images/food-distribution-ramadan.jpg",
   },
   {
-    number: "100%",
-    label: "Donation Policy",
-    description: "Every penny goes to those in need",
+    number: "100K+",
+    label: "Iftar Kits Distributed",
+    description: "Food and Iftar kits provided during Ramadan",
     icon: Heart,
+    image: "/images/iftaar-distribution.jpg",
+  },
+  {
+    number: "14+",
+    label: "Years of Experience",
+    description: "Serving communities with compassion since 2012",
+    icon: Users,
+    image: "/images/community-queue.jpg",
+  },
+  {
+    number: "600K+",
+    label: "Beneficiaries Reached",
+    description: "Total lives touched across India",
+    icon: Globe,
     image: "/images/aid-distribution-elderly.jpg",
   },
 ];
@@ -39,7 +39,7 @@ export function ImpactStats() {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Impact</h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Together, we're making a real difference in the lives of those who need it most
+            Together, we are making a meaningful difference in the lives of those who need it most.
           </p>
         </div>
 

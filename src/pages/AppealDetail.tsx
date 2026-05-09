@@ -76,10 +76,10 @@ export function AppealDetail() {
 
                 <h3>How Your Donation Helps</h3>
                 <ul>
-                  <li><strong>£50</strong> can provide emergency food for a family for one month</li>
-                  <li><strong>£100</strong> can supply clean water to a community for a week</li>
-                  <li><strong>£250</strong> can provide medical supplies for a clinic</li>
-                  <li><strong>£500</strong> can help rebuild a family's shelter</li>
+                  <li><strong>₹50</strong> can provide emergency food for a family for one month</li>
+                  <li><strong>₹100</strong> can supply clean water to a community for a week</li>
+                  <li><strong>₹250</strong> can provide medical supplies for a clinic</li>
+                  <li><strong>₹500</strong> can help rebuild a family's shelter</li>
                 </ul>
 
                 <h3>The Situation</h3>
@@ -109,10 +109,10 @@ export function AppealDetail() {
                 <div className="mb-6">
                   <div className="flex justify-between text-sm mb-2">
                     <span className="font-semibold text-slate-900">
-                      £{appeal.raised.toLocaleString()} raised
+                      ₹{appeal.raised.toLocaleString()} raised
                     </span>
                     <span className="text-slate-500">
-                      of £{appeal.goal.toLocaleString()}
+                      of ₹{appeal.goal.toLocaleString()}
                     </span>
                   </div>
                   <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
@@ -133,14 +133,14 @@ export function AppealDetail() {
                       key={amount}
                       className="py-3 rounded-xl text-sm font-bold bg-slate-100 text-slate-700 hover:bg-orange-100 hover:text-orange-700 transition-colors"
                     >
-                      £{amount}
+                      ₹{amount}
                     </button>
                   ))}
                 </div>
 
                 {/* Custom amount */}
                 <div className="relative mb-6">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">£</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">₹</span>
                   <input
                     type="number"
                     placeholder="Other amount"

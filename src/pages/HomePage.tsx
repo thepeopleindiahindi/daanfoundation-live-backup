@@ -28,9 +28,9 @@ const islamicGivingItems = [
   },
   {
     icon: HandHeart,
-    title: "Orphan Sponsorship",
-    description: "Support vulnerable children with food, shelter, and education.",
-    href: "/orphan-sponsorship",
+    title: "Fidyah & Kaffarah",
+    description: "Feed the needy through Fidyah and Kaffarah — fulfil your Islamic obligation.",
+    href: "/fidya",
     iconBg: "bg-rose-100",
     iconColor: "text-rose-600",
   },
@@ -88,54 +88,54 @@ export function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Program 1 - Orphan Care */}
-            <Link to="/orphan-sponsorship" className="group relative aspect-[4/5] rounded-2xl overflow-hidden">
+            {/* Program 1 - Community Kitchen */}
+            <Link to="/community-kitchen" className="group relative aspect-[4/5] rounded-2xl overflow-hidden">
               <img 
-                src="/images/community-queue.jpg" 
-                alt="Orphan sponsorship program"
+                src="/images/food-distribution-ramadan.jpg" 
+                alt="Community Kitchen"
                 className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <span className="inline-block px-3 py-1 bg-orange-500 text-white text-sm font-semibold rounded-full mb-3">
-                  £35/month
+                  ₹59/meal
                 </span>
-                <h3 className="text-2xl font-bold text-white mb-2">Orphan Sponsorship</h3>
-                <p className="text-white/80">Provide education, healthcare, and hope</p>
+                <h3 className="text-2xl font-bold text-white mb-2">Community Kitchen</h3>
+                <p className="text-white/80">Free daily meals served with dignity</p>
               </div>
             </Link>
 
-            {/* Program 2 - Water */}
-            <Link to="/water" className="group relative aspect-[4/5] rounded-2xl overflow-hidden">
+            {/* Program 2 - Ramadan Iftar */}
+            <Link to="/ramadan" className="group relative aspect-[4/5] rounded-2xl overflow-hidden">
               <img 
-                src="/images/impact-2.jpg" 
-                alt="Water projects"
-                className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <span className="inline-block px-3 py-1 bg-blue-500 text-white text-sm font-semibold rounded-full mb-3">
-                  From £300
-                </span>
-                <h3 className="text-2xl font-bold text-white mb-2">Water for Life</h3>
-                <p className="text-white/80">Build wells and provide clean water</p>
-              </div>
-            </Link>
-
-            {/* Program 3 - Food */}
-            <Link to="/appeals" className="group relative aspect-[4/5] rounded-2xl overflow-hidden md:col-span-2 lg:col-span-1">
-              <img 
-                src="/images/food-distribution-ramadan.jpg" 
-                alt="Food distribution"
+                src="/images/iftaar-distribution.jpg" 
+                alt="Ramadan Iftar Distribution"
                 className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <span className="inline-block px-3 py-1 bg-amber-500 text-white text-sm font-semibold rounded-full mb-3">
-                  From £50
+                  Since 2020
                 </span>
-                <h3 className="text-2xl font-bold text-white mb-2">Food Security</h3>
-                <p className="text-white/80">Feed families in need around the world</p>
+                <h3 className="text-2xl font-bold text-white mb-2">Ramadan Iftar</h3>
+                <p className="text-white/80">Iftar meals for those fasting in need</p>
+              </div>
+            </Link>
+
+            {/* Program 3 - Winter Appeal */}
+            <Link to="/winter" className="group relative aspect-[4/5] rounded-2xl overflow-hidden md:col-span-2 lg:col-span-1">
+              <img 
+                src="/images/community-queue.jpg" 
+                alt="Winter Appeal"
+                className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <span className="inline-block px-3 py-1 bg-blue-500 text-white text-sm font-semibold rounded-full mb-3">
+                  Seasonal
+                </span>
+                <h3 className="text-2xl font-bold text-white mb-2">Winter Appeal</h3>
+                <p className="text-white/80">Blankets, clothing & warmth for the vulnerable</p>
               </div>
             </Link>
           </div>
@@ -153,8 +153,8 @@ export function HomePage() {
                 className="rounded-2xl shadow-xl w-full"
               />
               <div className="absolute -bottom-6 -right-6 bg-orange-500 text-white p-6 rounded-xl shadow-lg hidden md:block">
-                <div className="text-4xl font-bold">10+</div>
-                <div className="text-sm">Years of Impact</div>
+                <div className="text-4xl font-bold">14+</div>
+                <div className="text-sm">Years of Service</div>
               </div>
             </div>
             <div>
@@ -162,18 +162,18 @@ export function HomePage() {
                 Serving Humanity With Compassion
               </h2>
               <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                Daan Foundation is dedicated to simplifying charitable giving while maximizing 
-                impact for those in need around the world. We work in over 30 countries, delivering 
-                aid to the most vulnerable communities.
+                Daan Foundation is an India-based charitable organisation committed to helping 
+                poor, needy and vulnerable people through food support, community welfare and 
+                social assistance programmes.
               </p>
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div>
-                  <div className="text-3xl font-bold text-orange-500">30+</div>
-                  <div className="text-slate-600">Countries</div>
+                  <div className="text-3xl font-bold text-orange-500">500K+</div>
+                  <div className="text-slate-600">Meals Distributed</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-orange-500">2.5M</div>
-                  <div className="text-slate-600">People Helped</div>
+                  <div className="text-3xl font-bold text-orange-500">600K+</div>
+                  <div className="text-slate-600">Beneficiaries Reached</div>
                 </div>
               </div>
               <Link 
@@ -255,7 +255,7 @@ export function HomePage() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-3xl font-bold text-slate-900">Latest News</h2>
-              <p className="text-slate-600 mt-2">Updates from our work around the world</p>
+              <p className="text-slate-600 mt-2">Updates from our work across India</p>
             </div>
             <Link
               to="/news"
@@ -275,7 +275,7 @@ export function HomePage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Work in Action</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              See the impact of your donations around the world
+              See the impact of your donations across India
             </p>
           </div>
 
@@ -344,7 +344,7 @@ export function HomePage() {
                 Make a Difference Today
               </h2>
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-                Your donation can provide food, water, healthcare, and hope to those in need.
+                Your donation can provide food, warmth, and hope to those in need across India.
                 Every contribution matters.
               </p>
               <Link

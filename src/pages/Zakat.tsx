@@ -80,11 +80,11 @@ export function Zakat() {
               <div className="space-y-4">
                 <div className="bg-white rounded-xl p-4 shadow-sm">
                   <div className="text-sm text-slate-500 mb-1">Silver Nisab (612.36g)</div>
-                  <div className="text-2xl font-bold text-slate-900">~£450</div>
+                  <div className="text-2xl font-bold text-slate-900">~₹45,000</div>
                 </div>
                 <div className="bg-white rounded-xl p-4 shadow-sm">
                   <div className="text-sm text-slate-500 mb-1">Gold Nisab (87.48g)</div>
-                  <div className="text-2xl font-bold text-slate-900">~£5,950</div>
+                  <div className="text-2xl font-bold text-slate-900">~₹6,50,000</div>
                 </div>
                 <p className="text-sm text-slate-500">
                   Values fluctuate daily. Use our calculator for accurate figures.

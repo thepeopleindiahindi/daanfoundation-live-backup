@@ -86,7 +86,7 @@ export function Water() {
                 <h3 className="text-xl font-bold text-slate-900 mb-2">{project.title}</h3>
                 <p className="text-slate-600 mb-4">{project.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-blue-600">£{project.price}</span>
+                  <span className="text-2xl font-bold text-blue-600">₹{project.price}</span>
                   <Link
                     to="/donate"
                     className="text-sm font-semibold text-blue-600 hover:underline"

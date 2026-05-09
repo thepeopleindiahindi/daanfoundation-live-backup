@@ -6,18 +6,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-const presetAmounts = [25, 50, 100, 250, 500, 1000];
+const presetAmounts = [500, 1000, 2500, 5000];
 const causes = [
   { id: "where-needed", label: "Where Most Needed" },
-  { id: "palestine", label: "Palestine Emergency" },
-  { id: "orphans", label: "Orphan Sponsorship" },
+  { id: "community-kitchen", label: "Community Kitchen" },
+  { id: "ramadan-iftar", label: "Ramadan Iftar" },
   { id: "zakat", label: "Zakat" },
   { id: "sadaqah", label: "Sadaqah" },
-  { id: "water", label: "Water Projects" },
+  { id: "fidya-kaffarah", label: "Fidyah & Kaffarah" },
 ];
 
 export function Donate() {
-  const [amount, setAmount] = useState<number | null>(50);
+  const [amount, setAmount] = useState<number | null>(1000);
   const [customAmount, setCustomAmount] = useState("");
   const [frequency, setFrequency] = useState("single");
   const [cause, setCause] = useState("where-needed");
@@ -113,14 +113,14 @@ export function Donate() {
                             : "border-slate-200 hover:border-slate-300"
                         }`}
                       >
-                        £{value}
+                        ₹{value}
                       </button>
                     ))}
                   </div>
                   <div>
                     <Label htmlFor="custom">Custom Amount</Label>
                     <div className="relative mt-1">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">£</span>
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">₹</span>
                       <Input
                         id="custom"
                         type="number"
@@ -154,7 +154,7 @@ export function Donate() {
                 </div>
 
                 <Button onClick={handleNext} className="w-full bg-orange-600 hover:bg-orange-700" disabled={finalAmount <= 0}>
-                  Continue — £{finalAmount || 0} {frequency === "monthly" ? "/month" : ""}
+                  Continue — ₹{finalAmount || 0} {frequency === "monthly" ? "/month" : ""}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
@@ -212,7 +212,7 @@ export function Donate() {
                 <div className="p-4 bg-[#F3F4F6] rounded-xl">
                   <div className="flex justify-between mb-2">
                     <span className="text-slate-600">Donation</span>
-                    <span className="font-semibold">£{finalAmount}</span>
+                    <span className="font-semibold">₹{finalAmount}</span>
                   </div>
                   <div className="flex justify-between mb-2">
                     <span className="text-slate-600">Cause</span>
@@ -220,7 +220,7 @@ export function Donate() {
                   </div>
                   <div className="flex justify-between border-t pt-2 mt-2">
                     <span className="font-bold">Total</span>
-                    <span className="font-bold text-orange-600">£{finalAmount}</span>
+                    <span className="font-bold text-orange-600">₹{finalAmount}</span>
                   </div>
                 </div>
 
