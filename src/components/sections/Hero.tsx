@@ -1,20 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const presetAmounts = [500, 1000, 2500, 5000];
+const heroSlides = [
+  "/images/hero-slide-1.jpg",
+  "/images/hero-slide-2.jpg",
+  "/images/hero-slide-3.jpg",
+  "/images/hero-slide-4.jpg",
+];
 
 export function Hero() {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(1000);
   const [customAmount, setCustomAmount] = useState("");
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const currentAmount = customAmount ? Number(customAmount) : selectedAmount;
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section 
       className="relative min-h-[650px] md:min-h-[700px] overflow-hidden"
-      style={{ backgroundImage: 'url(/images/hero-1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
+      {/* Slideshow backgrounds */}
+      {heroSlides.map((src, index) => (
+        <div
+          key={src}
+          className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+          style={{
+            backgroundImage: `url(${src})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: index === currentSlide ? 1 : 0,
+          }}
+        />
+      ))}
       {/* Gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-900/40 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent" />
@@ -55,7 +81,7 @@ export function Hero() {
                 <div className="text-sm text-white/70">Beneficiaries Reached</div>
               </div>
               <div>
-                <div className="text-3xl md:text-4xl font-bold text-white">14+</div>
+                <div className="text-3xl md:text-4xl font-bold text-white">6+</div>
                 <div className="text-sm text-white/70">Years of Service</div>
               </div>
             </div>
@@ -70,12 +96,10 @@ export function Hero() {
               </Link>
               <Link
                 to="/community-kitchen"
-                className="inline-flex items-center gap-2 text-white/90 hover:text-white font-medium transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm px-6 py-3 text-sm font-semibold text-white hover:bg-white/30 transition-all"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
-                  <Play className="h-5 w-5 fill-white text-white ml-0.5" />
-                </span>
-                Our Community Kitchen
+                Community Kitchen
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -161,7 +185,7 @@ export function Hero() {
                 <span>•</span>
                 <span>Registered Charity</span>
                 <span>•</span>
-                <span>Tax Deductible</span>
+                <span>100% Transparent</span>
               </div>
             </div>
           </div>

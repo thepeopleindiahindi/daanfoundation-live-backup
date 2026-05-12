@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowRight, Share2, Heart } from "lucide-react";
 import { getAppealBySlug, appeals } from "@/data/appeals";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 const presetAmounts = [50, 100, 250, 500];
 
@@ -28,6 +29,7 @@ export function AppealDetail() {
 
   return (
     <div>
+      <SEO title={appeal.shortTitle} description={appeal.description.slice(0, 160)} canonical={`/appeals/${slug}`} keywords={`${appeal.shortTitle}, donate, Daan Foundation, charity India`} />
       <Breadcrumbs
         items={[
           { label: "Appeals", href: "/appeals" },
@@ -155,7 +157,7 @@ export function AppealDetail() {
 
                 {/* Trust */}
                 <p className="text-xs text-slate-500 text-center mt-4">
-                  100% Donation Policy • Secure Payment • Tax Deductible
+                  100% Donation Policy • Secure Payment • 100% Transparent
                 </p>
               </div>
             </div>

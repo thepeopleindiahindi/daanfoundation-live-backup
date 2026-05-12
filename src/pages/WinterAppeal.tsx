@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function WinterAppeal() {
   return (
     <div>
+      <SEO title="Winter Appeal - Warm Clothing & Blankets" description="Support Daan Foundation's Winter Appeal. Donate warm clothing, blankets, and essential supplies to protect vulnerable families from harsh winter conditions in India." canonical="/winter" keywords="winter appeal charity, warm clothing donation India, blanket distribution, winter charity India" />
       <Breadcrumbs items={[{ label: "Seasonal Giving" }, { label: "Winter Appeal" }]} />
 
       {/* Hero */}

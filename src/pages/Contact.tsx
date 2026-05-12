@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import SEO from "@/components/SEO";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -16,6 +17,7 @@ export function Contact() {
 
   return (
     <div>
+      <SEO title="Contact Us" description="Contact Daan Foundation for donations, volunteering, or partnership inquiries. Reach us by phone, email, or visit our office in India." canonical="/contact" keywords="contact Daan Foundation, charity contact India, volunteer with us, donation inquiries" />
       <Breadcrumbs items={[{ label: "Contact Us" }]} />
 
       {/* Hero */}

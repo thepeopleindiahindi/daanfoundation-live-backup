@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function Kaffarah() {
   return (
     <div>
+      <SEO title="Kaffarah - Expiation for Broken Fast" description="Pay Kaffarah through Daan Foundation. Kaffarah requires feeding 60 people for deliberately breaking a Ramadan fast. We distribute meals to those most in need." canonical="/kaffarah" keywords="kaffarah payment, broken fast compensation, kaffarah amount India, Islamic obligation" />
       <Breadcrumbs items={[{ label: "Islamic Giving", href: "/zakat" }, { label: "Kaffarah" }]} />
 
       {/* Hero */}

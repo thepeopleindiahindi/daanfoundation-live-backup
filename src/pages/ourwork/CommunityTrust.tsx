@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function CommunityTrust() {
   return (
     <div>
+      <SEO title="Community Trust & Feedback" description="Read community feedback and testimonials about Daan Foundation's work. Transparency and trust are at the core of everything we do." canonical="/our-work/community-trust" keywords="charity trust, community feedback, transparent charity India, donor testimonials" />
       <Breadcrumbs items={[{ label: "Our Work", href: "/our-work/impact" }, { label: "Community Trust & Feedback" }]} />
 
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-teal-600 to-emerald-700">

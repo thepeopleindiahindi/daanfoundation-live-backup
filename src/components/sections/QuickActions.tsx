@@ -1,34 +1,13 @@
 import { Link } from "react-router-dom";
-import { Calculator, Heart, UtensilsCrossed, Shirt, Briefcase, Gift } from "lucide-react";
+import { UtensilsCrossed, Heart, Briefcase, Package, Calculator, Gift } from "lucide-react";
 
 const quickActions = [
-  {
-    icon: Calculator,
-    title: "Calculate Zakat",
-    description: "See how much zakat you owe",
-    href: "/zakat-calculator",
-    gradient: "from-orange-500 to-orange-600",
-  },
-  {
-    icon: Heart,
-    title: "Give Sadaqah",
-    description: "Earn ongoing rewards with a voluntary donation",
-    href: "/sadaqah",
-    gradient: "from-rose-500 to-pink-600",
-  },
   {
     icon: UtensilsCrossed,
     title: "Community Kitchen",
     description: "Feed the hungry — ₹59 provides one meal",
     href: "/community-kitchen",
     gradient: "from-amber-500 to-orange-600",
-  },
-  {
-    icon: Shirt,
-    title: "Winter Appeal",
-    description: "Blankets and warm clothing for the vulnerable",
-    href: "/winter",
-    gradient: "from-blue-500 to-indigo-600",
   },
   {
     icon: Briefcase,
@@ -39,10 +18,31 @@ const quickActions = [
   },
   {
     icon: Gift,
-    title: "Sadaqah Jariyah",
-    description: "Give a gift that keeps on giving",
-    href: "/sadaqah-jariyah",
+    title: "Ramadan Iftar Appeal",
+    description: "Iftar meals for those fasting in need",
+    href: "/ramadan",
+    gradient: "from-rose-500 to-pink-600",
+  },
+  {
+    icon: Package,
+    title: "Ration Kit Distribution",
+    description: "Essential food rations for poor families",
+    href: "/where-most-needed",
     gradient: "from-cyan-500 to-teal-600",
+  },
+  {
+    icon: Calculator,
+    title: "Zakat",
+    description: "Calculate and pay your Zakat accurately",
+    href: "/zakat",
+    gradient: "from-orange-500 to-orange-600",
+  },
+  {
+    icon: Heart,
+    title: "Sadaqah",
+    description: "Earn ongoing rewards with voluntary charity",
+    href: "/sadaqah",
+    gradient: "from-blue-500 to-indigo-600",
   },
 ];
 

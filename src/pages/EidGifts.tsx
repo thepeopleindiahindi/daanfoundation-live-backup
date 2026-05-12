@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Gift } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function EidGifts() {
   return (
     <div>
+      <SEO title="Eid Gifts - Spread Joy This Eid" description="Send Eid gifts through Daan Foundation. Help underprivileged children and families celebrate Eid with joy through gifts, new clothes, and festive meals." canonical="/eid-gifts" keywords="eid gifts charity, eid celebration poor families, eid charity India, spread joy eid" />
       <Breadcrumbs items={[{ label: "Programs" }, { label: "Eid Gifts" }]} />
 
       {/* Hero */}

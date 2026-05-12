@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function ServingWithDignity() {
   return (
     <div>
+      <SEO title="Serving Every Person With Dignity" description="At Daan Foundation, every person is served with dignity regardless of religion, caste, or background. Our commitment to respectful humanitarian service." canonical="/our-work/serving-with-dignity" keywords="serve with dignity, inclusive charity, humanitarian values, respectful service India" />
       <Breadcrumbs items={[{ label: "Our Work", href: "/our-work/impact" }, { label: "Serving Every Needy Person With Dignity" }]} />
 
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-rose-600 to-pink-700">

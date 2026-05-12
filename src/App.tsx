@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -44,10 +45,16 @@ import DonationIsTrust from "./pages/ourwork/DonationIsTrust";
 import EmpoweringLivelihoods from "./pages/ourwork/EmpoweringLivelihoods";
 import WhyTransparency from "./pages/ourwork/WhyTransparency";
 import AnnualReport from "./pages/ourwork/AnnualReport";
+import ClothingDistribution from "./pages/ourwork/ClothingDistribution";
+import MedicalAssistance from "./pages/ourwork/MedicalAssistance";
+import EducationalSupport from "./pages/ourwork/EducationalSupport";
+import MarriageAssistance from "./pages/ourwork/MarriageAssistance";
+import RationKitDistribution from "./pages/ourwork/RationKitDistribution";
 
 const queryClient = new QueryClient();
 
 const App = () => (
+  <HelmetProvider>
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -88,6 +95,11 @@ const App = () => (
             <Route path="/our-work/empowering-livelihoods" element={<EmpoweringLivelihoods />} />
             <Route path="/our-work/why-transparency" element={<WhyTransparency />} />
             <Route path="/our-work/annual-report" element={<AnnualReport />} />
+            <Route path="/our-work/clothing-distribution" element={<ClothingDistribution />} />
+            <Route path="/our-work/medical-assistance" element={<MedicalAssistance />} />
+            <Route path="/our-work/educational-support" element={<EducationalSupport />} />
+            <Route path="/our-work/marriage-assistance" element={<MarriageAssistance />} />
+            <Route path="/our-work/ration-kit-distribution" element={<RationKitDistribution />} />
             
             {/* Information */}
             <Route path="/about" element={<About />} />
@@ -105,6 +117,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;

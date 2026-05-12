@@ -33,6 +33,11 @@ export const ROUTES = {
   EMPOWERING_LIVELIHOODS: "/our-work/empowering-livelihoods",
   WHY_TRANSPARENCY: "/our-work/why-transparency",
   ANNUAL_REPORT: "/our-work/annual-report",
+  CLOTHING_DISTRIBUTION: "/our-work/clothing-distribution",
+  MEDICAL_ASSISTANCE: "/our-work/medical-assistance",
+  EDUCATIONAL_SUPPORT: "/our-work/educational-support",
+  MARRIAGE_ASSISTANCE: "/our-work/marriage-assistance",
+  RATION_KIT_DISTRIBUTION: "/our-work/ration-kit-distribution",
 
   // About & Content
   ABOUT: "/about",

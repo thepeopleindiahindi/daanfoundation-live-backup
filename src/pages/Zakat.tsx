@@ -8,10 +8,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import SEO from "@/components/SEO";
 
 export function Zakat() {
   return (
     <div>
+      <SEO title="Pay Your Zakat - Daan Foundation" description="Pay your Zakat through Daan Foundation. We ensure your Zakat reaches eligible recipients across India through food distribution, ration kits, and community support programs." canonical="/zakat" keywords="pay zakat online India, zakat donation, zakat eligible, Islamic charity India, zakat calculation" />
       <Breadcrumbs items={[{ label: "Zakat" }]} />
 
       {/* Hero */}

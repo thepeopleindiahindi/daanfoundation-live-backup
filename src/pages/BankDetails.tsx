@@ -1,6 +1,7 @@
 import { Landmark, Copy, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 const bankInfo = [
   { label: "Bank Name", value: "State Bank of India" },
@@ -22,6 +23,7 @@ export function BankDetails() {
 
   return (
     <div>
+      <SEO title="Bank Details - Donation Account Information" description="Daan Foundation bank account details for direct donations. Transfer your Zakat, Sadaqah, and charity donations securely via bank transfer or UPI." canonical="/bank-details" keywords="Daan Foundation bank details, charity bank account, donate via bank transfer, UPI donation" />
       <Breadcrumbs items={[{ label: "Bank Details" }]} />
 
       {/* Hero */}
@@ -82,9 +84,11 @@ export function BankDetails() {
           <div className="mt-8 bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center">
             <h3 className="text-xl font-bold text-slate-900 mb-2">Pay via UPI</h3>
             <p className="text-slate-500 mb-6">Scan the QR code below to donate via UPI</p>
-            <div className="mx-auto h-48 w-48 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-400 text-sm">
-              UPI QR Code
-            </div>
+            <img
+              src="/images/upi-qr-code.jpg"
+              alt="UPI QR Code - Daan Foundation"
+              className="mx-auto h-56 w-56 rounded-2xl object-contain bg-white shadow-md p-2"
+            />
             <p className="mt-4 text-sm text-slate-500">
               UPI ID: <span className="font-semibold text-slate-900">42818355421@sbi</span>
             </p>

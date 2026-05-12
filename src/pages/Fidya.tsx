@@ -3,6 +3,7 @@ import { Calculator, HelpCircle, ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { fidyaFAQs } from "@/data/faqs";
+import SEO from "@/components/SEO";
 
 const fidyaAmount = 59; // per day in INR
 
@@ -12,6 +13,7 @@ export function Fidya() {
 
   return (
     <div>
+      <SEO title="Fidya & Kaffarah - Compensation for Missed Fasts" description="Pay Fidya or Kaffarah through Daan Foundation. ₹59 per day feeds a person in need. For those unable to fast during Ramadan due to illness, age, or other valid reasons." canonical="/fidya" keywords="fidya payment, kaffarah Islam, missed fasting compensation, Ramadan fidya India, fidya amount" />
       <Breadcrumbs items={[{ label: "Islamic Giving", href: "/zakat" }, { label: "Fidya & Kaffarah" }]} />
 
       {/* Hero */}

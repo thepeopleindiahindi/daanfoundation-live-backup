@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Heart } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 const examples = [
   "Feeding people regularly",
@@ -15,6 +16,7 @@ const examples = [
 export function SadaqahJariyah() {
   return (
     <div>
+      <SEO title="Sadaqah Jariyah - Ongoing Charity" description="Give Sadaqah Jariyah through Daan Foundation. Invest in ongoing charity that continues to benefit communities — water wells, education, and sustainable programs." canonical="/sadaqah-jariyah" keywords="sadaqah jariyah, ongoing charity Islam, continuous reward, Islamic charity India" />
       <Breadcrumbs items={[{ label: "Islamic Giving", href: "/zakat" }, { label: "Sadaqah Jariyah" }]} />
 
       {/* Hero */}

@@ -16,7 +16,7 @@ const stats = [
     image: "/images/iftaar-distribution.jpg",
   },
   {
-    number: "14+",
+    number: "6+",
     label: "Years of Experience",
     description: "Serving communities with compassion since 2012",
     icon: Users,

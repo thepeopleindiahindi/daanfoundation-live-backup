@@ -75,7 +75,8 @@ export function Footer() {
               <img
                 src="/images/daan-foundation-logo.png"
                 alt="Daan Foundation"
-                className="h-12 w-auto"
+                className="h-16 w-auto drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                style={{ filter: 'drop-shadow(0 0 1px white) drop-shadow(0 0 2px rgba(255,255,255,0.4))' }}
               />
               <div className="leading-tight">
                 <span className="block text-xl font-bold text-white tracking-tight">
@@ -159,33 +160,28 @@ export function Footer() {
 
       {/* Bank Details section */}
       <div className="border-t border-slate-800">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid md:grid-cols-2 gap-8 items-start">
-            <div>
-              <h4 className="font-bold text-white mb-4 flex items-center gap-2">
-                <Landmark className="h-5 w-5 text-orange-400" />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
+            <div className="flex-1">
+              <h4 className="font-bold text-white mb-3 flex items-center gap-2 text-sm">
+                <Landmark className="h-4 w-4 text-orange-400" />
                 Bank Details
               </h4>
-              <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-slate-400">
-                <span className="text-slate-500">Bank Name:</span>
-                <span>State Bank of India</span>
-                <span className="text-slate-500">Account Name:</span>
-                <span>Daan Foundation</span>
-                <span className="text-slate-500">Account No:</span>
-                <span>42818355421</span>
-                <span className="text-slate-500">IFSC Code:</span>
-                <span>SBIN0003448</span>
-                <span className="text-slate-500">Branch:</span>
-                <span>Amroha, UP</span>
-                <span className="text-slate-500">UPI ID:</span>
-                <span>42818355421@sbi</span>
+              <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-slate-400">
+                <span><span className="text-slate-500">Bank:</span> State Bank of India</span>
+                <span><span className="text-slate-500">A/C:</span> 42818355421</span>
+                <span><span className="text-slate-500">IFSC:</span> SBIN0003448</span>
+                <span><span className="text-slate-500">Branch:</span> Amroha, UP</span>
+                <span><span className="text-slate-500">UPI:</span> 42818355421@sbi</span>
               </div>
             </div>
-            <div className="flex flex-col items-center md:items-end">
-              <p className="text-sm text-slate-500 mb-2">Scan to Pay via UPI</p>
-              <div className="h-32 w-32 bg-white rounded-xl flex items-center justify-center text-slate-400 text-xs text-center p-2">
-                UPI QR Code
-              </div>
+            <div className="flex flex-col items-center shrink-0">
+              <p className="text-xs text-slate-500 mb-2">Scan to Pay via UPI</p>
+              <img
+                src="/images/upi-qr-code.jpg"
+                alt="UPI QR Code - Daan Foundation"
+                className="h-40 w-40 rounded-xl object-contain bg-white p-1"
+              />
             </div>
           </div>
         </div>

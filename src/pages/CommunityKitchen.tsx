@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Utensils, Users, Heart, Clock } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 const stats = [
   { number: "500,000+", label: "Free Meals Served", icon: Utensils },
@@ -30,6 +31,7 @@ const testimonials = [
 export function CommunityKitchen() {
   return (
     <div>
+      <SEO title="Community Kitchen - Free Daily Meals" description="Daan Foundation's Community Kitchen serves 500,000+ free meals since 2020. Daily evening meals for labourers, elderly, widows, and struggling families. ₹59 per meal." canonical="/community-kitchen" keywords="community kitchen India, free meals charity, food distribution, daily meal program, feed the hungry India" />
       <Breadcrumbs items={[{ label: "Programs", href: "/community-kitchen" }, { label: "Community Kitchen" }]} />
 
       {/* Hero */}

@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function CharityInAction() {
   return (
     <div>
+      <SEO title="Your Charity in Action" description="See how Daan Foundation puts your charity into action — meals served, clothing distributed, medical assistance provided, and lives changed across India." canonical="/our-work/charity-in-action" keywords="charity in action, donation impact, how donations are used, real charity impact India" />
       <Breadcrumbs items={[{ label: "Our Work", href: "/our-work/impact" }, { label: "Your Charity in Action" }]} />
 
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-orange-600 to-amber-600">
@@ -40,17 +42,18 @@ export function CharityInAction() {
           <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">Beyond Meals</h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
-              { title: "Clothing Distribution", desc: "Providing dignified clothing to families and individuals who cannot afford it." },
-              { title: "Medical Assistance", desc: "Supporting medical needs and health-related expenses for vulnerable families." },
-              { title: "Educational Support", desc: "Helping children from poor families continue their education." },
-              { title: "Marriage Assistance", desc: "Supporting poor families with marriage-related expenses for their children." },
-              { title: "Livelihood Support", desc: "Providing small livelihood support to help families become self-reliant." },
-              { title: "Ration Kits", desc: "Distributing essential food ration kits to struggling families throughout the year." },
+              { title: "Clothing Distribution", desc: "Providing dignified clothing to families and individuals who cannot afford it.", link: "/our-work/clothing-distribution" },
+              { title: "Medical Assistance", desc: "Supporting medical needs and health-related expenses for vulnerable families.", link: "/our-work/medical-assistance" },
+              { title: "Educational Support", desc: "Helping children from poor families continue their education.", link: "/our-work/educational-support" },
+              { title: "Marriage Assistance", desc: "Supporting poor families with marriage-related expenses for their children.", link: "/our-work/marriage-assistance" },
+              { title: "Livelihood Support", desc: "Providing small livelihood support to help families become self-reliant.", link: "/our-work/empowering-livelihoods" },
+              { title: "Ration Kits", desc: "Distributing essential food ration kits to struggling families throughout the year.", link: "/our-work/ration-kit-distribution" },
             ].map((item) => (
-              <div key={item.title} className="bg-white rounded-2xl p-6 shadow-sm">
-                <h3 className="font-bold text-slate-900 mb-2">{item.title}</h3>
-                <p className="text-slate-600 text-sm">{item.desc}</p>
-              </div>
+              <Link key={item.title} to={item.link} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow group">
+                <h3 className="font-bold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors">{item.title}</h3>
+                <p className="text-slate-600 text-sm mb-3">{item.desc}</p>
+                <span className="text-sm font-semibold text-orange-600 inline-flex items-center gap-1">Learn More <ArrowRight className="h-4 w-4" /></span>
+              </Link>
             ))}
           </div>
         </div>

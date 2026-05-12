@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function WhyTransparency() {
   return (
     <div>
+      <SEO title="Why Transparency Matters" description="Daan Foundation's commitment to 100% transparency. Learn why we believe every donor deserves to know exactly how their charity is used." canonical="/our-work/why-transparency" keywords="charity transparency, transparent NGO India, donation accountability, how donations used" />
       <Breadcrumbs items={[{ label: "Our Work", href: "/our-work/impact" }, { label: "Why Transparency Matters" }]} />
 
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-cyan-600 to-blue-700">

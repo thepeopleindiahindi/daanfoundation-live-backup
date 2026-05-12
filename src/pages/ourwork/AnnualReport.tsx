@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function AnnualReport() {
   return (
     <div>
+      <SEO title="Annual Impact Report 2023-2026" description="Daan Foundation's annual impact report covering achievements, financial transparency, and humanitarian milestones from 2023 to 2026." canonical="/our-work/annual-report" keywords="annual report charity, impact report, financial transparency NGO, charity achievements India" />
       <Breadcrumbs items={[{ label: "Our Work", href: "/our-work/impact" }, { label: "Annual Impact Report (2023–2026)" }]} />
 
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-orange-600 to-orange-700">

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import SEO from "@/components/SEO";
 
 const presetAmounts = [500, 1000, 2500, 5000];
 const causes = [
@@ -31,6 +32,7 @@ export function Donate() {
 
   return (
     <div>
+      <SEO title="Donate Now - Support Daan Foundation" description="Donate to Daan Foundation. Your Zakat, Sadaqah, and charity donations fund free meals, ration kits, and humanitarian aid for vulnerable communities across India." canonical="/donate" keywords="donate charity India, donate zakat, donate sadaqah, online donation India, help poor families" />
       <Breadcrumbs items={[{ label: "Donate" }]} />
 
       {/* Hero */}

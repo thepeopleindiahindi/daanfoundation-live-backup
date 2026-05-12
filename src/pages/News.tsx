@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Calendar, ArrowRight } from "lucide-react";
 import { newsArticles } from "@/data/news";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function News() {
   const featuredArticle = newsArticles[0];
@@ -9,6 +10,7 @@ export function News() {
 
   return (
     <div>
+      <SEO title="News & Updates" description="Latest news, updates, and stories from Daan Foundation. Read about our community kitchen, ration kit distributions, and humanitarian programs across India." canonical="/news" keywords="Daan Foundation news, charity updates India, community kitchen updates, donation impact stories" />
       <Breadcrumbs items={[{ label: "News" }]} />
 
       {/* Hero */}

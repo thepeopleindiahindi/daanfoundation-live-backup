@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { Calendar, User, ArrowLeft, Share2 } from "lucide-react";
 import { getNewsArticleBySlug, newsArticles } from "@/data/news";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function NewsDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -25,6 +26,7 @@ export function NewsDetail() {
 
   return (
     <div>
+      <SEO title={article.title} description={article.excerpt.slice(0, 160)} canonical={`/news/${slug}`} keywords={`Daan Foundation news, ${article.category}, charity updates India`} />
       <Breadcrumbs
         items={[
           { label: "News", href: "/news" },

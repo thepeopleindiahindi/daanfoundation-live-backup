@@ -8,10 +8,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import SEO from "@/components/SEO";
 
 export function Sadaqah() {
   return (
     <div>
+      <SEO title="Give Sadaqah - Voluntary Charity" description="Give Sadaqah through Daan Foundation. Your voluntary charity helps feed the hungry, support widows, and uplift vulnerable communities across India." canonical="/sadaqah" keywords="sadaqah donation, voluntary charity Islam, give sadaqah online, Islamic giving India" />
       <Breadcrumbs items={[{ label: "Sadaqah" }]} />
 
       {/* Hero */}

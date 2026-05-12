@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function DonationIsTrust() {
   return (
     <div>
+      <SEO title="Your Donation Is a Trust" description="Daan Foundation treats every donation as a sacred trust. 100% transparent fund management ensures your charity reaches those who need it most." canonical="/our-work/donation-is-trust" keywords="transparent donation, charity trust, fund management, 100 percent transparent charity" />
       <Breadcrumbs items={[{ label: "Our Work", href: "/our-work/impact" }, { label: "Your Donation Is a Trust" }]} />
 
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-indigo-600 to-violet-700">

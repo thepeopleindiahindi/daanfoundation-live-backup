@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function OurImpact() {
   return (
     <div>
+      <SEO title="Our Impact - 6 Years of Service" description="Explore Daan Foundation's 6-year impact journey from 2020 to 2026. Timeline of achievements, milestones, and growth in serving communities across India." canonical="/our-work/impact" keywords="Daan Foundation impact, charity impact India, humanitarian achievements, 6 years service" />
       <Breadcrumbs items={[{ label: "Our Work", href: "/our-work/impact" }, { label: "Our Impact" }]} />
 
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-orange-600 to-orange-700">
@@ -23,7 +25,7 @@ export function OurImpact() {
             {[
               { number: "500,000+", label: "Food Packets Distributed" },
               { number: "100,000+", label: "Food & Iftar Kits Distributed" },
-              { number: "14+", label: "Years of Experience" },
+              { number: "6+", label: "Years of Experience" },
               { number: "600,000+", label: "Total Beneficiaries Reached" },
             ].map((s) => (
               <div key={s.label} className="bg-orange-50 rounded-2xl p-6 text-center">
@@ -38,15 +40,18 @@ export function OurImpact() {
             <h2 className="text-3xl font-bold text-slate-900 mb-8">Growth Journey (2020–2026)</h2>
             <div className="space-y-6">
               {[
-                { year: "2020", title: "The Beginning", desc: "Foundation began as a small local iftar initiative during Ramadan with limited resources and strong community trust." },
-                { year: "2021–2022", title: "Expansion", desc: "Expansion of food distribution and increase in volunteer participation." },
-                { year: "2023", title: "Official Registration", desc: "Official legal registration of Daan Foundation and strengthening of operational systems." },
-                { year: "2024–2026", title: "Significant Growth", desc: "Significant growth in outreach, thousands of beneficiaries during Ramadan, continuous daily food distribution, and expansion of community kitchen efforts." },
-              ].map((t) => (
+                { year: "2020", title: "The Beginning", desc: "During the nationwide lockdown, a small group began distributing food and Ramadan iftar meals to stranded labourers and struggling families. What started as a 15-day initiative continued beyond Ramadan." },
+                { year: "2021", title: "Building Momentum", desc: "Community Kitchen operations expanded to daily evening meal service. Volunteer base grew and regular food distribution became a trusted community initiative." },
+                { year: "2022", title: "Expanding Services", desc: "Began ration kit distribution, clothing support, and increased outreach to widows, elderly, and orphans. The foundation's reach extended to neighbouring areas." },
+                { year: "2023", title: "Official Registration", desc: "Daan Foundation was formally registered as a charitable trust, strengthening its operational structure, financial transparency, and accountability." },
+                { year: "2024", title: "Scaling Impact", desc: "Large-scale Ramadan iftar programmes, winter relief drives with blankets and clothing, and introduction of educational and medical assistance programmes." },
+                { year: "2025", title: "Rapid Growth", desc: "Crossed 500,000+ meals distributed. Eid gift programmes launched. Marriage assistance and livelihood support initiatives added. Stronger donor and volunteer networks established." },
+                { year: "2026", title: "Vision Forward", desc: "Aiming to provide food to one lakh beneficiaries every day. Expanding Community Kitchen to more locations, strengthening ration distribution, and building sustainable livelihood programmes." },
+              ].map((t, i) => (
                 <div key={t.year} className="flex gap-6">
                   <div className="flex flex-col items-center">
-                    <div className="h-10 w-10 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold shrink-0">{t.year.slice(0,4)}</div>
-                    <div className="w-px flex-1 bg-orange-200" />
+                    <div className="h-10 w-10 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold shrink-0">{t.year}</div>
+                    {i < 6 && <div className="w-px flex-1 bg-orange-200" />}
                   </div>
                   <div className="pb-6">
                     <h3 className="font-bold text-slate-900">{t.title}</h3>

@@ -3,15 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daan Foundation - Serving Humanity With Compassion</title>
-    <meta name="description" content="Daan Foundation - Donate Zakat, Sadaqah, and support humanitarian causes worldwide." />
+    <title>Daan Foundation - Serving Humanity With Compassion | Donate Zakat, Sadaqah & More</title>
+    <meta name="description" content="Daan Foundation is a registered Indian charity serving free meals, distributing ration kits, and supporting vulnerable communities through Zakat, Sadaqah, Fidya & Kaffarah donations. 100% transparent." />
+    <meta name="keywords" content="Daan Foundation, charity India, donate zakat, sadaqah, community kitchen, ration kit distribution, fidya, kaffarah, Islamic charity India, food donation India, free meals India, zakat calculator" />
     <meta name="author" content="Daan Foundation" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://daanfoundation.org/" />
 
-    <meta property="og:title" content="Daan Foundation" />
-    <meta property="og:description" content="Serving humanity with compassion" />
+    <meta property="og:title" content="Daan Foundation - Serving Humanity With Compassion" />
+    <meta property="og:description" content="Donate Zakat, Sadaqah, Fidya & Kaffarah. Community Kitchen serving 500,000+ free meals. 100% transparent Indian charity." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://daanfoundation.org/" />
+    <meta property="og:image" content="https://daanfoundation.org/images/daan-foundation-logo.png" />
+    <meta property="og:site_name" content="Daan Foundation" />
+    <meta property="og:locale" content="en_IN" />
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Daan Foundation - Serving Humanity With Compassion" />
+    <meta name="twitter:description" content="Donate Zakat, Sadaqah, Fidya & Kaffarah. Community Kitchen serving 500,000+ free meals." />
+    <meta name="twitter:image" content="https://daanfoundation.org/images/daan-foundation-logo.png" />
+
+    <!-- Geo targeting -->
+    <meta name="geo.region" content="IN" />
+    <meta name="geo.placename" content="India" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#ea580c" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,6 +52,28 @@
 
   <body>
     <div id="root"></div>
+    <!-- Organization JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "Daan Foundation",
+      "url": "https://daanfoundation.org",
+      "logo": "https://daanfoundation.org/images/daan-foundation-logo.png",
+      "description": "Daan Foundation is a registered Indian charity serving free meals, distributing ration kits, and supporting vulnerable communities.",
+      "foundingDate": "2020",
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "sameAs": [],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "donations",
+        "availableLanguage": ["English", "Hindi", "Urdu"]
+      }
+    }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

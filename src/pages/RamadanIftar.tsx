@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function RamadanIftar() {
   return (
     <div>
+      <SEO title="Ramadan Iftar Program" description="Support Daan Foundation's Ramadan Iftar program. We provide iftar meals and food packages to fasting individuals and families during the holy month of Ramadan." canonical="/ramadan" keywords="ramadan iftar program, iftar meals India, ramadan charity, ramadan food distribution" />
       <Breadcrumbs items={[{ label: "Seasonal Giving" }, { label: "Ramadan Iftar" }]} />
 
       {/* Hero */}

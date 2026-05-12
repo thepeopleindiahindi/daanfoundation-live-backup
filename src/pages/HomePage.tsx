@@ -8,6 +8,7 @@ import ImpactStories from "@/components/sections/ImpactStories";
 import PartnerLogos from "@/components/sections/PartnerLogos";
 import ZakatCalculator from "@/components/donation/ZakatCalculator";
 import { ArrowRight, Heart, Calculator, HandHeart } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const islamicGivingItems = [
   {
@@ -39,6 +40,7 @@ const islamicGivingItems = [
 export function HomePage() {
   return (
     <div>
+      <SEO title="Daan Foundation - Serving Humanity With Compassion" description="Daan Foundation serves 500,000+ free meals through Community Kitchen, distributes ration kits, and channels your Zakat, Sadaqah, Fidya & Kaffarah to those in need across India." canonical="/" keywords="Daan Foundation, charity India, donate zakat, sadaqah, community kitchen, free meals, ration kit distribution" />
       {/* Hero */}
       <Hero />
 
@@ -105,37 +107,37 @@ export function HomePage() {
               </div>
             </Link>
 
-            {/* Program 2 - Ramadan Iftar */}
-            <Link to="/ramadan" className="group relative aspect-[4/5] rounded-2xl overflow-hidden">
+            {/* Program 2 - Ration Kit Distribution */}
+            <Link to="/where-most-needed" className="group relative aspect-[4/5] rounded-2xl overflow-hidden">
               <img 
-                src="/images/iftaar-distribution.jpg" 
-                alt="Ramadan Iftar Distribution"
+                src="/images/ration-kit-front.jpg" 
+                alt="Ration Kit Distribution"
                 className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <span className="inline-block px-3 py-1 bg-amber-500 text-white text-sm font-semibold rounded-full mb-3">
-                  Since 2020
+                  Essential Aid
                 </span>
-                <h3 className="text-2xl font-bold text-white mb-2">Ramadan Iftar</h3>
-                <p className="text-white/80">Iftar meals for those fasting in need</p>
+                <h3 className="text-2xl font-bold text-white mb-2">Ration Kit Distribution</h3>
+                <p className="text-white/80">Essential food rations for poor families</p>
               </div>
             </Link>
 
-            {/* Program 3 - Winter Appeal */}
-            <Link to="/winter" className="group relative aspect-[4/5] rounded-2xl overflow-hidden md:col-span-2 lg:col-span-1">
+            {/* Program 3 - Fidyah & Kaffarah */}
+            <Link to="/fidya" className="group relative aspect-[4/5] rounded-2xl overflow-hidden md:col-span-2 lg:col-span-1">
               <img 
-                src="/images/community-queue.jpg" 
-                alt="Winter Appeal"
+                src="/images/iftaar-distribution.jpg" 
+                alt="Fidyah & Kaffarah"
                 className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <span className="inline-block px-3 py-1 bg-blue-500 text-white text-sm font-semibold rounded-full mb-3">
-                  Seasonal
+                <span className="inline-block px-3 py-1 bg-violet-500 text-white text-sm font-semibold rounded-full mb-3">
+                  Islamic Giving
                 </span>
-                <h3 className="text-2xl font-bold text-white mb-2">Winter Appeal</h3>
-                <p className="text-white/80">Blankets, clothing & warmth for the vulnerable</p>
+                <h3 className="text-2xl font-bold text-white mb-2">Fidyah & Kaffarah</h3>
+                <p className="text-white/80">Fulfil your obligation by feeding the needy</p>
               </div>
             </Link>
           </div>
@@ -153,7 +155,7 @@ export function HomePage() {
                 className="rounded-2xl shadow-xl w-full"
               />
               <div className="absolute -bottom-6 -right-6 bg-orange-500 text-white p-6 rounded-xl shadow-lg hidden md:block">
-                <div className="text-4xl font-bold">14+</div>
+                <div className="text-4xl font-bold">6+</div>
                 <div className="text-sm">Years of Service</div>
               </div>
             </div>

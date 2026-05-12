@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { Heart, Users, UtensilsCrossed, Gift } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function ZakatAlFitr() {
   return (
     <div>
+      <SEO title="Zakat al-Fitr (Fitrana) - Eid Charity" description="Pay Zakat al-Fitr (Fitrana) through Daan Foundation before Eid prayer. Ensure every family can celebrate Eid with dignity through food support." canonical="/zakat-al-fitr" keywords="zakat al fitr, fitrana, eid charity, zakat al fitr amount India, Ramadan obligation" />
       <Breadcrumbs items={[{ label: "Islamic Giving", href: "/zakat" }, { label: "Zakat al-Fitr (Fitrana)" }]} />
 
       {/* Hero */}

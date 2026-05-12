@@ -346,10 +346,15 @@ export function ZakatCalculator() {
       </div>
 
       {/* Disclaimer */}
-      <p className="text-xs text-slate-500 text-center mt-6">
-        This calculator provides an estimate. For complex situations, please consult a qualified
-        scholar. Nisab values are updated periodically based on market prices.
-      </p>
+      <div className="mt-6 rounded-xl bg-amber-50 border border-amber-200 p-4">
+        <p className="text-xs text-amber-800 leading-relaxed">
+          <strong>Disclaimer:</strong> This Zakat calculation is based on general Islamic guidelines 
+          and estimation methods. Before making your final Zakat payment, please consult a qualified 
+          Islamic Mufti or Islamic scholar, as the calculation may vary depending on individual 
+          circumstances and different scholarly opinions. Nisab values are updated periodically 
+          based on market prices.
+        </p>
+      </div>
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function EmpoweringLivelihoods() {
   return (
     <div>
+      <SEO title="Empowering Lives Through Sustainable Livelihoods" description="Daan Foundation empowers individuals through small business support, sewing machines, skill training, and livelihood opportunities across India." canonical="/our-work/empowering-livelihoods" keywords="livelihood support India, small business charity, sewing machine donation, empowerment programs" />
       <Breadcrumbs items={[{ label: "Our Work", href: "/our-work/impact" }, { label: "Empowering Lives Through Sustainable Livelihoods" }]} />
 
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-green-600 to-emerald-700">

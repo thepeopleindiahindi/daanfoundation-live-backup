@@ -15,7 +15,7 @@ const campaigns = [
     id: "ration-kits",
     title: "Ration Kits Distribution",
     description: "Essential food ration kits for poor families and vulnerable communities",
-    image: "/images/community-queue.jpg",
+    image: "/images/ration-kit-front.jpg",
     raised: 120000,
     goal: 250000,
     href: "/where-most-needed",

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Filter } from "lucide-react";
 import { appeals } from "@/data/appeals";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function Appeals() {
   const emergencyAppeals = appeals.filter((a) => a.category === "emergency");
@@ -9,6 +10,7 @@ export function Appeals() {
 
   return (
     <div>
+      <SEO title="Current Appeals - Urgent Causes" description="View current donation appeals from Daan Foundation. Support urgent humanitarian causes including food distribution, ration kits, and community welfare programs." canonical="/appeals" keywords="charity appeals India, donation campaigns, urgent causes, humanitarian appeals" />
       <Breadcrumbs items={[{ label: "Appeals" }]} />
 
       {/* Hero */}

@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function History() {
   return (
     <div>
+      <SEO title="Our History - The Journey Since 2020" description="The history of Daan Foundation from a small Ramadan initiative in 2020 to a registered charity serving thousands across India." canonical="/our-work/history" keywords="Daan Foundation history, charity journey, founding story, humanitarian organization history" />
       <Breadcrumbs items={[{ label: "Our Work", href: "/our-work/impact" }, { label: "The History of Daan Foundation" }]} />
 
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-slate-700 to-slate-900">

@@ -133,7 +133,7 @@ export function Header() {
               <img
                 src="/images/daan-foundation-logo.png"
                 alt="Daan Foundation"
-                className="h-12 w-auto"
+                className="h-16 w-auto"
               />
               <div className="leading-tight">
                 <span className="block text-xl font-bold text-slate-900 tracking-tight">

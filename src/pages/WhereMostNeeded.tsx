@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Heart, Globe } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function WhereMostNeeded() {
   return (
     <div>
+      <SEO title="Where Most Needed - Flexible Donations" description="Donate where help is needed most. Daan Foundation directs your flexible donation to the most urgent humanitarian needs — food, ration kits, medical aid, and more." canonical="/where-most-needed" keywords="donate where most needed, flexible charity donation, urgent humanitarian aid India" />
       <Breadcrumbs items={[{ label: "Where Most Needed" }]} />
 
       {/* Hero */}
       <section className="relative min-h-[450px] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/images/iftaar-distribution.jpg"
-            alt="Aid distribution"
+            src="/images/hero-slide-4.jpg"
+            alt="Ration Kit Distribution"
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-orange-900/80 via-orange-800/60 to-orange-700/40" />

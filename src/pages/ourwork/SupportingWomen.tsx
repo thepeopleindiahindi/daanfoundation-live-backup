@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SEO from "@/components/SEO";
 
 export function SupportingWomen() {
   return (
     <div>
+      <SEO title="Supporting Women With Dignity" description="Daan Foundation supports women through livelihood training, sewing machines, and financial empowerment programs to help them become self-reliant." canonical="/our-work/supporting-women" keywords="women empowerment India, support women charity, livelihood for women, women self reliance" />
       <Breadcrumbs items={[{ label: "Our Work", href: "/our-work/impact" }, { label: "Supporting Women With Dignity" }]} />
 
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-pink-600 to-rose-700">
