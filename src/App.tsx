@@ -51,6 +51,11 @@ import EducationalSupport from "./pages/ourwork/EducationalSupport";
 import MarriageAssistance from "./pages/ourwork/MarriageAssistance";
 import RationKitDistribution from "./pages/ourwork/RationKitDistribution";
 
+// New pages
+import WhereWeWork from "./pages/WhereWeWork";
+import OrphanSponsorship from "./pages/OrphanSponsorship";
+import Water from "./pages/Water";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -110,6 +115,11 @@ const App = () => (
             
             {/* Donation */}
             <Route path="/donate" element={<Donate />} />
+            
+            {/* New pages */}
+            <Route path="/where-we-work" element={<WhereWeWork />} />
+            <Route path="/orphan-sponsorship" element={<OrphanSponsorship />} />
+            <Route path="/water" element={<Water />} />
           </Route>
           
           <Route path="*" element={<NotFound />} />

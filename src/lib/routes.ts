@@ -49,6 +49,11 @@ export const ROUTES = {
 
   // Utility
   CONTACT: "/contact",
+
+  // New pages
+  WHERE_WE_WORK: "/where-we-work",
+  ORPHAN_SPONSORSHIP: "/orphan-sponsorship",
+  WATER: "/water",
 } as const;
 
 // Helper to generate dynamic routes

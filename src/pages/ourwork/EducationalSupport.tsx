@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import SEO from "@/components/SEO";
+import { DonationSidebar } from "@/components/donation/DonationSidebar";
 
 const stats = [
   { number: "200+", label: "Students Supported", icon: GraduationCap },
@@ -116,96 +117,107 @@ export function EducationalSupport() {
         </div>
       </section>
 
-      {/* Breaking the Cycle */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">Breaking the Cycle of Poverty</h2>
-            <div className="prose prose-lg text-slate-600">
-              <p>
-                In many communities, children are forced to drop out of school not because they lack ability or desire,
-                but because their families simply cannot afford it. The cost of school fees, books, uniforms, and
-                supplies creates an insurmountable barrier for families already struggling to put food on the table.
-              </p>
-              <p>
-                When a child drops out, the cycle of poverty deepens. Without education, they face the same limited
-                opportunities as their parents — the same daily wage work, the same financial struggles, the same
-                inability to provide for the next generation.
-              </p>
-              <p>
-                Daan Foundation believes that every child deserves the chance to learn, grow, and build a better future.
-                Our Educational Support program identifies children at risk of dropping out and provides the resources
-                they need to stay in school and succeed.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="lg:grid lg:grid-cols-3 lg:gap-10">
+          <div className="lg:col-span-2 space-y-10">
 
-      {/* What We Provide */}
-      <section className="py-16 md:py-24 bg-[#F3F4F6]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4 text-center">What We Provide</h2>
-          <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-            Our support is comprehensive — we address every barrier that stands between a child and their education.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whatWeProvide.map((item) => (
-              <div key={item.item} className="bg-white rounded-2xl p-6 shadow-sm">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-indigo-600 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="font-bold text-slate-900 mb-2">{item.item}</h3>
-                    <p className="text-sm text-slate-600">{item.description}</p>
+            {/* Breaking the Cycle */}
+            <section>
+              <h2 className="text-3xl font-bold text-slate-900 mb-6">Breaking the Cycle of Poverty</h2>
+              <div className="prose prose-lg text-slate-600">
+                <p>
+                  In many communities, children are forced to drop out of school not because they lack ability or desire,
+                  but because their families simply cannot afford it. The cost of school fees, books, uniforms, and
+                  supplies creates an insurmountable barrier for families already struggling to put food on the table.
+                </p>
+                <p>
+                  When a child drops out, the cycle of poverty deepens. Without education, they face the same limited
+                  opportunities as their parents — the same daily wage work, the same financial struggles, the same
+                  inability to provide for the next generation.
+                </p>
+                <p>
+                  Daan Foundation believes that every child deserves the chance to learn, grow, and build a better future.
+                  Our Educational Support program identifies children at risk of dropping out and provides the resources
+                  they need to stay in school and succeed.
+                </p>
+              </div>
+            </section>
+
+            <div className="border-t border-slate-200" />
+
+            {/* What We Provide */}
+            <section>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">What We Provide</h2>
+              <p className="text-lg text-slate-600 mb-8">
+                Our support is comprehensive — we address every barrier that stands between a child and their education.
+              </p>
+              <div className="grid md:grid-cols-2 gap-4">
+                {whatWeProvide.map((item) => (
+                  <div key={item.item} className="bg-white rounded-xl p-5 shadow-sm border border-slate-100">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="h-6 w-6 text-indigo-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h3 className="font-bold text-slate-900 mb-1">{item.item}</h3>
+                        <p className="text-sm text-slate-600">{item.description}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* Our Approach */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4 text-center">Our Approach</h2>
-          <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-            We follow a structured process to ensure our support reaches the right students and makes a lasting impact.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {ourApproach.map((step, index) => (
-              <div key={step.title} className="relative text-center p-6 rounded-2xl border border-slate-200 bg-white">
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 font-bold text-lg mb-4">
-                  {index + 1}
-                </div>
-                <step.icon className="h-8 w-8 text-indigo-600 mx-auto mb-3" />
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
-                <p className="text-sm text-slate-600">{step.description}</p>
+            <div className="border-t border-slate-200" />
+
+            {/* Our Approach */}
+            <section>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Approach</h2>
+              <p className="text-lg text-slate-600 mb-8">
+                We follow a structured process to ensure our support reaches the right students and makes a lasting impact.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6">
+                {ourApproach.map((step, index) => (
+                  <div key={step.title} className="text-center p-6 rounded-2xl border border-slate-200 bg-white">
+                    <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 font-bold text-lg mb-4">
+                      {index + 1}
+                    </div>
+                    <step.icon className="h-8 w-8 text-indigo-600 mx-auto mb-3" />
+                    <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
+                    <p className="text-sm text-slate-600">{step.description}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* Mentorship */}
-      <section className="py-16 md:py-24 bg-[#F3F4F6]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <GraduationCap className="h-12 w-12 text-indigo-600 mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">Mentorship & Guidance</h2>
-            <p className="text-lg text-slate-600 mb-4">
-              Beyond material support, we believe in nurturing potential. Our mentorship program connects students from
-              underprivileged backgrounds with volunteers and professionals who guide them through academic challenges,
-              career choices, and personal development.
-            </p>
-            <p className="text-slate-600">
-              Many first-generation learners lack the guidance that comes naturally in educated families. Our mentors
-              fill that gap — helping students set goals, prepare for exams, and dream bigger than their circumstances
-              might suggest.
-            </p>
+            <div className="border-t border-slate-200" />
+
+            {/* Mentorship */}
+            <section className="bg-[#F3F4F6] rounded-2xl p-6 md:p-8">
+              <div className="text-center">
+                <GraduationCap className="h-12 w-12 text-indigo-600 mx-auto mb-6" />
+                <h2 className="text-3xl font-bold text-slate-900 mb-6">Mentorship & Guidance</h2>
+                <p className="text-lg text-slate-600 mb-4">
+                  Beyond material support, we believe in nurturing potential. Our mentorship program connects students from
+                  underprivileged backgrounds with volunteers and professionals who guide them through academic challenges,
+                  career choices, and personal development.
+                </p>
+                <p className="text-slate-600">
+                  Many first-generation learners lack the guidance that comes naturally in educated families. Our mentors
+                  fill that gap — helping students set goals, prepare for exams, and dream bigger than their circumstances
+                  might suggest.
+                </p>
+              </div>
+            </section>
+
           </div>
+
+          <aside className="lg:col-span-1 mt-8 lg:mt-0">
+            <div className="lg:sticky lg:top-24">
+              <DonationSidebar defaultCause="where-needed" />
+            </div>
+          </aside>
+
         </div>
-      </section>
+      </div>
 
       {/* CTA */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-indigo-600 to-violet-600">

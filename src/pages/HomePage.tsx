@@ -7,33 +7,57 @@ import QuickActions from "@/components/sections/QuickActions";
 import ImpactStories from "@/components/sections/ImpactStories";
 import PartnerLogos from "@/components/sections/PartnerLogos";
 import ZakatCalculator from "@/components/donation/ZakatCalculator";
-import { ArrowRight, Heart, Calculator, HandHeart } from "lucide-react";
+import { ArrowRight, Heart, Calculator, HandHeart, Utensils, Users, Moon, Gift } from "lucide-react";
 import SEO from "@/components/SEO";
 
 const islamicGivingItems = [
   {
-    icon: Calculator,
-    title: "Zakat Calculator",
-    description: "Calculate and pay your Zakat accurately with our easy-to-use calculator.",
-    href: "/zakat-calculator",
+    icon: Utensils,
+    title: "Community Kitchen",
+    description: "Support our daily free meal program for the needy.",
+    href: "/community-kitchen",
     iconBg: "bg-orange-100",
     iconColor: "text-orange-500",
   },
   {
-    icon: Heart,
-    title: "Sadaqah",
-    description: "Give voluntary charity and earn continuous rewards for your good deeds.",
-    href: "/sadaqah",
+    icon: HandHeart,
+    title: "Fidyah & Kaffarah",
+    description: "Fulfil your Islamic obligation by feeding the needy.",
+    href: "/fidya",
+    iconBg: "bg-rose-100",
+    iconColor: "text-rose-600",
+  },
+  {
+    icon: Moon,
+    title: "Ramadan Iftar Appeal",
+    description: "Provide iftar meals to fasting families during Ramadan.",
+    href: "/ramadan",
+    iconBg: "bg-violet-100",
+    iconColor: "text-violet-600",
+  },
+  {
+    icon: Users,
+    title: "Ration Kit Distribution",
+    description: "Essential food rations for struggling families.",
+    href: "/where-most-needed",
     iconBg: "bg-amber-100",
     iconColor: "text-amber-600",
   },
   {
-    icon: HandHeart,
-    title: "Fidyah & Kaffarah",
-    description: "Feed the needy through Fidyah and Kaffarah — fulfil your Islamic obligation.",
-    href: "/fidya",
-    iconBg: "bg-rose-100",
-    iconColor: "text-rose-600",
+    icon: Calculator,
+    title: "Zakat",
+    description: "Fulfil your 2.5% obligation and purify your wealth.",
+    href: "/zakat",
+    iconBg: "bg-emerald-100",
+    iconColor: "text-emerald-600",
+  },
+  {
+    icon: Gift,
+    title: "Sadaqah",
+    description: "Give voluntary charity and earn continuous rewards.",
+    href: "/sadaqah",
+    iconBg: "bg-cyan-100",
+    iconColor: "text-cyan-600",
   },
 ];
 
@@ -41,25 +65,23 @@ export function HomePage() {
   return (
     <div>
       <SEO title="Daan Foundation - Serving Humanity With Compassion" description="Daan Foundation serves 500,000+ free meals through Community Kitchen, distributes ration kits, and channels your Zakat, Sadaqah, Fidya & Kaffarah to those in need across India." canonical="/" keywords="Daan Foundation, charity India, donate zakat, sadaqah, community kitchen, free meals, ration kit distribution" />
-      {/* Hero */}
       <Hero />
 
-      {/* Quick Actions */}
       <QuickActions />
 
-      {/* Emergency Appeals */}
+      {/* Current Campaigns */}
       <section className="py-16 md:py-24 bg-[#F3F4F6]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-slate-900">Emergency Appeals</h2>
-              <p className="text-slate-600 mt-2">Respond to crises where help is needed most</p>
+              <h2 className="text-3xl font-bold text-slate-900">Current Campaigns</h2>
+              <p className="text-slate-600 mt-2">Support our ongoing humanitarian initiatives</p>
             </div>
             <Link
               to="/appeals"
               className="hidden sm:inline-flex items-center gap-2 font-semibold text-orange-500 hover:text-orange-600"
             >
-              View All Appeals
+              View All Campaigns
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -69,7 +91,7 @@ export function HomePage() {
               to="/appeals"
               className="inline-flex items-center gap-2 font-semibold text-orange-500"
             >
-              View All Appeals
+              View All Campaigns
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -79,7 +101,7 @@ export function HomePage() {
       {/* Impact Stats */}
       <ImpactStats />
 
-      {/* Featured Programs with Images */}
+      {/* Our Programs */}
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -144,7 +166,7 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Mission Section with Large Image */}
+      {/* Mission Section */}
       <section className="py-16 md:py-24 bg-[#F3F4F6]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -161,12 +183,13 @@ export function HomePage() {
             </div>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                Serving Humanity With Compassion
+                Serving Humanity With Compassion Since 2020
               </h2>
               <p className="text-lg text-slate-600 mb-6 leading-relaxed">
                 Daan Foundation is an India-based charitable organisation committed to helping 
                 poor, needy and vulnerable people through food support, community welfare and 
-                social assistance programmes.
+                social assistance programmes. By strengthening our community kitchen and outreach 
+                programs, we aim to serve 25,000 beneficiaries annually.
               </p>
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div>
@@ -190,17 +213,17 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Islamic Giving Section */}
+      {/* Maximize Your Reward - Islamic Giving */}
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Islamic Giving</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Maximise Your Reward</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Fulfill your religious obligations with ease and confidence
+              Choose a cause and earn blessings through your generosity
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {islamicGivingItems.map(({ icon: Icon, title, description, href, iconBg, iconColor }) => (
               <Link
                 key={title}
@@ -222,7 +245,7 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Zakat Calculator Preview — Soft Beige highlight section #FFF7ED */}
+      {/* Zakat Calculator Preview */}
       <section className="py-16 md:py-24 bg-[#FFF7ED]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -240,6 +263,9 @@ export function HomePage() {
                   </li>
                 ))}
               </ul>
+              <Link to="/zakat-calculator" className="inline-flex items-center gap-2 mt-6 font-semibold text-orange-500 hover:gap-3 transition-all">
+                Calculate Now <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
             <div>
               <ZakatCalculator />
@@ -283,46 +309,26 @@ export function HomePage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="col-span-2 row-span-2">
-              <img 
-                src="/images/hero-2.jpg" 
-                alt="Aid distribution"
-                className="w-full h-full object-cover rounded-2xl"
-              />
+              <img src="/images/hero-2.jpg" alt="Aid distribution" className="w-full h-full object-cover rounded-2xl" />
             </div>
             <div>
-              <img 
-                src="/images/campaign-1.jpg" 
-                alt="Campaign 1"
-                className="w-full h-full object-cover rounded-xl aspect-square"
-              />
+              <img src="/images/campaign-1.jpg" alt="Campaign" className="w-full h-full object-cover rounded-xl aspect-square" />
             </div>
             <div>
-              <img 
-                src="/images/campaign-2.jpg" 
-                alt="Campaign 2"
-                className="w-full h-full object-cover rounded-xl aspect-square"
-              />
+              <img src="/images/campaign-2.jpg" alt="Campaign" className="w-full h-full object-cover rounded-xl aspect-square" />
             </div>
             <div>
-              <img 
-                src="/images/campaign-3.jpg" 
-                alt="Campaign 3"
-                className="w-full h-full object-cover rounded-xl aspect-square"
-              />
+              <img src="/images/campaign-3.jpg" alt="Campaign" className="w-full h-full object-cover rounded-xl aspect-square" />
             </div>
             <div>
-              <img 
-                src="/images/impact-1.jpg" 
-                alt="Impact"
-                className="w-full h-full object-cover rounded-xl aspect-square"
-              />
+              <img src="/images/impact-1.jpg" alt="Impact" className="w-full h-full object-cover rounded-xl aspect-square" />
             </div>
           </div>
 
           <div className="grid grid-cols-3 md:grid-cols-6 gap-4 mt-4">
-            <img src="/images/news-1.jpg" alt="News 1" className="w-full aspect-square object-cover rounded-xl" />
-            <img src="/images/news-2.jpg" alt="News 2" className="w-full aspect-square object-cover rounded-xl" />
-            <img src="/images/news-3.jpg" alt="News 3" className="w-full aspect-square object-cover rounded-xl" />
+            <img src="/images/news-1.jpg" alt="News" className="w-full aspect-square object-cover rounded-xl" />
+            <img src="/images/news-2.jpg" alt="News" className="w-full aspect-square object-cover rounded-xl" />
+            <img src="/images/news-3.jpg" alt="News" className="w-full aspect-square object-cover rounded-xl" />
             <img src="/images/iftaar-distribution.jpg" alt="Iftaar" className="w-full aspect-square object-cover rounded-xl" />
             <img src="/images/aid-distribution-elderly.jpg" alt="Aid" className="w-full aspect-square object-cover rounded-xl" />
             <img src="/images/team.jpg" alt="Team" className="w-full aspect-square object-cover rounded-xl" />
@@ -333,7 +339,7 @@ export function HomePage() {
       {/* Partners */}
       <PartnerLogos />
 
-      {/* Final CTA with Background Image */}
+      {/* Final CTA */}
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div 

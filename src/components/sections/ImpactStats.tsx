@@ -18,7 +18,7 @@ const stats = [
   {
     number: "6+",
     label: "Years of Experience",
-    description: "Serving communities with compassion since 2012",
+    description: "Serving communities with compassion since 2020",
     icon: Users,
     image: "/images/community-queue.jpg",
   },

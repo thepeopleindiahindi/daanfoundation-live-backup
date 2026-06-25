@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import SEO from "@/components/SEO";
+import { DonationSidebar } from "@/components/donation/DonationSidebar";
 
 const stats = [
   { number: "5,000+", label: "Kits Distributed", icon: Package },
@@ -146,116 +147,129 @@ export function RationKitDistribution() {
         </div>
       </section>
 
-      {/* About */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">Fighting Hunger, One Kit at a Time</h2>
-              <div className="prose prose-lg text-slate-600">
-                <p>
-                  For millions of families living on the edge, the simple act of putting food on the table is a daily
-                  struggle. Daily wage workers who lose even a few days of work, widows without financial support, and
-                  elderly individuals living alone — all face the constant threat of hunger.
-                </p>
-                <p>
-                  Daan Foundation's Ration Kit Distribution program provides carefully assembled food kits containing
-                  essential staples — rice, dal, oil, flour, sugar, tea, spices, and soap. Each kit is designed to
-                  sustain a family of 4–5 members for approximately 2–3 weeks.
-                </p>
-                <p>
-                  Our distribution runs year-round, with special expanded drives during Ramadan and winter months when
-                  needs are greatest. We reach communities across the region, serving people of all backgrounds without
-                  discrimination.
-                </p>
-              </div>
-            </div>
-            <div>
-              <img
-                src="/images/ration-kit-front.jpg"
-                alt="Ration kit contents"
-                className="rounded-2xl shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="lg:grid lg:grid-cols-3 lg:gap-10">
+          <div className="lg:col-span-2 space-y-10">
 
-      {/* What's In a Ration Kit */}
-      <section className="py-16 md:py-24 bg-[#F3F4F6]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4 text-center">What's In a Ration Kit</h2>
-          <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-            Each kit is carefully assembled with quality-checked essential items to sustain a family for 2–3 weeks.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-            {rationItems.map(({ item, quantity, icon: Icon }) => (
-              <div key={item} className="bg-white rounded-xl p-4 shadow-sm flex items-center gap-3">
-                <Icon className="h-6 w-6 text-amber-600 flex-shrink-0" />
+            {/* About */}
+            <section>
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <div className="font-bold text-slate-900 text-sm">{item}</div>
-                  <div className="text-xs text-slate-500">{quantity}</div>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-6">Fighting Hunger, One Kit at a Time</h2>
+                  <div className="prose prose-lg text-slate-600">
+                    <p>
+                      For millions of families living on the edge, the simple act of putting food on the table is a daily
+                      struggle. Daily wage workers who lose even a few days of work, widows without financial support, and
+                      elderly individuals living alone — all face the constant threat of hunger.
+                    </p>
+                    <p>
+                      Daan Foundation's Ration Kit Distribution program provides carefully assembled food kits containing
+                      essential staples — rice, dal, oil, flour, sugar, tea, spices, and soap. Each kit is designed to
+                      sustain a family of 4–5 members for approximately 2–3 weeks.
+                    </p>
+                    <p>
+                      Our distribution runs year-round, with special expanded drives during Ramadan and winter months when
+                      needs are greatest. We reach communities across the region, serving people of all backgrounds without
+                      discrimination.
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <img
+                    src="/images/ration-kit-front.jpg"
+                    alt="Ration kit contents"
+                    className="rounded-2xl shadow-lg"
+                  />
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* Who Receives */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">Who Receives Ration Kits</h2>
-              <p className="text-lg text-slate-600 mb-8">
-                Our ration kits reach those who face the greatest food insecurity — individuals and families for whom
-                even a single meal is uncertain.
+            <div className="border-t border-slate-200" />
+
+            {/* What's In a Ration Kit */}
+            <section>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4 text-center">What's In a Ration Kit</h2>
+              <p className="text-lg text-slate-600 text-center mb-8 max-w-2xl mx-auto">
+                Each kit is carefully assembled with quality-checked essential items to sustain a family for 2–3 weeks.
               </p>
-              <div className="space-y-4">
-                {recipients.map((r) => (
-                  <div key={r.title} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-6 w-6 text-amber-600 flex-shrink-0 mt-0.5" />
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+                {rationItems.map(({ item, quantity, icon: Icon }) => (
+                  <div key={item} className="bg-white rounded-xl p-4 shadow-sm flex items-center gap-3">
+                    <Icon className="h-6 w-6 text-amber-600 flex-shrink-0" />
                     <div>
-                      <div className="font-bold text-slate-900">{r.title}</div>
-                      <p className="text-sm text-slate-600">{r.description}</p>
+                      <div className="font-bold text-slate-900 text-sm">{item}</div>
+                      <div className="text-xs text-slate-500">{quantity}</div>
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
-            <div>
-              <img
-                src="/images/extra-5.jpg"
-                alt="Ration kit distribution to families"
-                className="rounded-2xl shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* Distribution Process */}
-      <section className="py-16 md:py-24 bg-[#F3F4F6]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4 text-center">Our Distribution Process</h2>
-          <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-            Every step of our process is designed to ensure efficiency, fairness, and above all — dignity.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {distributionProcess.map((step, index) => (
-              <div key={step.title} className="text-center p-6 rounded-2xl bg-white shadow-sm border border-slate-100">
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-amber-100 text-amber-700 font-bold text-lg mb-4">
-                  {index + 1}
+            <div className="border-t border-slate-200" />
+
+            {/* Who Receives */}
+            <section>
+              <div className="grid lg:grid-cols-2 gap-12 items-start">
+                <div>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-6">Who Receives Ration Kits</h2>
+                  <p className="text-lg text-slate-600 mb-8">
+                    Our ration kits reach those who face the greatest food insecurity — individuals and families for whom
+                    even a single meal is uncertain.
+                  </p>
+                  <div className="space-y-4">
+                    {recipients.map((r) => (
+                      <div key={r.title} className="flex items-start gap-3">
+                        <CheckCircle2 className="h-6 w-6 text-amber-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-bold text-slate-900">{r.title}</div>
+                          <p className="text-sm text-slate-600">{r.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <step.icon className="h-8 w-8 text-amber-600 mx-auto mb-3" />
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
-                <p className="text-sm text-slate-600">{step.description}</p>
+                <div>
+                  <img
+                    src="/images/extra-5.jpg"
+                    alt="Ration kit distribution to families"
+                    className="rounded-2xl shadow-lg"
+                  />
+                </div>
               </div>
-            ))}
+            </section>
+
+            <div className="border-t border-slate-200" />
+
+            {/* Distribution Process */}
+            <section>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4 text-center">Our Distribution Process</h2>
+              <p className="text-lg text-slate-600 text-center mb-8 max-w-2xl mx-auto">
+                Every step of our process is designed to ensure efficiency, fairness, and above all — dignity.
+              </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {distributionProcess.map((step, index) => (
+                  <div key={step.title} className="text-center p-6 rounded-2xl bg-white shadow-sm border border-slate-100">
+                    <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-amber-100 text-amber-700 font-bold text-lg mb-4">
+                      {index + 1}
+                    </div>
+                    <step.icon className="h-8 w-8 text-amber-600 mx-auto mb-3" />
+                    <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
+                    <p className="text-sm text-slate-600">{step.description}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
           </div>
+
+          <aside className="lg:col-span-1 mt-8 lg:mt-0">
+            <div className="lg:sticky lg:top-24">
+              <DonationSidebar defaultCause="where-needed" />
+            </div>
+          </aside>
+
         </div>
-      </section>
+      </div>
 
       {/* CTA */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-amber-600 to-orange-600">

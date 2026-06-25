@@ -12,7 +12,7 @@ interface SEOProps {
 }
 
 const SITE_NAME = "Daan Foundation";
-const BASE_URL = "https://daanfoundation.org";
+const BASE_URL = "https://daanfoundation.in";
 const DEFAULT_OG_IMAGE = "/images/daan-foundation-logo.png";
 
 export default function SEO({

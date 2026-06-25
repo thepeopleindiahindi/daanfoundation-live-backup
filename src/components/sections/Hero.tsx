@@ -32,7 +32,7 @@ export function Hero() {
       {heroSlides.map((src, index) => (
         <div
           key={src}
-          className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+          className="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out"
           style={{
             backgroundImage: `url(${src})`,
             backgroundSize: 'cover',
@@ -61,8 +61,8 @@ export function Hero() {
             </h1>
 
             <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-4 max-w-xl">
-              We shall provide food to one lakh beneficiaries every day across different
-              vulnerable situations in India by 2026.
+              By strengthening our community kitchen and outreach programs, we aim to
+              serve 25,000 beneficiaries annually across vulnerable and underserved communities in India.
             </p>
 
             <p className="text-base text-white/75 leading-relaxed mb-8 max-w-xl">

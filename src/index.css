@@ -60,4 +60,26 @@
     font-family: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
     @apply bg-background text-foreground;
   }
+
+  img {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ── Image Quality Enhancements ──────────────────────────────────── */
+img, video, [style*="background-image"] {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+}
+
+img {
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+}
+
+.hero-slide {
+  image-rendering: auto;
+  transform: translateZ(0);
+  will-change: transform;
 }

@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import SEO from "@/components/SEO";
+import { DonationSidebar } from "@/components/donation/DonationSidebar";
 
 const stats = [
   { number: "300+", label: "Patients Helped", icon: HeartPulse },
@@ -127,92 +128,103 @@ export function MedicalAssistance() {
         </div>
       </section>
 
-      {/* About */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">Healthcare Should Not Be a Privilege</h2>
-            <div className="prose prose-lg text-slate-600">
-              <p>
-                In our communities, countless families face impossible choices when illness strikes — between food and
-                medicine, between rent and hospital bills. Many delay treatment until conditions become critical, simply
-                because they cannot afford to see a doctor.
-              </p>
-              <p>
-                Daan Foundation's Medical Assistance program works to bridge this gap. We provide direct financial
-                support for medical emergencies, ensure chronic patients receive regular medication, and connect families
-                with hospitals and healthcare providers who can help.
-              </p>
-              <p>
-                Our approach is holistic: we don't just cover a single bill and move on. We work with patients and their
-                families from diagnosis through recovery, ensuring they have the support they need at every stage of
-                treatment.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="lg:grid lg:grid-cols-3 lg:gap-10">
+          <div className="lg:col-span-2 space-y-10">
 
-      {/* Who We Help */}
-      <section className="py-16 md:py-24 bg-[#F3F4F6]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4 text-center">Who We Help</h2>
-          <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-            Our medical assistance reaches those who have nowhere else to turn — people for whom a single illness can
-            mean financial ruin.
-          </p>
-          <div className="grid md:grid-cols-2 gap-6">
-            {whoWeHelp.map((item) => (
-              <div key={item.title} className="bg-white rounded-2xl p-6 shadow-sm">
-                <div className="flex items-start gap-4">
-                  <Stethoscope className="h-7 w-7 text-blue-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
-                    <p className="text-slate-600">{item.description}</p>
+            {/* About */}
+            <section>
+              <h2 className="text-3xl font-bold text-slate-900 mb-6">Healthcare Should Not Be a Privilege</h2>
+              <div className="prose prose-lg text-slate-600">
+                <p>
+                  In our communities, countless families face impossible choices when illness strikes — between food and
+                  medicine, between rent and hospital bills. Many delay treatment until conditions become critical, simply
+                  because they cannot afford to see a doctor.
+                </p>
+                <p>
+                  Daan Foundation's Medical Assistance program works to bridge this gap. We provide direct financial
+                  support for medical emergencies, ensure chronic patients receive regular medication, and connect families
+                  with hospitals and healthcare providers who can help.
+                </p>
+                <p>
+                  Our approach is holistic: we don't just cover a single bill and move on. We work with patients and their
+                  families from diagnosis through recovery, ensuring they have the support they need at every stage of
+                  treatment.
+                </p>
+              </div>
+            </section>
+
+            <div className="border-t border-slate-200" />
+
+            {/* Who We Help */}
+            <section>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">Who We Help</h2>
+              <p className="text-lg text-slate-600 mb-8">
+                Our medical assistance reaches those who have nowhere else to turn — people for whom a single illness can
+                mean financial ruin.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6">
+                {whoWeHelp.map((item) => (
+                  <div key={item.title} className="bg-white rounded-2xl p-6 shadow-sm">
+                    <div className="flex items-start gap-4">
+                      <Stethoscope className="h-7 w-7 text-blue-600 flex-shrink-0 mt-1" />
+                      <div>
+                        <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
+                        <p className="text-slate-600">{item.description}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* How We Help */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4 text-center">How We Help</h2>
-          <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-            From emergency response to long-term care, our medical assistance covers every step of the journey.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {howWeHelp.map((item) => (
-              <div key={item.title} className="text-center p-6 rounded-2xl border border-slate-200 bg-white">
-                <item.icon className="h-10 w-10 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-600">{item.description}</p>
+            <div className="border-t border-slate-200" />
+
+            {/* How We Help */}
+            <section>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">How We Help</h2>
+              <p className="text-lg text-slate-600 mb-8">
+                From emergency response to long-term care, our medical assistance covers every step of the journey.
+              </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {howWeHelp.map((item) => (
+                  <div key={item.title} className="text-center p-6 rounded-2xl border border-slate-200 bg-white">
+                    <item.icon className="h-10 w-10 text-blue-600 mx-auto mb-4" />
+                    <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
+                    <p className="text-sm text-slate-600">{item.description}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* Emergency Fund */}
-      <section className="py-16 md:py-24 bg-[#F3F4F6]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <HeartPulse className="h-12 w-12 text-blue-600 mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">Emergency Medical Support Fund</h2>
-            <p className="text-lg text-slate-600 mb-4">
-              Medical emergencies don't wait — and neither do we. Our Emergency Medical Support Fund ensures that
-              verified patients receive immediate assistance when time is critical.
-            </p>
-            <p className="text-slate-600">
-              Whether it's a sudden accident, a critical surgery, or an urgent need for life-saving medication, the
-              emergency fund provides rapid response support so treatment is never delayed due to lack of money.
-            </p>
+            <div className="border-t border-slate-200" />
+
+            {/* Emergency Fund */}
+            <section className="bg-[#F3F4F6] rounded-2xl p-6 md:p-8">
+              <div className="text-center">
+                <HeartPulse className="h-12 w-12 text-blue-600 mx-auto mb-6" />
+                <h2 className="text-3xl font-bold text-slate-900 mb-6">Emergency Medical Support Fund</h2>
+                <p className="text-lg text-slate-600 mb-4">
+                  Medical emergencies don't wait — and neither do we. Our Emergency Medical Support Fund ensures that
+                  verified patients receive immediate assistance when time is critical.
+                </p>
+                <p className="text-slate-600">
+                  Whether it's a sudden accident, a critical surgery, or an urgent need for life-saving medication, the
+                  emergency fund provides rapid response support so treatment is never delayed due to lack of money.
+                </p>
+              </div>
+            </section>
+
           </div>
+
+          <aside className="lg:col-span-1 mt-8 lg:mt-0">
+            <div className="lg:sticky lg:top-24">
+              <DonationSidebar defaultCause="where-needed" />
+            </div>
+          </aside>
+
         </div>
-      </section>
+      </div>
 
       {/* CTA */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-blue-600 to-cyan-600">

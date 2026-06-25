@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://daanfoundation.org/sitemap.xml
+Sitemap: https://daanfoundation.in/sitemap.xml

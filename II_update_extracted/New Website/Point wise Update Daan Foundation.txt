@@ -1,0 +1,168 @@
+We shall provide food to one lakh beneficiary’s everyday across different vulnerable situations in India by 2026.
+
+The above line needs to be properly placed and mentioned on the website. It has been designed specifically for the front page layout.
+
+The logo we have created and shared with you should be used on the website. I am also sending the logo image along with this. Please place it in the top-left corner of the website.
+
+The black strip that is currently appearing should be removed, as the website will look better without it.
+
+The website is intended to operate only in a single currency for India. Therefore, any other currency symbols—such as USD, Euro, or others—should be removed. The system should use only Indian Rupees (INR) for all calculations and display, and only the INR symbol should be represented across the website.
+
+On the dashboard, there are four preset currency options currently displayed. These should be updated as follows:
+
+First option: 500 
+
+Second option: 1000 
+
+Third option: 2500 
+
+Fourth option: 5000 
+
+These values should be properly set and displayed accordingly.
+
+At the bottom of the website, where it says “Daan Foundation Registered Charity Number,” please update the number to 124456.
+
+The address being provided should be updated in the Daan Foundation address section at the bottom of the website. gistered Office:
+
+Daan Foundation“Katkoi Street, Near DiwanKhana,Plot No. 141,  District Amroha,Uttar Pradesh - 244221, India.”
+
+
+
+The email section should be updated with the new email address provided below.
+
+daanfoundationindia@gmail.com
+
+
+
+The mobile number listed on the website should be updated with the new phone number provided below.  +918899152910
+
+A separate section should be created for bank details, with a dedicated page to properly present them. This page should be linked and accessible from both the top and bottom of the website.
+
+The bank details should also be available at the bottom of the website. Additionally, a payment barcode should be displayed alongside them, with a clear label above the barcode indicating its purpose.
+
+Bank Details -IFSC Code: SBIN0003448Bank Name: Stat Bank of IndiaAccount Name:Daan FoundationAccount No.: 42818355421Branch:Amroha UPUPI ID : 42818355421@sbi
+
+In the upper section of the website footer, there is a heading titled “Appeal,” which contains two subheadings. These should be organized as follows:
+
+Under “Emergency Appeal,” include the Community Kitchen initiative (Free Food for Everyone). 
+
+Under “Seasonal Giving,” include Ramadan Iftar and the Winter Appeal. 
+
+The respective pages for all these sections will be provided to you along with this file.
+
+Under the “Ways to Give” section, there should be two main categories: “Islamic Giving” and “Programs.”
+
+In Islamic Giving, the items should be arranged and mapped as follows:Zakat, Sadaqah, Sadaqah Jariyah, Fidyah, and Kaffarah. These should be structured according to the pages already created and shared in the files.
+
+In Programs, include the following:Community Kitchen, Ramadan Iftar Program, Winter Relief (Warm Clothes Distribution), Food Distribution for the Needy, and Eid Gifts (Clothing Distribution).
+
+In the “Current Campaigns” section, the items should be arranged as follows:
+
+The first option should be the main campaign currently featured on the front page, along with its photograph. 
+
+The second option should be Ration Kits Distribution. 
+
+The third option should be Education Support. 
+
+Fidyah and Kaffarah should be combined under a single heading.
+
+
+
+All the headings created under “Current Campaigns” on the front page should have their respective pages added with full details. Each section must also include a donation button. The design should be exactly the same as the one used for the Islamic Giving pages in English.   
+
+
+
+In the “Contact” section, the information should be updated as follows:
+
+The address field should contain the same address that has been provided earlier. 
+
+The phone number should be updated with the provided contact number. 
+
+The email field should include the same email address that has been shared. 
+
+Office hours should remain exactly as they are on the current website. 
+
+For the contact form (First Name, Last Name, Email Address, Subject), proper mapping should be implemented so that whenever a user submits the form, the details are sent directly to daanfoundationindia@gmail.com.
+
+Ek page mere dwara banaa kar diya Gaya Hai jismein about likha gaya hai is page ko about section Mein map kar dena hai maujuda website Mein Jahan about Kas likha hai
+
+For the “Our Work” section, multiple pages have already been created and should be properly organized and mapped. These include:
+
+Community Trust and Feedback 
+
+Daan Foundation Journalism 
+
+Humanity Over Hunger 
+
+Impact Stories 
+
+Serving Every Individual with Dignity 
+
+Supporting Women with Dignity 
+
+The History of Daan Foundation 
+
+Why Information Matters 
+
+Your Charity in Action 
+
+Your Donation is a Trust 
+
+All these pages should be structured under the “Our Work” section, particularly mapped within the “Impact for Good” (or similar) category. You may divide them into appropriate subcategories for better organization and user experience.
+
+From this stage onward, the website needs to be brought into a fully functional, live condition. This includes setting up a complete payment system with the following requirements:
+
+A secure and fully operational payment gateway must be integrated.
+
+A proper backend system (database) should be developed to store all transaction and user details.
+
+The donation form should collect essential information such as PAN card number, address, city, state, country, and any other required details.
+
+Once the user submits the form and completes the payment, the transaction should be successfully executed.
+
+All donation and user data must be securely stored and managed in the backend system for record-keeping and future reference.
+
+If you are migrating this website to our original domain and replacing the previous website, please ensure that the blogging section from the existing site is preserved. All blog data should be securely saved and properly migrated so that it is fully mapped and integrated into the new website.
+
+
+
+One important point to ensure is that the new website must also include a dedicated blogging section. This section will be used to regularly publish SEO (Search Engine Optimization) articles.
+
+The blog should be properly structured with categories. All the categories that have already been created should be included as main headings, under which articles can be published from time to time.
+
+You will also be responsible for publishing these articles on the website. This will help improve the website’s search engine visibility and overall SEO performance.   
+
+Our ImpactTogether, we are making a meaningful difference in the lives of those who need it most.
+
+500000+Food packets distributed 
+
+100000+Food and Iftar kits distributed 
+
+14+Years of experience 
+
+600000+Total beneficiaries reached
+
+Our ProgramsSupporting communities through sustainable development.
+
+Three key programs should be represented in this section:
+
+Community Kitchen 
+
+Iftar Distribution 
+
+Education Support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

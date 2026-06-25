@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Shirt, Users, CalendarDays, HandHeart, CheckCircle2, Quote } from "lucide-react";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import SEO from "@/components/SEO";
+import { DonationSidebar } from "@/components/donation/DonationSidebar";
 
 const stats = [
   { number: "2,000+", label: "Garments Distributed", icon: Shirt },
@@ -100,100 +101,111 @@ export function ClothingDistribution() {
         </div>
       </section>
 
-      {/* About */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">Dignity Through Clothing</h2>
-            <div className="prose prose-lg text-slate-600">
-              <p>
-                For many families living below the poverty line, purchasing proper clothing — especially during seasonal
-                changes — is a luxury they simply cannot afford. Children go to school in torn uniforms, elderly
-                individuals face harsh winters without warm garments, and daily wage workers endure extreme weather
-                without adequate protection.
-              </p>
-              <p>
-                Daan Foundation conducts regular clothing distribution drives throughout the year, with special focus
-                during winter and festival seasons. We distribute winter woolens, festival clothing, and school uniforms
-                for children from underprivileged backgrounds.
-              </p>
-              <p>
-                Maintaining dignity is central to our approach. All items distributed are either brand-new or in
-                excellent condition, properly packed and presented with respect. We believe that receiving clothing
-                support should never feel like charity — it should feel like community caring for community.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="lg:grid lg:grid-cols-3 lg:gap-10">
+          <div className="lg:col-span-2 space-y-10">
 
-      {/* Who We Serve */}
-      <section className="py-16 md:py-24 bg-[#F3F4F6]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">Who We Serve</h2>
-              <p className="text-lg text-slate-600 mb-8">
-                Our clothing distribution reaches the most vulnerable members of our communities — people who often go
-                unnoticed and unsupported.
-              </p>
-              <ul className="space-y-4">
-                {whoWeServe.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-6 w-6 text-teal-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-slate-700">{item}</span>
-                  </li>
+            {/* About */}
+            <section>
+              <h2 className="text-3xl font-bold text-slate-900 mb-6">Dignity Through Clothing</h2>
+              <div className="prose prose-lg text-slate-600">
+                <p>
+                  For many families living below the poverty line, purchasing proper clothing — especially during seasonal
+                  changes — is a luxury they simply cannot afford. Children go to school in torn uniforms, elderly
+                  individuals face harsh winters without warm garments, and daily wage workers endure extreme weather
+                  without adequate protection.
+                </p>
+                <p>
+                  Daan Foundation conducts regular clothing distribution drives throughout the year, with special focus
+                  during winter and festival seasons. We distribute winter woolens, festival clothing, and school uniforms
+                  for children from underprivileged backgrounds.
+                </p>
+                <p>
+                  Maintaining dignity is central to our approach. All items distributed are either brand-new or in
+                  excellent condition, properly packed and presented with respect. We believe that receiving clothing
+                  support should never feel like charity — it should feel like community caring for community.
+                </p>
+              </div>
+            </section>
+
+            <div className="border-t border-slate-200" />
+
+            {/* Who We Serve */}
+            <section>
+              <div className="grid lg:grid-cols-2 gap-12 items-start">
+                <div>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-6">Who We Serve</h2>
+                  <p className="text-lg text-slate-600 mb-8">
+                    Our clothing distribution reaches the most vulnerable members of our communities — people who often go
+                    unnoticed and unsupported.
+                  </p>
+                  <ul className="space-y-4">
+                    {whoWeServe.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <CheckCircle2 className="h-6 w-6 text-teal-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-slate-700">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-6">Our Seasonal Drives</h2>
+                  <div className="space-y-4">
+                    <div className="bg-white rounded-xl p-6 shadow-sm">
+                      <h3 className="font-bold text-slate-900 mb-2">Winter Warmth Drive</h3>
+                      <p className="text-slate-600">
+                        Distributing sweaters, shawls, blankets, and warm clothing to protect families from bitter cold
+                        during winter months.
+                      </p>
+                    </div>
+                    <div className="bg-white rounded-xl p-6 shadow-sm">
+                      <h3 className="font-bold text-slate-900 mb-2">Festival Clothing</h3>
+                      <p className="text-slate-600">
+                        New clothes for children and families during Eid, Diwali, and other celebrations — because every
+                        child deserves to celebrate in new clothes.
+                      </p>
+                    </div>
+                    <div className="bg-white rounded-xl p-6 shadow-sm">
+                      <h3 className="font-bold text-slate-900 mb-2">School Uniform Program</h3>
+                      <p className="text-slate-600">
+                        Providing school uniforms, shoes, and socks to children from poor families so they can attend school
+                        with confidence.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div className="border-t border-slate-200" />
+
+            {/* Testimonials */}
+            <section>
+              <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">Voices From the Community</h2>
+              <div className="grid md:grid-cols-3 gap-6">
+                {testimonials.map((t) => (
+                  <div key={t.name} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <Quote className="h-8 w-8 text-teal-200 mb-3" />
+                    <p className="text-slate-600 italic mb-4">"{t.quote}"</p>
+                    <div className="border-t border-slate-100 pt-4">
+                      <div className="font-bold text-slate-900">{t.name}</div>
+                      <div className="text-sm text-slate-500">{t.role}</div>
+                    </div>
+                  </div>
                 ))}
-              </ul>
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">Our Seasonal Drives</h2>
-              <div className="space-y-4">
-                <div className="bg-white rounded-xl p-6 shadow-sm">
-                  <h3 className="font-bold text-slate-900 mb-2">Winter Warmth Drive</h3>
-                  <p className="text-slate-600">
-                    Distributing sweaters, shawls, blankets, and warm clothing to protect families from bitter cold
-                    during winter months.
-                  </p>
-                </div>
-                <div className="bg-white rounded-xl p-6 shadow-sm">
-                  <h3 className="font-bold text-slate-900 mb-2">Festival Clothing</h3>
-                  <p className="text-slate-600">
-                    New clothes for children and families during Eid, Diwali, and other celebrations — because every
-                    child deserves to celebrate in new clothes.
-                  </p>
-                </div>
-                <div className="bg-white rounded-xl p-6 shadow-sm">
-                  <h3 className="font-bold text-slate-900 mb-2">School Uniform Program</h3>
-                  <p className="text-slate-600">
-                    Providing school uniforms, shoes, and socks to children from poor families so they can attend school
-                    with confidence.
-                  </p>
-                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* Testimonials */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">Voices From the Community</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div key={t.name} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-                <Quote className="h-8 w-8 text-teal-200 mb-3" />
-                <p className="text-slate-600 italic mb-4">"{t.quote}"</p>
-                <div className="border-t border-slate-100 pt-4">
-                  <div className="font-bold text-slate-900">{t.name}</div>
-                  <div className="text-sm text-slate-500">{t.role}</div>
-                </div>
-              </div>
-            ))}
           </div>
+
+          <aside className="lg:col-span-1 mt-8 lg:mt-0">
+            <div className="lg:sticky lg:top-24">
+              <DonationSidebar defaultCause="where-needed" />
+            </div>
+          </aside>
+
         </div>
-      </section>
+      </div>
 
       {/* CTA */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-teal-600 to-emerald-600">

@@ -60,6 +60,8 @@ const navItems = [
             { label: "Winter Relief", href: "/winter" },
             { label: "Eid Gifts", href: "/eid-gifts" },
             { label: "Where Most Needed", href: "/where-most-needed" },
+            { label: "Orphan Sponsorship", href: "/orphan-sponsorship" },
+            { label: "Water for Life", href: "/water" },
           ],
         },
       ],
@@ -88,6 +90,7 @@ const navItems = [
             { label: "Your Donation Is a Trust", href: "/our-work/donation-is-trust" },
             { label: "Empowering Livelihoods", href: "/our-work/empowering-livelihoods" },
             { label: "Why Transparency Matters", href: "/our-work/why-transparency" },
+          { label: "Where We Work", href: "/where-we-work" },
           ],
         },
       ],
@@ -133,7 +136,7 @@ export function Header() {
               <img
                 src="/images/daan-foundation-logo.png"
                 alt="Daan Foundation"
-                className="h-16 w-auto"
+                className="h-20 w-auto"
               />
               <div className="leading-tight">
                 <span className="block text-xl font-bold text-slate-900 tracking-tight">
