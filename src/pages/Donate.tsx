@@ -45,11 +45,11 @@ export function Donate() {
 
       <section className="py-12 md:py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
+            <div className="mb-8">
             <div className="flex items-center justify-between mb-2">
               {["Amount", "Details", "Payment"].map((label, idx) => (
                 <div key={label} className={`flex items-center gap-2 ${idx + 1 <= step ? "text-orange-600" : "text-slate-400"}`}>
-                  <div className={`h-8 w-8 rounded-full flex items-center justify-center text-sm font-bold ${idx + 1 <= step ? "bg-orange-600 text-white" : "bg-slate-200 text-slate-500"}`}>{idx + 1}</div>
+                  <div className={`h-7 w-7 sm:h-8 sm:w-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold ${idx + 1 <= step ? "bg-orange-600 text-white" : "bg-slate-200 text-slate-500"}`}>{idx + 1}</div>
                   <span className="hidden sm:inline font-medium">{label}</span>
                 </div>
               ))}
@@ -74,10 +74,10 @@ export function Donate() {
 
                 <div>
                   <h2 className="text-lg font-bold text-slate-900 mb-3">Select Amount</h2>
-                  <div className="grid grid-cols-3 gap-3 mb-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
                     {presetAmounts.map((value) => (
                       <button key={value} onClick={() => { setAmount(value); setCustomAmount(""); }}
-                        className={`py-3 px-4 rounded-xl border-2 font-bold text-lg transition-colors ${amount === value && !customAmount ? "border-orange-600 bg-orange-50 text-orange-700" : "border-slate-200 hover:border-slate-300"}`}>₹{value}</button>
+                        className={`py-2.5 sm:py-3 px-4 rounded-xl border-2 font-bold text-sm sm:text-lg transition-colors ${amount === value && !customAmount ? "border-orange-600 bg-orange-50 text-orange-700" : "border-slate-200 hover:border-slate-300"}`}>₹{value}</button>
                     ))}
                   </div>
                   <div>

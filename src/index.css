@@ -5,41 +5,26 @@
 /* Design tokens — all colors in HSL */
 @layer base {
   :root {
-    /* 🟧 Primary Orange: #F97316 */
     --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
-
-    /* ⬛ Heading / Foreground: #111111 */
     --foreground: 0 0% 6.7%;
-
-    /* ⬜ Background: #FFFFFF */
     --background: 0 0% 100%;
-
-    /* ◻️ Section Background: #F3F4F6 */
     --secondary: 220 13% 96%;
     --secondary-foreground: 0 0% 6.7%;
     --muted: 220 13% 96%;
     --muted-foreground: 0 0% 40%;
-
-    /* 🟫 Highlight Section: #FFF7ED */
     --accent: 33 100% 97%;
     --accent-foreground: 0 0% 6.7%;
-
     --card: 0 0% 100%;
     --card-foreground: 0 0% 6.7%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 6.7%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 220 13% 91%;
     --input: 220 13% 91%;
     --ring: 25 95% 53%;
-
     --radius: 0.5rem;
-
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 25 95% 53%;
@@ -58,11 +43,31 @@
 
   body {
     font-family: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
   }
 
   img {
     -webkit-tap-highlight-color: transparent;
+  }
+
+  #root {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+
+  p, .prose p, .description, .leading-relaxed {
+    text-align: justify;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-align: left;
+  }
+
+  .text-center h1, .text-center h2, .text-center h3,
+  .text-center p, .text-center .description {
+    text-align: center;
   }
 }
 

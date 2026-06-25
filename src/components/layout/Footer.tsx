@@ -49,7 +49,7 @@ export function Footer() {
                 Stay updated on our campaigns, impact stories, and Islamic giving opportunities.
               </p>
             </div>
-            <form className="flex gap-3" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col sm:flex-row gap-3" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
                 placeholder="Enter your email"

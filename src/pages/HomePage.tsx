@@ -307,8 +307,8 @@ export function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="col-span-2 row-span-2">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="col-span-2 md:col-span-2 md:row-span-2">
               <img src="/images/hero-2.jpg" alt="Aid distribution" className="w-full h-full object-cover rounded-2xl" />
             </div>
             <div>

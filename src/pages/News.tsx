@@ -176,11 +176,11 @@ export function News() {
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <div className="flex justify-center gap-2 mt-12">
+                <div className="flex justify-center gap-1 sm:gap-2 mt-12 flex-wrap">
                   <button
                     onClick={() => updateParams({ page: String(currentPage - 1) })}
                     disabled={currentPage <= 1}
-                    className="px-4 py-2 rounded-lg text-sm font-medium bg-white border border-slate-200 disabled:opacity-40 hover:bg-slate-50"
+                    className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium bg-white border border-slate-200 disabled:opacity-40 hover:bg-slate-50"
                   >
                     Previous
                   </button>
@@ -188,7 +188,7 @@ export function News() {
                     <button
                       key={p}
                       onClick={() => updateParams({ page: String(p) })}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                      className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium ${
                         p === currentPage ? "bg-orange-600 text-white" : "bg-white border border-slate-200 hover:bg-slate-50"
                       }`}
                     >
@@ -198,7 +198,7 @@ export function News() {
                   <button
                     onClick={() => updateParams({ page: String(currentPage + 1) })}
                     disabled={currentPage >= totalPages}
-                    className="px-4 py-2 rounded-lg text-sm font-medium bg-white border border-slate-200 disabled:opacity-40 hover:bg-slate-50"
+                    className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium bg-white border border-slate-200 disabled:opacity-40 hover:bg-slate-50"
                   >
                     Next
                   </button>

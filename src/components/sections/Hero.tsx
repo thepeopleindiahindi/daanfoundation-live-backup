@@ -25,9 +25,9 @@ export function Hero() {
   }, []);
 
   return (
-    <section 
-      className="relative min-h-[650px] md:min-h-[700px] overflow-hidden"
-    >
+      <section 
+        className="relative min-h-[550px] sm:min-h-[650px] md:min-h-[700px] overflow-hidden"
+      >
       {/* Slideshow backgrounds */}
       {heroSlides.map((src, index) => (
         <div
@@ -55,7 +55,7 @@ export function Hero() {
               Serving Humanity Since 2020
             </span>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6">
               No One Should{" "}
               <span className="text-amber-300">Sleep Hungry</span>
             </h1>
@@ -71,18 +71,18 @@ export function Hero() {
               to communities in need.
             </p>
 
-            <div className="flex flex-wrap gap-8 mb-8">
+            <div className="grid grid-cols-3 gap-4 sm:flex sm:flex-wrap sm:gap-8 mb-8">
               <div>
-                <div className="text-3xl md:text-4xl font-bold text-white">500K+</div>
-                <div className="text-sm text-white/70">Meals Distributed</div>
+                <div className="text-xl sm:text-3xl md:text-4xl font-bold text-white">500K+</div>
+                <div className="text-[11px] sm:text-sm text-white/70">Meals Distributed</div>
               </div>
               <div>
-                <div className="text-3xl md:text-4xl font-bold text-white">600K+</div>
-                <div className="text-sm text-white/70">Beneficiaries Reached</div>
+                <div className="text-xl sm:text-3xl md:text-4xl font-bold text-white">600K+</div>
+                <div className="text-[11px] sm:text-sm text-white/70">Beneficiaries Reached</div>
               </div>
               <div>
-                <div className="text-3xl md:text-4xl font-bold text-white">6+</div>
-                <div className="text-sm text-white/70">Years of Service</div>
+                <div className="text-xl sm:text-3xl md:text-4xl font-bold text-white">6+</div>
+                <div className="text-[11px] sm:text-sm text-white/70">Years of Service</div>
               </div>
             </div>
 
@@ -115,7 +115,7 @@ export function Hero() {
               </p>
 
               {/* Amount selector */}
-              <div className="grid grid-cols-4 gap-2 mb-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
                 {presetAmounts.map((amount) => (
                   <button
                     key={amount}
@@ -123,7 +123,7 @@ export function Hero() {
                       setSelectedAmount(amount);
                       setCustomAmount("");
                     }}
-                    className={`py-3 rounded-xl text-sm font-bold transition-all ${
+                    className={`py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all ${
                       selectedAmount === amount && !customAmount
                         ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
                         : "bg-slate-100 text-slate-700 hover:bg-slate-200"

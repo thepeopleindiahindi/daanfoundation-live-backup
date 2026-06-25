@@ -136,13 +136,13 @@ export function Header() {
               <img
                 src="/images/daan-foundation-logo.png"
                 alt="Daan Foundation"
-                className="h-20 w-auto"
+                className="h-12 sm:h-16 lg:h-20 w-auto"
               />
               <div className="leading-tight">
-                <span className="block text-xl font-bold text-slate-900 tracking-tight">
+                <span className="block text-sm sm:text-lg lg:text-xl font-bold text-slate-900 tracking-tight">
                   Daan Foundation
                 </span>
-                <span className="block text-[10px] font-semibold tracking-widest text-slate-500 uppercase">
+                <span className="block text-[8px] sm:text-[10px] font-semibold tracking-widest text-slate-500 uppercase">
                   Serving humanity with compassion
                 </span>
               </div>

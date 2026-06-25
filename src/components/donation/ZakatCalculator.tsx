@@ -127,12 +127,12 @@ export function ZakatCalculator() {
   return (
     <div className="w-full max-w-3xl mx-auto">
       {/* Header */}
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 mb-4">
-          <Calculator className="h-8 w-8 text-white" />
+      <div className="text-center mb-6 sm:mb-8">
+        <div className="inline-flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 mb-3 sm:mb-4">
+          <Calculator className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
         </div>
-        <h2 className="text-3xl font-bold text-slate-900 mb-2">Zakat Calculator</h2>
-        <p className="text-slate-600 max-w-lg mx-auto">
+        <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Zakat Calculator</h2>
+        <p className="text-sm sm:text-base text-slate-600 max-w-lg mx-auto">
           Calculate your Zakat obligation accurately. Enter your assets and liabilities to see how
           much Zakat you owe this year.
         </p>
@@ -149,30 +149,30 @@ export function ZakatCalculator() {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <button
             onClick={() => setNisabType("silver")}
-            className={`p-4 rounded-xl border-2 transition-all text-left ${
+            className={`p-3 sm:p-4 rounded-xl border-2 transition-all text-left ${
               nisabType === "silver"
                 ? "border-orange-400 bg-orange-50"
                 : "border-slate-200 hover:border-slate-300"
             }`}
           >
-            <div className="text-sm font-medium text-slate-600 mb-1">Silver Nisab</div>
-            <div className="text-xl font-bold text-slate-900">₹{NISAB.silver.toLocaleString()}</div>
-            <div className="text-xs text-slate-500 mt-1">Based on 612.36g silver</div>
+            <div className="text-xs sm:text-sm font-medium text-slate-600 mb-1">Silver Nisab</div>
+            <div className="text-base sm:text-xl font-bold text-slate-900">₹{NISAB.silver.toLocaleString()}</div>
+            <div className="text-[10px] sm:text-xs text-slate-500 mt-1">Based on 612.36g silver</div>
           </button>
           <button
             onClick={() => setNisabType("gold")}
-            className={`p-4 rounded-xl border-2 transition-all text-left ${
+            className={`p-3 sm:p-4 rounded-xl border-2 transition-all text-left ${
               nisabType === "gold"
                 ? "border-orange-400 bg-orange-50"
                 : "border-slate-200 hover:border-slate-300"
             }`}
           >
-            <div className="text-sm font-medium text-slate-600 mb-1">Gold Nisab</div>
-            <div className="text-xl font-bold text-slate-900">₹{NISAB.gold.toLocaleString()}</div>
-            <div className="text-xs text-slate-500 mt-1">Based on 87.48g gold</div>
+            <div className="text-xs sm:text-sm font-medium text-slate-600 mb-1">Gold Nisab</div>
+            <div className="text-base sm:text-xl font-bold text-slate-900">₹{NISAB.gold.toLocaleString()}</div>
+            <div className="text-[10px] sm:text-xs text-slate-500 mt-1">Based on 87.48g gold</div>
           </button>
         </div>
       </div>
@@ -325,7 +325,7 @@ export function ZakatCalculator() {
           {calculations.isZakatDue ? (
             <>
               <div className="text-sm text-white/80 mb-1">Your Zakat Due (2.5%)</div>
-              <div className="text-4xl font-bold text-white mb-3">
+              <div className="text-2xl sm:text-4xl font-bold text-white mb-3">
                 ₹
                 {calculations.zakatPayable.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
