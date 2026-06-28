@@ -1,0 +1,42 @@
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/ [R=301,L]
+
+# Remove www
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/ [R=301,L]
+
+# BEGIN 301 REDIRECTS
+Redirect 301 /index.html /
+Redirect 301 /fitrana /zakat-al-fitr
+Redirect 301 /iftar   /ramadan
+Redirect 301 /winter  /winter-appeal
+# END 301 REDIRECTS
+
+# BEGIN SECURITY
+# Block user enumeration
+RewriteCond %{QUERY_STRING} (^|&)author=\d+(&|$) [NC]
+RewriteRule .* - [F,L]
+
+# Protect wp-config.php
+<Files wp-config.php>
+Order allow,deny
+Deny from all
+</Files>
+
+# Protect .htaccess
+<Files .htaccess>
+Order allow,deny
+Deny from all
+</Files>
+# END SECURITY
+
+# BEGIN WORDPRESS PERMALINKS
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+# END WORDPRESS PERMALINKS
