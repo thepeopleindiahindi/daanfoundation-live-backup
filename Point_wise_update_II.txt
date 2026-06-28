@@ -1,0 +1,466 @@
+The logo currently displayed at the top appears too small. It should be more prominent and clearly visible when the website is opened. I believe the logo size needs to be increased slightly and adjusted according to the overall website layout.
+
+Please ensure that the logo is properly fitted and highly visible, especially on laptop screens. Special attention should be given to maintaining a professional appearance and proper responsiveness across different devices.
+
+Throughout the entire website, wherever it is mentioned that the company has “14 years of experience” or similar wording related to experience, please update it to “6 years of experience” instead.
+
+Please make sure this change is applied consistently across all pages, sections, banners, and content throughout the website.
+
+On the front page, you have created a “Learn More” link. When we click on this link, a new page opens that contains detailed information about our mission, achievements, FIR details, and a section titled “What We Do.”
+
+However, the pages displayed in the “What We Do” section are currently not properly linked to their respective pages. All the required page links have already been shared earlier. Please connect or link each section properly so that when a donor clicks on any specific category, they are redirected to the correct section or page of the website.
+
+For example:
+
+If a donor clicks on “Daily Cooked Meal Distribution,” they should be redirected to the Community Kitchen page.
+
+If a donor clicks on “Ramzan Iftar Program,” they should be redirected to the dedicated Ramzan Iftar page.
+
+Similarly, all other sections should also be properly linked to their respective pages to improve navigation and user experience.
+
+On the front page, there is currently a YouTube link displayed with the title “Our Community Kitchen.” For the time being, please remove this YouTube link from the page, as it is not required right now.
+
+Please ensure that the section is removed cleanly without affecting the overall design and layout of the website.
+
+At the bottom section of the website, the bank details currently occupy too much space. There is excessive spacing between the bank name and the related account details, which makes the section look unnecessarily stretched. Please reduce the spacing and organize the bank details in a more compact and professional manner.
+
+On the other hand, the section created for the QR code — where it says “Scan to Pay via UPI” — has been made too small. Please increase the size of this section slightly so that the QR code is clearly visible and easy to scan.
+
+I am also providing our official QR code file along with this message. Wherever there is a requirement to place a QR code on the website, please use our provided QR code instead of any other one.
+
+At the beginning of the website design process, we clearly mentioned that the ideal reference website for our project is the Zakat page of Islamic Relief Worldwide, and the design structure was supposed to follow a similar concept and layout.
+
+At present, the website has only partially followed the reference. The main structure and user experience still do not match the professional style shown in the reference page. Please carefully study the provided link again and redesign the relevant pages accordingly.
+
+The most important feature of that design is:
+
+When the website opens, a donation window appears prominently on the right side.
+
+On the left side, a large donation-related image/banner is displayed in the same proportion and size.
+
+As the user scrolls down, detailed project-specific sections appear in a structured and visually appealing format.
+
+The content flow, spacing, section hierarchy, and donation-focused presentation are professionally arranged and highly engaging for donors.
+
+Currently, the pages created on our website do not contain this level of detail, structure, or design quality. Therefore, this section needs to be redesigned properly.
+
+If anything is unclear, please carefully review and understand the reference page from the link provided above, and then recreate the design according to our theme, our projects, and our organizational requirements.
+
+One very important point that must be given special attention is the image quality throughout the website.
+
+All original images provided by us and used on the website should be enhanced and presented in high-definition (HD) quality. Please improve the overall clarity, sharpness, color quality, brightness, and professional appearance of every image as much as possible.
+
+If any image can look better through proper cropping, resizing, framing, or adjustment, you are free to optimize it accordingly in order to achieve a more professional and visually appealing presentation.
+
+The main objective is that every image displayed on the website should look clean, attractive, high quality, and professionally optimized for both desktop and mobile users.
+
+All the content files and data provided to you for different pages — whether related to Community Kitchen, Zakat, Sadqah, Kaffara, Fitrana, or any other donation project — have not been properly represented on the website.
+
+Currently, it appears that the content has been unnecessarily shortened, whereas the provided material was meant to be displayed in proper detail. The purpose of sharing those files was to create informative, meaningful, and professionally detailed pages for donors and visitors. Therefore, the content should not be minimized or summarized excessively.
+
+Please rewrite and redesign all pages using the complete information provided in the files, while maintaining a professional structure, proper formatting, and attractive presentation.
+
+Additionally, the page design itself has not received enough attention. As already explained earlier, the design structure should closely follow the style and presentation approach of Islamic Relief Worldwide.
+
+Most importantly:
+
+A proper donation window should appear prominently when the page opens.
+
+The page layout should look modern, professional, donation-focused, and visually engaging.
+
+Project-specific details should be presented section by section in a structured format.
+
+Images, headings, donation buttons, and informational blocks should be aligned professionally and designed for a better donor experience.
+
+This entire section requires detailed redesigning and proper implementation according to the original instructions shared earlier.
+
+The Daan Foundation logo currently being used at the bottom section of the website does not look visually appealing after placing it on a white background. The presentation and visibility of the logo can be improved further.
+
+One possible and better solution could be to use the logo with a white outline/stroke effect so that it blends more professionally with the background and becomes more visually attractive.
+
+Please try displaying the logo with a clean white outline and check how it appears within the footer design. If needed, you may also adjust the contrast, shadow, spacing, or background styling to achieve a more premium and professional look.
+
+All the page links and section headings created in the bottom/footer area of the website — including Community Kitchen, Ramzan Iftar, Winter Appeal, Where Most Needed, How We Work, Charity in Action, Community Support, and other related sections — have not been designed and structured properly.
+
+The pages currently look incomplete and do not professionally represent the original data and content that were provided earlier. Please ensure that all the provided content, details, images, and project information are properly used and presented in a well-structured and visually professional format.
+
+The footer-linked pages should:
+
+Contain complete and properly formatted content
+
+Follow a professional donation-focused design structure
+
+Maintain consistency in layout, spacing, typography, and image quality
+
+Include proper banners, headings, donation sections, and project details
+
+Be fully responsive and visually appealing on both desktop and mobile devices
+
+Please redesign and organize these pages carefully and professionally with full accuracy and 100% attention to detail, using the original material provided to you.
+
+The “Our Impact” section has been made far too short and does not properly represent the organization’s journey and progress.
+
+Currently, the timeline jumps incorrectly from 2020 to 2021, then directly to 2023, 2024, and 2026. This structure is not accurate and does not reflect the continuous 6-year journey of the organization.
+
+Since this is a running organization with a complete 6-year history, the timeline and impact section should properly represent each year in sequence with detailed achievements, activities, growth, and project impact.
+
+The current version is also not aligned with the original data and information that were provided earlier. Please carefully review the provided material again and redesign the “Our Impact” section accordingly.
+
+Requirements:
+
+Show the complete 6-year journey in proper sequence
+
+Include yearly progress, milestones, and achievements
+
+Use the original data provided instead of shortened summaries
+
+Make the section visually engaging, professional, and detailed
+
+Maintain consistency with the overall donation-focused website design
+
+This section should clearly demonstrate the organization’s growth, credibility, and long-term impact in a professional manner.
+
+Now, when we open the “Your Charity in Action” page, several headings are visible such as:
+
+Clothing Distribution
+
+Medical Assistance
+
+Educational Support
+
+Marriage Assistance Support
+
+Ration Kit Distribution
+
+These sections should open as separate inner pages with complete project details and proper design structure.
+
+The detailed content and related information for these pages were already supposed to be provided and implemented. If the content or files are not available with you, then please request them again so that the pages can be properly completed.
+
+Each page should include:
+
+Proper banner/image section
+
+Detailed project information
+
+Donation-focused layout
+
+Related images and impact details
+
+Professional formatting and responsive design
+
+A proper donation window/section as discussed earlier
+
+Please ensure that these sections are not left incomplete and are developed as fully functional detailed pages.
+
+In the “Our Programs” section on the front page, the current program arrangement needs to be updated.
+
+At present, the second option is showing “Ramzan Iftar,” but since Ramzan is still far away, it is not appropriate to keep it as a highlighted front-page program at this time.
+
+The program sections should be arranged as follows:
+
+Community Kitchen
+
+Ration Kit Distribution
+
+Fiddya and Kaffara
+
+Please replace the current “Ramzan Iftar” option with “Ration Kit Distribution” and ensure that the third option properly represents “Fiddya & Kaffara.”
+
+These sections should also follow the same professional design structure, include proper images, and be linked to their respective detailed pages.
+
+In the “Calculate Your Zakat” section, a disclaimer should be added below the Zakat calculation area.
+
+The disclaimer should clearly mention that the Zakat amount has been calculated according to general Islamic perspectives and estimation methods. However, users should still consult an Islamic Mufti or qualified Islamic scholar once before making the final payment, as the calculation may vary slightly depending on individual circumstances and different Islamic interpretations.
+
+You may use wording similar to the following:
+
+“Disclaimer: This Zakat calculation is based on general Islamic guidelines and estimation methods. Before making your final Zakat payment, please consult a qualified Islamic Mufti or Islamic scholar, as the calculation may vary depending on individual circumstances and different scholarly opinions.”
+
+Please ensure that this disclaimer is properly visible below the Zakat calculator section in both desktop and mobile views.
+
+For the front-page banner/hero section, I am providing several images numbered from 1 to 4.
+
+Please place each image according to its respective numbering:
+
+Image 1 should be placed in Slide 1
+
+Image 2 should be placed in Slide 2
+
+Image 3 should be placed in Slide 3
+
+Image 4 should be placed in Slide 4
+
+Additionally, the front banner should work as a smooth slideshow/carousel. The images should automatically change one after another with a smooth transition effect.
+
+The slideshow timing should be approximately 3 to 4 seconds per image. For example:
+
+First image displays for around 3 seconds
+
+Then the second image appears
+
+After another 3 seconds, the third image appears
+
+Then the fourth image follows in the same manner
+
+Please ensure that:
+
+The transition effect is smooth and professional
+
+The image quality remains high
+
+The slideshow works properly on both desktop and mobile devices
+
+The banner maintains proper responsiveness and visual appeal throughout the transition
+
+On the first page of the website, there is currently a section where “Maximize Your Reward” is written, and below it six different headings/options have been created such as Zakat Calculation, Give, Winter Appeal, Sadqah Jariya, etc.
+
+This section needs to be reorganized and updated properly. The headings should appear in the following order:
+
+Community Kitchen
+
+Fiddya and Kaffara
+
+Ramadan Iftar Appeal
+
+Ration Kit Distribution
+
+Zakat
+
+Sadqah
+
+One very important point that must be carefully followed is that when a user clicks on any of these sections, the related page should open with complete details, proper content structure, and all the original information that was previously provided for that project/page.
+
+The pages should not contain short or incomplete content. Instead, they should include:
+
+Complete detailed information
+
+Properly structured sections
+
+High-quality images provided by us
+
+Professional donation-focused layout
+
+Attractive banners and headings
+
+Donation windows/buttons
+
+Responsive design for mobile and desktop
+
+Proper typography, spacing, and image placement
+
+Most importantly, the overall page design and presentation quality should be developed in a professional manner similar to the style used on Islamic Relief Worldwide.
+
+Please also ensure that all photographs used on these pages are the original images provided by us and are displayed in high quality with proper alignment and presentation.
+
+The “About Us” page has now been updated once again, and the revised version of the content/page is being provided to you separately.
+
+Please replace the old version and properly implement the updated “About Us” page on the website wherever required. The complete page should be copied and presented with full details, proper formatting, and professional design structure.
+
+While implementing the updated version, please ensure the following:
+
+The complete content is properly added without shortening important details
+
+The page design matches the overall website theme and professional appearance
+
+Typography, spacing, headings, and alignment are clean and well-structured
+
+Images and banners are properly placed and displayed in high quality
+
+The presentation looks modern, visually appealing, and donation-focused
+
+The page is fully responsive on both desktop and mobile devices
+
+The design quality should remain consistent with the reference style discussed earlier, similar to Islamic Relief Worldwide
+
+Please present the page in a polished and professional manner according to the website’s overall design language and structure.
+
+On the front-page donation window section, the points currently displayed are:
+
+Secure
+
+Registered Charity
+
+Tax Deductible
+
+The third point, “Tax Deductible,” should be removed and replaced with “100% Transparent.”
+
+The updated points should appear as follows:
+
+Secure
+
+Registered Charity
+
+100% Transparent
+
+This change is necessary because the organization is currently not operating as a fully tax-deductible foundation. Please ensure that the updated text is properly aligned with the website’s design, typography, and overall visual presentation.
+
+This section is extremely important and needs to be developed very carefully.
+
+Alongside the main website, we also want to create a dedicated blogging/news section on the same domain for Search Engine Optimization (SEO) purposes. This blog system will be used to regularly publish articles, updates, campaigns, donation appeals, project reports, and SEO-focused content in order to improve Google rankings and attract potential donors organically.
+
+A complete and professional blogging mechanism needs to be developed, including both frontend and backend functionality.
+
+The system should include the following features:
+
+A proper blog/news section integrated within the same domain
+
+An admin/backend panel from where we can:
+
+Create and publish blog posts
+
+Upload featured images and gallery images
+
+Add SEO titles, meta descriptions, and keywords
+
+Insert headings, subheadings, and formatted article content
+
+Add tags and categories
+
+Schedule or instantly publish articles
+
+A clean article editor/window where content, images, and details can easily be uploaded and managed
+
+The overall blog structure should be developed according to modern SEO standards so that:
+
+Google can easily crawl and understand the website structure
+
+Keywords used inside the articles are properly indexed
+
+Articles rank effectively in Google Search results
+
+The website gains better visibility for donation-related searches
+
+Potential donors can discover the organization organically through search engines
+
+Please also ensure the following technical SEO elements are properly implemented:
+
+SEO-friendly URL structure
+
+Fast page loading speed
+
+Mobile-friendly and responsive design
+
+Proper heading hierarchy (H1, H2, H3, etc.)
+
+Image optimization with alt tags
+
+Schema markup where required
+
+XML sitemap generation
+
+Internal linking structure
+
+Meta tags and Open Graph optimization
+
+Google indexing-friendly structure
+
+Clean coding and proper semantic HTML
+
+The blog design should match the overall website theme and look professional, modern, readable, and donation-focused.
+
+If any additional tools, plugins, frameworks, or SEO techniques are required from a technical perspective to improve Google visibility and donor reach, please ensure they are implemented properly.
+
+  The mobile view of the website currently appears slightly disturbed and is not properly optimized according to different screen sizes. It is necessary to fully adjust and optimize the entire website for responsive viewing across all modern devices and operating systems.
+
+Every page, section, window, function, image, banner, button, and content block should be carefully checked and properly aligned for both desktop and mobile experiences.
+
+Please ensure that the website is perfectly responsive and professionally optimized for:
+
+Android devices
+
+iPhone/iOS devices
+
+Tablets
+
+Laptop screens
+
+Different screen resolutions and aspect ratios
+
+All commonly used modern browsers and operating systems
+
+Special attention should be given to:
+
+Proper spacing and alignment
+
+Font readability
+
+Image scaling and responsiveness
+
+Button and menu positioning
+
+Donation window responsiveness
+
+Sliders and banners
+
+Mobile navigation/menu functionality
+
+Loading speed and smooth scrolling
+
+Proper text visibility without overlapping
+
+Consistent design presentation across all devices
+
+The website should provide a smooth, clean, and professional user experience on every screen size and operating system currently used in the market.
+
+Please thoroughly test the website responsiveness section by section and fix all layout, visibility, and usability issues to ensure a perfectly optimized mobile and desktop experience.
+
+In the “Ration Kit” section/page, the current banner image needs to be replaced.
+
+Please use Image Number 4 — the image that was specifically provided and labeled as “4” — as the banner image for the Ration Kit section.
+
+Ensure that:
+
+The image is displayed in high quality (HD)
+
+Proper cropping and alignment are maintained
+
+The banner looks professional and visually appealing
+
+The image fits correctly in both desktop and mobile views
+
+The overall presentation remains consistent with the website’s design structure
+
+On the front page, in the Ration Kit display section, the current image should be replaced with Image Number 5.
+
+Please use the image labeled as “5” for this section and ensure that:
+
+The image is displayed in high-definition (HD) quality
+
+Proper cropping and alignment are maintained
+
+The image fits perfectly within the section design
+
+The display remains visually appealing and responsive on both desktop and mobile devices
+
+The overall presentation stays consistent with the website’s professional design theme
+
+Along with this, I am also providing some additional images that may be used across the website wherever required according to the design, section relevance, and overall presentation needs.
+
+You are free to use these images appropriately and professionally in different sections such as:
+
+Banners and sliders
+
+Project pages
+
+Donation sections
+
+Galleries
+
+Blog/articles section
+
+Impact and activity sections
+
+Charity campaign pages
+
+Please also remember an important point:
+
+The images that are already available in the provided data and currently used on the website should not be deleted or permanently removed. If any instruction has been given to replace an image in a specific section, it only means that the image should be moved or used elsewhere more appropriately.
+
+You may reuse existing images in other suitable sections of the website wherever they fit naturally and improve the overall visual presentation.
+
+The goal is to professionally utilize all available images while maintaining a clean, modern, high-quality, and visually balanced website design.
+
+
+
+
+
