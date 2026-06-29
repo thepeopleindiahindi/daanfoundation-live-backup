@@ -1,0 +1,44 @@
+old_url,new_url,type,notes
+/,/,301,Homepage stays same
+/about,/about,301,Direct match
+/appeals,/appeals,301,Direct match
+/appeals/:slug,/appeals/,301,Use parent slug
+/bank-details,/bank-details,301,Direct match
+/community-kitchen,/community-kitchen,301,Direct match
+/contact,/contact,301,Direct match
+/donate,/donate,301,Direct match
+/eid-gifts,/eid-gifts,301,Direct match
+/fidya,/fidya,301,Direct match
+/kaffarah,/kaffarah,301,Direct match
+/news,/news,301,Blog archive
+/news/:slug,/news/,301,Blog single permalink
+/orphan-sponsorship,/orphan-sponsorship,301,Direct match
+/our-work/annual-report,/our-work/annual-report,301,Direct match
+/our-work/charity-in-action,/our-work/charity-in-action,301,Direct match
+/our-work/clothing-distribution,/our-work/clothing-distribution,301,Direct match
+/our-work/community-trust,/our-work/community-trust,301,Direct match
+/our-work/donation-is-trust,/our-work/donation-is-trust,301,Direct match
+/our-work/educational-support,/our-work/educational-support,301,Direct match
+/our-work/empowering-livelihoods,/our-work/empowering-livelihoods,301,Direct match
+/our-work/history,/our-work/history,301,Direct match
+/our-work/impact,/our-work/impact,301,Direct match
+/our-work/marriage-assistance,/our-work/marriage-assistance,301,Direct match
+/our-work/medical-assistance,/our-work/medical-assistance,301,Direct match
+/our-work/ration-kit-distribution,/our-work/ration-kit-distribution,301,Direct match
+/our-work/serving-with-dignity,/our-work/serving-with-dignity,301,Direct match
+/our-work/supporting-women,/our-work/supporting-women,301,Direct match
+/our-work/why-transparency,/our-work/why-transparency,301,Direct match
+/ramadan,/ramadan,301,Direct match
+/sadaqah,/sadaqah,301,Direct match
+/sadaqah-jariyah,/sadaqah-jariyah,301,Direct match
+/water,/water,301,Direct match
+/where-most-needed,/where-most-needed,301,Direct match
+/where-we-work,/where-we-work,301,Direct match
+/winter-appeal,/winter-appeal,301,Direct match
+/zakat,/zakat,301,Direct match
+/zakat-al-fitr,/zakat-al-fitr,301,Direct match
+/zakat-calculator,/zakat-calculator,301,Direct match
+/*,/,404,Catch-all 404
+/fitrana,/zakat-al-fitr,301,Alternative name redirect
+/iftar,/ramadan,301,Short URL redirect
+/winter,/winter-appeal,301,Short URL redirect

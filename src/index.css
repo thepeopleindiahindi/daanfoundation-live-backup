@@ -80,7 +80,6 @@ img, video, [style*="background-image"] {
 
 img {
   image-rendering: auto;
-  image-rendering: crisp-edges;
 }
 
 .hero-slide {

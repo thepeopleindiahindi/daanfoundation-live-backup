@@ -132,7 +132,7 @@ export function HomePage() {
             {/* Program 2 - Ration Kit Distribution */}
             <Link to="/where-most-needed" className="group relative aspect-[4/5] rounded-2xl overflow-hidden">
               <img 
-                src="/images/ration-kit-front.jpg" 
+                src="/images/extra-5.jpg" 
                 alt="Ration Kit Distribution"
                 className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
@@ -329,9 +329,9 @@ export function HomePage() {
             <img src="/images/news-1.jpg" alt="News" className="w-full aspect-square object-cover rounded-xl" />
             <img src="/images/news-2.jpg" alt="News" className="w-full aspect-square object-cover rounded-xl" />
             <img src="/images/news-3.jpg" alt="News" className="w-full aspect-square object-cover rounded-xl" />
-            <img src="/images/iftaar-distribution.jpg" alt="Iftaar" className="w-full aspect-square object-cover rounded-xl" />
-            <img src="/images/aid-distribution-elderly.jpg" alt="Aid" className="w-full aspect-square object-cover rounded-xl" />
-            <img src="/images/team.jpg" alt="Team" className="w-full aspect-square object-cover rounded-xl" />
+            <img src="/images/extra-6.jpg" alt="Community support" className="w-full aspect-square object-cover rounded-xl" />
+            <img src="/images/ration-kit-front.jpg" alt="Ration Kit" className="w-full aspect-square object-cover rounded-xl" />
+            <img src="/images/extra-7.jpg" alt="Charity work" className="w-full aspect-square object-cover rounded-xl" />
           </div>
         </div>
       </section>
