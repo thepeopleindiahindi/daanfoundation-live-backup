@@ -29,55 +29,9 @@ get_header();
 
     <div class="container hero-content">
         <div class="hero-text">
-            <span class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                Serving Humanity Since 2020
-            </span>
-
             <h1 class="hero-title">
                 No One Should <span class="highlight">Sleep Hungry</span>
             </h1>
-
-            <p class="hero-subtitle">
-                By strengthening our community kitchen and outreach programs, we aim to
-                serve 25,000 beneficiaries annually across vulnerable and underserved communities in India.
-            </p>
-
-            <p class="hero-desc">
-                Daan Foundation delivers essential food support, community kitchen services,
-                and humanitarian aid to families across India, bringing hope and dignity
-                to communities in need.
-            </p>
-
-            <div class="hero-stats">
-                <div>
-                    <div class="hero-stat-number">500K+</div>
-                    <div class="hero-stat-label">Meals Distributed</div>
-                </div>
-                <div>
-                    <div class="hero-stat-number">600K+</div>
-                    <div class="hero-stat-label">Beneficiaries Reached</div>
-                </div>
-                <div>
-                    <div class="hero-stat-number">6+</div>
-                    <div class="hero-stat-label">Years of Service</div>
-                </div>
-            </div>
-
-            <div class="hero-actions">
-                <a href="<?php echo esc_url( home_url( '/about' ) ); ?>" class="btn-white">
-                    Learn More
-                    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </a>
-                <a href="<?php echo esc_url( home_url( '/community-kitchen' ) ); ?>" class="btn-ghost">
-                    Community Kitchen
-                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </a>
-            </div>
         </div>
 
         <!-- Donation Widget -->
