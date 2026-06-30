@@ -21,10 +21,6 @@
                     <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/daan-foundation-logo.png' ); ?>"
                          alt="Daan Foundation"
                          onerror="this.src='<?php echo esc_url( home_url( '/images/daan-foundation-logo.png' ) ); ?>'">
-                    <div class="site-logo-text">
-                        <span class="site-logo-title">Daan Foundation</span>
-                        <span class="site-logo-tagline">Serving humanity with compassion</span>
-                    </div>
                 </a>
 
                 <!-- Desktop Navigation -->
@@ -106,7 +102,7 @@
                             <?php if ( is_array( $data ) && isset( $data['columns'] ) ) : ?>
                                 <a href="<?php echo esc_url( $data['href'] ); ?>" class="nav-link">
                                     <?php echo esc_html( $label ); ?>
-                                    <span class="nav-arrow"></span>
+                                    <span class="nav-arr"></span>
                                 </a>
                                 <div class="mega-menu">
                                     <div class="mega-menu-inner <?php echo ! isset( $data['featured'] ) ? 'no-featured' : ''; ?>">
