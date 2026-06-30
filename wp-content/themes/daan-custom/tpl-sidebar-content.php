@@ -17,17 +17,15 @@ $page_data = daan_get_page_data( $page_slug );
 		get_template_part( 'template-parts/hero-banner', null, array(
 			'title'         => $page_data['title'] ?? '',
 			'subtitle'      => $page_data['subtitle'] ?? '',
+			'description'   => $page_data['hero_description'] ?? '',
 			'gradient'      => $page_data['gradient'] ?? 'from-orange-600 to-orange-700',
+			'image'         => $page_data['image'] ?? '',
+			'button_text'   => $page_data['button_text'] ?? '',
+			'button_url'    => $page_data['button_url'] ?? '',
 			'default_cause' => $page_data['default_cause'] ?? 'where-needed',
 		) );
 
 		daan_sidebar_page_start( $page_data['default_cause'] ?? 'where-needed' ); ?>
-
-		<?php if ( ! empty( $page_data['image'] ) ) : ?>
-			<div class="rounded-2xl overflow-hidden shadow-lg">
-				<img src="<?php echo esc_url( $page_data['image'] ); ?>" alt="<?php echo esc_attr( $page_data['title'] ?? '' ); ?>" class="w-full h-[300px] md:h-[400px] object-cover">
-			</div>
-		<?php endif; ?>
 
 		<?php if ( ! empty( $page_data['sections'] ) ) :
 			foreach ( $page_data['sections'] as $section ) :

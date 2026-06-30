@@ -17,11 +17,14 @@
 function daan_get_page_data( $slug ) {
 	$pages = array(
 		'community-kitchen' => array(
-			'title'         => 'Community Kitchen',
-			'subtitle'      => 'Serving Free Meals With Dignity & Compassion',
-			'gradient'      => 'from-orange-600 to-amber-600',
-			'image'         => '/images/food-distribution-ramadan.jpg',
-			'default_cause' => 'community-kitchen',
+			'title'             => 'Community Kitchen',
+			'subtitle'          => 'Serving Free Meals With Dignity & Compassion',
+			'hero_description'  => 'Since 2020, Daan Foundation has been operating its Community Kitchen continuously with one simple mission: to ensure that no needy person sleeps hungry.',
+			'gradient'          => 'from-orange-600 to-amber-600',
+			'image'             => '/images/food-distribution-ramadan.jpg',
+			'button_text'       => 'Support the Kitchen',
+			'button_url'        => '#donate',
+			'default_cause'     => 'community-kitchen',
 			'sections'      => array(
 				array(
 					'type'    => 'text',
