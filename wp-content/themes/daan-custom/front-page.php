@@ -258,7 +258,7 @@ get_header();
         <div class="program-grid">
             <!-- Program 1 — Community Kitchen -->
             <a href="<?php echo esc_url( home_url( '/community-kitchen' ) ); ?>" class="program-card">
-                <img src="/images/food-distribution-ramadan.jpg" alt="Community Kitchen" loading="lazy">
+                <img src="/images/food-distribution-ramadan.jpg" alt="Community Kitchen" width="800" height="600" loading="lazy">
                 <div class="program-overlay"></div>
                 <div class="program-content">
                     <span class="program-badge" style="background:#F97316">₹59/meal</span>
@@ -269,7 +269,7 @@ get_header();
 
             <!-- Program 2 — Ration Kit Distribution -->
             <a href="<?php echo esc_url( home_url( '/where-most-needed' ) ); ?>" class="program-card">
-                <img src="/images/extra-5.jpg" alt="Ration Kit Distribution" loading="lazy">
+                <img src="/images/extra-5.jpg" alt="Ration Kit Distribution" width="800" height="360" loading="lazy">
                 <div class="program-overlay"></div>
                 <div class="program-content">
                     <span class="program-badge" style="background:#F59E0B">Essential Aid</span>
@@ -280,7 +280,7 @@ get_header();
 
             <!-- Program 3 — Fidyah & Kaffarah -->
             <a href="<?php echo esc_url( home_url( '/fidya' ) ); ?>" class="program-card md-span-2">
-                <img src="/images/iftaar-distribution.jpg" alt="Fidyah & Kaffarah" loading="lazy">
+                <img src="/images/iftaar-distribution.jpg" alt="Fidyah & Kaffarah" width="800" height="600" loading="lazy">
                 <div class="program-overlay"></div>
                 <div class="program-content">
                     <span class="program-badge" style="background:#8B5CF6">Islamic Giving</span>
@@ -298,7 +298,7 @@ get_header();
 <section class="section section-alt">
     <div class="container mission-grid">
         <div class="mission-image">
-            <img src="/images/about-hero.jpg" alt="Our mission" loading="lazy">
+            <img src="/images/about-hero.jpg" alt="Our mission" width="800" height="600" loading="lazy">
             <div class="mission-badge">
                 <div class="big">6+</div>
                 <div class="small">Years of Service</div>
@@ -524,29 +524,29 @@ get_header();
 
         <div class="gallery-grid-1">
             <div class="gallery-featured">
-                <img src="/images/hero-2.jpg" alt="Aid distribution" loading="lazy">
+                <img src="/images/hero-2.jpg" alt="Aid distribution" width="800" height="600" loading="lazy">
             </div>
             <div class="gallery-thumb">
-                <img src="/images/campaign-1.jpg" alt="Campaign" loading="lazy">
+                <img src="/images/campaign-1.jpg" alt="Campaign" width="800" height="600" loading="lazy">
             </div>
             <div class="gallery-thumb">
-                <img src="/images/campaign-2.jpg" alt="Campaign" loading="lazy">
+                <img src="/images/campaign-2.jpg" alt="Campaign" width="800" height="600" loading="lazy">
             </div>
             <div class="gallery-thumb">
-                <img src="/images/campaign-3.jpg" alt="Campaign" loading="lazy">
+                <img src="/images/campaign-3.jpg" alt="Campaign" width="800" height="600" loading="lazy">
             </div>
             <div class="gallery-thumb">
-                <img src="/images/impact-1.jpg" alt="Impact" loading="lazy">
+                <img src="/images/impact-1.jpg" alt="Impact" width="800" height="600" loading="lazy">
             </div>
         </div>
 
         <div class="gallery-grid-2">
-            <img src="/images/news-1.jpg" alt="News" loading="lazy">
-            <img src="/images/news-2.jpg" alt="News" loading="lazy">
-            <img src="/images/news-3.jpg" alt="News" loading="lazy">
-            <img src="/images/extra-6.jpg" alt="Community support" loading="lazy">
-            <img src="/images/ration-kit-front.jpg" alt="Ration Kit" loading="lazy">
-            <img src="/images/extra-7.jpg" alt="Charity work" loading="lazy">
+            <img src="/images/news-1.jpg" alt="News" width="800" height="600" loading="lazy">
+            <img src="/images/news-2.jpg" alt="News" width="800" height="600" loading="lazy">
+            <img src="/images/news-3.jpg" alt="News" width="800" height="600" loading="lazy">
+            <img src="/images/extra-6.jpg" alt="Community support" width="800" height="360" loading="lazy">
+            <img src="/images/ration-kit-front.jpg" alt="Ration Kit" width="800" height="360" loading="lazy">
+            <img src="/images/extra-7.jpg" alt="Charity work" width="800" height="360" loading="lazy">
         </div>
     </div>
 </section>

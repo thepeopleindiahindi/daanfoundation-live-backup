@@ -455,6 +455,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
   transition: background 0.2s, box-shadow 0.2s;
 }
+@media (max-width: 768px) { .donate-btn { padding: 0.25rem 0.75rem; font-size: 0.7rem; border-radius: 6px; } }
 .donate-btn:hover {
   background: var(--primary-hover);
   box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
@@ -579,6 +580,7 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 550px;
   overflow: hidden;
 }
+@media (max-width: 639px) { .hero { min-height: 750px; } }
 @media (min-width: 640px) { .hero { min-height: 650px; } }
 @media (min-width: 768px) { .hero { min-height: 700px; } }
 
@@ -610,6 +612,7 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 500px;
   padding: 4rem 0;
 }
+@media (max-width: 768px) { .hero-content { padding-top: 12rem; gap: 5rem; } }
 @media (min-width: 1024px) { .hero-content { grid-template-columns: 1fr 1fr; } }
 
 .hero-text {
@@ -625,6 +628,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   letter-spacing: -0.025em;
 }
+@media (max-width: 768px) { .hero-title { margin-bottom: 2rem; } }
 .hero-title .highlight { color: #FCD34D; }
 @media (min-width: 640px) { .hero-title { font-size: 2.75rem; } }
 @media (min-width: 768px) { .hero-title { font-size: 3.75rem; } }
@@ -1963,3 +1967,4 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* v=20260702185454 */

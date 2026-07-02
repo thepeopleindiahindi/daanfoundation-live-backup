@@ -35,7 +35,7 @@ get_header();
 			<!-- Community Kitchen Daily Meals -->
 			<div style="background:#fff;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);overflow:hidden;">
 				<div style="position:relative;height:200px;overflow:hidden;">
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/food-distribution-ramadan.jpg' ); ?>" alt="Community Kitchen" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/food-distribution-ramadan.jpg' ); ?>" alt="Community Kitchen" width="800" height="600" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
 					<div style="position:absolute;top:12px;right:12px;background:#EF4444;color:#fff;border-radius:9999px;padding:4px 12px;font-size:0.75rem;font-weight:700;">Urgent</div>
 				</div>
 				<div style="padding:20px;">
@@ -56,7 +56,7 @@ get_header();
 			<!-- Winter Relief 2026 -->
 			<div style="background:#fff;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);overflow:hidden;">
 				<div style="height:200px;overflow:hidden;">
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/extra-4.jpg' ); ?>" alt="Winter Relief" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/extra-4.jpg' ); ?>" alt="Winter Relief" width="800" height="600" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
 				</div>
 				<div style="padding:20px;">
 					<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 12px;">Winter Relief 2026</h3>
@@ -76,7 +76,7 @@ get_header();
 			<!-- Ramadan Iftar 2026 -->
 			<div style="background:#fff;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);overflow:hidden;">
 				<div style="position:relative;height:200px;overflow:hidden;">
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/iftaar-distribution.jpg' ); ?>" alt="Ramadan Iftar" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/iftaar-distribution.jpg' ); ?>" alt="Ramadan Iftar" width="800" height="600" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
 					<div style="position:absolute;top:12px;right:12px;background:#EF4444;color:#fff;border-radius:9999px;padding:4px 12px;font-size:0.75rem;font-weight:700;">Urgent</div>
 				</div>
 				<div style="padding:20px;">

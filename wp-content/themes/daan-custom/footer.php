@@ -27,6 +27,7 @@
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo-wrap">
                         <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/daan-foundation-logo.png' ); ?>"
                              alt="Daan Foundation"
+                             width="280" height="80" loading="lazy"
                              onerror="this.src='<?php echo esc_url( home_url( '/images/daan-foundation-logo.png' ) ); ?>'">
                         <div class="footer-logo-text">
                             <h3>Daan Foundation</h3>
@@ -116,6 +117,7 @@
                     <p>Scan to Pay via UPI</p>
                     <img src="<?php echo esc_url( home_url( '/images/upi-qr-code.jpg' ) ); ?>"
                          alt="UPI QR Code - Daan Foundation"
+                         width="200" height="200" loading="lazy"
                          onerror="this.style.display='none'">
                 </div>
             </div>

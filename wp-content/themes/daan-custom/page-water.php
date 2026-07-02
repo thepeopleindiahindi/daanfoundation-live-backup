@@ -34,7 +34,7 @@ get_header();
 					</a>
 				</div>
 				<div>
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/impact-2.jpg' ); ?>" alt="Clean Water" style="width:100%;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);" onerror="this.style.display='none'">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/impact-2.jpg' ); ?>" alt="Clean Water" width="800" height="600" loading="lazy" style="width:100%;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);" onerror="this.style.display='none'">
 				</div>
 			</div>
 		</div>

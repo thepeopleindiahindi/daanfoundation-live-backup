@@ -27,7 +27,7 @@ $button_url   = $args['button_url'] ?? '';
 			<?php if ( $image ) : ?>
 				<div class="flex-1 w-full md:max-w-md">
 					<div class="rounded-2xl overflow-hidden shadow-lg">
-						<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $title ); ?>" class="w-full h-[260px] md:h-[320px] object-cover">
+						<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $title ); ?>" width="800" height="600" loading="lazy" class="w-full h-[260px] md:h-[320px] object-cover">
 					</div>
 				</div>
 			<?php endif; ?>

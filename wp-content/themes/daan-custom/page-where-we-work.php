@@ -124,7 +124,7 @@ get_header();
 			<style>@media (min-width:1024px){.featured-grid{grid-template-columns:1fr 1fr!important;}}</style>
 			<div class="featured-grid" style="display:grid;grid-template-columns:1fr;gap:32px;align-items:center;">
 				<div>
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/aid-distribution-elderly.jpg' ); ?>" alt="Emergency Response in Gaza" style="width:100%;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);" onerror="this.style.display='none'">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/aid-distribution-elderly.jpg' ); ?>" alt="Emergency Response in Gaza" width="800" height="600" loading="lazy" style="width:100%;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);" onerror="this.style.display='none'">
 				</div>
 				<div>
 					<span style="display:inline-block;background:#FEE2E2;color:#991B1B;border-radius:9999px;padding:4px 12px;font-size:0.8125rem;font-weight:600;margin-bottom:12px;">Palestine</span>

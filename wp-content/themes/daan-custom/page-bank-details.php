@@ -66,7 +66,7 @@ get_header();
 	<!-- UPI Section -->
 	<div style="text-align:center;margin-bottom:32px;">
 		<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Scan to Pay via UPI</h3>
-		<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/upi-qr-code.jpg' ); ?>" alt="UPI QR Code - Daan Foundation" style="width:220px;height:220px;border:2px solid #E2E8F0;border-radius:12px;padding:8px;margin:0 auto;display:block;" onerror="this.style.display='none'">
+		<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/upi-qr-code.jpg' ); ?>" alt="UPI QR Code - Daan Foundation" width="220" height="220" loading="lazy" style="width:220px;height:220px;border:2px solid #E2E8F0;border-radius:12px;padding:8px;margin:0 auto;display:block;" onerror="this.style.display='none'">
 		<p style="font-size:1rem;font-weight:600;color:#475569;margin:12px 0 0;">UPI ID: <span style="color:#EA580C;">8899152910@ptsbi</span></p>
 	</div>
 
