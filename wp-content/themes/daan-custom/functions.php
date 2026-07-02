@@ -60,6 +60,46 @@ function daan_cache_bust_style( $tag, $handle, $href, $media ) {
 }
 
 /**
+ * Auto-add width and height to images in content
+ * Prevents Cumulative Layout Shift (CLS)
+ */
+function daan_add_image_dimensions( $content ) {
+    if ( preg_match_all( '/<img[^>]+>/i', $content, $matches ) ) {
+        foreach ( $matches[0] as $img_tag ) {
+            if ( preg_match( '/width\s*=|height\s*=/i', $img_tag ) ) {
+                continue;
+            }
+
+            if ( preg_match( '/src=[\'"]([^\'"]+)[\'"]/i', $img_tag, $src_match ) ) {
+                $image_url = $src_match[1];
+                $image_size = @getimagesize( $image_url );
+
+                if ( $image_size ) {
+                    $width  = $image_size[0];
+                    $height = $image_size[1];
+
+                    $new_img_tag = str_replace(
+                        '/>',
+                        " width=\"$width\" height=\"$height\" loading=\"lazy\" />",
+                        $img_tag
+                    );
+                    $new_img_tag = str_replace(
+                        '>',
+                        " width=\"$width\" height=\"$height\" loading=\"lazy\" >",
+                        $new_img_tag
+                    );
+
+                    $content = str_replace( $img_tag, $new_img_tag, $content );
+                }
+            }
+        }
+    }
+
+    return $content;
+}
+add_filter( 'the_content', 'daan_add_image_dimensions', 10 );
+
+/**
  * Required Files
  */
 require_once get_template_directory() . '/inc/customizer.php';
