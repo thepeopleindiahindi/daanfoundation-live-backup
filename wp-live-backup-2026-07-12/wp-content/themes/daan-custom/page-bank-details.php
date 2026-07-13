@@ -1,0 +1,141 @@
+<?php
+/**
+ * Template Name: Bank Details
+ *
+ * Bank account details for direct donations via transfer or UPI.
+ */
+get_header();
+?>
+
+<!-- Breadcrumbs -->
+<div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;">
+	<div style="max-width:1280px;margin:0 auto;padding:12px 16px;">
+		<nav style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#64748B;">
+			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Home</a>
+			<span>/</span>
+			<span style="color:#111827;font-weight:600;">Bank Details</span>
+		</nav>
+	</div>
+</div>
+
+<!-- Hero Banner -->
+<section style="background:linear-gradient(135deg, #EA580C, #F97316);position:relative;overflow:hidden;">
+	<div style="position:relative;max-width:1280px;margin:0 auto;padding:48px 16px;">
+		<div style="max-width:768px;">
+			<h1 style="font-size:2.25rem;font-weight:800;color:#fff;line-height:1.1;margin:0 0 16px;">Bank Details</h1>
+			<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);line-height:1.625;max-width:576px;margin:0;">Donate directly to Daan Foundation via bank transfer or UPI.</p>
+		</div>
+	</div>
+</section>
+
+<!-- Content -->
+<div style="max-width:768px;margin:0 auto;padding:48px 16px;">
+
+	<!-- Bank Info Card -->
+	<div style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1),0 8px 10px -6px rgba(0,0,0,0.1);padding:32px;margin-bottom:32px;">
+		<h2 style="font-size:1.5rem;font-weight:700;color:#111827;margin:0 0 24px;">Account Details</h2>
+
+		<div style="display:flex;flex-direction:column;gap:0;">
+			<?php
+			$bank_fields = array(
+				array( 'Bank Name', 'State Bank of India' ),
+				array( 'Account Name', 'Daan Foundation' ),
+				array( 'Account Number', '42818355421' ),
+				array( 'IFSC Code', 'SBIN0003448' ),
+				array( 'Branch', 'Amroha, UP' ),
+				array( 'UPI ID', '8899152910@ptsbi' ),
+			);
+			foreach ( $bank_fields as $i => $field ) : ?>
+				<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:<?php echo $i < count( $bank_fields ) - 1 ? '1px solid #F1F5F9' : 'none'; ?>;">
+					<div>
+						<span style="font-size:0.8125rem;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.05em;"><?php echo esc_html( $field[0] ); ?></span>
+						<p style="font-size:1.125rem;font-weight:600;color:#111827;margin:4px 0 0;text-align:left;" id="bank-value-<?php echo $i; ?>"><?php echo esc_html( $field[1] ); ?></p>
+					</div>
+					<button onclick="copyBankValue(<?php echo $i; ?>)" style="display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:1px solid #E2E8F0;background:#fff;color:#475569;font-size:0.8125rem;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;flex-shrink:0;"
+							id="copy-btn-<?php echo $i; ?>">
+						<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+						</svg>
+						<span id="copy-text-<?php echo $i; ?>">Copy</span>
+					</button>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+
+	<!-- UPI Section -->
+	<div style="text-align:center;margin-bottom:32px;">
+		<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Scan to Pay via UPI</h3>
+		<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/upi-qr-code.jpg' ); ?>" alt="UPI QR Code - Daan Foundation" width="220" height="220" loading="lazy" style="width:220px;height:220px;border:2px solid #E2E8F0;border-radius:12px;padding:8px;margin:0 auto;display:block;" onerror="this.style.display='none'">
+		<p style="font-size:1rem;font-weight:600;color:#475569;margin:12px 0 0;">UPI ID: <span style="color:#EA580C;">8899152910@ptsbi</span></p>
+	</div>
+
+	<!-- Trust Note -->
+	<div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:16px;padding:24px;margin-bottom:32px;">
+		<div style="display:flex;align-items:flex-start;gap:12px;">
+			<svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#D97706" style="flex-shrink:0;margin-top:2px;">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+			</svg>
+			<p style="font-size:0.9375rem;color:#92400E;margin:0;text-align:justify;">Your donation is secure and used responsibly. Daan Foundation is a registered charitable organisation.</p>
+		</div>
+	</div>
+
+	<!-- Back to Donate -->
+	<div style="text-align:center;">
+		<a href="/donate" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;border:2px solid #E2E8F0;padding:14px 32px;font-weight:700;color:#334155;text-decoration:none;transition:all 0.2s;"
+		   onmouseover="this.style.borderColor='#F97316';this.style.color='#EA580C'" onmouseout="this.style.borderColor='#E2E8F0';this.style.color='#334155'">
+			<svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+			</svg>
+			Back to Donate
+		</a>
+	</div>
+</div>
+
+<script>
+window.copyBankValue = function(index) {
+	var values = [
+		'State Bank of India',
+		'Daan Foundation',
+		'42818355421',
+		'SBIN0003448',
+		'Amroha, UP',
+		'8899152910@ptsbi'
+	];
+
+	if (navigator.clipboard && navigator.clipboard.writeText) {
+		navigator.clipboard.writeText(values[index]).then(function() {
+			showCopied(index);
+		});
+	} else {
+		var textarea = document.createElement('textarea');
+		textarea.value = values[index];
+		textarea.style.position = 'fixed';
+		textarea.style.opacity = '0';
+		document.body.appendChild(textarea);
+		textarea.select();
+		document.execCommand('copy');
+		document.body.removeChild(textarea);
+		showCopied(index);
+	}
+};
+
+function showCopied(index) {
+	var btn = document.getElementById('copy-btn-' + index);
+	var text = document.getElementById('copy-text-' + index);
+	var orig = btn.innerHTML;
+	text.textContent = 'Copied!';
+	btn.style.borderColor = '#10B981';
+	btn.style.color = '#10B981';
+	btn.style.background = '#F0FDF4';
+	setTimeout(function() {
+		text.textContent = 'Copy';
+		btn.style.borderColor = '#E2E8F0';
+		btn.style.color = '#475569';
+		btn.style.background = '#fff';
+	}, 2000);
+}
+</script>
+
+<?php
+get_footer();
