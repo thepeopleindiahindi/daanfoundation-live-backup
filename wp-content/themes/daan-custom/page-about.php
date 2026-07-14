@@ -22,7 +22,7 @@ get_header();
 <section style="background:linear-gradient(135deg, #EA580C, #F97316);position:relative;overflow:hidden;">
 	<div style="position:relative;max-width:1280px;margin:0 auto;padding:48px 16px;">
 		<div style="max-width:768px;">
-			<h1 style="font-size:2.25rem;font-weight:800;color:#fff;line-height:1.1;margin:0 0 16px;">About Us</h1>
+			<h1 class="page-hero-title">About Us</h1>
 			<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);line-height:1.625;max-width:576px;margin:0;">Daan Foundation – Serving Humanity With Compassion Since 2020</p>
 		</div>
 	</div>
