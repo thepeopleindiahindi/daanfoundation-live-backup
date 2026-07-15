@@ -66,7 +66,7 @@ get_header();
 
 	<!-- STEP 1: Amount -->
 	<div id="step-1">
-		<div style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);padding:32px;">
+		<div class="card-pad-responsive" style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);">
 			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 24px;">Choose Your Giving Type</h3>
 			<div style="display:flex;gap:12px;margin-bottom:32px;">
 				<button type="button" id="giving-onetime" onclick="setGivingType('one-time')" style="flex:1;padding:12px 0;border-radius:12px;border:2px solid #F97316;background:#FFF7ED;color:#EA580C;font-weight:700;font-size:0.9375rem;cursor:pointer;transition:all 0.2s;">One-Time</button>
@@ -103,7 +103,7 @@ get_header();
 
 	<!-- STEP 2: Details -->
 	<div id="step-2" style="display:none;">
-		<div style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);padding:32px;">
+		<div class="card-pad-responsive" style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);">
 			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 24px;">Your Details</h3>
 
 			<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
@@ -190,7 +190,7 @@ get_header();
 
 	<!-- STEP 3: Payment -->
 	<div id="step-3" style="display:none;">
-		<div style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);padding:32px;">
+		<div class="card-pad-responsive" style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);">
 			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 24px;">Confirm Your Donation</h3>
 
 			<div style="background:#F8FAFC;border-radius:12px;padding:16px;margin-bottom:24px;">

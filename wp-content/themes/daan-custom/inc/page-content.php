@@ -187,6 +187,14 @@ function daan_get_page_data( $slug ) {
 					)
 				),
 				array(
+					'type'    => 'text',
+					'heading' => 'What is Fitrana (Zakat al-Fitr)?',
+					'paragraphs' => array(
+						'Fitrana, also called Zakat al-Fitr, is a charitable donation given before Eid prayer at the end of Ramadan. It is meant to help poor and needy people so they can also celebrate Eid with dignity and happiness.',
+						'Through Ramadan food distribution and ration support activities, Daan Foundation tries to help vulnerable families during the holy month. Visit our dedicated Zakat al-Fitr page to learn more and contribute.'
+					)
+				),
+				array(
 					'type'    => 'grid',
 					'heading' => 'Supporting Humanity Beyond Food',
 					'items'   => array(
@@ -214,8 +222,12 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'faq',
 					'heading' => 'Frequently Asked Questions',
 					'items'   => array(
-						array( 'q' => 'Who is eligible to receive Zakat?', 'a' => 'Zakat can be given to eight categories defined in the Qur\'an (9:60): the poor, the needy, Zakat administrators, those whose hearts are to be reconciled, those in bondage, those in debt, in the cause of Allah, and the wayfarer.' ),
-						array( 'q' => 'Can Zakat be given to organisations?', 'a' => 'Yes, you can give your Zakat to a trusted organisation like Daan Foundation that distributes it to eligible recipients on your behalf.' ),
+						array( 'q' => 'What is Zakat?', 'a' => 'Zakat is one of the five pillars of Islam. It is a mandatory charitable contribution, typically 2.5% of a Muslim\'s total savings and wealth above a minimum amount known as the Nisab.' ),
+						array( 'q' => 'Who must pay Zakat?', 'a' => 'Zakat is obligatory for every adult Muslim who owns wealth above the Nisab threshold for one lunar year. The wealth must be in excess of basic needs and debts.' ),
+						array( 'q' => 'What is the Nisab?', 'a' => 'The Nisab is the minimum amount of wealth a Muslim must possess before Zakat becomes obligatory. It is calculated based on the value of gold (87.48 grams) or silver (612.36 grams).' ),
+						array( 'q' => 'How is Zakat calculated?', 'a' => 'Zakat is calculated as 2.5% of your total zakatable assets minus any debts. Zakatable assets include cash, savings, investments, gold, silver, and business inventory.' ),
+						array( 'q' => 'When should I pay Zakat?', 'a' => 'Zakat is due once a full lunar year has passed since your wealth exceeded the Nisab. Many Muslims choose to pay during Ramadan for increased blessings.' ),
+						array( 'q' => 'Who can receive Zakat?', 'a' => 'There are eight categories of Zakat recipients mentioned in the Qur\'an: the poor, the needy, Zakat administrators, those whose hearts are to be reconciled, freeing captives, those in debt, in the cause of Allah, and travellers in need.' ),
 					),
 				),
 				array(
@@ -542,7 +554,7 @@ function daan_get_page_data( $slug ) {
 			'title'         => 'Winter Appeal',
 			'subtitle'      => 'Warmth for Every Needy — Protecting Lives During Harsh Winters in India',
 			'gradient'      => 'from-blue-800 to-indigo-900',
-			'image'         => '/images/extra-4.jpg',
+			'image'         => '',
 			'default_cause' => 'where-needed',
 			'sections'      => array(
 				array(
@@ -771,8 +783,6 @@ function daan_get_page_data( $slug ) {
 					'items'   => array(
 						array( 'icon' => 'tshirt', 'title' => 'New Clothes', 'desc' => 'Brand new Eid outfits for children of all ages' ),
 						array( 'icon' => 'backpack', 'title' => 'School Bags', 'desc' => 'Durable school bags filled with supplies' ),
-						array( 'icon' => 'toy', 'title' => 'Toys', 'desc' => 'Age-appropriate toys and games for joy' ),
-						array( 'icon' => 'candy', 'title' => 'Sweets', 'desc' => 'Traditional Eid sweets and treats for celebration' ),
 					)
 				),
 				array(

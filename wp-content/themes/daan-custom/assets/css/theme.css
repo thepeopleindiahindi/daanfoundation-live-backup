@@ -1651,6 +1651,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 .islamic-card:hover .learn-more { gap: 0.5rem; }
 
+/* ── Donation sidebar: sticky only at desktop, matching React's lg:sticky ── */
+.donation-sidebar-sticky { position: static; }
+@media (min-width: 1024px) { .donation-sidebar-sticky { position: sticky; top: 104px; } }
+
+/* ── Responsive card padding (24px mobile -> 32px desktop) ────────────── */
+.card-pad-responsive { padding: 24px; }
+@media (min-width: 768px) { .card-pad-responsive { padding: 32px; } }
+
+/* ── Responsive page-content wrapper (32px mobile -> 48px desktop vertical) ── */
+.page-content-wrap { padding: 32px 16px; }
+@media (min-width: 768px) { .page-content-wrap { padding: 48px 16px; } }
+
 /* ── Generic inner-page hero title (About/Contact/Appeals) ───────────── */
 .page-hero-title {
   font-size: 2.25rem;

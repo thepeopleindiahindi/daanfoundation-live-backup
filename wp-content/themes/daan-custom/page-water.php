@@ -79,7 +79,7 @@ get_header();
 						</svg>
 					</div>
 					<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 8px;">Hand Pump Well</h3>
-					<div style="display:inline-block;background:#FFF7ED;color:#EA580C;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">₹300</div>
+					<div style="display:inline-block;background:#FFF7ED;color:#EA580C;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">₹10,000</div>
 					<p style="font-size:0.9375rem;color:#475569;margin:0;">Provides clean water to a family, reducing waterborne diseases and improving health.</p>
 				</div>
 				<!-- Solar Well -->
@@ -91,7 +91,7 @@ get_header();
 						</svg>
 					</div>
 					<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 8px;">Solar Well</h3>
-					<div style="display:inline-block;background:#FFF7ED;color:#EA580C;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">₹3,000</div>
+					<div style="display:inline-block;background:#F1F5F9;color:#64748B;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">Coming Soon</div>
 					<p style="font-size:0.9375rem;color:#475569;margin:0;">Solar-powered well providing sustainable clean water for an entire community.</p>
 				</div>
 				<!-- Water Tanker Distribution -->
@@ -103,7 +103,7 @@ get_header();
 						</svg>
 					</div>
 					<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 8px;">Water Tanker Distribution</h3>
-					<div style="display:inline-block;background:#FFF7ED;color:#EA580C;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">₹100</div>
+					<div style="display:inline-block;background:#F1F5F9;color:#64748B;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">Coming Soon</div>
 					<p style="font-size:0.9375rem;color:#475569;margin:0;">Emergency water supply tanker distribution for drought-affected and crisis-hit areas.</p>
 				</div>
 			</div>

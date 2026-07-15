@@ -19,7 +19,7 @@ get_header();
 </div>
 
 <!-- Hero -->
-<section style="background:linear-gradient(135deg,#EA580C,#F97316);padding:48px 16px;text-align:center;">
+<section style="background:linear-gradient(135deg,#EA580C,#F97316);padding:64px 16px;text-align:center;">
 	<div style="max-width:768px;margin:0 auto;">
 		<h1 class="page-hero-title">Emergency Appeals</h1>
 		<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);margin:0;">Your donations provide life-saving aid to communities in need across India.</p>
@@ -129,7 +129,7 @@ get_header();
 <!-- CTA -->
 <section style="padding:48px 16px;">
 	<div style="max-width:1280px;margin:0 auto;">
-		<div style="background:linear-gradient(135deg,#F59E0B,#F97316);border-radius:16px;padding:48px 32px;text-align:center;">
+		<div style="background:linear-gradient(135deg,#F59E0B,#F97316);border-radius:16px;padding:32px;text-align:center;">
 			<h2 style="font-size:1.875rem;font-weight:700;color:#fff;margin:0 0 16px;">Not Sure Where to Give?</h2>
 			<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);margin:0 0 32px;">Let us direct your donation where it's needed most.</p>
 			<a href="/where-most-needed" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Let us decide →</a>

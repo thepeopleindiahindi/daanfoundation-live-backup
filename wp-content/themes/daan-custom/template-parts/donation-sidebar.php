@@ -5,7 +5,7 @@
  * Shown on sidebar-layout pages: About, Community Kitchen, etc.
  */
 ?>
-<aside style="background: #fff; border-radius: 16px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1); padding: 24px; position: sticky; top: 104px;">
+<aside class="donation-sidebar-sticky" style="background: #fff; border-radius: 16px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1); padding: 24px;">
 	<h3 style="font-size: 1.25rem; font-weight: 700; color: #111827; text-align: center; margin-bottom: 4px;">Make a Donation</h3>
 	<p style="text-align: center; font-size: 0.875rem; color: #64748B; margin-bottom: 20px;">Every contribution makes a difference</p>
 

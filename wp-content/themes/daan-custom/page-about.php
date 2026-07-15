@@ -28,10 +28,12 @@ get_header();
 	</div>
 </section>
 
-<div style="max-width:1280px;margin:0 auto;padding:48px 16px;">
-	<div style="display:flex;flex-wrap:wrap;gap:32px;">
+<div class="page-content-wrap" style="max-width:1280px;margin:0 auto;">
+	<div style="display:grid;grid-template-columns:1fr;gap:32px;">
+		<style>@media (min-width:1024px){.about-layout-grid{grid-template-columns:2fr 1fr!important;}}</style>
+		<div class="about-layout-grid" style="display:grid;grid-template-columns:1fr;gap:32px;">
 		<!-- Main Content (2/3) -->
-		<div style="flex:2;min-width:0;">
+		<div>
 
 			<div style="display:flex;flex-direction:column;gap:40px;">
 
@@ -87,7 +89,7 @@ get_header();
 				</div>
 
 				<!-- 5. Community Kitchen - Our Core Mission -->
-				<div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:16px;padding:32px;">
+				<div class="card-pad-responsive" style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:16px;">
 					<h2 style="font-size:1.875rem;font-weight:700;color:#111827;margin:0 0 16px;">Community Kitchen — Our Core Mission</h2>
 					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 20px;text-align:justify;">The Community Kitchen is the heart of Daan Foundation. Every evening, we serve free, nutritious meals to anyone in need — no questions asked. Labourers, elderly, widows, orphans, homeless individuals, poor families, travellers, and anyone who is hungry is welcome.</p>
 					<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
@@ -102,7 +104,7 @@ get_header();
 				</div>
 
 				<!-- 6. Our Mission -->
-				<div style="background:#F8FAFC;border-radius:16px;padding:32px;">
+				<div class="card-pad-responsive" style="background:#F8FAFC;border-radius:16px;">
 					<h2 style="font-size:1.875rem;font-weight:700;color:#111827;margin:0 0 16px;">Our Mission</h2>
 					<p style="font-size:1.25rem;font-weight:600;color:#EA580C;margin:0 0 16px;">"Ensuring that no one sleeps hungry."</p>
 					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 16px;text-align:justify;">Our primary mission is to feed the hungry every single day. Beyond food, we are committed to:</p>
@@ -147,7 +149,7 @@ get_header();
 				</div>
 
 				<!-- 8. Our Achievements -->
-				<div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:16px;padding:32px;">
+				<div class="card-pad-responsive" style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:16px;">
 					<h2 style="font-size:1.875rem;font-weight:700;color:#111827;margin:0 0 24px;">Our Achievements</h2>
 					<div style="display:flex;flex-direction:column;gap:12px;">
 						<?php
@@ -190,7 +192,7 @@ get_header();
 				</div>
 
 				<!-- 10. Our Volunteers -->
-				<div style="background:#F8FAFC;border-radius:16px;padding:32px;">
+				<div class="card-pad-responsive" style="background:#F8FAFC;border-radius:16px;">
 					<h2 style="font-size:1.875rem;font-weight:700;color:#111827;margin:0 0 16px;">Our Volunteers</h2>
 					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 16px;text-align:justify;">Our volunteers are the backbone of Daan Foundation. They selflessly dedicate their time, energy, and resources to serve those in need. Their compassion and commitment drive everything we do.</p>
 					<div style="display:flex;flex-wrap:wrap;gap:8px;">
@@ -203,7 +205,7 @@ get_header();
 				</div>
 
 				<!-- 11. Serving With Dignity -->
-				<div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:16px;padding:32px;">
+				<div class="card-pad-responsive" style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:16px;">
 					<div style="display:flex;align-items:flex-start;gap:12px;">
 						<svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#2563EB" style="flex-shrink:0;margin-top:2px;">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
@@ -216,7 +218,7 @@ get_header();
 				</div>
 
 				<!-- 12. Looking Ahead -->
-				<div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:16px;padding:32px;">
+				<div class="card-pad-responsive" style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:16px;">
 					<h2 style="font-size:1.875rem;font-weight:700;color:#111827;margin:0 0 24px;">Looking Ahead</h2>
 					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 24px;text-align:justify;">While we are proud of what we have achieved, we know there is much more to do. Our goals for the future include:</p>
 					<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;">
@@ -246,8 +248,9 @@ get_header();
 		</div>
 
 		<!-- Sidebar (1/3) -->
-		<div style="flex:1;min-width:280px;">
+		<div>
 			<?php get_template_part( 'template-parts/donation-sidebar' ); ?>
+		</div>
 		</div>
 	</div>
 </div>
