@@ -25,15 +25,12 @@ get_header();
 	</div>
 </div>
 
-<!-- Hero -->
-<section style="background:linear-gradient(135deg, #F97316 0%, #EA580C 100%);">
-	<div style="max-width:1280px;margin:0 auto;padding:56px 16px 64px;">
-		<div style="max-width:720px;margin:0 auto;text-align:center;color:#fff;">
-			<p style="margin:0 0 8px;font-size:0.875rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;opacity:0.95;">Support a Lifesaving Cause</p>
-			<h1 style="margin:0 0 16px;font-size:2.25rem;line-height:1.1;font-weight:800;">Make a Donation</h1>
-			<p style="margin:0 auto;font-size:1.0625rem;line-height:1.75;max-width:640px;opacity:0.95;">
-				Your generosity transforms lives. Every contribution helps fund meals, ration kits, medical support, and compassionate care for families across India.
-			</p>
+<!-- Hero Banner -->
+<section style="background:linear-gradient(135deg, #EA580C, #F97316);position:relative;overflow:hidden;">
+	<div style="position:relative;max-width:1280px;margin:0 auto;padding:48px 16px;">
+		<div style="max-width:768px;">
+			<h1 style="font-size:2.25rem;font-weight:800;color:#fff;line-height:1.1;margin:0 0 16px;">Make a Donation</h1>
+			<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);line-height:1.625;max-width:576px;margin:0;">Your generosity transforms lives. 100% of your donation goes directly to those in need.</p>
 		</div>
 	</div>
 </section>
@@ -65,11 +62,11 @@ get_header();
 </div>
 
 <!-- Donation Form -->
-<div style="max-width:760px;margin:0 auto;padding:0 16px 64px;">
+<div style="max-width:640px;margin:0 auto;padding:0 16px 64px;">
 
 	<!-- STEP 1: Amount -->
 	<div id="step-1">
-		<div class="card-pad-responsive" style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);">
+		<div style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);padding:32px;">
 			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 24px;">Choose Your Giving Type</h3>
 			<div style="display:flex;gap:12px;margin-bottom:32px;">
 				<button type="button" id="giving-onetime" onclick="setGivingType('one-time')" style="flex:1;padding:12px 0;border-radius:12px;border:2px solid #F97316;background:#FFF7ED;color:#EA580C;font-weight:700;font-size:0.9375rem;cursor:pointer;transition:all 0.2s;">One-Time</button>
@@ -106,7 +103,7 @@ get_header();
 
 	<!-- STEP 2: Details -->
 	<div id="step-2" style="display:none;">
-		<div class="card-pad-responsive" style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);">
+		<div style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);padding:32px;">
 			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 24px;">Your Details</h3>
 
 			<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
@@ -193,7 +190,7 @@ get_header();
 
 	<!-- STEP 3: Payment -->
 	<div id="step-3" style="display:none;">
-		<div class="card-pad-responsive" style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);">
+		<div style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);padding:32px;">
 			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 24px;">Confirm Your Donation</h3>
 
 			<div style="background:#F8FAFC;border-radius:12px;padding:16px;margin-bottom:24px;">
@@ -242,7 +239,7 @@ get_header();
 
 			<div id="payment-upi-details" style="display:none;text-align:center;margin-bottom:24px;">
 				<h4 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 16px;">Scan to Pay via UPI</h4>
-				<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/payment-qr.jpeg' ); ?>" alt="UPI QR Code" width="200" height="200" loading="lazy" style="width:200px;height:200px;border:2px solid #E2E8F0;border-radius:12px;padding:8px;margin:0 auto;display:block;" onerror="this.style.display='none'">
+				<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/payment-qr.jpeg' ); ?>" alt="UPI QR Code" style="width:200px;height:200px;border:2px solid #E2E8F0;border-radius:12px;padding:8px;margin:0 auto;display:block;" onerror="this.style.display='none'">
 				<p style="font-size:0.9375rem;color:#64748B;margin:12px 0 0;">UPI ID: <strong>8899152910@ptsbi</strong></p>
 				<p style="font-size:0.8125rem;color:#64748B;">Scan with GPay / PhonePe / PayTM</p>
 			</div>
