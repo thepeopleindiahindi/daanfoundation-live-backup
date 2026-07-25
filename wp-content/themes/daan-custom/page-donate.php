@@ -25,12 +25,15 @@ get_header();
 	</div>
 </div>
 
-<!-- Hero Banner -->
-<section style="background:linear-gradient(135deg, #EA580C, #F97316);position:relative;overflow:hidden;">
-	<div style="position:relative;max-width:1280px;margin:0 auto;padding:48px 16px;">
-		<div style="max-width:768px;">
-			<h1 style="font-size:2.25rem;font-weight:800;color:#fff;line-height:1.1;margin:0 0 16px;">Make a Donation</h1>
-			<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);line-height:1.625;max-width:576px;margin:0;">Your generosity transforms lives. 100% of your donation goes directly to those in need.</p>
+<!-- Hero -->
+<section style="background:linear-gradient(135deg, #F97316 0%, #EA580C 100%);">
+	<div style="max-width:1280px;margin:0 auto;padding:56px 16px 64px;">
+		<div style="max-width:720px;margin:0 auto;text-align:center;color:#fff;">
+			<p style="margin:0 0 8px;font-size:0.875rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;opacity:0.95;">Support a Lifesaving Cause</p>
+			<h1 style="margin:0 0 16px;font-size:2.25rem;line-height:1.1;font-weight:800;">Make a Donation</h1>
+			<p style="margin:0 auto;font-size:1.0625rem;line-height:1.75;max-width:640px;opacity:0.95;">
+				Your generosity transforms lives. Every contribution helps fund meals, ration kits, medical support, and compassionate care for families across India.
+			</p>
 		</div>
 	</div>
 </section>
@@ -62,7 +65,7 @@ get_header();
 </div>
 
 <!-- Donation Form -->
-<div style="max-width:640px;margin:0 auto;padding:0 16px 64px;">
+<div style="max-width:760px;margin:0 auto;padding:0 16px 64px;">
 
 	<!-- STEP 1: Amount -->
 	<div id="step-1">
