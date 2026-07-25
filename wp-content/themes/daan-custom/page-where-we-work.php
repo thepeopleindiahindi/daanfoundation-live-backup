@@ -19,7 +19,7 @@ get_header();
 </div>
 
 <!-- Hero -->
-<section style="background:linear-gradient(135deg,#1E293B,#334155);padding:80px 16px;text-align:center;">
+<section style="background:linear-gradient(135deg,#1E293B,#334155);padding:64px 16px;text-align:center;">
 	<div style="max-width:768px;margin:0 auto;">
 		<div style="width:64px;height:64px;border-radius:16px;background:rgba(249,115,22,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
 			<svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="#FB923C" stroke-width="2">
@@ -61,7 +61,7 @@ get_header();
 </section>
 
 <!-- Regions Grid -->
-<section style="padding:64px 16px;">
+<section style="padding:48px 16px;">
 	<div style="max-width:1280px;margin:0 auto;">
 		<h2 style="font-size:1.875rem;font-weight:700;color:#111827;margin:0 0 32px;text-align:center;">Our Regions</h2>
 		<div style="display:grid;grid-template-columns:1fr;gap:24px;">
@@ -95,7 +95,7 @@ get_header();
 </section>
 
 <!-- Featured Project -->
-<section style="background:#F3F4F6;padding:64px 16px;">
+<section style="background:#F3F4F6;padding:48px 16px;">
 	<div style="max-width:1280px;margin:0 auto;">
 		<h2 style="font-size:1.875rem;font-weight:700;color:#111827;margin:0 0 32px;text-align:center;">Featured Project</h2>
 		<div style="display:grid;grid-template-columns:1fr;gap:32px;align-items:center;">
@@ -116,7 +116,7 @@ get_header();
 </section>
 
 <!-- CTA -->
-<section style="padding:64px 16px;">
+<section style="padding:48px 16px;">
 	<div style="max-width:1280px;margin:0 auto;text-align:center;">
 		<a href="/donate" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#F97316;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s;"
 		   onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Support Our Mission →</a>

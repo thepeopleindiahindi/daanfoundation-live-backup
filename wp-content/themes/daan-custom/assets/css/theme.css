@@ -254,7 +254,6 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  min-width: 0;
 }
 .site-logo img {
   height: 48px;
@@ -268,8 +267,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .site-logo-text {
   line-height: 1.25;
-  min-width: 0;
-  overflow: hidden;
 }
 .site-logo-title {
   display: block;
@@ -277,9 +274,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color: #111827;
   letter-spacing: -0.025em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 @media (min-width: 1024px) {
   .site-logo-title { font-size: 1.25rem; }
@@ -291,9 +285,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #64748B;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 @media (min-width: 640px) {
   .site-logo-tagline { font-size: 0.625rem; }
@@ -436,7 +427,6 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  flex-shrink: 0;
 }
 .search-btn {
   display: none;
@@ -464,9 +454,8 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--primary);
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
   transition: background 0.2s, box-shadow 0.2s;
-  flex-shrink: 0;
-  white-space: nowrap;
 }
+@media (max-width: 768px) { .donate-btn { padding: 0.25rem 0.75rem; font-size: 0.7rem; border-radius: 6px; } }
 .donate-btn:hover {
   background: var(--primary-hover);
   box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
@@ -623,7 +612,7 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 500px;
   padding: 4rem 0;
 }
-@media (max-width: 768px) { .hero-content { padding-top: 12rem; gap: 5rem; } }
+@media (max-width: 768px) { .hero-content { padding-top: 18rem; gap: 5rem; } }
 @media (min-width: 1024px) { .hero-content { grid-template-columns: 1fr 1fr; } }
 
 .hero-text {
@@ -644,47 +633,6 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 640px) { .hero-title { font-size: 2.75rem; } }
 @media (min-width: 768px) { .hero-title { font-size: 3.75rem; } }
 @media (min-width: 1024px) { .hero-title { font-size: 4.5rem; } }
-
-.hero-desc {
-  font-size: 1.125rem;
-  color: rgba(255,255,255,0.9);
-  line-height: 1.625;
-  margin-bottom: 1rem;
-  max-width: 36rem;
-}
-@media (min-width: 640px) { .hero-desc { font-size: 1.25rem; } }
-.hero-desc-muted {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.75);
-  margin-bottom: 2rem;
-}
-
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-@media (min-width: 640px) { .hero-stats { display: flex; flex-wrap: wrap; gap: 2rem; } }
-.hero-stat-num {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #fff;
-}
-@media (min-width: 640px) { .hero-stat-num { font-size: 1.875rem; } }
-@media (min-width: 768px) { .hero-stat-num { font-size: 2.25rem; } }
-.hero-stat-label {
-  font-size: 11px;
-  color: rgba(255,255,255,0.7);
-}
-@media (min-width: 640px) { .hero-stat-label { font-size: 0.875rem; } }
-
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
-}
 
 /* Hero Donation Widget */
 .donation-widget {
@@ -1178,11 +1126,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color: #fff;
   transition: color 0.2s;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .story-card:hover .story-content h3 { color: #FDBA74; }
 
@@ -1651,67 +1594,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .islamic-card:hover .learn-more { gap: 0.5rem; }
 
-/* ── Donation sidebar: sticky only at desktop, matching React's lg:sticky ── */
-.donation-sidebar-sticky { position: static; }
-@media (min-width: 1024px) { .donation-sidebar-sticky { position: sticky; top: 104px; } }
-
-/* ── Responsive card padding (24px mobile -> 32px desktop) ────────────── */
-.card-pad-responsive { padding: 24px; }
-@media (min-width: 768px) { .card-pad-responsive { padding: 32px; } }
-
-/* ── Responsive page-content wrapper (32px mobile -> 48px desktop vertical) ── */
-.page-content-wrap { padding: 32px 16px; }
-@media (min-width: 768px) { .page-content-wrap { padding: 48px 16px; } }
-
-/* ── Generic inner-page hero title (About/Contact/Appeals) ───────────── */
-.page-hero-title {
-  font-size: 2.25rem;
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.1;
-  margin: 0 0 16px;
-}
-@media (min-width: 768px) { .page-hero-title { font-size: 3rem; } }
-
-/* ── Partners ─────────────────────────────────────────────────────────── */
-.partners-section { border-top: 1px solid #F1F5F9; }
-.partners-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  align-items: center;
-}
-@media (min-width: 640px) { .partners-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (min-width: 1024px) { .partners-grid { grid-template-columns: repeat(8, 1fr); } }
-.partner-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 4rem;
-  filter: grayscale(1);
-  opacity: 0.6;
-  transition: filter 0.2s, opacity 0.2s;
-}
-.partner-logo:hover { filter: grayscale(0); opacity: 1; }
-.partner-logo-box {
-  height: 3rem;
-  width: 6rem;
-  border-radius: 0.5rem;
-  background: #E2E8F0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.partner-logo-box span {
-  font-size: 10px;
-  font-weight: 500;
-  color: #64748B;
-  text-align: center;
-  padding: 0 0.5rem;
-  line-height: 1.2;
-  white-space: pre-line;
-}
-
 /* ── Responsive Helper ────────────────────────────────────────────────── */
 @media (max-width: 639px) {
   .hide-mobile { display: none !important; }
@@ -1885,6 +1767,12 @@ h1, h2, h3, h4, h5, h6 {
   color: #475569;
   line-height: 1.75;
 }
+/* .max-w-none is defined earlier in this file; same specificity means source
+   order decides, and .prose (later) was winning, silently re-capping
+   "prose max-w-none" elements back to 65ch. This re-asserts the override. */
+.prose.max-w-none {
+  max-width: none;
+}
 .prose-lg { font-size: 1.125rem; line-height: 1.777; }
 .prose p { margin-top: 1.25em; margin-bottom: 1.25em; }
 .prose a { color: #EA580C; text-decoration: underline; }
@@ -1927,162 +1815,5 @@ h1, h2, h3, h4, h5, h6 {
   .lg\:mt-0 { margin-top: 0; }
 }
 
-/* ════════════════════════════════════════════════════════════════════════
-   Website Update Notification Modal
-   ════════════════════════════════════════════════════════════════════════ */
-.daan-modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  animation: daanModalFadeIn 0.3s ease-out;
-}
-
-.daan-modal-overlay.active {
-  display: flex;
-}
-
-@keyframes daanModalFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes daanModalSlideUp {
-  from { opacity: 0; transform: translateY(30px) scale(0.96); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.daan-modal-card {
-  position: relative;
-  background: #fff;
-  border-radius: 1.25rem;
-  max-width: 480px;
-  width: 100%;
-  padding: 2.5rem 2rem 2rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
-  text-align: center;
-  animation: daanModalSlideUp 0.35s ease-out;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-.daan-modal-close {
-  position: absolute;
-  top: 0.75rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  font-size: 1.75rem;
-  line-height: 1;
-  color: #94A3B8;
-  cursor: pointer;
-  padding: 0.25rem;
-  transition: color 0.2s;
-}
-
-.daan-modal-close:hover {
-  color: #334155;
-}
-
-.daan-modal-icon {
-  font-size: 3rem;
-  line-height: 1;
-  margin-bottom: 0.75rem;
-}
-
-.daan-modal-title {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #111827;
-  margin: 0 0 1rem;
-}
-
-.daan-modal-text {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: #475569;
-  margin: 0 0 0.75rem;
-}
-
-.daan-modal-contact {
-  background: #FFF7ED;
-  border-radius: 0.75rem;
-  padding: 1rem 1.25rem;
-  margin: 1.25rem 0;
-  text-align: left;
-}
-
-.daan-modal-contact p {
-  margin: 0 0 0.35rem;
-  font-size: 0.9375rem;
-  color: #334155;
-}
-
-.daan-modal-contact p:first-child {
-  margin-bottom: 0.5rem;
-}
-
-.daan-modal-contact a {
-  color: var(--primary, #F97316);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.daan-modal-contact a:hover {
-  text-decoration: underline;
-}
-
-.daan-modal-thanks {
-  font-size: 0.9375rem;
-  color: #64748B;
-  font-style: italic;
-  margin: 0 0 1.25rem;
-}
-
-.daan-modal-ok {
-  display: inline-block;
-  background: var(--primary, #F97316);
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 0.75rem 3rem;
-  border: none;
-  border-radius: 2rem;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
-}
-
-.daan-modal-ok:hover {
-  background: #EA580C;
-  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.45);
-}
-
-.daan-modal-ok:active {
-  transform: scale(0.97);
-}
-
-@media (max-width: 480px) {
-  .daan-modal-card {
-    padding: 2rem 1.25rem 1.5rem;
-    border-radius: 1rem;
-  }
-  .daan-modal-title {
-    font-size: 1.2rem;
-  }
-  .daan-modal-text {
-    font-size: 0.875rem;
-  }
-  .daan-modal-ok {
-    width: 100%;
-    padding: 0.75rem 0;
-  }
-}
 
 /* v=20260702185454 */

@@ -239,7 +239,7 @@ get_header();
 
 			<div id="payment-upi-details" style="display:none;text-align:center;margin-bottom:24px;">
 				<h4 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 16px;">Scan to Pay via UPI</h4>
-				<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/payment-qr.jpeg' ); ?>" alt="UPI QR Code" style="width:200px;height:200px;border:2px solid #E2E8F0;border-radius:12px;padding:8px;margin:0 auto;display:block;" onerror="this.style.display='none'">
+				<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/payment-qr.jpeg' ); ?>" alt="UPI QR Code" width="200" height="200" loading="lazy" style="width:200px;height:200px;border:2px solid #E2E8F0;border-radius:12px;padding:8px;margin:0 auto;display:block;" onerror="this.style.display='none'">
 				<p style="font-size:0.9375rem;color:#64748B;margin:12px 0 0;">UPI ID: <strong>8899152910@ptsbi</strong></p>
 				<p style="font-size:0.8125rem;color:#64748B;">Scan with GPay / PhonePe / PayTM</p>
 			</div>

@@ -81,7 +81,7 @@ get_header();
 </section>
 
 <!-- Impact Stats -->
-<section style="background:#EA580C;padding:64px 16px;">
+<section style="background:#EA580C;padding:48px 16px;">
 	<div style="max-width:1280px;margin:0 auto;">
 		<div style="display:grid;grid-template-columns:1fr;gap:24px;text-align:center;">
 			<style>@media (min-width:640px){.orphan-stats-grid{grid-template-columns:repeat(3,1fr)!important;}}</style>

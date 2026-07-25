@@ -151,41 +151,6 @@
     </footer>
 </div>
 
-<?php
-/**
- * Website Update Notification Modal
- *
- * Toggle: Set DAAN_SHOW_UPDATE_MODAL to false to disable the popup
- * after the website update is complete.
- */
-if ( ! defined( 'DAAN_SHOW_UPDATE_MODAL' ) ) {
-    define( 'DAAN_SHOW_UPDATE_MODAL', true );
-}
-
-if ( DAAN_SHOW_UPDATE_MODAL ) :
-?>
-<div id="daan-update-modal" class="daan-modal-overlay" role="dialog" aria-modal="true" aria-label="Website Update Notice">
-    <div class="daan-modal-card">
-        <button class="daan-modal-close" aria-label="Close">&times;</button>
-        <div class="daan-modal-icon">&#128679;</div>
-        <h2 class="daan-modal-title">Website Update in Progress</h2>
-        <p class="daan-modal-text">
-            We are currently updating our website. During this period, some information may be
-            incomplete or inaccurate, and <strong>UPI payments may not work properly</strong>
-            due to ongoing maintenance.
-        </p>
-        <p class="daan-modal-text">We are working to resolve these issues as quickly as possible.</p>
-        <div class="daan-modal-contact">
-            <p><strong>Contact Us</strong></p>
-            <p>&#9993; <a href="mailto:Daanfoundationindia@gmail.com">Daanfoundationindia@gmail.com</a></p>
-            <p>&#9742; <a href="tel:+918899152910">+91 88991 52910</a></p>
-        </div>
-        <p class="daan-modal-thanks">Thank you for your patience and support.</p>
-        <button class="daan-modal-ok">OK</button>
-    </div>
-</div>
-<?php endif; ?>
-
 <?php wp_footer(); ?>
 
 <script>

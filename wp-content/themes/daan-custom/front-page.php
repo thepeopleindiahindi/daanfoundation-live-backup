@@ -5,15 +5,6 @@
  */
 
 get_header();
-
-if ( ! function_exists( 'daan_first_content_image' ) ) {
-	function daan_first_content_image( $fallback ) {
-		if ( preg_match( '/<img[^>]+src=["\']([^"\']+)["\']/i', get_the_content(), $matches ) ) {
-			return esc_url( $matches[1] );
-		}
-		return $fallback;
-	}
-}
 ?>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
@@ -41,36 +32,6 @@ if ( ! function_exists( 'daan_first_content_image' ) ) {
             <h1 class="hero-title">
                 No One Should <span class="highlight">Sleep Hungry</span>
             </h1>
-
-            <p class="hero-desc">By strengthening our community kitchen and outreach programs, we aim to serve 25,000 beneficiaries annually across vulnerable and underserved communities in India.</p>
-
-            <p class="hero-desc hero-desc-muted">Daan Foundation delivers essential food support, community kitchen services, and humanitarian aid to families across India, bringing hope and dignity to communities in need.</p>
-
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="hero-stat-num">500K+</div>
-                    <div class="hero-stat-label">Meals Distributed</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-num">600K+</div>
-                    <div class="hero-stat-label">Beneficiaries Reached</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-num">6+</div>
-                    <div class="hero-stat-label">Years of Service</div>
-                </div>
-            </div>
-
-            <div class="hero-cta">
-                <a href="<?php echo esc_url( home_url( '/about' ) ); ?>" class="btn btn-white">
-                    Learn More
-                    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                </a>
-                <a href="<?php echo esc_url( home_url( '/community-kitchen' ) ); ?>" class="btn btn-ghost">
-                    Community Kitchen
-                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                </a>
-            </div>
         </div>
 
         <!-- Donation Widget -->
@@ -285,6 +246,32 @@ if ( ! function_exists( 'daan_first_content_image' ) ) {
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- EMERGENCY APPEAL — draft placement/content, to be finalised -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section class="section" style="padding-top:2rem;padding-bottom:2rem;">
+    <div class="container">
+        <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);min-height:320px;display:flex;align-items:flex-end;">
+            <img src="<?php echo esc_url( home_url( '/images/aid-distribution-elderly.jpg' ) ); ?>" alt="Emergency Appeal — urgent relief distribution" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+            <div class="gradient-overlay-dark" style="position:absolute;inset:0;"></div>
+            <div style="position:relative;padding:2rem;max-width:32rem;">
+                <span style="display:inline-block;background:var(--primary);color:#fff;border-radius:9999px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.75rem;">Urgent</span>
+                <h2 style="color:#fff;font-size:1.75rem;font-weight:800;margin:0 0 0.5rem;">Emergency Appeal</h2>
+                <p style="color:rgba(255,255,255,0.9);margin:0 0 1.25rem;font-size:1rem;line-height:1.6;">Support our urgent relief efforts — help us respond quickly when it matters most.</p>
+                <a href="<?php echo esc_url( home_url( '/appeals' ) ); ?>"
+                   style="display:inline-flex;align-items:center;gap:0.5rem;border-radius:9999px;background:#fff;padding:0.875rem 1.75rem;font-weight:700;color:var(--primary);text-decoration:none;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);transition:box-shadow 0.2s;"
+                   onmouseover="this.style.boxShadow='0 10px 15px -3px rgba(0,0,0,0.1)'"
+                   onmouseout="this.style.boxShadow='0 4px 6px -1px rgba(0,0,0,0.1)'">
+                    View Emergency Appeals
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
 <!-- OUR PROGRAMS -->
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <section class="section">
@@ -483,30 +470,32 @@ if ( ! function_exists( 'daan_first_content_image' ) ) {
 
         <div class="stories-grid">
             <?php
-            $impact_query = new WP_Query( array(
-                'posts_per_page' => 3,
-                'offset'         => 0,
-                'no_found_rows'  => true,
-            ) );
-            while ( $impact_query->have_posts() ) : $impact_query->the_post();
-                $story_cats = get_the_category();
-            ?>
-                <a href="<?php the_permalink(); ?>" class="story-card">
-                    <?php if ( has_post_thumbnail() ) : ?>
-                        <?php the_post_thumbnail( 'medium_large' ); ?>
-                    <?php else : ?>
-                        <img src="<?php echo daan_first_content_image( '/images/food-distribution-ramadan.jpg' ); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy">
-                    <?php endif; ?>
+            $stories = array(
+                array( 'From hunger to hope: A family\'s journey', 'Impact Story', '/images/food-distribution-ramadan.jpg', '/news/family-journey', true ),
+                array( 'Clean water transforms a village', 'Project Update', '/images/community-queue.jpg', '/news/water-village', false ),
+                array( 'Elderly care in action', 'Impact Story', '/images/aid-distribution-elderly.jpg', '/news/elderly-care-program', false ),
+            );
+            foreach ( $stories as $s ) : ?>
+                <a href="<?php echo esc_url( home_url( $s[3] ) ); ?>" class="story-card">
+                    <img src="<?php echo esc_url( $s[2] ); ?>" alt="<?php echo esc_attr( $s[0] ); ?>" loading="lazy">
                     <div class="story-overlay"></div>
 
+                    <?php if ( $s[4] ) : ?>
+                        <div class="story-play">
+                            <div class="story-play-btn">
+                                <svg fill="currentColor" viewBox="0 0 24 24" style="width:1.5rem;height:1.5rem;color:var(--primary);margin-left:0.25rem">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="story-content">
-                        <?php if ( $story_cats ) : ?>
-                            <span class="story-category"><?php echo esc_html( $story_cats[0]->name ); ?></span>
-                        <?php endif; ?>
-                        <h3><?php the_title(); ?></h3>
+                        <span class="story-category"><?php echo esc_html( $s[1] ); ?></span>
+                        <h3><?php echo esc_html( $s[0] ); ?></h3>
                     </div>
                 </a>
-            <?php endwhile; wp_reset_postdata(); ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
@@ -531,24 +520,20 @@ if ( ! function_exists( 'daan_first_content_image' ) ) {
 
         <div class="stories-grid">
             <?php
-            $news_query = new WP_Query( array(
-                'posts_per_page' => 3,
-                'offset'         => 3,
-                'no_found_rows'  => true,
-            ) );
-            while ( $news_query->have_posts() ) : $news_query->the_post(); ?>
-                <a href="<?php the_permalink(); ?>" class="story-card">
-                    <?php if ( has_post_thumbnail() ) : ?>
-                        <?php the_post_thumbnail( 'medium_large' ); ?>
-                    <?php else : ?>
-                        <img src="<?php echo daan_first_content_image( '/images/news-1.jpg' ); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy">
-                    <?php endif; ?>
+            $news_items = array(
+                array( 'Community Kitchen Reaches 500K Meals Milestone', '/images/news-1.jpg', '/news/community-kitchen-milestone' ),
+                array( 'Ramadan Iftar Program 2026 — A Record Year', '/images/news-2.jpg', '/news/ramadan-iftar-2026' ),
+                array( 'Daan Foundation Expands Winter Relief Operations', '/images/news-3.jpg', '/news/winter-relief-expansion' ),
+            );
+            foreach ( $news_items as $n ) : ?>
+                <a href="<?php echo esc_url( home_url( $n[2] ) ); ?>" class="story-card">
+                    <img src="<?php echo esc_url( $n[1] ); ?>" alt="<?php echo esc_attr( $n[0] ); ?>" loading="lazy">
                     <div class="story-overlay"></div>
                     <div class="story-content">
-                        <h3><?php the_title(); ?></h3>
+                        <h3><?php echo esc_html( $n[0] ); ?></h3>
                     </div>
                 </a>
-            <?php endwhile; wp_reset_postdata(); ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
@@ -588,36 +573,6 @@ if ( ! function_exists( 'daan_first_content_image' ) ) {
             <img src="/images/extra-6.jpg" alt="Community support" width="800" height="360" loading="lazy">
             <img src="/images/ration-kit-front.jpg" alt="Ration Kit" width="800" height="360" loading="lazy">
             <img src="/images/extra-7.jpg" alt="Charity work" width="800" height="360" loading="lazy">
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<!-- PARTNERS -->
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<section class="section partners-section">
-    <div class="container">
-        <div class="section-header">
-            <h2>Our Partners</h2>
-            <p>Working together to make a greater impact</p>
-        </div>
-
-        <div class="partners-grid">
-            <?php
-            $partners = array(
-                "Support Society",
-                "Friends of Amroha",
-                "Angel Welfare Society",
-                "Sootista",
-                "Qurbani Easy\nqurbanieasy.com",
-            );
-            foreach ( $partners as $p ) : ?>
-                <div class="partner-logo">
-                    <div class="partner-logo-box">
-                        <span><?php echo nl2br( esc_html( $p ) ); ?></span>
-                    </div>
-                </div>
-            <?php endforeach; ?>
         </div>
     </div>
 </section>

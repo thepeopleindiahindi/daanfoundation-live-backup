@@ -47,34 +47,7 @@ if ($current_cat instanceof WP_Term) {
         <?php endforeach; ?>
       </div>
 
-      <?php if (have_posts()):
-        $show_featured = ! is_search() && ! $cat_slug && ! is_paged();
-      ?>
-        <?php if ( $show_featured ) : the_post(); ?>
-          <a href="<?php the_permalink(); ?>" style="display:block;margin-bottom:2.5rem;">
-            <style>@media (min-width:768px){.featured-post-grid{grid-template-columns:1fr 1fr!important;}}</style>
-            <div class="featured-post-grid" style="display:grid;grid-template-columns:1fr;gap:2rem;align-items:center;">
-              <div style="border-radius:16px;overflow:hidden;aspect-ratio:16/10;background:#F1F5F9;">
-                <?php if (has_post_thumbnail()): ?>
-                  <?php the_post_thumbnail('large', ['style' => 'width:100%;height:100%;object-fit:cover;']); ?>
-                <?php else: ?>
-                  <div style="width:100%;height:100%;background:linear-gradient(135deg,#EA580C,#F97316);"></div>
-                <?php endif; ?>
-              </div>
-              <div>
-                <?php $featured_cats = get_the_category(); if ($featured_cats): ?>
-                  <span style="display:inline-block;background:#FFEDD5;color:#C2410C;border-radius:9999px;padding:4px 12px;font-size:0.75rem;font-weight:700;margin-bottom:16px;"><?php echo esc_html($featured_cats[0]->name); ?></span>
-                <?php endif; ?>
-                <h2 style="font-size:1.875rem;font-weight:700;color:#111827;margin:0 0 16px;"><?php the_title(); ?></h2>
-                <p style="font-size:1.125rem;color:#475569;margin:0 0 16px;"><?php echo wp_trim_words(get_the_excerpt(), 25); ?></p>
-                <div style="display:flex;align-items:center;gap:16px;font-size:0.875rem;color:#64748B;">
-                  <span><?php echo get_the_date('F j, Y'); ?></span>
-                  <span>By <?php the_author(); ?></span>
-                </div>
-              </div>
-            </div>
-          </a>
-        <?php endif; ?>
+      <?php if (have_posts()): ?>
         <div class="grid sm:grid-cols-2 gap-6">
           <?php while (have_posts()): the_post(); 
             $post_categories = get_the_category();

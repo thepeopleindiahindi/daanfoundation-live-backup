@@ -126,46 +126,4 @@
         });
     });
 
-    /* ── Website Update Notification Modal ─────────────────────────────── */
-    var modal = document.getElementById('daan-update-modal');
-    if (modal) {
-        function showModal() {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function hideModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-            try {
-                sessionStorage.setItem('daan_modal_dismissed', '1');
-            } catch (e) {}
-        }
-
-        // Show only once per session
-        var dismissed = false;
-        try {
-            dismissed = sessionStorage.getItem('daan_modal_dismissed') === '1';
-        } catch (e) {}
-
-        if (!dismissed) {
-            // Small delay so the page renders first
-            setTimeout(showModal, 600);
-        }
-
-        // Dismiss on close button, OK button, or overlay click
-        modal.querySelector('.daan-modal-close').addEventListener('click', hideModal);
-        modal.querySelector('.daan-modal-ok').addEventListener('click', hideModal);
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) hideModal();
-        });
-
-        // Dismiss on Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                hideModal();
-            }
-        });
-    }
-
 })();

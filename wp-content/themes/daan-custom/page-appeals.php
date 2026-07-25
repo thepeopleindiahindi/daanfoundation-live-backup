@@ -19,9 +19,9 @@ get_header();
 </div>
 
 <!-- Hero -->
-<section style="background:linear-gradient(135deg,#EA580C,#F97316);padding:64px 16px;text-align:center;">
+<section style="background:linear-gradient(135deg,#EA580C,#F97316);padding:48px 16px;text-align:center;">
 	<div style="max-width:768px;margin:0 auto;">
-		<h1 class="page-hero-title">Emergency Appeals</h1>
+		<h1 style="font-size:2.25rem;font-weight:800;color:#fff;line-height:1.1;margin:0 0 16px;">Emergency Appeals</h1>
 		<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);margin:0;">Your donations provide life-saving aid to communities in need across India.</p>
 	</div>
 </section>
@@ -32,54 +32,68 @@ get_header();
 	<div style="display:grid;grid-template-columns:1fr;gap:24px;">
 		<style>@media (min-width:768px){.appeals-grid{grid-template-columns:repeat(3,1fr)!important;}}</style>
 		<div class="appeals-grid" style="display:grid;grid-template-columns:1fr;gap:24px;">
-			<?php
-			$emergency_appeals = new WP_Query( array(
-				'post_type'      => 'daan_appeal',
-				'posts_per_page' => -1,
-				'no_found_rows'  => true,
-				'tax_query'      => array(
-					array(
-						'taxonomy' => 'appeal_category',
-						'field'    => 'slug',
-						'terms'    => 'emergency',
-					),
-				),
-			) );
-			if ( $emergency_appeals->have_posts() ) :
-				while ( $emergency_appeals->have_posts() ) : $emergency_appeals->the_post();
-					$raised   = (float) get_post_meta( get_the_ID(), '_daan_raised_amount', true );
-					$goal     = (float) get_post_meta( get_the_ID(), '_daan_goal_amount', true );
-					$urgent   = get_post_meta( get_the_ID(), '_daan_is_urgent', true );
-					$progress = $goal > 0 ? min( 100, round( ( $raised / $goal ) * 100 ) ) : 0;
-					?>
-					<div style="background:#fff;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);overflow:hidden;">
-						<div style="position:relative;height:200px;overflow:hidden;">
-							<?php if ( has_post_thumbnail() ) : ?>
-								<?php the_post_thumbnail( 'medium_large', array( 'style' => 'width:100%;height:100%;object-fit:cover;' ) ); ?>
-							<?php endif; ?>
-							<?php if ( $urgent ) : ?>
-								<div style="position:absolute;top:12px;right:12px;background:#EF4444;color:#fff;border-radius:9999px;padding:4px 12px;font-size:0.75rem;font-weight:700;">Urgent</div>
-							<?php endif; ?>
+			<!-- Community Kitchen Daily Meals -->
+			<div style="background:#fff;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);overflow:hidden;">
+				<div style="position:relative;height:200px;overflow:hidden;">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/food-distribution-ramadan.jpg' ); ?>" alt="Community Kitchen" width="800" height="600" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+					<div style="position:absolute;top:12px;right:12px;background:#EF4444;color:#fff;border-radius:9999px;padding:4px 12px;font-size:0.75rem;font-weight:700;">Urgent</div>
+				</div>
+				<div style="padding:20px;">
+					<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 12px;">Community Kitchen Daily Meals</h3>
+					<div style="margin-bottom:12px;">
+						<div style="display:flex;justify-content:space-between;font-size:0.8125rem;color:#64748B;margin-bottom:6px;">
+							<span>₹75,000 raised</span>
+							<span>75%</span>
 						</div>
-						<div style="padding:20px;">
-							<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 12px;"><?php the_title(); ?></h3>
-							<div style="margin-bottom:12px;">
-								<div style="display:flex;justify-content:space-between;font-size:0.8125rem;color:#64748B;margin-bottom:6px;">
-									<span>₹<?php echo number_format( $raised ); ?> raised</span>
-									<span><?php echo esc_html( $progress ); ?>%</span>
-								</div>
-								<div style="height:8px;background:#F3F4F6;border-radius:9999px;overflow:hidden;">
-									<div style="height:100%;width:<?php echo esc_attr( $progress ); ?>%;background:#F97316;border-radius:9999px;"></div>
-								</div>
-							</div>
-							<p style="font-size:0.875rem;color:#64748B;margin:0 0 16px;">₹<?php echo number_format( $raised ); ?> raised of ₹<?php echo number_format( $goal ); ?></p>
-							<a href="/donate" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#F97316;padding:10px 24px;font-weight:700;color:#fff;text-decoration:none;font-size:0.875rem;transition:background 0.2s;" onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Donate Now</a>
+						<div style="height:8px;background:#F3F4F6;border-radius:9999px;overflow:hidden;">
+							<div style="height:100%;width:75%;background:#F97316;border-radius:9999px;"></div>
 						</div>
 					</div>
-				<?php endwhile; wp_reset_postdata();
-			else : ?>
-				<div style="grid-column:1/-1;text-align:center;padding:32px;color:#64748B;">No active emergency appeals right now — check back soon.</div>
-			<?php endif; ?>
+					<p style="font-size:0.875rem;color:#64748B;margin:0 0 16px;">₹75,000 raised of ₹1,00,000</p>
+					<a href="/donate" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#F97316;padding:10px 24px;font-weight:700;color:#fff;text-decoration:none;font-size:0.875rem;transition:background 0.2s;" onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Donate Now</a>
+				</div>
+			</div>
+			<!-- Winter Relief 2026 -->
+			<div style="background:#fff;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);overflow:hidden;">
+				<div style="height:200px;overflow:hidden;">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/extra-4.jpg' ); ?>" alt="Winter Relief" width="800" height="600" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+				</div>
+				<div style="padding:20px;">
+					<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 12px;">Winter Relief 2026</h3>
+					<div style="margin-bottom:12px;">
+						<div style="display:flex;justify-content:space-between;font-size:0.8125rem;color:#64748B;margin-bottom:6px;">
+							<span>₹20,000 raised</span>
+							<span>40%</span>
+						</div>
+						<div style="height:8px;background:#F3F4F6;border-radius:9999px;overflow:hidden;">
+							<div style="height:100%;width:40%;background:#F97316;border-radius:9999px;"></div>
+						</div>
+					</div>
+					<p style="font-size:0.875rem;color:#64748B;margin:0 0 16px;">₹20,000 raised of ₹50,000</p>
+					<a href="/donate" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#F97316;padding:10px 24px;font-weight:700;color:#fff;text-decoration:none;font-size:0.875rem;transition:background 0.2s;" onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Donate Now</a>
+				</div>
+			</div>
+			<!-- Ramadan Iftar 2026 -->
+			<div style="background:#fff;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);overflow:hidden;">
+				<div style="position:relative;height:200px;overflow:hidden;">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/iftaar-distribution.jpg' ); ?>" alt="Ramadan Iftar" width="800" height="600" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+					<div style="position:absolute;top:12px;right:12px;background:#EF4444;color:#fff;border-radius:9999px;padding:4px 12px;font-size:0.75rem;font-weight:700;">Urgent</div>
+				</div>
+				<div style="padding:20px;">
+					<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 12px;">Ramadan Iftar 2026</h3>
+					<div style="margin-bottom:12px;">
+						<div style="display:flex;justify-content:space-between;font-size:0.8125rem;color:#64748B;margin-bottom:6px;">
+							<span>₹60,000 raised</span>
+							<span>60%</span>
+						</div>
+						<div style="height:8px;background:#F3F4F6;border-radius:9999px;overflow:hidden;">
+							<div style="height:100%;width:60%;background:#F97316;border-radius:9999px;"></div>
+						</div>
+					</div>
+					<p style="font-size:0.875rem;color:#64748B;margin:0 0 16px;">₹60,000 raised of ₹1,00,000</p>
+					<a href="/donate" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#F97316;padding:10px 24px;font-weight:700;color:#fff;text-decoration:none;font-size:0.875rem;transition:background 0.2s;" onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Donate Now</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -129,7 +143,7 @@ get_header();
 <!-- CTA -->
 <section style="padding:48px 16px;">
 	<div style="max-width:1280px;margin:0 auto;">
-		<div style="background:linear-gradient(135deg,#F59E0B,#F97316);border-radius:16px;padding:32px;text-align:center;">
+		<div style="background:linear-gradient(135deg,#F59E0B,#F97316);border-radius:16px;padding:48px 32px;text-align:center;">
 			<h2 style="font-size:1.875rem;font-weight:700;color:#fff;margin:0 0 16px;">Not Sure Where to Give?</h2>
 			<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);margin:0 0 32px;">Let us direct your donation where it's needed most.</p>
 			<a href="/where-most-needed" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Let us decide →</a>

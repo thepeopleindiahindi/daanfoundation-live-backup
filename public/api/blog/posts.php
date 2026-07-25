@@ -105,11 +105,6 @@ switch ($method) {
 
     case 'POST':
         requireAdminAuth();
-            http_response_code(401);
-            echo json_encode(['success' => false, 'message' => 'Unauthorized']);
-            exit;
-        }
-
         $input = json_decode(file_get_contents('php://input'), true);
         $title = $conn->real_escape_string($input['title']);
         $slug = $conn->real_escape_string($input['slug'] ?: strtolower(str_replace(' ', '-', $title)));
@@ -124,12 +119,13 @@ switch ($method) {
         $status = $conn->real_escape_string($input['status'] ?? 'draft');
         $featured = (int)($input['featured'] ?? 0) ? 1 : 0;
         $tags = $input['tags'] ?? [];
-        $publishedAt = $status === 'published' ? date('Y-m-d H:i:s') : 'NULL';
-        $publishCol = $status === 'published' ? ", published_at='$publishedAt'" : '';
+        $publishedAt = $status === 'published' ? date('Y-m-d H:i:s') : null;
+        $publishCol = $status === 'published' ? ', published_at' : '';
+        $publishVal = $status === 'published' ? ", '$publishedAt'" : '';
 
         $idCol = $categoryId === 'NULL' ? 'NULL' : $categoryId;
 
-        $sql = "INSERT INTO blog_posts (title, slug, excerpt, content, featured_image, category_id, author, seo_title, seo_description, seo_keywords, status, featured $publishCol) VALUES ('$title', '$slug', '$excerpt', '$content', '$featuredImage', $idCol, '$author', '$seoTitle', '$seoDescription', '$seoKeywords', '$status', $featured)";
+        $sql = "INSERT INTO blog_posts (title, slug, excerpt, content, featured_image, category_id, author, seo_title, seo_description, seo_keywords, status, featured $publishCol) VALUES ('$title', '$slug', '$excerpt', '$content', '$featuredImage', $idCol, '$author', '$seoTitle', '$seoDescription', '$seoKeywords', '$status', $featured $publishVal)";
 
         if ($conn->query($sql)) {
             $postId = $conn->insert_id;
