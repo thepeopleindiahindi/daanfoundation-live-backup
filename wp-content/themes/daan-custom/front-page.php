@@ -8,33 +8,22 @@ get_header();
 ?>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<!-- HERO SECTION — Slideshow + Donation Widget -->
+<!-- HERO SECTION — responsive image (mobile crop vs desktop banner) -->
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <section class="hero">
-    <?php
-    $slides = array(
-        '/images/hero-new-banner.webp',
-        '/images/hero-new-banner.webp',
-        '/images/hero-new-banner.webp',
-        '/images/hero-new-banner.webp',
-    );
-    foreach ( $slides as $i => $slide ) : ?>
-        <div class="hero-slide" data-slide="<?php echo $i; ?>"
-             style="background-image: url('<?php echo esc_url( $slide ); ?>'); opacity: <?php echo $i === 0 ? 1 : 0; ?>;">
-        </div>
-    <?php endforeach; ?>
+    <picture class="hero-picture">
+        <source media="(max-width: 767px)" srcset="<?php echo esc_url( '/images/hero-mobile.jpg' ); ?>">
+        <img class="hero-img" src="<?php echo esc_url( '/images/hero-new-banner.webp' ); ?>" alt="No one should sleep hungry — Daan Foundation">
+    </picture>
 
-    <div class="hero-overlay-right"></div>
     <div class="hero-overlay-bottom"></div>
+</section>
 
-    <div class="container hero-content">
-        <div class="hero-text">
-            <h1 class="hero-title">
-                No One Should <span class="highlight">Sleep Hungry</span>
-            </h1>
-        </div>
-
-        <!-- Donation Widget -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- DONATION WIDGET — below the hero image, no overlap -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section class="section hero-donate-section">
+    <div class="container" style="display:flex;justify-content:center;">
         <div class="donation-widget">
             <h3>Make a Donation</h3>
             <p class="widget-sub">Every contribution makes a difference</p>
