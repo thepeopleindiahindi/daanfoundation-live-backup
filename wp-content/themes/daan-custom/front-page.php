@@ -13,10 +13,10 @@ get_header();
 <section class="hero">
     <?php
     $slides = array(
-        '/images/hero-slide-1.jpg',
-        '/images/hero-slide-2.jpg',
-        '/images/hero-slide-3.jpg',
-        '/images/hero-slide-4.jpg',
+        '/images/hero-new-banner.webp',
+        '/images/hero-new-banner.webp',
+        '/images/hero-new-banner.webp',
+        '/images/hero-new-banner.webp',
     );
     foreach ( $slides as $i => $slide ) : ?>
         <div class="hero-slide" data-slide="<?php echo $i; ?>"
