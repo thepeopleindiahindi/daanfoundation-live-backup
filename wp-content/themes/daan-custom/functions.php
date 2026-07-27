@@ -100,6 +100,76 @@ function daan_add_image_dimensions( $content ) {
 add_filter( 'the_content', 'daan_add_image_dimensions', 10 );
 
 /**
+ * Donation Email Customization
+ * Orders placed via daan_place_order() land in 'on-hold' status, so the
+ * donor-facing WooCommerce email is customer_on_hold_order (not
+ * customer_processing_order). Admin notification is new_order.
+ */
+add_filter( 'woocommerce_email_heading_customer_on_hold_order', 'daan_donation_email_heading_donor', 10, 2 );
+add_filter( 'woocommerce_email_subject_customer_on_hold_order', 'daan_donation_email_subject_donor', 10, 2 );
+function daan_donation_email_heading_donor( $heading, $order ) {
+    return $order ? sprintf( __( 'Donation Received: #%s', 'daan-custom' ), $order->get_order_number() ) : $heading;
+}
+function daan_donation_email_subject_donor( $subject, $order ) {
+    return $order ? sprintf( __( 'Donation Received: #%s', 'daan-custom' ), $order->get_order_number() ) : $subject;
+}
+
+add_filter( 'woocommerce_email_heading_new_order', 'daan_donation_email_heading_admin', 10, 2 );
+add_filter( 'woocommerce_email_subject_new_order', 'daan_donation_email_subject_admin', 10, 2 );
+function daan_donation_email_heading_admin( $heading, $order ) {
+    return $order ? sprintf( __( 'New Donation Received: #%s', 'daan-custom' ), $order->get_order_number() ) : $heading;
+}
+function daan_donation_email_subject_admin( $subject, $order ) {
+    return $order ? sprintf( __( 'New Donation Received: #%s', 'daan-custom' ), $order->get_order_number() ) : $subject;
+}
+
+/**
+ * Admin email footer note — replaces WooCommerce's default
+ * "Congratulations on the sale." (commercial tone, not charity-appropriate).
+ */
+add_filter( 'woocommerce_email_additional_content_new_order', 'daan_donation_email_footer_admin', 10, 2 );
+function daan_donation_email_footer_admin( $content, $order ) {
+    return __( 'Thank you for supporting Daan Foundation.', 'daan-custom' );
+}
+
+/**
+ * Remove the 'cart_subtotal' row from the order totals footer. Donation
+ * orders are fee-only (no real product line items), so this row always
+ * renders as a meaningless "₹0.00" (WC adds it whenever
+ * get_subtotal_to_display() returns any non-empty string, and "₹0.00"
+ * counts). Applies everywhere get_order_item_totals() is used — front-end
+ * order-details and emails alike — since it's equally meaningless in both.
+ *
+ * NOTE: this filter also carries 'fee' rows (the donation's own totals-
+ * footer line, e.g. "Donation — Cause: ₹500.00"). Do NOT strip those here —
+ * emails rely on that row as their only display of the donation (the email
+ * item-table intentionally excludes fees). The front-end equivalent is
+ * handled locally in woocommerce/order/order-details.php instead, since
+ * that page shows the fee as its own table row already and needs the
+ * footer duplicate suppressed — but only there, not in emails.
+ */
+add_filter( 'woocommerce_get_order_item_totals', 'daan_donation_remove_subtotal_row', 10, 1 );
+function daan_donation_remove_subtotal_row( $total_rows ) {
+    unset( $total_rows['cart_subtotal'] );
+    return $total_rows;
+}
+
+/**
+ * Include 'fee' items in the front-end order-details table (Order Received /
+ * My Account order view). Donations are added as a WC_Order_Item_Fee, and
+ * this table only shows 'line_item' (product) types by default, so without
+ * this the donation never appears as a row — only in the totals footer.
+ * See woocommerce/order/order-details.php and order-details-item.php theme
+ * overrides for the corresponding null-safety/display fixes this requires.
+ */
+add_filter( 'woocommerce_purchase_order_item_types', 'daan_include_fee_in_order_details' );
+function daan_include_fee_in_order_details( $types ) {
+    $types   = (array) $types;
+    $types[] = 'fee';
+    return array_unique( $types );
+}
+
+/**
  * Required Files
  */
 require_once get_template_directory() . '/inc/customizer.php';
