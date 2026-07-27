@@ -76,7 +76,7 @@ get_header();
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <!-- QUICK ACTIONS — Maximise Your Reward -->
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<section class="section">
+<section class="section quick-actions-section">
     <div class="container">
         <div class="section-header">
             <h2>Maximise Your Reward</h2>

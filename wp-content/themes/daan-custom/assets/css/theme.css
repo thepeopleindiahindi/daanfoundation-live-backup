@@ -689,9 +689,14 @@ h1, h2, h3, h4, h5, h6 {
   .donate-quickactions-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: start;
+    align-items: center;
     gap: 2rem;
   }
+  /* Quick Actions on the left, Donation card on the right — HTML source
+     order is unchanged (donation markup comes first in the file), only
+     the visual position swaps. */
+  .donate-quickactions-row .hero-donate-section { order: 2; }
+  .donate-quickactions-row .quick-actions-section { order: 1; }
   .donate-quickactions-row .quick-actions-grid {
     grid-template-columns: repeat(2, 1fr);
   }
