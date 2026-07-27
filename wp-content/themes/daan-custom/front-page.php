@@ -459,29 +459,35 @@ get_header();
 
         <div class="stories-grid">
             <?php
-            $stories = array(
-                array( 'From hunger to hope: A family\'s journey', 'Impact Story', '/images/food-distribution-ramadan.jpg', '/news/family-journey', true ),
-                array( 'Clean water transforms a village', 'Project Update', '/images/community-queue.jpg', '/news/water-village', false ),
-                array( 'Elderly care in action', 'Impact Story', '/images/aid-distribution-elderly.jpg', '/news/elderly-care-program', false ),
+            $story_posts = get_posts( array(
+                'post_type'      => 'post',
+                'post_status'    => 'publish',
+                'posts_per_page' => 3,
+                'category_name'  => 'blog',
+                'orderby'        => 'date',
+                'order'          => 'DESC',
+            ) );
+            $story_ids              = wp_list_pluck( $story_posts, 'ID' );
+            $story_fallback_images  = array(
+                '/images/impact-story-1.jpg',
+                '/images/impact-story-2.jpg',
+                '/images/impact-story-3.jpg',
             );
-            foreach ( $stories as $s ) : ?>
-                <a href="<?php echo esc_url( home_url( $s[3] ) ); ?>" class="story-card">
-                    <img src="<?php echo esc_url( $s[2] ); ?>" alt="<?php echo esc_attr( $s[0] ); ?>" loading="lazy">
+            foreach ( $story_posts as $i => $story_post ) :
+                $post_id   = $story_post->ID;
+                $categories = get_the_category( $post_id );
+                $cat_label  = $categories ? $categories[0]->name : 'Update';
+                $thumb      = has_post_thumbnail( $post_id )
+                    ? get_the_post_thumbnail_url( $post_id, 'medium_large' )
+                    : $story_fallback_images[ $i % count( $story_fallback_images ) ];
+                ?>
+                <a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" class="story-card">
+                    <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $post_id ) ); ?>" loading="lazy">
                     <div class="story-overlay"></div>
 
-                    <?php if ( $s[4] ) : ?>
-                        <div class="story-play">
-                            <div class="story-play-btn">
-                                <svg fill="currentColor" viewBox="0 0 24 24" style="width:1.5rem;height:1.5rem;color:var(--primary);margin-left:0.25rem">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
                     <div class="story-content">
-                        <span class="story-category"><?php echo esc_html( $s[1] ); ?></span>
-                        <h3><?php echo esc_html( $s[0] ); ?></h3>
+                        <span class="story-category"><?php echo esc_html( $cat_label ); ?></span>
+                        <h3><?php echo esc_html( wp_trim_words( get_the_title( $post_id ), 10, '…' ) ); ?></h3>
                     </div>
                 </a>
             <?php endforeach; ?>
@@ -509,17 +515,31 @@ get_header();
 
         <div class="stories-grid">
             <?php
-            $news_items = array(
-                array( 'Community Kitchen Reaches 500K Meals Milestone', '/images/news-1.jpg', '/news/community-kitchen-milestone' ),
-                array( 'Ramadan Iftar Program 2026 — A Record Year', '/images/news-2.jpg', '/news/ramadan-iftar-2026' ),
-                array( 'Daan Foundation Expands Winter Relief Operations', '/images/news-3.jpg', '/news/winter-relief-expansion' ),
+            $news_posts = get_posts( array(
+                'post_type'      => 'post',
+                'post_status'    => 'publish',
+                'posts_per_page' => 3,
+                'category_name'  => 'blog',
+                'orderby'        => 'date',
+                'order'          => 'DESC',
+                'post__not_in'   => $story_ids,
+            ) );
+            $news_fallback_images = array(
+                '/images/news-1.jpg',
+                '/images/news-2.jpg',
+                '/images/news-3.jpg',
             );
-            foreach ( $news_items as $n ) : ?>
-                <a href="<?php echo esc_url( home_url( $n[2] ) ); ?>" class="story-card">
-                    <img src="<?php echo esc_url( $n[1] ); ?>" alt="<?php echo esc_attr( $n[0] ); ?>" loading="lazy">
+            foreach ( $news_posts as $i => $news_post ) :
+                $post_id = $news_post->ID;
+                $thumb   = has_post_thumbnail( $post_id )
+                    ? get_the_post_thumbnail_url( $post_id, 'medium_large' )
+                    : $news_fallback_images[ $i % count( $news_fallback_images ) ];
+                ?>
+                <a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" class="story-card">
+                    <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $post_id ) ); ?>" loading="lazy">
                     <div class="story-overlay"></div>
                     <div class="story-content">
-                        <h3><?php echo esc_html( $n[0] ); ?></h3>
+                        <h3><?php echo esc_html( wp_trim_words( get_the_title( $post_id ), 10, '…' ) ); ?></h3>
                     </div>
                 </a>
             <?php endforeach; ?>
