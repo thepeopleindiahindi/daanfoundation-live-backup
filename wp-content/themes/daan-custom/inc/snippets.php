@@ -225,7 +225,7 @@ function daan_place_order() {
     $order->set_address( $address, 'billing' );
 
     $fee = new WC_Order_Item_Fee();
-    $fee->set_name( "Donation \u2014 $cause" );
+    $fee->set_name( "Donation — $cause" );
     $fee->set_amount( $amount );
     $fee->set_total( $amount );
     $fee->set_tax_status( 'none' );
