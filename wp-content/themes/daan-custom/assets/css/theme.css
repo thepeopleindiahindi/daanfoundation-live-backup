@@ -660,6 +660,26 @@ h1, h2, h3, h4, h5, h6 {
   .donation-widget { justify-self: end; }
 }
 
+/* Mobile: pull the donation widget up so it visibly peeks over the
+   hero's bottom edge on load — a scroll hint that there's a donation
+   board below — desktop (>=768px) is untouched. On real phone widths
+   (<=480px) the hero image's crop leaves enough empty margin below the
+   baked-in stats row for an ~80px overlap without covering it; in the
+   481-767px range the image crop shifts and can bring the description
+   text close to this edge, so that range only gets a tighter (not
+   negative) gap to avoid covering it. */
+@media (min-width: 481px) and (max-width: 767px) {
+  .hero-donate-section { padding-top: 2rem; }
+}
+@media (max-width: 480px) {
+  .hero-donate-section {
+    padding-top: 0;
+    margin-top: -80px;
+    position: relative;
+    z-index: 2;
+  }
+}
+
 .donation-widget h3 {
   font-size: 1.25rem;
   font-weight: 700;
