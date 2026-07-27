@@ -91,8 +91,8 @@ get_header();
 					<div style="font-size:1rem;color:rgba(255,255,255,0.85);font-weight:600;">orphans supported</div>
 				</div>
 				<div>
-					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 8px;">15</div>
-					<div style="font-size:1rem;color:rgba(255,255,255,0.85);font-weight:600;">countries</div>
+					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 8px;">6+</div>
+					<div style="font-size:1rem;color:rgba(255,255,255,0.85);font-weight:600;">States Covered</div>
 				</div>
 				<div>
 					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 8px;">98%</div>
