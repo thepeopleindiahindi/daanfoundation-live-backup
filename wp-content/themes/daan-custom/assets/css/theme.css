@@ -680,6 +680,23 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Desktop: donation widget (left) + "Maximise Your Reward" (right) as a
+   2-column row instead of two full-width stacked sections — avoids the
+   large empty space on either side of the centered donation card on
+   wide viewports. Mobile/tablet (<1024px) keep the current stacked
+   layout untouched — the wrapper is a plain block until this breakpoint. */
+@media (min-width: 1024px) {
+  .donate-quickactions-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 2rem;
+  }
+  .donate-quickactions-row .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .donation-widget h3 {
   font-size: 1.25rem;
   font-weight: 700;

@@ -20,8 +20,9 @@ get_header();
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<!-- DONATION WIDGET — below the hero image, no overlap -->
+<!-- DONATION WIDGET + QUICK ACTIONS — side-by-side on desktop (>=1024px) -->
 <!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="donate-quickactions-row">
 <section class="section hero-donate-section">
     <div class="container" style="display:flex;justify-content:center;">
         <div class="donation-widget">
@@ -119,6 +120,7 @@ get_header();
         </div>
     </div>
 </section>
+</div><!-- /.donate-quickactions-row -->
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <!-- CURRENT CAMPAIGNS -->
