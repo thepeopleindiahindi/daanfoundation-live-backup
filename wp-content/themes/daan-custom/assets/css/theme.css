@@ -704,20 +704,21 @@ h1, h2, h3, h4, h5, h6 {
 
 /* tpl-sidebar-content.php fallback layout (content + donation sidebar,
    used by pages with no structured daan_get_page_data() entry — e.g.
-   the "Our Work" pages). Was plain `display:flex` with flex:2/flex:1 and
-   no flex-basis, so on narrow viewports it never wrapped to a new line:
-   the sidebar's min-width:280px just squeezed the content column down to
-   a sliver instead of stacking below it. Below 1024px, switch to a plain
-   block stack so content takes full width and the donation card follows
-   underneath it — matches the breakpoint the rest of the site's content
-   + sidebar pages (Zakat, single posts, etc.) already stack at. */
+   the "Our Work" pages). Desktop (>=1024px): content left, donation
+   card right, unchanged from before — no `order` is set outside the
+   media query below, so children just render in source order (content
+   div comes first in the HTML). Below 1024px: stays a flex container
+   (flex-direction:column, not display:block) specifically so `order`
+   still applies — that's what lets the donation card render ABOVE the
+   content on mobile while the underlying HTML order (and screen-reader
+   reading order) stays content-then-sidebar either way. */
 .sidebar-fallback-row { display: flex; flex-wrap: wrap; gap: 32px; }
 .sidebar-fallback-content { flex: 2; min-width: 0; }
 .sidebar-fallback-aside { flex: 1; min-width: 280px; }
 @media (max-width: 1023px) {
-  .sidebar-fallback-row { display: block; }
-  .sidebar-fallback-content { width: 100%; }
-  .sidebar-fallback-aside { display: block; width: 100%; min-width: 0; margin-top: 2rem; }
+  .sidebar-fallback-row { display: flex; flex-direction: column; }
+  .sidebar-fallback-content { width: 100%; order: 2; }
+  .sidebar-fallback-aside { width: 100%; min-width: 0; order: 1; margin-bottom: 2rem; }
 }
 
 .donation-widget h3 {
