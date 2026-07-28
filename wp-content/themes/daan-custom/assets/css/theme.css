@@ -1791,6 +1791,44 @@ h1, h2, h3, h4, h5, h6 {
 }
 .from-orange-600 { --tw-gradient-from: #EA580C; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
 .to-orange-700   { --tw-gradient-to: #C2410C; }
+
+/* Hero-banner gradient combinations referenced by daan_get_page_data()
+   entries (inc/page-content.php) that this pre-built stylesheet never
+   had rules for -- Tailwind isn't compiled live here, so any "from-X
+   to-Y" string that wasn't already in the source at build time renders
+   with no background at all (colorless/washed-out hero). Covers both
+   the 10 "Our Work" pages and the pre-existing appeal pages (Sadaqah,
+   Fidya, Kaffarah, Ramadan, Winter Appeal, Where Most Needed, Sadaqah
+   Jariyah, Eid Gifts, Zakat al-Fitr) that had the same latent gap. */
+.from-amber-500  { --tw-gradient-from: #F59E0B; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-amber-600  { --tw-gradient-from: #D97706; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-amber-700  { --tw-gradient-from: #B45309; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-orange-500 { --tw-gradient-from: #F97316; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-orange-700 { --tw-gradient-from: #C2410C; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-orange-800 { --tw-gradient-from: #9A3412; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-red-600    { --tw-gradient-from: #DC2626; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-rose-500   { --tw-gradient-from: #F43F5E; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-emerald-600{ --tw-gradient-from: #059669; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-violet-600 { --tw-gradient-from: #7C3AED; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-blue-800   { --tw-gradient-from: #1E40AF; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-slate-700  { --tw-gradient-from: #334155; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-cyan-600   { --tw-gradient-from: #0891B2; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-indigo-600 { --tw-gradient-from: #4F46E5; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+
+.to-amber-600  { --tw-gradient-to: #D97706; }
+.to-amber-700  { --tw-gradient-to: #B45309; }
+.to-amber-800  { --tw-gradient-to: #92400E; }
+.to-orange-600 { --tw-gradient-to: #EA580C; }
+.to-orange-800 { --tw-gradient-to: #9A3412; }
+.to-red-600    { --tw-gradient-to: #DC2626; }
+.to-red-700    { --tw-gradient-to: #B91C1C; }
+.to-pink-600   { --tw-gradient-to: #DB2777; }
+.to-teal-700   { --tw-gradient-to: #0F766E; }
+.to-rose-700   { --tw-gradient-to: #BE123C; }
+.to-purple-700 { --tw-gradient-to: #7E22CE; }
+.to-indigo-900 { --tw-gradient-to: #312E81; }
+.to-slate-900  { --tw-gradient-to: #0F172A; }
+
 .opacity-30 { opacity: 0.3; }
 
 /* ── Borders ─────────────────────────────────────────────────────────── */
@@ -1892,5 +1930,17 @@ h1, h2, h3, h4, h5, h6 {
   .lg\:mt-0 { margin-top: 0; }
 }
 
+
+/* ── WooCommerce Checkout: show required-field asterisk ──────────────────
+   WooCommerce core injects an inline style (#woocommerce-inline-inline-css,
+   from the 'woocommerce-inline' handle) with
+   ".woocommerce form .form-row .required { visibility: hidden; }" — this
+   overrides it for the checkout form specifically via !important, since
+   that rule's specificity (.woocommerce form .form-row .required) is
+   higher than a plain ".woocommerce-checkout .required" selector. */
+.woocommerce-checkout .required {
+  visibility: visible !important;
+  color: #aa0000;
+}
 
 /* v=20260702185454 */
