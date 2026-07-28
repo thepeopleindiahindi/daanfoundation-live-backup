@@ -1326,6 +1326,237 @@ function daan_get_page_data( $slug ) {
 				),
 			),
 		),
+
+		'annual-report' => array(
+			'title'             => 'Annual Impact Report (2023–2026)',
+			'subtitle'          => 'A Transparent Look at Our Journey and Impact',
+			'hero_description'  => 'Founded in 2020 and officially registered in 2023 — from a small iftar initiative to an organisation serving hundreds of thousands.',
+			'gradient'          => 'from-orange-600 to-amber-600',
+			'image'             => '/images/impact-2.jpg',
+			'button_text'       => 'Donate Now',
+			'button_url'        => '/donate',
+			'default_cause'     => 'where-needed',
+			'sections'      => array(
+				array(
+					'type'    => 'text',
+					'heading' => 'Foundation Overview',
+					'paragraphs' => array(
+						'Daan Foundation was founded in 2020 and officially registered in 2023. From humble beginnings as a small iftar initiative, we have grown into an organisation serving hundreds of thousands of people across communities in need.'
+					)
+				),
+				array(
+					'type'    => 'grid',
+					'items'   => array(
+						array( 'title' => '500,000+', 'desc' => 'Meals Distributed' ),
+						array( 'title' => '1,000s', 'desc' => 'Served Annually During Ramadan' ),
+						array( 'title' => '365', 'desc' => 'Days of Daily Meals' ),
+					)
+				),
+				array(
+					'type'    => 'checklist',
+					'heading' => 'Core Mission',
+					'items'   => array(
+						'Daily meals through Community Kitchen — no individual remains hungry',
+						'Serve all without discrimination, regardless of background',
+						'Expand food access during Ramadan with large-scale iftar programmes',
+						'Support vulnerable families with ration kits throughout the year',
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Community Kitchen',
+					'paragraphs' => array(
+						'The Community Kitchen is at the heart of everything we do. Every evening, freshly cooked meals are prepared and distributed to labourers, families, elderly individuals, and anyone in need.',
+						'Approximate cost per meal: ₹59. Operating daily since 2020, the Community Kitchen has served hundreds of thousands of meals — one plate at a time.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Ramadan Programme',
+					'paragraphs' => array(
+						'What began as a small iftar for a few families has grown into a large-scale Ramadan programme. Each year, we serve thousands of fasting individuals with iftar meals and distribute ration kits to struggling families throughout the holy month. Our volunteer-driven team works tirelessly to ensure every family is served.'
+					)
+				),
+				array(
+					'type'    => 'grid',
+					'heading' => 'Looking Ahead',
+					'items'   => array(
+						array( 'title' => 'Expand Community Kitchens', 'desc' => 'Open additional community kitchen locations to serve more areas.' ),
+						array( 'title' => 'Increase Daily Capacity', 'desc' => 'Grow the number of meals prepared and distributed every evening.' ),
+						array( 'title' => 'Strengthen Ramadan Outreach', 'desc' => 'Expand our Ramadan iftar and ration distribution programmes.' ),
+						array( 'title' => 'Support More Families', 'desc' => 'Reach more vulnerable families with food, livelihood, and welfare support.' ),
+					)
+				),
+				array(
+					'type'        => 'cta',
+					'heading'     => 'Help Us Grow Our Impact',
+					'description' => 'Your donation fuels our mission to serve more meals, reach more families, and build a hunger-free future.',
+					'button_text' => 'Donate Now',
+					'button_url'  => '/donate',
+				),
+			),
+		),
+
+		'serving-with-dignity' => array(
+			'title'             => 'Serving Every Needy Person With Dignity',
+			'subtitle'          => 'Kindness, Respect, and Humanity for Every Person We Serve',
+			'hero_description'  => 'Every person deserves dignity and compassionate support, regardless of financial condition, age, health, or circumstance.',
+			'gradient'          => 'from-red-600 to-orange-700',
+			'image'             => '/images/aid-distribution-elderly.jpg',
+			'button_text'       => 'Donate Now',
+			'button_url'        => '/donate',
+			'default_cause'     => 'where-needed',
+			'sections'      => array(
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'Daan Foundation believes that every person deserves dignity, compassion, and respectful humanitarian support, regardless of financial condition, age, health, or personal circumstances.',
+						'Since 2020, the foundation has worked among local communities in India through food distribution, Community Kitchen services, Ramadan Iftar arrangements, ration support, clothing assistance, medical help, and welfare initiatives for vulnerable families.'
+					)
+				),
+				array(
+					'type'    => 'quote',
+					'quote'   => 'The organization\'s mission is simple: to help people facing hardship with kindness, respect, and humanity.',
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Supporting Vulnerable Communities',
+					'paragraphs' => array(
+						'Many people facing poverty or emergencies also struggle with additional challenges such as old age, illness, disability, unemployment, or lack of family support.',
+						'These difficulties often make it harder for them to arrange food, healthcare, or other basic necessities. Daan Foundation believes humanitarian support should reach every vulnerable person with dignity and compassion.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Community-Based Humanitarian Work',
+					'paragraphs' => array(
+						'As a community-focused charitable organization working within India, Daan Foundation understands that every family\'s needs are different. Because of this, the foundation tries to ensure that its support remains respectful, compassionate, accessible, and community-centered.',
+						'Whether through cooked meal distribution, ration kits, or welfare support, volunteers work directly among communities to identify and assist people in need.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Listening to People & Understanding Their Needs',
+					'paragraphs' => array(
+						'Daan Foundation believes real humanitarian work begins with listening to people. The organization regularly interacts with poor families, laborers, elderly individuals, women, patients, and local community members.',
+						'This direct connection helps the foundation understand local needs more effectively and improve its charitable activities responsibly.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Supporting People With Respect',
+					'paragraphs' => array(
+						'The foundation believes charity should always protect the dignity of the people receiving support. During food distribution, Ramadan Iftar programs, Community Kitchen services, and welfare activities, volunteers try their best to maintain kindness, respectful behavior, and compassion toward every individual.',
+						'Special attention is often given to elderly people, widows, patients, poor families, and individuals facing serious financial hardship.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Building Stronger Communities Together',
+					'paragraphs' => array(
+						'Daan Foundation believes meaningful humanitarian work becomes possible when communities come together through charity, volunteer efforts, compassion, and collective responsibility.',
+						'Every meal distributed and every family supported reflects the generosity of donors, volunteers, and supporters who believe in helping humanity sincerely.'
+					)
+				),
+				array(
+					'type'    => 'notice',
+					'heading' => 'Our Mission in India',
+					'content' => 'Daan Foundation operates only within India and focuses entirely on charitable and humanitarian activities for local communities. The organization does not operate internationally and does not conduct activities outside India.',
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Continuing the Journey of Humanity',
+					'paragraphs' => array(
+						'Since its beginning in 2020, Daan Foundation has continued growing through the support of local communities, volunteers, and donors. The foundation remains committed to ensuring that no vulnerable person feels ignored and that humanitarian support reaches people with dignity, care, and compassion.'
+					)
+				),
+				array(
+					'type'        => 'cta',
+					'heading'     => 'Help Us Serve With Dignity',
+					'description' => 'Your support helps ensure every person we reach is treated with kindness, respect, and humanity.',
+					'button_text' => 'Donate Now',
+					'button_url'  => '/donate',
+				),
+			),
+		),
+
+		'supporting-women' => array(
+			'title'             => 'Supporting Women With Dignity & Care',
+			'subtitle'          => 'No Woman Should Sleep Hungry',
+			'hero_description'  => 'Every woman deserves dignity, care, respect, and access to basic necessities such as food, healthcare, and community support.',
+			'gradient'          => 'from-orange-700 to-amber-800',
+			'image'             => '/images/extra-6.jpg',
+			'button_text'       => 'Donate Now',
+			'button_url'        => '/donate',
+			'default_cause'     => 'where-needed',
+			'sections'      => array(
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'Daan Foundation believes that every woman deserves dignity, care, respect, and access to basic necessities such as food, healthcare, and community support.',
+						'Across many communities, women — especially housewives, widows, elderly women, and pregnant mothers — often silently carry the burden of financial hardship, household responsibilities, and family care. During difficult times, many women prioritize feeding their children and families before themselves.'
+					)
+				),
+				array(
+					'type'    => 'quote',
+					'quote'   => 'Daan Foundation believes that no woman should sleep hungry.',
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Our Commitment to Women & Families',
+					'paragraphs' => array(
+						'Since 2020, Daan Foundation has worked continuously through food distribution, Community Kitchen services, Ramadan Iftar arrangements, ration kit distribution, and welfare support for vulnerable families in India. The organization remains committed to supporting women facing hardship by ensuring that, wherever possible, families receive food support, struggling mothers receive assistance, and vulnerable women are treated with dignity and respect.',
+						'The foundation especially understands the importance of helping housewives from financially struggling households, widows, elderly women, pregnant women, and mothers caring for children during difficult situations.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Food Is a Basic Human Need',
+					'paragraphs' => array(
+						'Daan Foundation believes that one of the most important responsibilities of humanitarian work is ensuring people have access to food.',
+						'For women managing homes under financial pressure, arranging daily meals can become emotionally and physically exhausting. Pregnant women and mothers require proper nutrition and care not only for themselves, but also for the health and wellbeing of their children.',
+						'Through its Community Kitchen and food support initiatives, Daan Foundation tries to ensure that vulnerable women and families receive cooked meals, ration kits, and emergency support whenever possible.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Working Towards Women\'s Support & Empowerment',
+					'paragraphs' => array(
+						'Daan Foundation understands that helping women is not limited only to food support. Real community welfare also means listening to women\'s needs, respecting their dignity, supporting struggling families, and encouraging community compassion toward vulnerable women.',
+						'The organization remains willing and committed to supporting women through humanitarian and welfare initiatives within its capacity and available resources.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Compassion During Difficult Times',
+					'paragraphs' => array(
+						'Many women facing poverty or emergencies continue caring for their families while silently struggling themselves.',
+						'Daan Foundation believes humanitarian support should reach such women with kindness and respect — without discrimination and without making them feel ignored, whether through cooked meal distribution, Ramadan Iftar support, ration assistance, clothing support, or medical help.',
+						'The organization tries its best to stand beside vulnerable families and women during difficult moments.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Building a More Compassionate Community',
+					'paragraphs' => array(
+						'Daan Foundation believes stronger communities are built when people come together to support vulnerable families with compassion and responsibility. The foundation continues working through the support of donors, volunteers, local communities, and people who believe in helping humanity sincerely.',
+						'Every meal distributed and every family supported represents a shared effort to reduce hardship and bring dignity, comfort, and hope to people in need.'
+					)
+				),
+				array(
+					'type'    => 'notice',
+					'heading' => 'Our Ongoing Mission',
+					'content' => 'Daan Foundation operates only within India and remains committed to community-based humanitarian and charitable work. Its mission remains simple: to serve humanity with compassion, dignity, and responsibility.',
+				),
+				array(
+					'type'        => 'cta',
+					'heading'     => 'Help Support Women in Need',
+					'description' => 'Your donation helps ensure vulnerable women and mothers receive food, care, and dignity.',
+					'button_text' => 'Donate Now',
+					'button_url'  => '/donate',
+				),
+			),
+		),
 	);
 
 	// Filter out faq placeholders — they have 'faq' type but no 'items' for demo
