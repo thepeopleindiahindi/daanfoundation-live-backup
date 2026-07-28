@@ -704,14 +704,17 @@ h1, h2, h3, h4, h5, h6 {
 
 /* tpl-sidebar-content.php fallback layout (content + donation sidebar,
    used by pages with no structured daan_get_page_data() entry — e.g.
-   the "Our Work" pages). Desktop (>=1024px): content left, donation
-   card right, unchanged from before — no `order` is set outside the
-   media query below, so children just render in source order (content
-   div comes first in the HTML). Below 1024px: stays a flex container
-   (flex-direction:column, not display:block) specifically so `order`
-   still applies — that's what lets the donation card render ABOVE the
-   content on mobile while the underlying HTML order (and screen-reader
-   reading order) stays content-then-sidebar either way. */
+   the "Our Work" pages). The page <h1> now renders outside this row
+   entirely (template-level, via the_title()), so it's unaffected by
+   the ordering below either way -- it's always first.
+   Desktop (>=1024px): content left, donation card right, unchanged --
+   no `order` is set outside the media query, so children render in
+   source order (content div comes first in the HTML). Below 1024px:
+   stays a flex container (flex-direction:column, not display:block)
+   specifically so `order` still applies -- that's what lets the
+   donation card render above the body content on mobile, below the
+   title, while the underlying HTML order (and screen-reader reading
+   order) stays title-content-then-sidebar either way. */
 .sidebar-fallback-row { display: flex; flex-wrap: wrap; gap: 32px; }
 .sidebar-fallback-content { flex: 2; min-width: 0; }
 .sidebar-fallback-aside { flex: 1; min-width: 280px; }

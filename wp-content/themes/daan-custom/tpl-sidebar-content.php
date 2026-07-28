@@ -157,21 +157,19 @@ $page_data = daan_get_page_data( $page_slug );
 	<?php else : ?>
 
 		<!-- Fallback: Standard WordPress Content -->
-		<div style="max-width:1280px;margin:0 auto;padding:48px 16px;">
-			<div class="sidebar-fallback-row">
-				<div class="sidebar-fallback-content">
-					<?php
-					while ( have_posts() ) :
-						the_post();
-						the_content();
-					endwhile;
-					?>
+		<?php if ( have_posts() ) : the_post(); ?>
+			<div style="max-width:1280px;margin:0 auto;padding:48px 16px;">
+				<h1 style="font-size:2.25rem;font-weight:800;color:#111827;line-height:1.15;margin:0 0 1.5rem;"><?php the_title(); ?></h1>
+				<div class="sidebar-fallback-row">
+					<div class="sidebar-fallback-content">
+						<?php the_content(); ?>
+					</div>
+					<aside class="sidebar-fallback-aside">
+						<?php get_template_part( 'template-parts/donation-sidebar' ); ?>
+					</aside>
 				</div>
-				<aside class="sidebar-fallback-aside">
-					<?php get_template_part( 'template-parts/donation-sidebar' ); ?>
-				</aside>
 			</div>
-		</div>
+		<?php endif; ?>
 
 	<?php endif; ?>
 <?php
