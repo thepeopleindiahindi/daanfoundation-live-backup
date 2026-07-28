@@ -1557,6 +1557,243 @@ function daan_get_page_data( $slug ) {
 				),
 			),
 		),
+
+		'donation-is-trust' => array(
+			'title'             => 'Your Donation Is a Trust',
+			'subtitle'          => 'An Amanah — Used Honestly, Carefully, Responsibly',
+			'hero_description'  => 'Every donation given by supporters is a trust that must be used responsibly to help people in need.',
+			'gradient'          => 'from-amber-600 to-orange-800',
+			'image'             => '/images/ration-kit-front.jpg',
+			'button_text'       => 'Donate Now',
+			'button_url'        => '/donate',
+			'default_cause'     => 'where-needed',
+			'sections'      => array(
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'Daan Foundation believes that every donation given by supporters is a trust — an amanah — that must be used responsibly, honestly, and carefully to help people in need.',
+						'Since 2020, the foundation has continued serving vulnerable communities within India through food distribution, Community Kitchen services, Ramadan Iftar arrangements, ration support, clothing assistance, medical help, educational support, and welfare initiatives.',
+						'The foundation operates only within India and focuses entirely on helping local communities and families facing hardship.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Our Main Mission: Feeding the Hungry',
+					'paragraphs' => array(
+						'Through its Community Kitchen and food support initiatives, the organization regularly distributes cooked meals and food assistance to laborers, poor families, elderly individuals, patients, travelers, and people struggling during difficult situations.',
+						'What started in 2020 as a small 15-day Ramadan food initiative gradually became a continuous humanitarian effort serving communities throughout the year.'
+					)
+				),
+				array(
+					'type'    => 'quote',
+					'quote'   => 'To help ensure that no needy person sleeps hungry.',
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Beyond Food: Supporting Humanity',
+					'paragraphs' => array(
+						'Although food support remains the foundation\'s central mission, Daan Foundation also works for other humanitarian causes within its capacity and available resources. These efforts include:'
+					)
+				),
+				array(
+					'type'    => 'checklist',
+					'items'   => array(
+						'Distributing clothes to needy individuals',
+						'Helping patients receive medical support',
+						'Supporting education for poor children',
+						'Assisting financially struggling families during marriages, especially helping poor girls and their families',
+						'Supporting small livelihood efforts to help people move toward self-reliance',
+					)
+				),
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'The organization believes humanitarian work is not only about temporary relief but also about helping people regain stability and dignity in their lives.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Transparency & Responsibility',
+					'paragraphs' => array(
+						'Daan Foundation understands that donors place trust in the organization when they contribute through Zakat, Sadaqah, charity donations, food support, or community welfare contributions.',
+						'Like every organization involved in regular charitable work, certain operational and management expenses are necessary to continue activities effectively and consistently — including transportation, food preparation, packaging, volunteer coordination, communication, community outreach, and basic operational support.',
+						'The organization believes honesty and transparency are more important than unrealistic promises.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Why Trust Matters',
+					'paragraphs' => array(
+						'Daan Foundation believes trust is built through consistent humanitarian work, responsible use of donations, direct community engagement, and sincere service to humanity.',
+						'Since 2020, thousands of people have benefited from the foundation\'s charitable efforts through daily meal distribution, Ramadan Iftar programs, ration kit support, clothing distribution, medical assistance, and welfare activities.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Supporting Small Livelihood Efforts',
+					'paragraphs' => array(
+						'Alongside relief work, Daan Foundation also believes in helping people become more self-dependent wherever possible, encouraging livelihood opportunities and helping people move toward financial stability and self-reliance.',
+						'The foundation believes even small opportunities can help restore confidence, dignity, and hope.'
+					)
+				),
+				array(
+					'type'    => 'notice',
+					'heading' => 'Working Only Within India',
+					'content' => 'Daan Foundation works only within India and focuses entirely on humanitarian and charitable activities for communities in need inside the country. The organization does not operate internationally and is not authorized to receive donations or conduct activities outside India.',
+				),
+				array(
+					'type'        => 'cta',
+					'heading'     => 'A Mission Built on Compassion',
+					'description' => 'Every meal distributed and every family helped represents the trust of people who believe in helping humanity sincerely.',
+					'button_text' => 'Donate Now',
+					'button_url'  => '/donate',
+				),
+			),
+		),
+
+		'empowering-livelihoods' => array(
+			'title'             => 'Empowering Lives Through Sustainable Livelihoods',
+			'subtitle'          => 'True Charity Goes Beyond Immediate Relief',
+			'hero_description'  => 'It helps people stand on their own feet — small, meaningful support tailored to real needs.',
+			'gradient'          => 'from-orange-800 to-red-700',
+			'image'             => '/images/extra-3.jpg',
+			'button_text'       => 'Donate Now',
+			'button_url'        => '/donate',
+			'default_cause'     => 'where-needed',
+			'sections'      => array(
+				array(
+					'type'    => 'text',
+					'heading' => 'Our Approach',
+					'paragraphs' => array(
+						'We believe in empowering individuals to become self-reliant. Our approach is simple yet effective: identify willing individuals who want to improve their livelihoods, understand their existing skills and opportunities, provide small, meaningful support tailored to their needs, and help them become self-reliant and independent.'
+					)
+				),
+				array(
+					'type'    => 'grid',
+					'heading' => 'Types of Livelihood Support',
+					'items'   => array(
+						array( 'title' => 'Small Business Support', 'desc' => 'Helping individuals set up grocery stores, street vending, and other small businesses.' ),
+						array( 'title' => 'Food Cart Setup', 'desc' => 'Providing ice cream and food cart setups for street vendors to earn a steady income.' ),
+						array( 'title' => 'Sewing Machines for Women', 'desc' => 'Equipping women with sewing machines for home-based tailoring work.' ),
+						array( 'title' => 'Skill-Based Support', 'desc' => 'Identifying existing skills and providing targeted support to enhance them.' ),
+					)
+				),
+				array(
+					'type'    => 'testimonials',
+					'heading' => 'Stories of Empowerment',
+					'items'   => array(
+						array( 'quote' => 'With support from Daan Foundation, Rafiq started a street cart business. Today, he earns a steady income and supports his family independently.', 'name' => 'Rafiq' ),
+						array( 'quote' => 'Shabana received a sewing machine and started stitching clothes from home. She now earns enough to support her children\'s education.', 'name' => 'Shabana' ),
+						array( 'quote' => 'Imran received help to improve his general store. With better stock and setup, his business grew and his family\'s livelihood improved significantly.', 'name' => 'Imran' ),
+					)
+				),
+				array(
+					'type'        => 'cta',
+					'heading'     => 'Help Someone Stand on Their Own Feet',
+					'description' => 'Your donation can provide the tools and support someone needs to build a sustainable livelihood.',
+					'button_text' => 'Donate Now',
+					'button_url'  => '/donate',
+				),
+			),
+		),
+
+		'why-transparency' => array(
+			'title'             => 'Why Daan Foundation Does Not Follow a "100% Donation Policy"',
+			'subtitle'          => 'Honest About How Your Donation Is Used',
+			'hero_description'  => 'Transparency and effective service matter more to us than unrealistic promises.',
+			'gradient'          => 'from-amber-700 to-orange-700',
+			'image'             => '/images/extra-2.jpg',
+			'button_text'       => 'Donate Now',
+			'button_url'        => '/donate',
+			'default_cause'     => 'where-needed',
+			'sections'      => array(
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'Daan Foundation believes that transparency, honesty, and effective service are essential parts of charitable work. Many people ask an important question when donating:'
+					)
+				),
+				array(
+					'type'    => 'quote',
+					'quote'   => 'Does 100% of my donation directly reach the needy?',
+				),
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'While the intention behind this question is understandable and sincere, the reality of humanitarian work is more practical and complex. Like many responsible charities around the world, Daan Foundation believes that a strict "100% donation policy" is neither fully practical nor sustainable for long-term humanitarian service. Instead, we focus on an even more important question:'
+					)
+				),
+				array(
+					'type'    => 'quote',
+					'quote'   => 'How effectively and transparently is my donation being used to help people?',
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Why Humanitarian Work Has Operational Costs',
+					'paragraphs' => array(
+						'Providing food, ration kits, medical help, clothing, educational support, and community welfare services requires more than donations alone. Every charitable activity involves real operational and administrative expenses. For example:'
+					)
+				),
+				array(
+					'type'    => 'checklist',
+					'items'   => array(
+						'Transportation for delivering food and ration kits',
+						'Packaging and storage expenses',
+						'Fuel and travel costs',
+						'Digital payment systems and website maintenance',
+						'Communication and coordination expenses',
+						'Volunteer support and field operations',
+						'Documentation, accountability, and transparency systems',
+						'Emergency response arrangements during crises',
+					)
+				),
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'Without these systems, humanitarian work cannot function effectively or consistently.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Serving Communities Responsibly',
+					'paragraphs' => array(
+						'Since 2020, Daan Foundation has continuously distributed food and supported vulnerable families through various welfare initiatives. Maintaining regular charitable work over several years requires planning, coordination, and sustainable systems.',
+						'Our goal is not only to distribute assistance, but also to maintain trust, accountability, and long-term continuity in serving communities.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Transparency Matters More Than Slogans',
+					'paragraphs' => array(
+						'Sometimes organizations promote "100% donation" claims without clearly explaining how operational costs are actually managed. Daan Foundation believes donors deserve complete honesty regarding how charitable activities are carried out.',
+						'We believe transparency builds stronger trust than unrealistic promises.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Administrative Support Helps Increase Impact',
+					'paragraphs' => array(
+						'Operational and administrative systems are not separate from humanitarian work — they help make humanitarian work possible, enabling the organization to reach more families, respond during emergencies, and maintain consistent food distribution.',
+						'Without proper infrastructure and coordination, even the best intentions may fail to create lasting impact.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'A Trust Built on Service',
+					'paragraphs' => array(
+						'The foundation continues its work through the trust of donors, volunteers, and supporters who believe in helping humanity sincerely and responsibly.',
+						'Every contribution — whether Zakat, Sadaqah, food support, ration assistance, clothing, or medical help — plays a role in bringing relief and hope to vulnerable families.'
+					)
+				),
+				array(
+					'type'        => 'cta',
+					'heading'     => 'Give With Confidence',
+					'description' => 'Daan Foundation remains committed to serving humanity with compassion, honesty, and responsibility.',
+					'button_text' => 'Donate Now',
+					'button_url'  => '/donate',
+				),
+			),
+		),
 	);
 
 	// Filter out faq placeholders — they have 'faq' type but no 'items' for demo
