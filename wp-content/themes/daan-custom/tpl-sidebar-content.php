@@ -158,8 +158,8 @@ $page_data = daan_get_page_data( $page_slug );
 
 		<!-- Fallback: Standard WordPress Content -->
 		<div style="max-width:1280px;margin:0 auto;padding:48px 16px;">
-			<div style="display:flex;flex-wrap:wrap;gap:32px;">
-				<div style="flex:2;min-width:0;">
+			<div class="sidebar-fallback-row">
+				<div class="sidebar-fallback-content">
 					<?php
 					while ( have_posts() ) :
 						the_post();
@@ -167,7 +167,7 @@ $page_data = daan_get_page_data( $page_slug );
 					endwhile;
 					?>
 				</div>
-				<aside style="flex:1;min-width:280px;">
+				<aside class="sidebar-fallback-aside">
 					<?php get_template_part( 'template-parts/donation-sidebar' ); ?>
 				</aside>
 			</div>
