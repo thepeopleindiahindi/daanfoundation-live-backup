@@ -893,6 +893,189 @@ function daan_get_page_data( $slug ) {
 				),
 			),
 		),
+
+		'impact' => array(
+			'title'             => 'Our Impact',
+			'subtitle'          => 'A 6-Year Journey of Compassion, Growth & Service',
+			'hero_description'  => 'From a small Ramadan Iftar initiative to a trusted humanitarian mission serving communities across India.',
+			'gradient'          => 'from-orange-600 to-orange-700',
+			'image'             => '/images/impact-1.jpg',
+			'button_text'       => 'Donate Now',
+			'button_url'        => '/donate',
+			'default_cause'     => 'where-needed',
+			'sections'      => array(
+				array(
+					'type'    => 'grid',
+					'heading' => 'Our Impact in Numbers',
+					'items'   => array(
+						array( 'title' => '500,000+', 'desc' => 'Meals Distributed' ),
+						array( 'title' => '100K+', 'desc' => 'Iftar Kits Distributed' ),
+						array( 'title' => '6+', 'desc' => 'Years of Service' ),
+						array( 'title' => '600K+', 'desc' => 'Beneficiaries Reached' ),
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Essential Food Support',
+					'paragraphs' => array(
+						'Many families struggle every day to arrange even basic meals. Financial difficulties, unemployment, illness, and emergencies often leave vulnerable people uncertain about how they will feed their families.',
+						'Daan Foundation works to ensure that needy individuals and families receive essential support with dignity and compassion.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Daily Food Distribution',
+					'paragraphs' => array(
+						'Since 2020, the foundation has continued distributing cooked meals and food support to people in need. What initially began as a temporary 15-day Ramadan effort gradually became a continuous humanitarian mission.',
+						'During emergencies and difficult situations, food assistance acts as an immediate relief for vulnerable communities, especially daily wage workers, elderly individuals, patients, and struggling families.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Ramadan & Iftar Support',
+					'paragraphs' => array(
+						'Every Ramadan, Daan Foundation organizes Iftar arrangements for fasting individuals and distributes food support to families who face difficulties arranging meals during the holy month.',
+						'The foundation also provides ration kits containing essential food items to help families prepare for Ramadan with greater ease and dignity.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Qurbani & Community Welfare',
+					'paragraphs' => array(
+						'Through initiatives such as Qurbani Easy, the organization helps facilitate Qurbani contributions and utilizes the meat distribution process to support vulnerable communities.',
+						'Qurbani meat and cooked meals are distributed among needy families so they can celebrate Eid with comfort and happiness.'
+					)
+				),
+				array(
+					'type'    => 'checklist',
+					'heading' => 'Supporting Families Beyond Food',
+					'items'   => array(
+						'Distribution of ration kits',
+						'Providing old clothes and essential items',
+						'Assisting financially struggling families during marriages',
+						'Helping patients receive medical treatment and healthcare support',
+						'Supporting educational needs of underprivileged children',
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Working Towards Long-Term Change',
+					'paragraphs' => array(
+						'The foundation believes that humanitarian work is not only about responding during emergencies but also about standing beside communities consistently.',
+						'By continuing food support, welfare activities, and charitable initiatives, Daan Foundation aims to create positive and lasting impact among vulnerable sections of society.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Islamic Social Finance & Community Support',
+					'paragraphs' => array(
+						'Daan Foundation continues its charitable activities through the support of donors, volunteers, and well-wishers who believe in helping humanity through compassion and collective responsibility.',
+						'Every contribution — whether food, clothing, ration support, medical assistance, or charity donations — helps bring relief and hope to families in need.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Daan Foundation\'s Journey of Humanity (2020–2026)',
+					'paragraphs' => array(
+						'Daan Foundation began with a small humanitarian effort in 2020, when a few volunteers decided to distribute food during Ramadan for only 15 days — from the 15th Roza until the 30th Roza before Eid.',
+						'What started as a temporary Ramadan initiative gradually transformed into a continuous humanitarian mission. During the pandemic and lockdown period, many families faced unemployment, hunger, and financial hardship — and the work continued even after Ramadan ended.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => '2020 — The Beginning of a Mission',
+					'paragraphs' => array(
+						'In 2020, Daan Foundation started its first food distribution effort during Ramadan. The original plan was to provide cooked meals only from the 15th Roza until the 30th Roza — a total of 15 days.',
+						'Despite limited resources, volunteers worked continuously to prepare and distribute meals to people affected by poverty and lockdown conditions. That small initiative became the starting point of a much larger humanitarian journey.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => '2021 — Expanding Food & Iftar Support',
+					'paragraphs' => array(
+						'As awareness about the foundation\'s work increased, more people came forward to support the mission. During Ramadan 2021, Daan Foundation expanded its Iftar arrangements and started reaching larger numbers of fasting individuals and struggling families.',
+						'The organization also began distributing ration kits containing essential food supplies to households facing financial difficulties, and the Community Kitchen initiative became more organized.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => '2022 — Building a Stronger Community Kitchen',
+					'paragraphs' => array(
+						'By 2022, the Community Kitchen had become one of the foundation\'s most important humanitarian initiatives. Hundreds of meals were being prepared and distributed regularly to laborers, elderly individuals, patients, travelers, and poor families.',
+						'The organization also expanded its welfare activities by distributing clothes to needy families, helping financially struggling families during marriages, and supporting patients with medical treatment assistance. The work was no longer limited to Ramadan — it had become a year-round mission of service.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => '2023 — Reaching More People in Need',
+					'paragraphs' => array(
+						'In 2023, Daan Foundation continued to grow with the support of donors and volunteers. Food distribution activities expanded further, and more ration kits were delivered to families facing hardship. The foundation also strengthened its emergency support efforts — every year, the number of people benefiting from its support continued increasing.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => '2024 — Strengthening Humanitarian Efforts',
+					'paragraphs' => array(
+						'By 2024, Daan Foundation had become a trusted community-driven charitable initiative for many vulnerable families. Its daily food distribution and Ramadan Iftar programs expanded significantly, while welfare support activities continued helping people in need with dignity and compassion.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => '2025 — Thousands Benefiting During Ramadan',
+					'paragraphs' => array(
+						'What once started with helping around 1,000 people during Ramadan had now expanded dramatically. During Ramadan 2025, Daan Foundation was able to provide Iftar support to thousands of fasting individuals through cooked meals, food distribution, and ration assistance programs.',
+						'The Community Kitchen continued serving hundreds of meals daily through the support of Zakat, Sadaqah, charity donations, and community contributions — a scale of humanitarian work far beyond what anyone imagined in 2020.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => '2026 — Continuing the Journey of Humanity',
+					'paragraphs' => array(
+						'By 2026, Daan Foundation had distributed more than 500,000 food plates and meals through its various humanitarian activities. From a small 15-day Ramadan effort to a growing charitable foundation, the journey reflects the power of sincere intentions, community support, and consistent humanitarian work.'
+					)
+				),
+				array(
+					'type'    => 'checklist',
+					'heading' => 'Today, the Foundation Continues Serving Through',
+					'items'   => array(
+						'Daily food distribution',
+						'Community Kitchen services',
+						'Ramadan Iftar arrangements',
+						'Ration kit distribution',
+						'Clothing support for needy families',
+						'Medical assistance for patients',
+						'Welfare and emergency support programs',
+					)
+				),
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'Every meal distributed, every ration kit delivered, and every family supported represents the generosity of donors, volunteers, and supporters who believe in helping humanity. Daan Foundation continues its journey with the same spirit with which it began in 2020: serving people with dignity, compassion, responsibility, and hope.'
+					)
+				),
+				array(
+					'type'    => 'grid',
+					'heading' => 'Our Programs',
+					'items'   => array(
+						array( 'title' => 'Community Kitchen', 'desc' => 'Daily free meal distribution serving freshly cooked food every evening.' ),
+						array( 'title' => 'Ration Kit Distribution', 'desc' => 'Essential food supplies for struggling families year-round.' ),
+						array( 'title' => 'Fidyah & Kaffarah', 'desc' => 'Fulfil your Islamic obligation by feeding the needy.' ),
+					)
+				),
+				array(
+					'type'    => 'notice',
+					'heading' => 'Working Only Within India',
+					'content' => 'Daan Foundation operates only within India and focuses entirely on charitable and humanitarian activities within Indian geography.',
+				),
+				array(
+					'type'        => 'cta',
+					'heading'     => 'Every Meal Is More Than Food',
+					'description' => 'It is dignity, hope, and humanity. Together, we can build a future where no one sleeps hungry.',
+					'button_text' => 'Donate Now',
+					'button_url'  => '/donate',
+				),
+			),
+		),
 	);
 
 	// Filter out faq placeholders — they have 'faq' type but no 'items' for demo
