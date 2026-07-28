@@ -1076,6 +1076,256 @@ function daan_get_page_data( $slug ) {
 				),
 			),
 		),
+
+		'charity-in-action' => array(
+			'title'             => 'Your Charity in Action',
+			'subtitle'          => 'Every Donation Becomes a Meal, a Kit, a Moment of Relief',
+			'hero_description'  => 'See how your Zakat, Sadaqah, and charity are transformed into real, everyday support for families across India.',
+			'gradient'          => 'from-amber-600 to-amber-700',
+			'image'             => '/images/food-distribution-ramadan.jpg',
+			'button_text'       => 'Donate Now',
+			'button_url'        => '/donate',
+			'default_cause'     => 'where-needed',
+			'sections'      => array(
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'Daan Foundation has been working continuously since 2020 to support vulnerable families through food assistance, Ramadan support, community welfare, and humanitarian services. What began as a small Ramadan initiative has grown into a regular community effort powered by the generosity of people who donate their Zakat, Sadaqah, charity, and other forms of support to help those in need.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Supporting Families Through Ramadan',
+					'paragraphs' => array(
+						'Every Ramadan, Daan Foundation arranges Iftar meals and food support for fasting individuals and struggling families. Through the support of donors, the foundation provides essential food items and cooked meals to help people break their fast with dignity.',
+						'The organization also distributes ration kits containing important household food supplies to families facing financial hardship during the holy month.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Community Kitchen Initiative',
+					'paragraphs' => array(
+						'One of the foundation\'s important ongoing humanitarian efforts is its Community Kitchen, which has continued operating regularly since 2020.',
+						'Through this initiative, cooked meals are prepared and distributed daily to needy individuals, laborers, poor families, patients, travelers, and other vulnerable members of society. Every day, hundreds of people benefit from this food support program. This community kitchen operates through the generosity of people who contribute through:'
+					)
+				),
+				array(
+					'type'    => 'checklist',
+					'items'   => array(
+						'Zakat',
+						'Sadaqah',
+						'Charity donations',
+						'Food donations',
+						'Community support initiatives',
+					)
+				),
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'The support of donors helps ensure that food continues reaching those who may otherwise struggle to arrange regular meals.'
+					)
+				),
+				array(
+					'type'    => 'checklist',
+					'heading' => 'Charity That Creates Real Impact',
+					'items'   => array(
+						'Daily food distribution',
+						'Iftar arrangements during Ramadan',
+						'Ration kit distribution',
+						'Community kitchen operations',
+						'Clothing support for needy families',
+						'Medical assistance for patients',
+						'Welfare support for vulnerable individuals',
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Continuing the Mission',
+					'paragraphs' => array(
+						'Since its beginning in 2020, Daan Foundation has remained committed to serving humanity with compassion, dignity, and responsibility.',
+						'Every donation, every meal, and every act of support helps bring relief, hope, and comfort to families facing hardship. The foundation continues its mission through the collective efforts of volunteers, supporters, and donors who believe in helping humanity through charity and kindness.'
+					)
+				),
+				array(
+					'type'        => 'cta',
+					'heading'     => 'Put Your Charity Into Action',
+					'description' => 'Every donation you make is used to serve those who need it most. Join us in making a real difference.',
+					'button_text' => 'Donate Now',
+					'button_url'  => '/donate',
+				),
+			),
+		),
+
+		'community-trust' => array(
+			'title'             => 'Community Trust & Feedback',
+			'subtitle'          => 'The True Strength of Our Work Is Reflected in the Trust of Those We Serve',
+			'hero_description'  => 'Real voices from the communities, volunteers, and families Daan Foundation has worked alongside since 2020.',
+			'gradient'          => 'from-orange-500 to-red-600',
+			'image'             => '/images/extra-5.jpg',
+			'button_text'       => 'Donate Now',
+			'button_url'        => '/donate',
+			'default_cause'     => 'where-needed',
+			'sections'      => array(
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'Daan Foundation, Amroha, Uttar Pradesh, India believes that the true strength of humanitarian work is reflected in the trust, prayers, and feedback of the people it serves.',
+						'Since 2020, the foundation has worked closely with communities through food distribution, Community Kitchen services, Ramadan Iftar arrangements, ration support, clothing distribution, medical assistance, and welfare initiatives. Because the organization works directly among people and communities, many individuals, volunteers, and local residents have shared positive feedback about the support they received during difficult times.',
+						'For Daan Foundation, this feedback is more than appreciation — it is a responsibility that motivates the organization to continue serving humanity with honesty, compassion, and dignity.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Our Commitment to Communities',
+					'paragraphs' => array(
+						'Daan Foundation may not operate like large international humanitarian organizations, but it remains deeply committed to helping vulnerable people through transparent and community-focused charitable work. The foundation believes in:'
+					)
+				),
+				array(
+					'type'    => 'checklist',
+					'items'   => array(
+						'Respecting the dignity of every individual',
+						'Listening to community needs',
+						'Providing support without discrimination',
+						'Maintaining honesty and accountability',
+						'Continuously improving humanitarian efforts',
+					)
+				),
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'Every activity carried out by the organization is guided by compassion, responsibility, and sincere intention to help people facing hardship.'
+					)
+				),
+				array(
+					'type'    => 'testimonials',
+					'heading' => 'Community Voices & Volunteer Feedback',
+					'items'   => array(
+						array( 'quote' => 'During difficult financial days, Daan Foundation regularly provided cooked meals and ration support to our family. Their volunteers treated everyone respectfully and helped us during a very difficult time.', 'name' => 'Ramzan Begam' ),
+						array( 'quote' => 'I have personally seen how the Community Kitchen distributes food daily to laborers, poor families, and travelers. Many people benefit from this initiative every single day.', 'name' => 'Chhoti Aapa' ),
+						array( 'quote' => 'During Ramadan, Daan Foundation arranged Iftar meals and ration kits for many struggling families like ours. Their support reduced our worries and helped us complete Ramadan peacefully.', 'name' => 'Raja Bhai' ),
+						array( 'quote' => 'From food distribution to helping needy families, every volunteer works with sincerity and teamwork. Seeing smiles on people\'s faces motivates us to continue serving humanity.', 'name' => 'Faizan Khan', 'role' => 'Volunteer' ),
+						array( 'quote' => 'What makes Daan Foundation different is the respectful way they help people. Whether someone needs food, clothes, or medical support, the organization tries its best to assist them.', 'name' => 'Mohammad Nadeem' ),
+						array( 'quote' => 'I have seen Daan Foundation grow from a small Ramadan food effort into a larger humanitarian mission. Every year, more families are benefiting from its charitable work.', 'name' => 'Nadeem Siddiqui' ),
+						array( 'quote' => 'Many people in the community trust Daan Foundation because the organization works directly among the people and regularly helps families facing hardship.', 'name' => 'Maruf' ),
+						array( 'quote' => 'The foundation not only distributes food but also supports women, children, and poor families through ration kits, clothes distribution, and emergency assistance.', 'name' => 'Shagufta' ),
+						array( 'quote' => 'Since 2020, the organization has continuously helped needy people through food distribution and welfare work. Their consistency is what makes their work valuable.', 'name' => 'Abdul Haq' ),
+						array( 'quote' => 'The volunteers and supporters of Daan Foundation work with compassion and dedication. Their mission is helping humanity, and people can clearly see that in their work.', 'name' => 'Sher Baniya' ),
+						array( 'quote' => 'It is inspiring to see young volunteers coming together to help poor families, organize Iftar arrangements, and support people in need through charitable activities.', 'name' => 'Fatima' ),
+						array( 'quote' => 'The foundation\'s work continues because of the support of donors, volunteers, and local people who believe in helping humanity through charity and kindness.', 'name' => 'Farman Raja' ),
+						array( 'quote' => 'Whether during Ramadan or emergencies, Daan Foundation tries to respond quickly and support struggling families through food assistance and welfare support.', 'name' => 'Adnan Ahmed Khan' ),
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Building Trust Through Service',
+					'paragraphs' => array(
+						'Daan Foundation understands that trust is built through actions, consistency, and transparency. Since 2020, the organization has continued serving communities through:'
+					)
+				),
+				array(
+					'type'    => 'checklist',
+					'items'   => array(
+						'Daily food distribution',
+						'Community Kitchen services',
+						'Ramadan Iftar support',
+						'Ration kit distribution',
+						'Clothing assistance',
+						'Medical support initiatives',
+						'Welfare and emergency relief activities',
+					)
+				),
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'The prayers, feedback, and support of the community continue motivating the foundation to expand its humanitarian efforts responsibly.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Looking Towards the Future',
+					'paragraphs' => array(
+						'Daan Foundation remains committed to improving its charitable work and continuing to support vulnerable communities with dignity and compassion. As the organization grows, more community stories, reviews, and volunteer experiences will continue becoming part of this journey — reflecting the impact that collective kindness and charity can create in people\'s lives.'
+					)
+				),
+				array(
+					'type'        => 'cta',
+					'heading'     => 'Be Part of This Trust',
+					'description' => 'Every contribution helps Daan Foundation continue serving communities with honesty and compassion.',
+					'button_text' => 'Donate Now',
+					'button_url'  => '/donate',
+				),
+			),
+		),
+
+		'history' => array(
+			'title'             => 'The History of Daan Foundation',
+			'subtitle'          => 'From a 15-Day Ramadan Effort to a Lasting Humanitarian Mission',
+			'hero_description'  => 'The story of how Daan Foundation grew from a small volunteer-led food drive into a continuous mission of service.',
+			'gradient'          => 'from-amber-700 to-orange-800',
+			'image'             => '/images/about-hero.jpg',
+			'button_text'       => 'Donate Now',
+			'button_url'        => '/donate',
+			'default_cause'     => 'where-needed',
+			'sections'      => array(
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'Daan Foundation was not established through corporate planning or large institutional support. It began with a simple humanitarian effort during Ramadan in 2020.',
+						'At that time, a small group of volunteers started a food distribution project with a very limited plan. The intention was only to distribute meals from the 15th Roza until the 30th Roza — a total of just 15 days — ending on Eid. It was meant to be a temporary Ramadan initiative to help people facing hardship.',
+						'However, as the work continued, the volunteers witnessed the growing needs of poor and vulnerable families. Hunger, unemployment, illness, and financial struggles became increasingly visible, especially during the pandemic period. Because of this, the work did not stop after Eid.',
+						'What started as a 15-day Ramadan food project in 2020 gradually transformed into a continuous humanitarian mission.',
+						'Since then, Daan Foundation has continued serving communities by regularly distributing food and supporting needy individuals with dignity and compassion.',
+						'Over the years, the organization expanded its activities according to community needs. Some of the important humanitarian works carried out by the foundation include:'
+					)
+				),
+				array(
+					'type'    => 'checklist',
+					'items'   => array(
+						'Daily and emergency food distribution',
+						'Arrangements of Iftar for fasting individuals during Ramadan',
+						'Distribution of ration kits to needy families',
+						'Providing old clothes and essential items to poor people',
+						'Helping financially struggling families during marriages',
+						'Assisting patients in receiving medical treatment',
+						'Supporting underprivileged children in education',
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Growth During Difficult Times',
+					'paragraphs' => array(
+						'The COVID-19 pandemic became an important phase in the foundation\'s journey. During lockdowns, many families lost their sources of income, increasing the need for food and relief work.'
+					)
+				),
+				array(
+					'type'    => 'quote',
+					'quote'   => 'Necessity is the mother of invention.',
+				),
+				array(
+					'type'    => 'text',
+					'paragraphs' => array(
+						'Daan Foundation adapted its charitable efforts to meet these challenges. Alongside food distribution, the organization also introduced the Qurbani Easy platform to help Muslims fulfill their Qurbani obligations conveniently during lockdowns and restrictions.',
+						'The initiative received positive support, and Qurbani meat was also utilized to prepare and distribute cooked meals among vulnerable communities.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'A Mission Built on Service',
+					'paragraphs' => array(
+						'Daan Foundation\'s journey is unique because it did not begin as a large planned organization. It grew naturally through direct community service and the sincere efforts of volunteers who simply wanted to help people in need.',
+						'Today, the foundation continues its mission with the same spirit with which it began in 2020 — serving humanity through food support, charity, healthcare assistance, education support, and welfare initiatives for vulnerable communities.'
+					)
+				),
+				array(
+					'type'        => 'cta',
+					'heading'     => 'Be Part of the Next Chapter',
+					'description' => 'From a 15-day Ramadan effort to a lasting mission — your support keeps this story going.',
+					'button_text' => 'Donate Now',
+					'button_url'  => '/donate',
+				),
+			),
+		),
 	);
 
 	// Filter out faq placeholders — they have 'faq' type but no 'items' for demo
