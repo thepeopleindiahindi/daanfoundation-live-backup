@@ -179,6 +179,7 @@ require_once get_template_directory() . '/inc/smtp-config.php';
 require_once get_template_directory() . '/inc/snippets.php';
 require_once get_template_directory() . '/inc/security.php';
 require_once get_template_directory() . '/inc/seo-fixes.php';
+require_once get_template_directory() . '/inc/content-fixes.php';
 
 add_filter( 'woocommerce_checkout_fields', 'daan_make_phone_mandatory' );
 function daan_make_phone_mandatory( $fields ) {
