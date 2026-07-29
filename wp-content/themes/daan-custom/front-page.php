@@ -13,8 +13,9 @@ get_header();
 <section class="hero">
     <h1 class="sr-only">No one should sleep hungry — Daan Foundation</h1>
     <picture class="hero-picture">
+        <source media="(max-width: 767px)" srcset="<?php echo esc_url( '/images/hero-mobile.webp' ); ?>" type="image/webp">
         <source media="(max-width: 767px)" srcset="<?php echo esc_url( '/images/hero-mobile.jpg' ); ?>">
-        <img class="hero-img" src="<?php echo esc_url( '/images/hero-new-banner.webp' ); ?>" alt="No one should sleep hungry — Daan Foundation">
+        <img class="hero-img" src="<?php echo esc_url( '/images/hero-new-banner.webp' ); ?>" alt="No one should sleep hungry — Daan Foundation" width="1456" height="819">
     </picture>
 
     <div class="hero-overlay-bottom"></div>
