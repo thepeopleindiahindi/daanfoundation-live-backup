@@ -11,6 +11,7 @@ get_header();
 <!-- HERO SECTION — responsive image (mobile crop vs desktop banner) -->
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <section class="hero">
+    <h1 class="sr-only">No one should sleep hungry — Daan Foundation</h1>
     <picture class="hero-picture">
         <source media="(max-width: 767px)" srcset="<?php echo esc_url( '/images/hero-mobile.jpg' ); ?>">
         <img class="hero-img" src="<?php echo esc_url( '/images/hero-new-banner.webp' ); ?>" alt="No one should sleep hungry — Daan Foundation">
@@ -401,43 +402,18 @@ get_header();
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<!-- ZAKAT CALCULATOR -->
+<!-- ZAKAT CALCULATOR — compact trigger; full calculator lives at /zakat-calculator -->
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <section class="section section-warm">
-    <div class="container zakat-grid">
-        <div class="zakat-text">
-            <h2>Calculate Your Zakat</h2>
-            <p>Use our simple Zakat calculator to determine your obligation. We'll help ensure your Zakat reaches those who need it most.</p>
-            <ul class="zakat-features">
-                <li><span class="zakat-dot"></span> Easy-to-use calculator</li>
-                <li><span class="zakat-dot"></span> Updated Nisab values</li>
-                <li><span class="zakat-dot"></span> 100% Zakat policy</li>
-            </ul>
-            <a href="<?php echo esc_url( home_url( '/zakat-calculator' ) ); ?>"
-               style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;font-weight:600;color:var(--primary);transition:gap 0.2s"
-               onmouseover="this.style.gap='0.75rem'" onmouseout="this.style.gap='0.5rem'">
-                Calculate Now
-                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-            </a>
-        </div>
-        <div>
-            <div style="background:#fff;border-radius:16px;padding:2rem;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);text-align:center">
-                <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#F97316" style="margin-bottom:1rem">
+    <div class="container" style="display:flex;justify-content:center;">
+        <a href="<?php echo esc_url( home_url( '/zakat-calculator' ) ); ?>" class="zakat-compact-card">
+            <span class="zakat-compact-icon">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#F97316">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
                 </svg>
-                <p style="color:#64748B;margin:0 0 1rem;font-size:0.9375rem;">Use our simple Zakat calculator to determine your obligation instantly.</p>
-                <a href="<?php echo esc_url( home_url( '/zakat-calculator' ) ); ?>"
-                   style="display:inline-flex;align-items:center;gap:0.5rem;font-weight:700;color:#EA580C;text-decoration:none;transition:gap 0.2s"
-                   onmouseover="this.style.gap='0.75rem'" onmouseout="this.style.gap='0.5rem'">
-                    Open Calculator
-                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
+            </span>
+            <span class="zakat-compact-label">Zakat Calculator</span>
+        </a>
     </div>
 </section>
 
