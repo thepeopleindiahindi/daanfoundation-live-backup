@@ -40,8 +40,8 @@ get_header();
 			array(
 				'active' => true,
 				'title'  => 'Community Kitchen Daily Meals',
-				'image'  => get_template_directory_uri() . '/assets/images/food-distribution-ramadan.jpg',
-				'alt'    => 'Community Kitchen',
+				'image'  => '/images/food-distribution-ramadan.jpg',
+				'alt'    => 'Community Kitchen daily meals distribution',
 				'urgent' => true,
 				'raised' => 75000,
 				'target' => 100000,
