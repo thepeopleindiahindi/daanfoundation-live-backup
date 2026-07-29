@@ -49,8 +49,8 @@ get_header();
 			array(
 				'active' => false, // paused 29 July 2026 -- set to true to bring back
 				'title'  => 'Winter Relief 2026',
-				'image'  => get_template_directory_uri() . '/assets/images/extra-4.jpg',
-				'alt'    => 'Winter Relief',
+				'image'  => '/images/extra-4.jpg',
+				'alt'    => 'Winter Relief 2026 distribution',
 				'urgent' => false,
 				'raised' => 20000,
 				'target' => 50000,
@@ -58,8 +58,8 @@ get_header();
 			array(
 				'active' => false, // paused 29 July 2026 -- set to true to bring back
 				'title'  => 'Ramadan Iftar 2026',
-				'image'  => get_template_directory_uri() . '/assets/images/iftaar-distribution.jpg',
-				'alt'    => 'Ramadan Iftar',
+				'image'  => '/images/iftaar-distribution.jpg',
+				'alt'    => 'Ramadan Iftar 2026 meal distribution',
 				'urgent' => true,
 				'raised' => 60000,
 				'target' => 100000,
