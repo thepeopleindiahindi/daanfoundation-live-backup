@@ -216,6 +216,15 @@ While in there: `hero-mobile.jpg` (268,203 bytes, 1024×1536) was re-encoded to 
 
 **Combined hero image weight: 2,180,630 bytes → 251,464 bytes (~88% reduction).** Full regression sweep confirmed no impact on fixes #1–6.
 
+### Fix #8 — CT2/CT3/M2/M3: Leaked AI-content-brief scaffolding in 3 blog posts — ✅ Done
+Fetching the raw post content via the WordPress REST API revealed the problem was worse than the audit's HTML-level view showed: the leaked "Slug:"/"Meta Description:" lines were sitting in the **visible article body itself**, not only in meta tags, alongside several more leaked production artifacts the audit hadn't separately itemized. Fixed via `the_content` + `rank_math/frontend/description` filters (new `inc/content-fixes.php`), scoped to the three specific post IDs — no new copy was authored, only clearly-erroneous scaffolding removed and one factual error corrected:
+
+- **Post 6555 ("Ramadan 2026 Iftar Donation Guide"):** removed the leaked `Slug:` line from the body; stripped `(EVERGREEN INTRO LINE)`, `(H2)`, `(Snippet-Friendly Numbered List)` annotations from headings; removed a leaked "Image Suggestion (ALT Text):" note and two other leaked writer-instruction sentences ("Short paragraphs (mobile-friendly):", "Adding such search-friendly lines helps..."); removed an unfinished bare-URL citation with no anchor text; removed a leaked "Tags & Categories" metadata block; demoted the duplicate `<h1>Conclusion</h1>` to `<h2>` (CT2). Meta description ("Slug: /ramadan-2026-iftar-donation-guide") replaced with a real description drawn from the post's own intro paragraph (M3).
+- **Post 6767 ("Zakat Donation and Kaffara in Islam..."):** demoted the in-content duplicate `<h1>` to `<h2>` (CT3 — the post title already renders as the page's H1 via the template); removed a leaked bracketed image-alt note; removed the "External Link:" label wrapper while keeping the actual working FAO citation link; removed leaked "Word Count:"/"Category:"/"Tags:" metadata and a leaked "Call to Action:" label.
+- **Post 6768 ("How to Calculate Fidyah..."):** removed leaked "Meta Description:" and "Slug:" lines from the body; removed a leaked "Tags:/Categories:" block; **fixed a broken contact email** (`daanfoundationindiagmail.com`, missing `@`, appeared twice) to match the correct address used elsewhere on the site. Meta description prefix bug (M2) fixed with a real description.
+
+All three posts verified live post-fix: every specific leaked string confirmed absent, real content and working links confirmed intact, H1 counts correct. Full regression sweep across fixes #1–7 clean.
+
 ---
 
 **>>> Phase 2 in progress. Continuing to the next approved priority item. <<<**
