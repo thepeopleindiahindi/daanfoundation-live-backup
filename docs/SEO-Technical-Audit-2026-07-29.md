@@ -181,4 +181,34 @@ Ranked across all categories by combined SEO impact, site-wide reach, and (for a
 - No content changes without Ahmad's explicit sign-off — content gaps (e.g. CT2, CT4) are flagged above, not silently rewritten.
 - Fixes will be applied one issue (or tightly-related group) at a time, each with a before/after note and technical reasoning, deployed and verified, then paused for confirmation before continuing.
 
-**>>> PAUSE HERE. Awaiting Ahmad's review and approval of the priority order above before Phase 2 repair work begins. <<<**
+**Priority list approved by Ahmad on 2026-07-29. Phase 2 is in progress.** Deploy access: FTPS (explicit TLS) to Hostinger, FTP-only — no wp-admin/DB access available this session. All changes below were backed up (before/after) locally under `backups/<fix-name>-20260729-1/` prior to upload, and verified live immediately after.
+
+---
+
+## Phase 2 fix-log
+
+### Fix #1 — SEC1: XML-RPC / `system.multicall` — ✅ Done
+The `add_filter('xmlrpc_enabled', '__return_false')` already in `inc/security.php` (committed 2026-06-29, never actually blocked `system.listMethods`/`system.multicall`/`pingback.ping`, since that filter only gates *login-based* XML-RPC methods) was superseded with a hard block at the web-server level: `<Files xmlrpc.php>Deny from all</Files>` added to root `.htaccess`. Verified: `GET`/`POST /xmlrpc.php` → 403 (was 405 / full method list). No regressions.
+
+### Fix #2 — I3: `/bank-detail/` stale UPI ID — ✅ Done
+Orphaned page `/bank-detail/` (singular) was showing an extra, stale UPI handle (`42818355421@sbi`) alongside the current one — a donor-trust/financial-integrity risk. Fixed via `Redirect 301 /bank-detail /bank-details` in `.htaccess`. Verified: 301 → `/bank-details/` → 200, correct UPI only.
+
+### Fix #3 — CT1: Homepage missing H1 — ✅ Done
+Homepage had zero `<h1>` tags. Added `<h1 class="sr-only">No one should sleep hungry — Daan Foundation</h1>` to the hero section in `front-page.php`, reusing the theme's existing `.sr-only` utility class and the exact text already used as the hero image's `alt` attribute — a purely technical fix with zero visual change. Flagged for Ahmad: a *visible* headline over the hero would generally be better for SEO/UX, but that's a design decision, not made here.
+
+### Fix #4 — M1: 20 pages missing meta description — ✅ Done
+Added a `rank_math/frontend/description` filter (new `inc/seo-fixes.php`) that supplies a description **only** when Rank Math has none set — never overwrites an existing one (verified against `/zakat/`, which was untouched). Text reused each page's own existing hero/subtitle copy from `inc/page-content.php` or its live template, not newly authored, except for `/zakat-calculator/` and `/our-work/` which got a short factual description of page contents. All 20 pages verified live.
+
+### Fix #5 — U1/I2: Duplicate `/home-2/` homepage — ✅ Done
+`/home-2/` (WP page ID 95, an orphaned 2024 Elementor draft) was live, indexable, and a wholesale duplicate of the homepage. Fixed with `Redirect 301 /home-2 /` in `.htaccess`, plus a `rank_math/sitemap/entry` filter excluding it from the sitemap (confirmed exact Rank Math filter/hook names by reading the plugin's own source on the server). Stale sitemap cache files were deleted via FTP to force regeneration. Verified: 301 → `/` → 200; `page-sitemap.xml` no longer lists it.
+
+### Fix #6 — P2/P3: Caching — ✅ P3 done, ⚠️ P2 partial (flagged for manual follow-up)
+**P3 (CSS/JS):** `Cache-Control: no-cache, must-revalidate` (self-defeating alongside a 7-day `Expires`) changed to `public, max-age=3600, must-revalidate`. Deliberately 1 hour, not the 7 days originally suggested — `?ver=` cache-busting is stripped in `security.php`, and this repo has a history of stale-CSS bugs after manual FTP deploys, so staleness risk is capped rather than maximizing cache duration. Verified live.
+
+**P2 (HTML page cache):** No caching plugin (LiteSpeed Cache/LSCWP) is installed, and this session has FTP-only access — plugin installation requires activating via wp-admin/DB, which isn't available here. Built the safest available `.htaccess`-only approximation instead: `X-LiteSpeed-Cache-Control: public,max-age=600` + `CacheLookup on`, scoped to a fixed whitelist of static pages only (home, about, faq, contact, all 10 Our Work pages, all campaign pages), with verified hard bypasses for query strings, logged-in cookies, WooCommerce cart cookies, and every dynamic/WooCommerce page (donate, donate-now, checkout, cart, my-account, donor-dashboard, zakat-calculator, appeals, news, blog posts, products). Ahmad reviewed and approved keeping this in place.
+
+**⚠️ Flagged — needs manual follow-up:** even with the header and `CacheLookup on` correctly set, `X-LiteSpeed-Cache: hit` never appeared on repeat requests — meaning it's unverifiable from outside whether Hostinger's shared-hosting LiteSpeed instance actually has the LSCache module enabled to act on it. **To properly complete P2:** someone with wp-admin access should install the official **LiteSpeed Cache** plugin from the WordPress plugin directory and configure it with these exclusions (derived from the `.htaccess` whitelist logic above): exclude `/donate/`, `/donate-now/`, `/checkout/`, `/cart/`, `/my-account/`, `/donor-dashboard/`, `/zakat-calculator/`, `/appeals/`, all WooCommerce product/cart/checkout pages, and anything for logged-in users — the plugin handles this exclusion + auto-purge-on-update far more reliably than a hand-written `.htaccess` rule can. The current `.htaccess` block can stay in place (harmless either way) or be removed once the plugin takes over; either is fine.
+
+---
+
+**>>> Phase 2 in progress. Continuing to the next approved priority item. <<<**
