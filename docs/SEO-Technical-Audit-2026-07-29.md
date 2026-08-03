@@ -277,6 +277,20 @@ Added both parts: a visible "Home / Our Work / [Page]" breadcrumb bar in `tpl-si
 
 **Verified live:** `/our-work/impact/` shows the visible breadcrumb and correct 3-item `BreadcrumbList` schema (Home → Our Work → Our Impact); the hub page itself and `/zakat/` (same shared template, different parent) correctly show neither — confirming the scoping works both ways. Footer now links all 10 subpages sitewide. Regression-checked 8 pages (all 3 sampled Our Work subpages, the hub, `/zakat/`, `/faq/`, homepage, `/donate/`) — all HTTP 200, no PHP errors. Confirmed fixes #11 (FAQPage schema) and #12 (og:image) both still intact after this deploy.
 
+### Fix #14 — SEC: Leftover debug scripts removed; logo 404 path fixed — ✅ Done
+
+**Security cleanup:** 18 leftover PHP files were sitting live at the FTP webroot from much earlier debugging work. Pulled and inspected every one via FTP (never invoked over HTTP, to avoid executing anything) before touching them, and confirmed via a repo-wide grep that nothing in this codebase references any of these filenames:
+
+- 15 files (`daan-checksum*.php`, `daan-force-overwrite.php`, `daan-fix-wp-core.php`, `daan-fix-template.php`, `daan-final-order.php`, `daan-raw-check.php`, `daan-smtp-*.php`, `daan-test-env.php`, `daan-activate-smtp.php`, `daan-install-smtp.php`, `daan-wc-mail-diag.php`, `wp-error-check.php`) already contained only `<?php // cleanup` — inert stubs, no live functionality left.
+- `phpinfo-daan.php` still actively called `phpinfo()` — a live information-disclosure endpoint exposing full server config, paths, and PHP version to anyone who requested it.
+- `qc-fix.php` and `qc-setup.php` turned out to be **unrelated to Daan Foundation entirely** — their content references a different site (`qurbanicentre.com`, "Qurbani Centre 2026") and a theme called `astra-child`, apparently leftover from a different client project on the same hosting account. `qc-setup.php` had **no authentication at all** and would run `switch_theme('astra-child')` plus a sitewide DB search-replace on a bare GET request — a live, unauthenticated remote code path capable of silently switching this site's live theme. `qc-fix.php` had the same behaviour gated behind a weak hardcoded key visible in the file itself.
+
+All 18 backed up locally (untracked, not committed — several contain another client's data and one is a real, if now-inert, vulnerability, so kept out of git history) then deleted from the live server via FTP. Verified all 18 now 404 live; homepage and a sample of other pages confirmed still HTTP 200 afterward.
+
+**Logo path fix:** `header.php`'s primary logo `<img src>` pointed at `get_template_directory_uri() . '/assets/images/daan-foundation-logo.png'`, which 404s live — same broken theme-assets-vs-webroot pattern fixed on the Emergency Appeals images earlier this session. It was only ever visible via a JS `onerror` fallback to the correct webroot path. Fixed by pointing the primary `src` directly at `home_url('/images/daan-foundation-logo.png')` and removing the now-unnecessary `onerror` fallback.
+
+**Verified live:** primary logo path now returns HTTP 200 directly (no fallback needed); confirmed sitewide across homepage, `/faq/`, `/our-work/impact/`, `/donate/`. Old broken theme-assets path still correctly 404s (untouched, was never real). Homepage HTTP 200 throughout.
+
 ---
 
 **>>> Phase 2 in progress. Continuing to the next approved priority item. <<<**
