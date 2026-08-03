@@ -237,6 +237,17 @@ Fixed by adding an `our-work` entry to `inc/page-content.php` (same schema every
 
 Not covered in this fix (separate, smaller items if wanted later): breadcrumbs linking subpages back to the hub (I6), and the footer's "Our Work" column still only listing 5 of 10 subpages (I7).
 
+### Fix #10 — S2: Invalid Organization/Place schema address — ✅ Done
+`PostalAddress` on the site-wide `Organization`/`NGO` node had `addressCountry: "91"` (India's phone calling code, not an ISO country code), `postalCode: "2444221"` (7 digits — real PIN is 6), and `addressLocality`/`streetAddress` both duplicated as "Katkoi"/"KAtkoi" instead of naming the actual district (`addressRegion` had the same mix-up, holding the district where the state belongs).
+
+Fixed via a `rank_math/json_ld` filter in `inc/seo-fixes.php`, corrected to match the address already published in the site footer: Katkoi Street, District Amroha, Uttar Pradesh - 244221, India. Mid-fix, found the same wrong address duplicated on a **second, separate schema entity** (`@type: Place`, `@id: #place`) that the audit's page-by-page sampling hadn't separately flagged — the filter matches on the known-wrong postal code value itself (not `@type`) so it corrects every entity carrying that address, present or future, rather than needing to enumerate each type that happens to carry it.
+
+**Verified live** on two pages (homepage + `/zakat/`): both the Organization and Place entities show the corrected address consistently, no old values left anywhere. Regression-checked homepage + `/zakat/` clean.
+
+**Also done in the same pass, not originally itemized in this audit:** re-added the Google Search Console verification meta tag (`google-site-verification`) via `wp_head` — the real token existed in git history (added to the old React SPA's `index.html`, which was never actually deployed, so it never reached the live WordPress site). Verified present in the live homepage `<head>`.
+
+**Note on fix #6/P2 (LiteSpeed HTML caching):** still flagged wp-admin-pending, left as-is. Confirmed again this session that plugin install/activation isn't reachable via FTP or the REST API — genuinely needs wp-admin or WP-CLI, neither available here.
+
 ---
 
 **>>> Phase 2 in progress. Continuing to the next approved priority item. <<<**

@@ -42,40 +42,7 @@ get_header();
 		.faq-category-title:first-child { margin-top:0; }
 	</style>
 
-	<?php
-	$faq_categories = array(
-		array(
-			'topic' => 'Zakat',
-			'faqs'  => array(
-				array( 'What is Zakat?', "Zakat is one of the five pillars of Islam. It is a mandatory charitable contribution, typically 2.5% of a Muslim's total savings and wealth above a minimum amount known as the Nisab." ),
-				array( 'Who must pay Zakat?', 'Zakat is obligatory for every adult Muslim who owns wealth above the Nisab threshold for one lunar year. The wealth must be in excess of basic needs and debts.' ),
-				array( 'What is the Nisab?', 'The Nisab is the minimum amount of wealth a Muslim must possess before Zakat becomes obligatory. It is calculated based on the value of gold (87.48 grams) or silver (612.36 grams).' ),
-				array( 'How is Zakat calculated?', 'Zakat is calculated as 2.5% of your total zakatable assets minus any debts. Zakatable assets include cash, savings, investments, gold, silver, and business inventory.' ),
-				array( 'When should I pay Zakat?', 'Zakat is due once a full lunar year has passed since your wealth exceeded the Nisab. Many Muslims choose to pay during Ramadan for increased blessings.' ),
-				array( 'Who can receive Zakat?', 'There are eight categories of Zakat recipients mentioned in the Quran: the poor, the needy, Zakat administrators, those whose hearts are to be reconciled, freeing captives, those in debt, in the cause of Allah, and travelers in need.' ),
-			),
-		),
-		array(
-			'topic' => 'Sadaqah',
-			'faqs'  => array(
-				array( 'What is Sadaqah?', 'Sadaqah is a voluntary act of charity given out of compassion, love, or generosity. Unlike Zakat, there is no minimum amount and it can be given at any time.' ),
-				array( 'What is the difference between Sadaqah and Zakat?', 'Zakat is obligatory and has specific rules about amounts and recipients. Sadaqah is voluntary, can be any amount, and can be given to anyone in need.' ),
-				array( 'What is Sadaqah Jariyah?', "Sadaqah Jariyah means 'ongoing charity.' It refers to charitable acts that continue to benefit others long after the initial gift, such as building a well or school." ),
-				array( 'Can I give Sadaqah to non-Muslims?', 'Yes, Sadaqah can be given to anyone in need regardless of their faith. The key is the intention to help those who are struggling.' ),
-			),
-		),
-		array(
-			'topic' => 'Fidya & Kaffarah',
-			'faqs'  => array(
-				array( 'What is Fidya?', 'Fidya is a donation made when someone cannot fast during Ramadan due to illness or old age and cannot make up the fasts later. It involves feeding one person for each missed fast.' ),
-				array( 'What is Kaffarah?', 'Kaffarah is a penalty paid for deliberately breaking a fast without valid reason. It requires fasting for 60 consecutive days or feeding 60 poor people for each fast broken.' ),
-				array( 'When should I pay Fidya vs Kaffarah?', 'Pay Fidya if you cannot fast due to long-term illness or old age. Pay Kaffarah if you deliberately broke a fast without valid excuse.' ),
-				array( 'How much is Fidya?', 'Fidya is the cost of one meal per missed fast. The amount varies by region but is typically approximately ₹59 per day (cost of one meal).' ),
-			),
-		),
-	);
-
-	foreach ( $faq_categories as $category ) : ?>
+	<?php foreach ( daan_get_faq_data() as $category ) : ?>
 		<h2 class="faq-category-title"><?php echo esc_html( $category['topic'] ); ?></h2>
 		<?php foreach ( $category['faqs'] as $i => $faq ) : ?>
 			<details class="faq-item"<?php echo ( 0 === $i ) ? ' open' : ''; ?>>
