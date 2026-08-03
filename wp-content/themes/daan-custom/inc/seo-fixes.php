@@ -65,3 +65,47 @@ add_filter( 'rank_math/sitemap/entry', function ( $url, $type, $post ) {
 	}
 	return $url;
 }, 10, 3 );
+
+/**
+ * Google Search Console verification meta tag.
+ *
+ * This token was added to the old React SPA's index.html (commit 463dcc1,
+ * 20 Jul 2026) but the SPA isn't what's actually deployed -- WordPress is
+ * (see CLAUDE.md). It never made it into the live theme, so the property
+ * has had no verification meta tag on the site WordPress actually serves.
+ * Re-adding it here, on the site that's really live.
+ */
+add_action( 'wp_head', function () {
+	echo '<meta name="google-site-verification" content="S_1Rlrv2YgpxMZuKYHkg7m7mnEBH9Na2xtNLJVU-Qbs" />' . "\n";
+}, 1 );
+
+/**
+ * Fix incorrect address fields in the JSON-LD schema. Found during a Rank
+ * Math audit: postalCode had a stray leading digit ("2444221" instead of
+ * the real 6-digit PIN), addressCountry held "91" (India's phone calling
+ * code, not an ISO country code), and addressLocality duplicated the
+ * street name instead of naming the actual district -- addressRegion had
+ * the same mix-up, holding the district ("Amroha") where the state
+ * belongs. Corrected to match the address already published in the site
+ * footer (footer.php): Katkoi Street, District Amroha, Uttar Pradesh -
+ * 244221, India.
+ *
+ * This same wrong address turned out to be duplicated across more than
+ * one schema entity (the "NGO"/"Organization" node AND a separate
+ * "Place" node both carry their own address block) -- rather than list
+ * every @type that happens to carry it, this matches on the address data
+ * itself (the known-wrong postal code) so it's fixed everywhere it
+ * appears, present or future.
+ */
+add_filter( 'rank_math/json_ld', function ( $data ) {
+	foreach ( $data as $key => $entity ) {
+		if ( empty( $entity['address']['postalCode'] ) || '2444221' !== $entity['address']['postalCode'] ) {
+			continue;
+		}
+		$data[ $key ]['address']['addressLocality'] = 'Amroha';
+		$data[ $key ]['address']['addressRegion']    = 'Uttar Pradesh';
+		$data[ $key ]['address']['postalCode']       = '244221';
+		$data[ $key ]['address']['addressCountry']   = 'IN';
+	}
+	return $data;
+}, 99 );
