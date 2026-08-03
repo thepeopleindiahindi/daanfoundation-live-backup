@@ -1794,6 +1794,43 @@ function daan_get_page_data( $slug ) {
 				),
 			),
 		),
+
+		'our-work' => array(
+			'title'             => 'Our Work',
+			'subtitle'          => 'How Your Donations Become Real, Everyday Support',
+			'hero_description'  => 'Explore how Daan Foundation puts your donations to work — our impact, history, transparency, and the people and causes behind every rupee given.',
+			'gradient'          => 'from-orange-600 to-orange-700',
+			'image'             => '/images/hero-2.jpg',
+			'button_text'       => 'Donate Now',
+			'button_url'        => '/donate',
+			'default_cause'     => 'where-needed',
+			'sections'      => array(
+				array(
+					'type'    => 'text',
+					'heading' => 'Committed to Transparency and Real Impact',
+					'paragraphs' => array(
+						'Since 2020, Daan Foundation has grown from a small Ramadan Iftar effort in Amroha, Uttar Pradesh into a continuous humanitarian mission serving communities across India — through Zakat, Sadaqah, community kitchens, and emergency relief.',
+						'This page brings together our impact, our history, how we handle every donation, and the people whose lives your generosity supports directly.',
+					)
+				),
+				array(
+					'type'    => 'linkgrid',
+					'heading' => 'Explore Our Work',
+					'items'   => array(
+						array( 'title' => 'Our Impact', 'desc' => 'A 6-Year Journey of Compassion, Growth & Service', 'url' => '/our-work/impact' ),
+						array( 'title' => 'Your Charity in Action', 'desc' => 'Every Donation Becomes a Meal, a Kit, a Moment of Relief', 'url' => '/our-work/charity-in-action' ),
+						array( 'title' => 'Community Trust & Feedback', 'desc' => 'The True Strength of Our Work Is Reflected in the Trust of Those We Serve', 'url' => '/our-work/community-trust' ),
+						array( 'title' => 'The History of Daan Foundation', 'desc' => 'From a 15-Day Ramadan Effort to a Lasting Humanitarian Mission', 'url' => '/our-work/history' ),
+						array( 'title' => 'Annual Impact Report', 'desc' => 'A Transparent Look at Our Journey and Impact', 'url' => '/our-work/annual-report' ),
+						array( 'title' => 'Serving With Dignity', 'desc' => 'Kindness, Respect, and Humanity for Every Person We Serve', 'url' => '/our-work/serving-with-dignity' ),
+						array( 'title' => 'Supporting Women With Dignity', 'desc' => 'No Woman Should Sleep Hungry', 'url' => '/our-work/supporting-women' ),
+						array( 'title' => 'Your Donation Is a Trust', 'desc' => 'An Amanah — Used Honestly, Carefully, Responsibly', 'url' => '/our-work/donation-is-trust' ),
+						array( 'title' => 'Empowering Livelihoods', 'desc' => 'True Charity Goes Beyond Immediate Relief', 'url' => '/our-work/empowering-livelihoods' ),
+						array( 'title' => 'Why Transparency Matters', 'desc' => 'Honest About How Your Donation Is Used', 'url' => '/our-work/why-transparency' ),
+					)
+				),
+			),
+		),
 	);
 
 	// Filter out faq placeholders — they have 'faq' type but no 'items' for demo

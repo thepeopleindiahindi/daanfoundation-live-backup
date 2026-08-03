@@ -78,7 +78,7 @@
                             ),
                         ),
                         'Our Work' => array(
-                            'href' => home_url( '/our-work/impact' ),
+                            'href' => home_url( '/our-work' ),
                             'columns' => array(
                                 'Impact for Good' => array(
                                     array( 'Our Impact', '/our-work/impact' ),

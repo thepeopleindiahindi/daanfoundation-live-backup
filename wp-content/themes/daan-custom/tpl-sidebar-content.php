@@ -56,6 +56,21 @@ $page_data = daan_get_page_data( $page_slug );
 						</div>
 					</section>
 
+				<?php elseif ( 'linkgrid' === $type ) : ?>
+					<section>
+						<?php if ( ! empty( $section['heading'] ) ) : ?>
+							<h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6"><?php echo esc_html( $section['heading'] ); ?></h2>
+						<?php endif; ?>
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+							<?php foreach ( $section['items'] ?? array() as $item ) : ?>
+								<a href="<?php echo esc_url( home_url( $item['url'] ?? '#' ) ); ?>" class="block bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg hover:border-orange-200 transition">
+									<h3 class="font-semibold text-gray-900 mb-1"><?php echo esc_html( $item['title'] ?? '' ); ?></h3>
+									<p class="text-sm text-gray-600"><?php echo esc_html( $item['desc'] ?? '' ); ?></p>
+								</a>
+							<?php endforeach; ?>
+						</div>
+					</section>
+
 				<?php elseif ( 'quote' === $type ) : ?>
 					<section class="bg-gray-50 rounded-xl p-8 border-l-4 border-orange-500">
 						<blockquote class="text-lg italic text-gray-700 mb-2"><?php echo esc_html( $section['quote'] ?? '' ); ?></blockquote>

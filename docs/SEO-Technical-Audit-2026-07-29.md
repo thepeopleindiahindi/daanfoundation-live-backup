@@ -225,6 +225,18 @@ Fetching the raw post content via the WordPress REST API revealed the problem wa
 
 All three posts verified live post-fix: every specific leaked string confirmed absent, real content and working links confirmed intact, H1 counts correct. Full regression sweep across fixes #1–7 clean.
 
+### Fix #9 — I1: `/our-work/` hub broken nav link + thin content — ✅ Done
+Two root causes, both fixed:
+
+1. **Nav link (I1):** `header.php`'s mega-menu had `'href' => home_url( '/our-work/impact' )` for the "Our Work" top-level item — anyone clicking the label itself (not hovering a dropdown item) landed on the Impact subpage, not the hub. Changed to `home_url( '/our-work' )`. (All 10 subpages were already correctly listed inside the dropdown itself — only the top-level link was wrong.)
+2. **Thin content (CT4):** Investigation showed the hub page's actual WordPress `post_content` is completely empty — the ~39-word appearance (H1 + donation widget only) comes entirely from its template (`tpl-sidebar-content.php`), which pulls structured content via `daan_get_page_data($slug)`. Every other page in that data file had a real entry; `our-work` itself was the one slug never added, so the template fell through to its bare fallback branch.
+
+Fixed by adding an `our-work` entry to `inc/page-content.php` (same schema every other page uses) with a real intro section and a new "Explore Our Work" section linking out to all 10 subpages — using each subpage's own existing subtitle text, not new copy. The `grid` section type in the template only renders static cards with no links, so rather than risk changing that shared, widely-used type, added an isolated new `linkgrid` type to `tpl-sidebar-content.php` (wraps each card in a real `<a href>`).
+
+**Verified live:** nav "Our Work" now points to `/our-work`; hub page went from ~39 words / 0 H2s to 242 words / 2 H2s / working links to all 10 subpages (confirmed as real `<a href>` tags, not just text). No PHP warnings/notices in output. `/our-work/impact` and other subpages (which use the same shared files) confirmed unaffected. Full regression sweep across fixes #1–8 clean.
+
+Not covered in this fix (separate, smaller items if wanted later): breadcrumbs linking subpages back to the hub (I6), and the footer's "Our Work" column still only listing 5 of 10 subpages (I7).
+
 ---
 
 **>>> Phase 2 in progress. Continuing to the next approved priority item. <<<**
