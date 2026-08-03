@@ -7,11 +7,28 @@
  */
 get_header();
 
-$page_slug = get_post_field( 'post_name', get_the_ID() );
+$page_slug     = get_post_field( 'post_name', get_the_ID() );
+$parent_id     = wp_get_post_parent_id( get_the_ID() );
+$parent_slug   = $parent_id ? get_post_field( 'post_name', $parent_id ) : '';
 require_once get_template_directory() . '/inc/page-content.php';
 $page_data = daan_get_page_data( $page_slug );
 ?>
 	<?php if ( $page_data ) : ?>
+
+		<?php if ( 'our-work' === $parent_slug ) : ?>
+			<!-- Breadcrumb: Our Work subpage back to hub (I6) -->
+			<div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;">
+				<div style="max-width:1280px;margin:0 auto;padding:12px 16px;">
+					<nav style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#64748B;flex-wrap:wrap;">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Home</a>
+						<span>/</span>
+						<a href="<?php echo esc_url( home_url( '/our-work' ) ); ?>" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Our Work</a>
+						<span>/</span>
+						<span style="color:#111827;font-weight:600;"><?php echo esc_html( $page_data['title'] ?? '' ); ?></span>
+					</nav>
+				</div>
+			</div>
+		<?php endif; ?>
 
 		<?php
 		get_template_part( 'template-parts/hero-banner', null, array(

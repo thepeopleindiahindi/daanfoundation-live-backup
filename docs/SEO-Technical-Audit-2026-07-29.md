@@ -268,6 +268,15 @@ Fixed both via a `wp_head` output buffer in `inc/seo-fixes.php` that corrects/ad
 
 **Also noticed, unrelated:** several leftover debug scripts from a much earlier (blocked) attempt at server access are still live at the FTP root — `daan-checksum*.php`, `daan-force-overwrite.php`, `daan-fix-wp-core.php`, `daan-smtp-*.php`, etc. These aren't part of the current audit list and weren't touched, but they're publicly reachable PHP endpoints on production and worth flagging as a security cleanup item.
 
+### Fix #13 — I6 + I7: Our Work subpages missing breadcrumbs; footer missing 5 links — ✅ Done
+**I6:** None of the 10 Our Work subpages had a breadcrumb or in-content link back to `/our-work/`, and the audit confirmed zero `BreadcrumbList` schema anywhere on the site.
+
+Added both parts: a visible "Home / Our Work / [Page]" breadcrumb bar in `tpl-sidebar-content.php`, and a `BreadcrumbList` JSON-LD entity via a new `rank_math/json_ld` filter in `inc/seo-fixes.php`. Both are scoped by actual WP page hierarchy (`post_parent`'s slug is `our-work`), not a hardcoded list of the 10 slugs — any subpage added under the hub later gets the breadcrumb automatically, no template edit needed. `tpl-sidebar-content.php` is shared by many non-Our-Work pages too (Zakat, Ramadan, etc.), so this only activates when the parent-slug check matches.
+
+**I7:** Footer's "Our Work" column linked only 5 of 10 subpages (Impact, Charity in Action, Community Trust, History, Annual Report). Added the missing 5 (Serving With Dignity, Supporting Women, Donation Is a Trust, Empowering Livelihoods, Why Transparency Matters) in `footer.php`.
+
+**Verified live:** `/our-work/impact/` shows the visible breadcrumb and correct 3-item `BreadcrumbList` schema (Home → Our Work → Our Impact); the hub page itself and `/zakat/` (same shared template, different parent) correctly show neither — confirming the scoping works both ways. Footer now links all 10 subpages sitewide. Regression-checked 8 pages (all 3 sampled Our Work subpages, the hub, `/zakat/`, `/faq/`, homepage, `/donate/`) — all HTTP 200, no PHP errors. Confirmed fixes #11 (FAQPage schema) and #12 (og:image) both still intact after this deploy.
+
 ---
 
 **>>> Phase 2 in progress. Continuing to the next approved priority item. <<<**

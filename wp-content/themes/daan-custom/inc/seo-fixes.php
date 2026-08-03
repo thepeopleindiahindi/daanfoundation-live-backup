@@ -244,3 +244,38 @@ add_action( 'wp_head', function () {
 
 	echo $head; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $head is Rank Math's own already-escaped output plus our own esc_url()'d tags.
 }, 999 );
+
+/**
+ * BreadcrumbList schema for the 10 "Our Work" subpages (I6).
+ *
+ * Audit found zero BreadcrumbList schema anywhere on the site; these 10
+ * pages were the specific example (they also had no visible breadcrumb --
+ * added separately in tpl-sidebar-content.php). Scoped by WP page hierarchy
+ * (post_parent's slug is 'our-work'), not a hardcoded slug list, so any
+ * subpage added under the hub later picks this up automatically.
+ */
+add_filter( 'rank_math/json_ld', function ( $data ) {
+	if ( ! is_page() ) {
+		return $data;
+	}
+
+	$post_id     = get_queried_object_id();
+	$parent_id   = wp_get_post_parent_id( $post_id );
+	$parent_slug = $parent_id ? get_post_field( 'post_name', $parent_id ) : '';
+
+	if ( 'our-work' !== $parent_slug ) {
+		return $data;
+	}
+
+	$data['breadcrumbList'] = array(
+		'@type'           => 'BreadcrumbList',
+		'@id'             => get_permalink( $post_id ) . '#breadcrumblist',
+		'itemListElement' => array(
+			array( '@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => home_url( '/' ) ),
+			array( '@type' => 'ListItem', 'position' => 2, 'name' => 'Our Work', 'item' => home_url( '/our-work' ) ),
+			array( '@type' => 'ListItem', 'position' => 3, 'name' => get_the_title( $post_id ), 'item' => get_permalink( $post_id ) ),
+		),
+	);
+
+	return $data;
+}, 99 );

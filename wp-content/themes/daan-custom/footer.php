@@ -82,6 +82,11 @@
                         <li><a href="<?php echo esc_url( home_url( '/our-work/community-trust' ) ); ?>">Community Trust</a></li>
                         <li><a href="<?php echo esc_url( home_url( '/our-work/history' ) ); ?>">History</a></li>
                         <li><a href="<?php echo esc_url( home_url( '/our-work/annual-report' ) ); ?>">Annual Report</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/serving-with-dignity' ) ); ?>">Serving With Dignity</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/supporting-women' ) ); ?>">Supporting Women</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/donation-is-trust' ) ); ?>">Donation Is a Trust</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/empowering-livelihoods' ) ); ?>">Empowering Livelihoods</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/why-transparency' ) ); ?>">Why Transparency Matters</a></li>
                     </ul>
                 </div>
 
