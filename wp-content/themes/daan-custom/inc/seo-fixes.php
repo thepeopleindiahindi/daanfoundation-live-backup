@@ -186,3 +186,61 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
 
 	return $data;
 }, 99 );
+
+/**
+ * Social-sharing meta tag fixes (M8 + M9).
+ *
+ * M9: Rank Math outputs og:type="article" for every non-post URL, including
+ * the front page's own og:type slot on some templates and every static
+ * Page (Donate, FAQ, Zakat Calculator, ...) -- confirmed live via curl.
+ * Only real blog posts should be "article"; everything else is "website".
+ *
+ * M8: none of the site's Pages have a featured image, and Rank Math has no
+ * sitewide fallback image configured (that's a Titles & Meta setting in
+ * wp-admin, which we don't have access to) -- so og:image is missing
+ * entirely on every Page, and Twitter's summary_large_image card ships
+ * with no image either. Spot-checked a live blog post too: it also has no
+ * og:image, so the fallback is applied everywhere Rank Math didn't already
+ * supply an image, not just on Pages.
+ *
+ * There's no documented Rank Math filter guaranteed to fire when it has no
+ * image to begin with (its image-output method short-circuits before any
+ * filter runs when the thumbnail is empty), so rather than guess at
+ * internal hook names this buffers the <head> output and corrects/adds the
+ * tags directly -- works regardless of Rank Math's internal logic, and is
+ * verifiable against the real rendered HTML.
+ */
+add_action( 'wp_head', function () {
+	ob_start();
+}, 1 );
+
+add_action( 'wp_head', function () {
+	$head = ob_get_clean();
+
+	if ( ! is_singular( 'post' ) ) {
+		$head = str_replace(
+			'<meta property="og:type" content="article" />',
+			'<meta property="og:type" content="website" />',
+			$head
+		);
+	}
+
+	if ( false === strpos( $head, 'property="og:image"' ) ) {
+		$logo = home_url( '/images/daan-foundation-logo.png' );
+		$tags = '<meta property="og:image" content="' . esc_url( $logo ) . '" />' . "\n";
+		$tags .= '<meta property="og:image:width" content="1254" />' . "\n";
+		$tags .= '<meta property="og:image:height" content="1254" />' . "\n";
+
+		if ( false === strpos( $head, 'name="twitter:image"' ) ) {
+			$tags .= '<meta name="twitter:image" content="' . esc_url( $logo ) . '" />' . "\n";
+		}
+
+		if ( false !== strpos( $head, '<meta property="og:site_name"' ) ) {
+			$head = str_replace( '<meta property="og:site_name"', $tags . '<meta property="og:site_name"', $head );
+		} else {
+			$head .= $tags;
+		}
+	}
+
+	echo $head; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $head is Rank Math's own already-escaped output plus our own esc_url()'d tags.
+}, 999 );

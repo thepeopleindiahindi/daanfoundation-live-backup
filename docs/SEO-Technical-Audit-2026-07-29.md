@@ -248,6 +248,26 @@ Fixed via a `rank_math/json_ld` filter in `inc/seo-fixes.php`, corrected to matc
 
 **Note on fix #6/P2 (LiteSpeed HTML caching):** still flagged wp-admin-pending, left as-is. Confirmed again this session that plugin install/activation isn't reachable via FTP or the REST API — genuinely needs wp-admin or WP-CLI, neither available here.
 
+### Fix #11 — S1: `/faq/` missing FAQPage schema — ✅ Done
+`/faq/` had 14 real, visible Q&A pairs (Zakat ×6, Sadaqah ×4, Fidya & Kaffarah ×4) but no `FAQPage`/`Question`/`Answer` structured data at all. (Note: this audit's own S1 entry said "18 Q&A pairs" — checked both the local and live copies of `page-faq.php`, byte-identical, and the real count has always been 14. Schema built to match what's actually on the page, not the audit's count.)
+
+Extracted the Q&A content out of `page-faq.php` into a new shared `daan_get_faq_data()` function in `inc/seo-fixes.php`, called by both the visible template and a new `rank_math/json_ld` filter (conditional on `is_page('faq')`) — single source of truth, so the schema can never drift out of sync with the visible page if either is edited later.
+
+**Verified live:** page renders identically (all 4 visible Q&A headings present, no PHP errors), 14 `Question` entities present in the page's JSON-LD with correct names. Rank Math merged the `FAQPage` type directly onto its own existing `WebPage` node for the URL (`@type: ["WebPage","FAQPage"]` on `#webpage`, carrying the `mainEntity` array) rather than keeping a separate `#faqpage` entity — checked for a leftover duplicate node, found none. This merge is itself the correct, documented schema.org pattern (one URL, one primary entity, multiple types) — not a bug. Regression-checked homepage + `/zakat/` clean.
+
+### Fix #12 — M8 + M9: Wrong `og:type` + missing `og:image` sitewide — ✅ Done
+**M9:** Rank Math emitted `og:type="article"` for every non-post URL — all static Pages (Donate, FAQ, Zakat Calculator, etc.) — confirmed live via curl on 4 sampled pages. Only the front page had the correct `website` type on its own.
+
+**M8:** No Page on the site has a featured image, and no sitewide fallback image is configured in Rank Math's Titles & Meta settings (a wp-admin-only setting) — so `og:image` was missing entirely on every Page. Spot-checked a live blog post too: it also had no `og:image`, so the underlying gap isn't Page-specific.
+
+Fixed both via a `wp_head` output buffer in `inc/seo-fixes.php` that corrects/adds the tags directly on the rendered `<head>` HTML, rather than guessing at Rank Math's internal filter names (its image-output method short-circuits before any filter fires when there's no thumbnail to begin with, so there's no reliable hook to catch this via a normal filter). `og:type` is forced to `website` for anything that isn't a real blog post (`is_singular('post')`); a sitewide fallback image (`/images/daan-foundation-logo.png`, 1254×1254 — square, not the ideal 1200×630 aspect ratio, but the only branded image confirmed live) is injected as `og:image` + `twitter:image` whenever Rank Math didn't already supply one, on any page type.
+
+**Verified live** across homepage, `/faq/`, `/donate/`, `/zakat-calculator/`, and a real blog post: `og:type` correct on all five (`website` ×4, `article` on the real post — untouched), `og:image`/`og:image:width`/`og:image:height`/`twitter:image` now present on all five. Regression-checked all five for HTTP 200 + no PHP warnings; confirmed the `/faq/` FAQPage schema (Fix #11) is unaffected — still 14 `Question` entities.
+
+**Side note, not part of this fix:** the logo's *primary* `<img>` path in `header.php` (`get_template_directory_uri()/assets/images/...`) 404s live — it only displays via a JS `onerror` fallback to the webroot path. Same broken-path pattern fixed on the Emergency Appeals images earlier this session. Left alone here since it wasn't asked for, but worth a quick fix later.
+
+**Also noticed, unrelated:** several leftover debug scripts from a much earlier (blocked) attempt at server access are still live at the FTP root — `daan-checksum*.php`, `daan-force-overwrite.php`, `daan-fix-wp-core.php`, `daan-smtp-*.php`, etc. These aren't part of the current audit list and weren't touched, but they're publicly reachable PHP endpoints on production and worth flagging as a security cleanup item.
+
 ---
 
 **>>> Phase 2 in progress. Continuing to the next approved priority item. <<<**
