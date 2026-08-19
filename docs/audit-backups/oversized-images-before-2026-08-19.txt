@@ -1,0 +1,42 @@
+Oversized images (>300KB) found on live daanfoundation.in — captured 2026-08-19
+
+=== /images/ (webroot static theme assets) ===
+   5791199 bytes  (5.52 MB)  /images/extra-4.jpg
+   5760585 bytes  (5.49 MB)  /images/hero-slide-4.jpg
+   4503716 bytes  (4.30 MB)  /images/hero-slide-1.jpg
+   3705100 bytes  (3.53 MB)  /images/hero-slide-2.jpg
+   2853997 bytes  (2.72 MB)  /images/extra-7.jpg
+   2741565 bytes  (2.61 MB)  /images/extra-5.jpg
+   2591763 bytes  (2.47 MB)  /images/ration-kit-front.jpg
+   2453913 bytes  (2.34 MB)  /images/extra-6.jpg
+   2418702 bytes  (2.31 MB)  /images/extra-3.jpg
+   2149257 bytes  (2.05 MB)  /images/extra-2.jpg
+   2149257 bytes  (2.05 MB)  /images/extra-1.jpg
+   2005514 bytes  (1.91 MB)  /images/hero-slide-3.jpg
+    791686 bytes  (0.76 MB)  /images/daan-foundation-logo.png
+    530699 bytes  (0.51 MB)  /images/impact-2.jpg
+    530699 bytes  (0.51 MB)  /images/community-queue.jpg
+    501593 bytes  (0.48 MB)  /images/campaign-1.jpg
+    416950 bytes  (0.40 MB)  /images/food-distribution-ramadan.jpg
+    416404 bytes  (0.40 MB)  /images/campaign-2.jpg
+    409055 bytes  (0.39 MB)  /images/impact-story-1.jpg
+    409055 bytes  (0.39 MB)  /images/impact-1.jpg
+    388534 bytes  (0.37 MB)  /images/iftaar-distribution.jpg
+    388534 bytes  (0.37 MB)  /images/hero-2.jpg
+    380743 bytes  (0.36 MB)  /images/hero-1.jpg
+    360712 bytes  (0.34 MB)  /images/news-3.jpg
+    352746 bytes  (0.34 MB)  /images/team.jpg
+    352746 bytes  (0.34 MB)  /images/impact-story-2.jpg
+    350194 bytes  (0.33 MB)  /images/aid-distribution-elderly.jpg
+    309229 bytes  (0.29 MB)  /images/news-2.jpg
+
+=== /wp-content/uploads/2026/08/ (WordPress media library) ===
+    416950 bytes  (0.40 MB)  /wp-content/uploads/2026/08/zakat-distribution-drive-community-kitchen.jpg
+    416950 bytes  (0.40 MB)  /wp-content/uploads/2026/08/zakat-distribution-drive-community-kitchen-1.jpg
+    385103 bytes  (0.37 MB)  /wp-content/uploads/2026/08/zakat-distribution-drive-community-kitchen-1536x1152.jpg
+    385103 bytes  (0.37 MB)  /wp-content/uploads/2026/08/zakat-distribution-drive-community-kitchen-1-1536x1152.jpg
+
+TOTAL: 32 files over 300KB (28 in /images/, 4 in /wp-content/uploads/2026/08/)
+Note: the original audit report's prose said '27' for the /images/ set but its own
+pasted list actually contained 28 entries -- an off-by-one in the report's wording,
+not a live-site discrepancy. This file lists the true, current, verified set.

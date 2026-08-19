@@ -304,8 +304,8 @@ add_action( 'wp_head', function () {
 	if ( false === strpos( $head, 'property="og:image"' ) ) {
 		$logo = home_url( '/images/daan-foundation-logo.png' );
 		$tags = '<meta property="og:image" content="' . esc_url( $logo ) . '" />' . "\n";
-		$tags .= '<meta property="og:image:width" content="1254" />' . "\n";
-		$tags .= '<meta property="og:image:height" content="1254" />' . "\n";
+		$tags .= '<meta property="og:image:width" content="500" />' . "\n";
+		$tags .= '<meta property="og:image:height" content="500" />' . "\n";
 
 		if ( false === strpos( $head, 'name="twitter:image"' ) ) {
 			$tags .= '<meta name="twitter:image" content="' . esc_url( $logo ) . '" />' . "\n";
