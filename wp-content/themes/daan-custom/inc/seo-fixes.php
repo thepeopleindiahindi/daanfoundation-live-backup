@@ -188,6 +188,82 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
 }, 99 );
 
 /**
+ * SEO title/description + FAQPage schema for the "Kaffara for Broken Oath
+ * (Qasam)" blog post (slug kaffara-for-broken-oath-qasam, post ID 6946).
+ * Rank Math meta fields aren't reliably settable via the REST API on this
+ * site, so these are set here the same way as the rest of this file --
+ * a code-level filter, not a manual wp-admin edit.
+ */
+add_filter( 'rank_math/frontend/title', function ( $title ) {
+	if ( is_singular( 'post' ) && 'kaffara-for-broken-oath-qasam' === get_post_field( 'post_name', get_queried_object_id() ) ) {
+		return 'Kaffara for Broken Oath (Qasam) - Rules & How to Pay';
+	}
+	return $title;
+} );
+
+add_filter( 'rank_math/frontend/description', function ( $description ) {
+	if ( is_singular( 'post' ) && 'kaffara-for-broken-oath-qasam' === get_post_field( 'post_name', get_queried_object_id() ) ) {
+		return "Confused about Kaffara for a broken oath? Learn the correct rule - feed 10 people, not 60 - and pay online through Daan Foundation's Community Kitchen, Amroha.";
+	}
+	return $description;
+} );
+
+add_filter( 'rank_math/json_ld', function ( $data ) {
+	if ( ! is_singular( 'post' ) || 'kaffara-for-broken-oath-qasam' !== get_post_field( 'post_name', get_queried_object_id() ) ) {
+		return $data;
+	}
+
+	$data['faqPage'] = array(
+		'@type'      => 'FAQPage',
+		'@id'        => home_url( '/kaffara-for-broken-oath-qasam/#faqpage' ),
+		'mainEntity' => array(
+			array(
+				'@type'          => 'Question',
+				'name'           => 'What is Kaffara for breaking an oath (Qasam) in Islam?',
+				'acceptedAnswer' => array(
+					'@type' => 'Answer',
+					'text'  => "It's the expiation required when a person swears by Allah's name and cannot keep that promise -- fulfilled by feeding ten needy people, clothing them, or freeing a slave, with fasting three days as a fallback.",
+				),
+			),
+			array(
+				'@type'          => 'Question',
+				'name'           => 'How many people do I need to feed for Kaffara-e-Qasam?',
+				'acceptedAnswer' => array(
+					'@type' => 'Answer',
+					'text'  => 'Ten people, each given a full meal. This is different from fasting-Kaffara, which requires feeding sixty people or fasting sixty consecutive days.',
+				),
+			),
+			array(
+				'@type'          => 'Question',
+				'name'           => 'Kya main apna oath ka Kaffara online pay kar sakta hoon Daan Foundation ke through?',
+				'acceptedAnswer' => array(
+					'@type' => 'Answer',
+					'text'  => 'Haan, bilkul -- aap online donate kar sakte hain aur humein bata sakte hain ki yeh oath ka Kaffara hai, taaki hum ise sahi tarah se track karke 10 logon tak pohcha sakein.',
+				),
+			),
+			array(
+				'@type'          => 'Question',
+				'name'           => 'How do I pay Kaffara for breaking a promise online?',
+				'acceptedAnswer' => array(
+					'@type' => 'Answer',
+					'text'  => "Donate through Daan Foundation's website, noting that the donation is for oath-Kaffara. Our team directs it to feeding ten people through our Community Kitchen and can confirm once it's fulfilled.",
+				),
+			),
+			array(
+				'@type'          => 'Question',
+				'name'           => 'Is oath-Kaffara the same as Fidyah?',
+				'acceptedAnswer' => array(
+					'@type' => 'Answer',
+					'text'  => "No. Fidyah applies to someone unable to fast during Ramadan due to illness or old age, while oath-Kaffara applies specifically to a broken promise sworn in Allah's name -- they are separate obligations with separate rules.",
+				),
+			),
+		),
+	);
+
+	return $data;
+}, 99 );
+
+/**
  * Social-sharing meta tag fixes (M8 + M9).
  *
  * M9: Rank Math outputs og:type="article" for every non-post URL, including
