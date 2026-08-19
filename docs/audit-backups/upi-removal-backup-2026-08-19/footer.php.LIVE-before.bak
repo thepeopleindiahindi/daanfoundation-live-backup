@@ -115,11 +115,15 @@
                         <span><span>A/C:</span> 42818355421</span>
                         <span><span>IFSC:</span> SBIN0003448</span>
                         <span><span>Branch:</span> Amroha, UP</span>
-                        <span><span>UPI:</span> Coming Soon</span>
+                        <span><span>UPI:</span> 8899152910@ptsbi</span>
                     </div>
                 </div>
                 <div class="bank-qr">
-                    <p>UPI: Coming Soon</p>
+                    <p>Scan to Pay via UPI</p>
+                    <img src="<?php echo esc_url( home_url( '/images/upi-qr-code.jpg' ) ); ?>"
+                         alt="UPI QR Code - Daan Foundation"
+                         width="200" height="200" loading="lazy"
+                         onerror="this.style.display='none'">
                 </div>
             </div>
         </div>

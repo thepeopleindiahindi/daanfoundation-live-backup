@@ -43,7 +43,7 @@ get_header();
 				array( 'Account Number', '42818355421' ),
 				array( 'IFSC Code', 'SBIN0003448' ),
 				array( 'Branch', 'Amroha, UP' ),
-				array( 'UPI ID', 'Coming Soon' ),
+				array( 'UPI ID', '8899152910@ptsbi' ),
 			);
 			foreach ( $bank_fields as $i => $field ) : ?>
 				<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:<?php echo $i < count( $bank_fields ) - 1 ? '1px solid #F1F5F9' : 'none'; ?>;">
@@ -51,7 +51,6 @@ get_header();
 						<span style="font-size:0.8125rem;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.05em;"><?php echo esc_html( $field[0] ); ?></span>
 						<p style="font-size:1.125rem;font-weight:600;color:#111827;margin:4px 0 0;text-align:left;" id="bank-value-<?php echo $i; ?>"><?php echo esc_html( $field[1] ); ?></p>
 					</div>
-					<?php if ( 'UPI ID' !== $field[0] ) : ?>
 					<button onclick="copyBankValue(<?php echo $i; ?>)" style="display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:1px solid #E2E8F0;background:#fff;color:#475569;font-size:0.8125rem;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;flex-shrink:0;"
 							id="copy-btn-<?php echo $i; ?>">
 						<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -59,7 +58,6 @@ get_header();
 						</svg>
 						<span id="copy-text-<?php echo $i; ?>">Copy</span>
 					</button>
-					<?php endif; ?>
 				</div>
 			<?php endforeach; ?>
 		</div>
@@ -67,8 +65,9 @@ get_header();
 
 	<!-- UPI Section -->
 	<div style="text-align:center;margin-bottom:32px;">
-		<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Pay via UPI</h3>
-		<p style="font-size:1rem;font-weight:600;color:#475569;margin:0;">UPI ID: <span style="color:#EA580C;">Coming Soon</span></p>
+		<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Scan to Pay via UPI</h3>
+		<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/upi-qr-code.jpg' ); ?>" alt="UPI QR Code - Daan Foundation" width="220" height="220" loading="lazy" style="width:220px;height:220px;border:2px solid #E2E8F0;border-radius:12px;padding:8px;margin:0 auto;display:block;" onerror="this.style.display='none'">
+		<p style="font-size:1rem;font-weight:600;color:#475569;margin:12px 0 0;">UPI ID: <span style="color:#EA580C;">8899152910@ptsbi</span></p>
 	</div>
 
 	<!-- Trust Note -->
@@ -101,7 +100,7 @@ window.copyBankValue = function(index) {
 		'42818355421',
 		'SBIN0003448',
 		'Amroha, UP',
-		'Coming Soon'
+		'8899152910@ptsbi'
 	];
 
 	if (navigator.clipboard && navigator.clipboard.writeText) {
