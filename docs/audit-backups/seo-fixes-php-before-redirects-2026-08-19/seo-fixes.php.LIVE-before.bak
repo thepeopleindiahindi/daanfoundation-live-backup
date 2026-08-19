@@ -355,37 +355,3 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
 
 	return $data;
 }, 99 );
-
-/**
- * 301 redirects for indexed junk pages removed from the technical audit.
- *
- * test/ and test-2/ (post IDs 5015, 5506) were empty dev-leftover posts.
- * hello-world/ (post ID 1) was WordPress's own default installer sample
- * post ("Welcome to WordPress..."). All three were trashed (not hard-
- * deleted -- restorable from wp-admin trash) via the REST API. Hooked at
- * priority 5, before WordPress's own wp_old_slug_redirect() (priority 10),
- * which was otherwise sending test/ to /product/test-product/ -- itself
- * another leftover WooCommerce test product, not a real destination.
- *
- * bank-detail/ (page ID 5638) is a stale duplicate of bank-details/ (page
- * ID 6781, the URL actually linked sitewide in the footer). Both show the
- * same account number/IFSC/branch, but bank-detail/'s UPI ID (42818355421@sbi)
- * and QR code differ from bank-details/'s current ones (8899152910@ptsbi) --
- * flagged, not resolved here; bank-details/ is the actively-maintained page
- * so it's kept as the redirect target as-is.
- */
-add_action( 'template_redirect', function () {
-	$path = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
-
-	$redirect_map = array(
-		'test'         => home_url( '/' ),
-		'test-2'       => home_url( '/' ),
-		'hello-world'  => home_url( '/news/' ),
-		'bank-detail'  => home_url( '/bank-details/' ),
-	);
-
-	if ( isset( $redirect_map[ $path ] ) ) {
-		wp_safe_redirect( $redirect_map[ $path ], 301 );
-		exit;
-	}
-}, 5 );
