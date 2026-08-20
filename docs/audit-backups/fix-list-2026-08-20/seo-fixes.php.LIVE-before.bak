@@ -523,7 +523,7 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		$slug  = get_post_field( 'post_name', get_queried_object_id() );
 		$descs = array(
 		'serving-iftar' => 'Donate to fund Iftar meals for families in need this Ramadan. Every contribution goes directly to Daan Foundation\'s Iftar program.',
-		'community-kitchen' => 'Donate to Daan Foundation Community Kitchen, which has served approximately 350,000 free meals since 2020 to people facing food insecurity across India.',
+		'community-kitchen' => 'Donate to Daan Foundation\'s Community Kitchen, which has served approximately 350,000 free meals since 2020 to people facing food insecurity across India.',
 		'sadqah' => 'Give Sadqah online to Daan Foundation. Your voluntary charity provides consistent food and essential support to needy families, with full transparency.',
 		'bank-interest' => 'Donate disallowed bank interest (riba) to Daan Foundation for distribution to those in need, in line with Islamic guidance on handling interest income.',
 		'fidya-and-kaffara' => 'Pay your Fidya or Kaffara online. Daan Foundation directs each donation to a complete Iftar meal for a deserving individual in need.',
