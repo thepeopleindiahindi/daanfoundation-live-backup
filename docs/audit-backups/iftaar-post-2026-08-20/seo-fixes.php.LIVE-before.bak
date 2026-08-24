@@ -458,7 +458,6 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 		'feeding-the-poor-daily-life-inside-a-community-kitchen' => 'Daily Life Inside a Community Kitchen',
 		'what-is-a-community-kitchen-and-how-does-it-work-in-india' => 'What is a Community Kitchen in India?',
 		'the-timeless-virtue-of-feeding-a-fasting-person-a-tradition-over-a-millennium-old' => 'The Virtue of Feeding a Fasting Person',
-		'where-does-your-iftar-donation-go' => 'Where Does Your Iftar Donation Go?',
 		);
 		if ( isset( $titles[ $slug ] ) ) {
 			return $titles[ $slug ] . ' - Daan Foundation';
@@ -493,7 +492,6 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'why-no-one-should-sleep-hungry-daan-foundations-food-mission' => 'Daan Foundation\'s food mission: no one should sleep hungry. See how our Community Kitchen and relief work reach vulnerable families across India.',
 		'behind-the-scenes-how-we-cook-1000-meals-a-day' => 'A behind-the-scenes look at how Daan Foundation\'s Community Kitchen prepares over 1,000 meals a day for families facing food insecurity in Amroha.',
 		'feeding-the-poor-daily-life-inside-a-community-kitchen' => 'An inside look at daily life in Daan Foundation\'s Community Kitchen -- how meals are planned, cooked, and distributed to families in need every day.',
-		'where-does-your-iftar-donation-go' => 'See exactly where your iftar donation goes -- funded at Rs.89 per person, tracked from payment to a real Iftar meal at Daan Foundation, Amroha.',
 		);
 		if ( isset( $descs[ $slug ] ) ) {
 			return $descs[ $slug ];
@@ -539,64 +537,3 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 
 	return $description;
 }, 5 );
-
-/**
- * FAQPage schema for "Where Does Your Iftar Donation Go?" (post 6967) --
- * same technique as /faq/ and the earlier Kaffara post: Rank Math merges
- * this onto the post's own WebPage node rather than keeping a separate
- * entity, which is the correct schema.org pattern, not a bug.
- */
-add_filter( 'rank_math/json_ld', function ( $data ) {
-	if ( ! is_singular( 'post' ) || 'where-does-your-iftar-donation-go' !== get_post_field( 'post_name', get_queried_object_id() ) ) {
-		return $data;
-	}
-
-	$data['faqPage'] = array(
-		'@type'      => 'FAQPage',
-		'@id'        => home_url( '/where-does-your-iftar-donation-go/#faqpage' ),
-		'mainEntity' => array(
-			array(
-				'@type'          => 'Question',
-				'name'           => 'Where does my iftar donation actually go?',
-				'acceptedAnswer' => array(
-					'@type' => 'Answer',
-					'text'  => "It funds a specific Iftar meal -- dates, a hot meal, and water -- prepared fresh at Daan Foundation's Amroha kitchen and distributed the same day to a fasting individual or family, costed at Rs.89 per person.",
-				),
-			),
-			array(
-				'@type'          => 'Question',
-				'name'           => 'How much does one Iftar meal cost through Daan Foundation?',
-				'acceptedAnswer' => array(
-					'@type' => 'Answer',
-					'text'  => 'Rs.89 per person. This figure is specific to Iftar meals during Ramadan and is different from the Rs.59 figure used for the year-round Community Kitchen program.',
-				),
-			),
-			array(
-				'@type'          => 'Question',
-				'name'           => 'Can I donate bank interest toward Iftar meals?',
-				'acceptedAnswer' => array(
-					'@type' => 'Answer',
-					'text'  => 'Yes -- many donors direct disallowed bank interest toward feeding the needy rather than keeping it, and Iftar distribution is a valid use for it, since the funds go directly to feeding people in need.',
-				),
-			),
-			array(
-				'@type'          => 'Question',
-				'name'           => 'Kya mera iftar donation sirf Amroha mein use hota hai ya doosre shehron mein bhi?',
-				'acceptedAnswer' => array(
-					'@type' => 'Answer',
-					'text'  => 'Zyadatar Amroha mein hi, jahan roz ka kitchen chalta hai -- lekin Ramadan ke dauran kabhi-kabhi doosre shehron mein bhi pilot Iftar stalls lagte hain, agar us waqt active ho.',
-				),
-			),
-			array(
-				'@type'          => 'Question',
-				'name'           => 'Is Iftar donation the same as Zakat?',
-				'acceptedAnswer' => array(
-					'@type' => 'Answer',
-					'text'  => 'Not automatically -- Zakat has specific eligibility rules for both giver and recipient. Many donors give Iftar donations as Sadaqah instead, which has no such restrictions and can be given by anyone, to fund a meal for anyone in need.',
-				),
-			),
-		),
-	);
-
-	return $data;
-}, 99 );
