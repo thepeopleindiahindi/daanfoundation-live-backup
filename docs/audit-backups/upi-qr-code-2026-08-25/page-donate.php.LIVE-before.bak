@@ -239,10 +239,7 @@ get_header();
 
 			<div id="payment-upi-details" style="display:none;text-align:center;margin-bottom:24px;">
 				<h4 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 16px;">Pay via UPI</h4>
-				<p style="font-size:0.9375rem;color:#64748B;margin:0 0 16px;">UPI ID: <strong>sbibhim.instant90923460741799790@sbipay</strong></p>
-				<div style="display:inline-block;background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:14px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
-					<img src="https://daanfoundation.in/wp-content/uploads/2026/08/QR-Code-SBI-Payment-Daan-Foundation.jpeg" alt="UPI QR Code for donations - Daan Foundation" width="200" height="220" style="display:block;width:200px;height:auto;max-width:100%;border-radius:8px;" loading="lazy">
-				</div>
+				<p style="font-size:0.9375rem;color:#64748B;margin:0;">UPI ID: <strong>sbibhim.instant90923460741799790@sbipay</strong></p>
 			</div>
 
 			<button type="button" id="confirm-btn" onclick="confirmDonation()" style="width:100%;border-radius:12px;background:#F97316;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;margin-bottom:16px;">
