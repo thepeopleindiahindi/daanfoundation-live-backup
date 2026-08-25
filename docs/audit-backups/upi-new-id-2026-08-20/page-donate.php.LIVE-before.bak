@@ -239,7 +239,7 @@ get_header();
 
 			<div id="payment-upi-details" style="display:none;text-align:center;margin-bottom:24px;">
 				<h4 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 16px;">Pay via UPI</h4>
-				<p style="font-size:0.9375rem;color:#64748B;margin:0;">UPI ID: <strong>sbibhim.instant90923460741799790@sbipay</strong></p>
+				<p style="font-size:0.9375rem;color:#64748B;margin:0;">UPI ID: <strong>Coming Soon</strong></p>
 			</div>
 
 			<button type="button" id="confirm-btn" onclick="confirmDonation()" style="width:100%;border-radius:12px;background:#F97316;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;margin-bottom:16px;">
