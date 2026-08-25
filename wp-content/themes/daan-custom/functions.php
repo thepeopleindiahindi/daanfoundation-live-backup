@@ -170,6 +170,37 @@ function daan_include_fee_in_order_details( $types ) {
 }
 
 /**
+ * Donation Terminology — swap WooCommerce's default "Order" copy for
+ * donation-appropriate language on customer-facing pages (thank-you page,
+ * order-received email, My Account → Orders, order confirmation table
+ * headers). Uses the gettext filter so it's upgrade-safe (no core/plugin
+ * file edits) and is scoped to !is_admin() so wp-admin → WooCommerce →
+ * Orders — the internal order-management screens — is untouched. Only
+ * exact matches from the 'woocommerce' text domain are swapped, so this
+ * can't bleed into unrelated copy; add strings to the array as needed.
+ */
+add_filter( 'gettext', 'daan_donation_terminology_strings', 20, 3 );
+function daan_donation_terminology_strings( $translated, $original, $domain ) {
+    if ( is_admin() || 'woocommerce' !== $domain ) {
+        return $translated;
+    }
+
+    static $replacements = array(
+        'Order received'                            => 'Donation Received',
+        'Order number'                               => 'Donation Reference No.',
+        'Order details'                              => 'Donation Details',
+        'Order date'                                 => 'Donation Date',
+        'Order again'                                => 'Donate Again',
+        'Order updates'                              => 'Donation Updates',
+        'Order'                                       => 'Donation',
+        'Orders'                                      => 'Donations',
+        'Thank you. Your order has been received.'   => 'Thank you. Your donation has been received.',
+    );
+
+    return isset( $replacements[ $original ] ) ? $replacements[ $original ] : $translated;
+}
+
+/**
  * Required Files
  */
 require_once get_template_directory() . '/inc/customizer.php';
