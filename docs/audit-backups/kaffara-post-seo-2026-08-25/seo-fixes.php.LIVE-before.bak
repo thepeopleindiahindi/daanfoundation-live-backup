@@ -263,61 +263,6 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
 	return $data;
 }, 99 );
 
-add_filter( 'rank_math/json_ld', function ( $data ) {
-	if ( ! is_singular( 'post' ) || 'kaffara-missed-ramadan-fast' !== get_post_field( 'post_name', get_queried_object_id() ) ) {
-		return $data;
-	}
-
-	$data['faqPage'] = array(
-		'@type'      => 'FAQPage',
-		'@id'        => home_url( '/kaffara-missed-ramadan-fast/#faqpage' ),
-		'mainEntity' => array(
-			array(
-				'@type'          => 'Question',
-				'name'           => 'How can I pay kaffara online in India?',
-				'acceptedAnswer' => array(
-					'@type' => 'Answer',
-					'text'  => "You can donate the equivalent value of feeding 60 people directly through Daan Foundation's donation page, mentioning it's a kaffara payment -- we distribute it as real meals through our Amroha community kitchen.",
-				),
-			),
-			array(
-				'@type'          => 'Question',
-				'name'           => 'What is kaffara in Islam for a missed fast?',
-				'acceptedAnswer' => array(
-					'@type' => 'Answer',
-					'text'  => "It's the compensation required for deliberately breaking a Ramadan fast without a valid excuse -- typically feeding 60 poor people or fasting 60 consecutive days if feeding isn't possible.",
-				),
-			),
-			array(
-				'@type'          => 'Question',
-				'name'           => 'Is kaffara the same as fidyah?',
-				'acceptedAnswer' => array(
-					'@type' => 'Answer',
-					'text'  => 'No. Fidyah is for people with a valid long-term reason for not fasting, usually one meal per missed day. Kaffara is for deliberately breaking a fast without excuse, and is a larger obligation -- typically feeding 60 people.',
-				),
-			),
-			array(
-				'@type'          => 'Question',
-				'name'           => 'Kya main kaffara ek hi baar mein online de sakta hoon?',
-				'acceptedAnswer' => array(
-					'@type' => 'Answer',
-					'text'  => 'Haan, aap poori kaffara amount ek hi baar mein Daan Foundation ko donate kar sakte hain, aur hum ise 60 logon tak meals ke roop mein pahuncha dete hain -- aapko khud logon dhundhne ki zaroorat nahi.',
-				),
-			),
-			array(
-				'@type'          => 'Question',
-				'name'           => 'Where does my kaffara donation actually go?',
-				'acceptedAnswer' => array(
-					'@type' => 'Answer',
-					'text'  => "It goes directly into Daan Foundation's community kitchen operations in Amroha -- real ingredients, real cooking, and real meals served to families in need, with no funds diverted elsewhere.",
-				),
-			),
-		),
-	);
-
-	return $data;
-}, 99 );
-
 /**
  * Social-sharing meta tag fixes (M8 + M9).
  *
@@ -514,7 +459,6 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 		'what-is-a-community-kitchen-and-how-does-it-work-in-india' => 'What is a Community Kitchen in India?',
 		'the-timeless-virtue-of-feeding-a-fasting-person-a-tradition-over-a-millennium-old' => 'The Virtue of Feeding a Fasting Person',
 		'where-does-your-iftar-donation-go' => 'Where Does Your Iftar Donation Go?',
-		'kaffara-missed-ramadan-fast' => 'Kaffara for a Missed Ramadan Fast',
 		);
 		if ( isset( $titles[ $slug ] ) ) {
 			return $titles[ $slug ] . ' - Daan Foundation';
@@ -550,7 +494,6 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'behind-the-scenes-how-we-cook-1000-meals-a-day' => 'A behind-the-scenes look at how Daan Foundation\'s Community Kitchen prepares over 1,000 meals a day for families facing food insecurity in Amroha.',
 		'feeding-the-poor-daily-life-inside-a-community-kitchen' => 'An inside look at daily life in Daan Foundation\'s Community Kitchen -- how meals are planned, cooked, and distributed to families in need every day.',
 		'where-does-your-iftar-donation-go' => 'See exactly where your iftar donation goes -- funded at Rs.89 per person, tracked from payment to a real Iftar meal at Daan Foundation, Amroha.',
-		'kaffara-missed-ramadan-fast' => 'What is kaffara for a missed Ramadan fast? Daan Foundation explains the correct amount and how to pay it online through real meals for the poor in India.',
 		);
 		if ( isset( $descs[ $slug ] ) ) {
 			return $descs[ $slug ];
