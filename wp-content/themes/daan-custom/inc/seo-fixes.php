@@ -110,6 +110,35 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
 	return $data;
 }, 99 );
 
+/** FAQPage schema for the ration-kit volunteer guide. */
+add_filter( 'rank_math/json_ld', function ( $data ) {
+	if ( ! is_singular( 'post' ) || 'ration-kit-distribution-volunteers' !== get_post_field( 'post_name', get_queried_object_id() ) ) {
+		return $data;
+	}
+
+	$questions = array(
+		'How can I volunteer for ration kit distribution?' => 'Email daanfoundationindia@gmail.com with your location, availability, and proposed support. Wait for confirmation before visiting because volunteer requirements depend on the current activity.',
+		'Can I come directly to a distribution location?' => 'Contact the Foundation first and follow the confirmed schedule. Unannounced visitors can unintentionally cause crowding or confusion.',
+		'Do ration kit distribution volunteers have to donate money?' => 'No. Time and practical assistance can be valuable when volunteers are needed. Financial giving is not a condition of approved volunteer service.',
+		'Can volunteers take photos during distribution?' => 'Only when Daan Foundation authorises documentation and appropriate consent is obtained. Recipient dignity and privacy come before social-media content.',
+		'How can I help if I live outside Amroha?' => 'Share verified appeals, donate through official channels, or ask whether remote skills are needed. Do not organise an activity in the Foundation name without approval.',
+	);
+
+	$data['rationKitVolunteerFaq'] = array(
+		'@type'      => 'FAQPage',
+		'@id'        => home_url( '/ration-kit-distribution-volunteers/#faqpage' ),
+		'mainEntity' => array_map( function ( $question, $answer ) {
+			return array(
+				'@type'          => 'Question',
+				'name'           => $question,
+				'acceptedAnswer' => array( '@type' => 'Answer', 'text' => $answer ),
+			);
+		}, array_keys( $questions ), array_values( $questions ) ),
+	);
+
+	return $data;
+}, 99 );
+
 /**
  * Single source of truth for the /faq/ page's Q&A content -- used by both
  * the visible page-faq.php template and the FAQPage schema below, so the
@@ -515,6 +544,7 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 		'the-timeless-virtue-of-feeding-a-fasting-person-a-tradition-over-a-millennium-old' => 'The Virtue of Feeding a Fasting Person',
 		'where-does-your-iftar-donation-go' => 'Where Does Your Iftar Donation Go?',
 		'kaffara-missed-ramadan-fast' => 'Kaffara for a Missed Ramadan Fast',
+		'ration-kit-distribution-volunteers' => 'Ration Kit Distribution Volunteers',
 		);
 		if ( isset( $titles[ $slug ] ) ) {
 			return $titles[ $slug ] . ' - Daan Foundation';
@@ -551,6 +581,7 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'feeding-the-poor-daily-life-inside-a-community-kitchen' => 'An inside look at daily life in Daan Foundation\'s Community Kitchen -- how meals are planned, cooked, and distributed to families in need every day.',
 		'where-does-your-iftar-donation-go' => 'See exactly where your iftar donation goes -- funded at Rs.89 per person, tracked from payment to a real Iftar meal at Daan Foundation, Amroha.',
 		'kaffara-missed-ramadan-fast' => 'What is kaffara for a missed Ramadan fast? Daan Foundation explains the correct amount and how to pay it online through real meals for the poor in India.',
+		'ration-kit-distribution-volunteers' => 'Learn how ration kit distribution volunteers pack supplies, protect privacy and serve families with dignity. Ask Daan Foundation how you can help.',
 		);
 		if ( isset( $descs[ $slug ] ) ) {
 			return $descs[ $slug ];
