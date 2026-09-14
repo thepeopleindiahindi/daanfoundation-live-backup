@@ -58,7 +58,7 @@ get_header();
 					</div>
 					<div>
 						<h4 style="font-size:1rem;font-weight:700;color:#111827;margin:0 0 4px;">Registered Office</h4>
-						<p style="font-size:0.9375rem;color:#475569;margin:0;text-align:left;">Katkoi Street, Near DiwanKhana, Plot No. 141, District Amroha, Uttar Pradesh - 244221, India</p>
+						<p style="font-size:0.9375rem;color:#475569;margin:0;text-align:left;">Katkoi Plot No. 145, Amroha District, Uttar Pradesh, India 244221</p>
 					</div>
 				</div>
 

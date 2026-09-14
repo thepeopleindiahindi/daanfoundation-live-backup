@@ -313,7 +313,7 @@ UPI: sbibhim.instant90923460741799790@sbipay
 </div>
 <div class='footer'>
 <p>Daan Foundation | Registered Charity No. 124456</p>
-<p>Katkoi Street, Near DiwanKhana, Plot No. 141, District Amroha, Uttar Pradesh - 244221, India</p>
+<p>Katkoi Plot No. 145, Amroha District, Uttar Pradesh, India 244221</p>
 </div>
 </div>
 </body>

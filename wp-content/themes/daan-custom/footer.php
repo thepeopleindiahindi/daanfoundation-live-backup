@@ -25,7 +25,7 @@
                 <!-- Logo & Contact -->
                 <div class="footer-brand">
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo-wrap">
-                        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/daan-foundation-logo.png' ); ?>"
+                        <img src="<?php echo esc_url( home_url( '/images/daan-foundation-logo.png' ) ); ?>"
                              alt="Daan Foundation"
                              width="280" height="80" loading="lazy"
                              onerror="this.src='<?php echo esc_url( home_url( '/images/daan-foundation-logo.png' ) ); ?>'">
@@ -45,7 +45,7 @@
                         </a>
                         <div style="display:flex;align-items:flex-start;gap:0.5rem">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:1rem;height:1rem;margin-top:0.125rem;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                            <span>Katkoi Street, Near DiwanKhana,<br>Plot No. 141, District Amroha,<br>Uttar Pradesh - 244221, India</span>
+                            <span>Katkoi Plot No. 145, Amroha District, Uttar Pradesh, India 244221</span>
                         </div>
                     </div>
                 </div>

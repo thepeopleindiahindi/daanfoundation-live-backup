@@ -579,7 +579,7 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'why-no-one-should-sleep-hungry-daan-foundations-food-mission' => 'Daan Foundation\'s food mission: no one should sleep hungry. See how our Community Kitchen and relief work reach vulnerable families across India.',
 		'behind-the-scenes-how-we-cook-1000-meals-a-day' => 'A behind-the-scenes look at how Daan Foundation\'s Community Kitchen prepares over 1,000 meals a day for families facing food insecurity in Amroha.',
 		'feeding-the-poor-daily-life-inside-a-community-kitchen' => 'An inside look at daily life in Daan Foundation\'s Community Kitchen -- how meals are planned, cooked, and distributed to families in need every day.',
-		'where-does-your-iftar-donation-go' => 'See exactly where your iftar donation goes -- funded at Rs.89 per person, tracked from payment to a real Iftar meal at Daan Foundation, Amroha.',
+		'where-does-your-iftar-donation-go' => 'See exactly where your iftar donation goes -- funded at Rs.90 per person, tracked from payment to a real Iftar meal at Daan Foundation, Amroha.',
 		'kaffara-missed-ramadan-fast' => 'What is kaffara for a missed Ramadan fast? Daan Foundation explains the correct amount and how to pay it online through real meals for the poor in India.',
 		'ration-kit-distribution-volunteers' => 'Learn how ration kit distribution volunteers pack supplies, protect privacy and serve families with dignity. Ask Daan Foundation how you can help.',
 		);
@@ -648,7 +648,7 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
 				'name'           => 'Where does my iftar donation actually go?',
 				'acceptedAnswer' => array(
 					'@type' => 'Answer',
-					'text'  => "It funds a specific Iftar meal -- dates, a hot meal, and water -- prepared fresh at Daan Foundation's Amroha kitchen and distributed the same day to a fasting individual or family, costed at Rs.89 per person.",
+					'text'  => "It funds a specific Iftar meal -- dates, a hot meal, and water -- prepared fresh at Daan Foundation's Amroha kitchen and distributed the same day to a fasting individual or family, costed at Rs.90 per person.",
 				),
 			),
 			array(
@@ -656,7 +656,7 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
 				'name'           => 'How much does one Iftar meal cost through Daan Foundation?',
 				'acceptedAnswer' => array(
 					'@type' => 'Answer',
-					'text'  => 'Rs.89 per person. This figure is specific to Iftar meals during Ramadan and is different from the Rs.59 figure used for the year-round Community Kitchen program.',
+					'text'  => 'Rs.90 per person. This figure is specific to Iftar meals during Ramadan and is different from the Rs.59 figure used for the year-round Community Kitchen program.',
 				),
 			),
 			array(
