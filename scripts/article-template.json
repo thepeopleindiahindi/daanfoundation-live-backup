@@ -1,0 +1,15 @@
+{
+  "title": "Your Article Title Here",
+  "slug": "your-article-slug",
+  "content": "<h2>Section Heading</h2><p>HTML content here. Use full HTML formatting.</p>",
+  "excerpt": "Short preview text for card display (2-3 sentences).",
+  "category_name": "Category Name",
+  "tags": ["Tag1", "Tag2", "Tag3"],
+  "featured_image": "/images/food-distribution-ramadan.jpg",
+  "seo_title": "Your SEO Title | Daan Foundation",
+  "seo_description": "Meta description for Google search results (150-160 chars).",
+  "seo_keywords": "keyword1, keyword2, keyword3",
+  "author": "Daan Foundation Team",
+  "status": "published",
+  "featured": 0
+}

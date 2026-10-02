@@ -30,3 +30,25 @@ dist-ssr
 
 # Live server credentials
 ftp_upload.txt
+
+# Local credentials, browser/session captures, and disposable deployment artifacts
+.claude/
+.scratch-tmp/
+backups/
+docs/audit-backups/
+reports/batch-b-screenshots/
+wp-cookies.txt
+wp-login-result*.html
+admin-dashboard.html
+hpanel-check.html
+live-page-content.php
+live_now.html
+output.txt
+temp_*.txt
+tmp_*.txt
+theme-editor-check.html
+upload_ready_content.txt
+create-qurbani-easy-draft.sh
+public/seed-ramadan-blog.php
+hero-banner.BACKUP-before-redesign.php
+tpl-sidebar-content.LIVE-BACKUP.php
