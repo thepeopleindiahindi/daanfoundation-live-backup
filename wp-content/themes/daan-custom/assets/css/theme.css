@@ -259,6 +259,14 @@ h1, h2, h3, h4, h5, h6 {
   height: 48px;
   width: auto;
 }
+@media (max-width: 639px) {
+  .site-logo { gap: 0.5rem; min-width: 0; }
+  .site-logo img { height: 36px; flex-shrink: 0; }
+  .site-logo-title { font-size: 0.75rem; }
+  .site-logo-tagline { font-size: 0.4375rem; letter-spacing: 0.06em; }
+  .header-actions { gap: 0.25rem; flex-shrink: 0; }
+  .donate-btn { padding: 0.25rem 0.625rem; }
+}
 @media (min-width: 640px) {
   .site-logo img { height: 64px; }
 }
@@ -580,7 +588,16 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 550px;
   overflow: hidden;
 }
-@media (max-width: 639px) { .hero { min-height: 750px; } }
+/* The mobile hero artwork is a 2:3 portrait image with essential copy and
+ * statistics baked into both side edges. A fixed 750px height at 390px wide
+ * forces object-fit: cover to crop that copy. Keep the artwork's aspect ratio
+ * on phones; tablet and desktop retain their existing layout. */
+@media (max-width: 639px) {
+  .hero {
+    min-height: 0;
+    aspect-ratio: 2 / 3;
+  }
+}
 @media (min-width: 640px) { .hero { min-height: 650px; } }
 @media (min-width: 768px) { .hero { min-height: 700px; } }
 
