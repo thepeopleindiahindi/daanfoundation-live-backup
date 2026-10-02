@@ -262,10 +262,20 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 639px) {
   .site-logo { gap: 0.5rem; min-width: 0; }
   .site-logo img { height: 36px; flex-shrink: 0; }
+  .site-logo-text { min-width: 0; }
   .site-logo-title { font-size: 0.75rem; }
-  .site-logo-tagline { font-size: 0.4375rem; letter-spacing: 0.06em; }
+  .site-logo-tagline { font-size: 0.4375rem; letter-spacing: 0.06em; white-space: nowrap; }
   .header-actions { gap: 0.25rem; flex-shrink: 0; }
   .donate-btn { padding: 0.25rem 0.625rem; }
+}
+/* Keep the primary Donate control and menu button inside narrow phone headers.
+ * The wordmark remains available as the title; its small tagline moves out of
+ * this constrained single-line treatment rather than forcing the CTA offscreen. */
+@media (max-width: 420px) {
+  .header-inner { padding: 0 0.75rem; }
+  .site-logo img { height: 32px; }
+  .site-logo-tagline { display: none; }
+  .menu-toggle { width: 2.25rem; height: 2.25rem; margin-left: 0; }
 }
 @media (min-width: 640px) {
   .site-logo img { height: 64px; }
@@ -582,6 +592,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 .mobile-donate-btn:hover { background: var(--primary-hover); }
 
+/* The inline step connector widths on the Donate template exceed a narrow
+ * phone viewport. Reduce only those connectors; labels and payment flow stay
+ * unchanged and no overflow rule is used to conceal the third step. */
+@media (max-width: 420px) {
+  .donation-progress #step-line-1,
+  .donation-progress #step-line-2 { width: 20px !important; margin-left: 6px !important; margin-right: 6px !important; }
+  .donation-progress #step-label-1,
+  .donation-progress #step-label-2,
+  .donation-progress #step-label-3 { font-size: 0.75rem !important; }
+}
+
 /* ── Hero Section ─────────────────────────────────────────────────────── */
 .hero {
   position: relative;
@@ -600,6 +621,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (min-width: 640px) { .hero { min-height: 650px; } }
 @media (min-width: 768px) { .hero { min-height: 700px; } }
+/* At tablet widths the desktop 1456:819 asset was cropped vertically by the
+ * fixed 700px height. Preserve the source artwork and its embedded CTA copy. */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero {
+    min-height: 0;
+    aspect-ratio: 1456 / 819;
+  }
+}
 
 .hero-slide {
   position: absolute;
@@ -2021,3 +2050,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* v=20260702185454 */
+
+/* Kept at the end so the generic logo-tagline display declaration cannot
+ * override this narrow-header layout rule. */
+@media (max-width: 420px) {
+  .site-logo-tagline { display: none; }
+}

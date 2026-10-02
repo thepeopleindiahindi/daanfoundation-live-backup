@@ -41,7 +41,7 @@ get_header();
 
 <!-- Step Progress Bar -->
 <div style="max-width:800px;margin:0 auto;padding:40px 16px 0;">
-	<div style="display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:40px;">
+	<div class="donation-progress" style="display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:40px;">
 		<?php
 		$steps = array( 'Amount', 'Details', 'Payment' );
 		foreach ( $steps as $i => $label ) :

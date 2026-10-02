@@ -32,73 +32,73 @@
                     <?php
                     $menu_items = array(
                         'Appeals' => array(
-                            'href' => home_url( '/appeals' ),
+                            'href' => home_url( '/appeals/' ),
                             'featured' => array(
                                 'title' => 'Community Kitchen',
                                 'desc'  => 'Free food for everyone, every day',
-                                'href'  => home_url( '/community-kitchen' ),
+                                'href'  => home_url( '/community-kitchen/' ),
                                 'style' => 'background: linear-gradient(135deg, #F59E0B, #EA580C);',
                             ),
                             'columns' => array(
                                 'Emergency Appeal' => array(
-                                    array( 'Community Kitchen', '/community-kitchen' ),
+                                    array( 'Community Kitchen', '/community-kitchen/' ),
                                 ),
                                 'Seasonal Giving' => array(
-                                    array( 'Ramadan Iftar', '/ramadan' ),
-                                    array( 'Winter Appeal', '/winter' ),
+                                    array( 'Ramadan Iftar', '/ramadan/' ),
+                                    array( 'Winter Appeal', '/winter-appeal/' ),
                                 ),
                             ),
                         ),
                         'Ways to Give' => array(
-                            'href' => home_url( '/zakat' ),
+                            'href' => home_url( '/zakat/' ),
                             'featured' => array(
                                 'title' => 'Zakat Calculator',
                                 'desc'  => 'Calculate your Zakat obligation',
-                                'href'  => home_url( '/zakat-calculator' ),
+                                'href'  => home_url( '/zakat-calculator/' ),
                                 'style' => 'background: linear-gradient(135deg, #F97316, #EA580C);',
                             ),
                             'columns' => array(
                                 'Islamic Giving' => array(
-                                    array( 'Zakat', '/zakat' ),
-                                    array( 'Sadaqah', '/sadaqah' ),
-                                    array( 'Sadaqah Jariyah', '/sadaqah-jariyah' ),
-                                    array( 'Fidyah', '/fidya' ),
-                                    array( 'Kaffarah', '/kaffarah' ),
+                                    array( 'Zakat', '/zakat/' ),
+                                    array( 'Sadaqah', '/sadaqah/' ),
+                                    array( 'Sadaqah Jariyah', '/sadaqah-jariyah/' ),
+                                    array( 'Fidyah', '/fidya/' ),
+                                    array( 'Kaffarah', '/kaffarah/' ),
                                 ),
                                 'Programs' => array(
-                                    array( 'Community Kitchen', '/community-kitchen' ),
-                                    array( 'Ramadan Iftar Program', '/ramadan' ),
-                                    array( 'Winter Relief', '/winter' ),
-                                    array( 'Eid Gifts', '/eid-gifts' ),
-                                    array( 'Where Most Needed', '/where-most-needed' ),
-                                    array( 'Orphan Sponsorship', '/orphan-sponsorship' ),
-                                    array( 'Water for Life', '/water' ),
+                                    array( 'Community Kitchen', '/community-kitchen/' ),
+                                    array( 'Ramadan Iftar Program', '/ramadan/' ),
+                                    array( 'Winter Relief', '/winter-appeal/' ),
+                                    array( 'Eid Gifts', '/eid-gifts/' ),
+                                    array( 'Where Most Needed', '/where-most-needed/' ),
+                                    array( 'Orphan Sponsorship', '/orphan-sponsorship/' ),
+                                    array( 'Water for Life', '/water/' ),
                                 ),
                             ),
                         ),
                         'Our Work' => array(
-                            'href' => home_url( '/our-work' ),
+                            'href' => home_url( '/our-work/' ),
                             'columns' => array(
                                 'Impact for Good' => array(
-                                    array( 'Our Impact', '/our-work/impact' ),
-                                    array( 'Your Charity in Action', '/our-work/charity-in-action' ),
-                                    array( 'Community Trust & Feedback', '/our-work/community-trust' ),
-                                    array( 'The History of Daan Foundation', '/our-work/history' ),
-                                    array( 'Annual Impact Report', '/our-work/annual-report' ),
+                                    array( 'Our Impact', '/our-work/impact/' ),
+                                    array( 'Your Charity in Action', '/our-work/charity-in-action/' ),
+                                    array( 'Community Trust & Feedback', '/our-work/community-trust/' ),
+                                    array( 'The History of Daan Foundation', '/our-work/history/' ),
+                                    array( 'Annual Impact Report', '/our-work/annual-report/' ),
                                 ),
                                 'Stories & Values' => array(
-                                    array( 'Serving With Dignity', '/our-work/serving-with-dignity' ),
-                                    array( 'Supporting Women With Dignity', '/our-work/supporting-women' ),
-                                    array( 'Your Donation Is a Trust', '/our-work/donation-is-trust' ),
-                                    array( 'Empowering Livelihoods', '/our-work/empowering-livelihoods' ),
-                                    array( 'Why Transparency Matters', '/our-work/why-transparency' ),
-                                    array( 'Where We Work', '/where-we-work' ),
+                                    array( 'Serving With Dignity', '/our-work/serving-with-dignity/' ),
+                                    array( 'Supporting Women With Dignity', '/our-work/supporting-women/' ),
+                                    array( 'Your Donation Is a Trust', '/our-work/donation-is-trust/' ),
+                                    array( 'Empowering Livelihoods', '/our-work/empowering-livelihoods/' ),
+                                    array( 'Why Transparency Matters', '/our-work/why-transparency/' ),
+                                    array( 'Where We Work', '/where-we-work/' ),
                                 ),
                             ),
                         ),
-                        'About' => home_url( '/about' ),
-                        'Contact' => home_url( '/contact' ),
-                        'Bank Details' => home_url( '/bank-details' ),
+                        'About' => home_url( '/about/' ),
+                        'Contact' => home_url( '/contact/' ),
+                        'Bank Details' => home_url( '/bank-details/' ),
                     );
 
                     foreach ( $menu_items as $label => $data ) : ?>
@@ -146,7 +146,7 @@
                         </svg>
                     </button>
 
-                    <a href="<?php echo esc_url( home_url( '/donate' ) ); ?>" class="donate-btn">Donate Now</a>
+                    <a href="<?php echo esc_url( home_url( '/donate/' ) ); ?>" class="donate-btn">Donate Now</a>
 
                     <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
                         <svg class="menu-icon menu-icon-open" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -191,7 +191,7 @@
                 <?php endforeach; ?>
             </nav>
             <div class="mobile-donate-section">
-                <a href="<?php echo esc_url( home_url( '/donate' ) ); ?>" class="mobile-donate-btn">Donate Now</a>
+                <a href="<?php echo esc_url( home_url( '/donate/' ) ); ?>" class="mobile-donate-btn">Donate Now</a>
             </div>
         </div>
     </header>
