@@ -54,10 +54,10 @@
                 <div class="footer-col">
                     <h4>Appeals</h4>
                     <ul>
-                        <li><a href="<?php echo esc_url( home_url( '/community-kitchen' ) ); ?>">Community Kitchen</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/ramadan' ) ); ?>">Ramadan Iftar</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/winter' ) ); ?>">Winter Appeal</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/where-most-needed' ) ); ?>">Where Most Needed</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/community-kitchen/' ) ); ?>">Community Kitchen</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/ramadan/' ) ); ?>">Ramadan Iftar</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/winter-appeal/' ) ); ?>">Winter Appeal</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/where-most-needed/' ) ); ?>">Where Most Needed</a></li>
                     </ul>
                 </div>
 
@@ -65,11 +65,11 @@
                 <div class="footer-col">
                     <h4>Ways to Give</h4>
                     <ul>
-                        <li><a href="<?php echo esc_url( home_url( '/zakat' ) ); ?>">Zakat</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/sadaqah' ) ); ?>">Sadaqah</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/sadaqah-jariyah' ) ); ?>">Sadaqah Jariyah</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/fidya' ) ); ?>">Fidyah</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/kaffarah' ) ); ?>">Kaffarah</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/zakat/' ) ); ?>">Zakat</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/sadaqah/' ) ); ?>">Sadaqah</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/sadaqah-jariyah/' ) ); ?>">Sadaqah Jariyah</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/fidya/' ) ); ?>">Fidyah</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/kaffarah/' ) ); ?>">Kaffarah</a></li>
                     </ul>
                 </div>
 
@@ -77,16 +77,16 @@
                 <div class="footer-col">
                     <h4>Our Work</h4>
                     <ul>
-                        <li><a href="<?php echo esc_url( home_url( '/our-work/impact' ) ); ?>">Our Impact</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/our-work/charity-in-action' ) ); ?>">Your Charity in Action</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/our-work/community-trust' ) ); ?>">Community Trust</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/our-work/history' ) ); ?>">History</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/our-work/annual-report' ) ); ?>">Annual Report</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/our-work/serving-with-dignity' ) ); ?>">Serving With Dignity</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/our-work/supporting-women' ) ); ?>">Supporting Women</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/our-work/donation-is-trust' ) ); ?>">Donation Is a Trust</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/our-work/empowering-livelihoods' ) ); ?>">Empowering Livelihoods</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/our-work/why-transparency' ) ); ?>">Why Transparency Matters</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/impact/' ) ); ?>">Our Impact</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/charity-in-action/' ) ); ?>">Your Charity in Action</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/community-trust/' ) ); ?>">Community Trust</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/history/' ) ); ?>">History</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/annual-report/' ) ); ?>">Annual Report</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/serving-with-dignity/' ) ); ?>">Serving With Dignity</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/supporting-women/' ) ); ?>">Supporting Women</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/donation-is-trust/' ) ); ?>">Donation Is a Trust</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/empowering-livelihoods/' ) ); ?>">Empowering Livelihoods</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/our-work/why-transparency/' ) ); ?>">Why Transparency Matters</a></li>
                     </ul>
                 </div>
 
@@ -94,9 +94,9 @@
                 <div class="footer-col">
                     <h4>About</h4>
                     <ul>
-                        <li><a href="<?php echo esc_url( home_url( '/about' ) ); ?>">About Us</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/contact' ) ); ?>">Contact Us</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/bank-details' ) ); ?>">Bank Details</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About Us</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact Us</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/bank-details/' ) ); ?>">Bank Details</a></li>
                     </ul>
                 </div>
             </div>
@@ -131,8 +131,8 @@
                 <div class="footer-legal">
                     <span>&copy; <?php echo date( 'Y' ); ?> Daan Foundation. Registered Charity No. 124456</span>
                     <span class="sep">&bull;</span>
-                    <a href="/privacy">Privacy Policy</a>
-                    <a href="/terms">Terms of Use</a>
+                    <a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a>
+                    <a href="<?php echo esc_url( home_url( '/terms-conditions/' ) ); ?>">Terms of Use</a>
                 </div>
                 <!-- Social icons removed (M1/audit) -- pointed at generic platform homepages
                      since Daan Foundation has no real social accounts set up yet. An icon
