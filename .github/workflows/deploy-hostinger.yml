@@ -1,8 +1,7 @@
+# DISABLED 2026-10-13: ye workflow React dist/ ko server root par FTP karta hai aur live WordPress (.htaccess, robots.txt, /api/) ko overwrite karta hai. Dobara on mat karna.
 name: Build & Deploy to Hostinger (FTP)
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
