@@ -19,7 +19,7 @@
                 <!-- Logo -->
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo">
                     <img src="<?php echo esc_url( home_url( '/images/daan-foundation-logo-192.png' ) ); ?>"
-                         alt="Daan Foundation"
+                         alt=""
                          width="192" height="192">
                     <div class="site-logo-text">
                         <span class="site-logo-title">Daan Foundation</span>

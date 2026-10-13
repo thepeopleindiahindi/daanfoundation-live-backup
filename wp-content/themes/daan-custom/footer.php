@@ -26,7 +26,7 @@
                 <div class="footer-brand">
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo-wrap">
                         <img src="<?php echo esc_url( home_url( '/images/daan-foundation-logo-192.png' ) ); ?>"
-                             alt="Daan Foundation"
+                             alt=""
                              width="192" height="192" loading="lazy"
                              onerror="this.src='<?php echo esc_url( home_url( '/images/daan-foundation-logo-192.png' ) ); ?>'">
                         <div class="footer-logo-text">

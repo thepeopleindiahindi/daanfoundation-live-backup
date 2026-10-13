@@ -2059,3 +2059,8 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 420px) {
   .site-logo-tagline { display: none; }
 }
+
+/* A11Y 2026-10-13: WCAG AA text contrast. Only text colours change (grey footer text on the dark footer,
+ * orange link/stat text on light cards); button and background colours are untouched. */
+.bank-details span span, .bank-qr p, .footer-logo-text span, .footer-legal, .footer-legal a, .footer-legal span { color: #94A3B8; }
+.learn-more, .campaign-link, .mission-stat-num, .view-all, .view-all-mobile a { color: #C2410C; }
