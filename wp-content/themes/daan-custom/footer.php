@@ -129,7 +129,7 @@
         <div class="footer-bottom">
             <div class="container footer-bottom-inner">
                 <div class="footer-legal">
-                    <span>&copy; <?php echo date( 'Y' ); ?> Daan Foundation. Registered Charity No. 124456</span>
+                    <span>&copy; <?php echo date( 'Y' ); ?> Daan Foundation</span>
                     <span class="sep">&bull;</span>
                     <a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a>
                     <a href="<?php echo esc_url( home_url( '/terms-conditions/' ) ); ?>">Terms of Use</a>
