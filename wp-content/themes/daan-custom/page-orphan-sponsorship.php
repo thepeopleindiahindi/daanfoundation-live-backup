@@ -26,7 +26,7 @@ get_header();
 			<h1 style="font-size:2.25rem;font-weight:800;color:#fff;line-height:1.1;margin:0 0 16px;">Sponsor an Orphan</h1>
 			<p style="font-size:1.25rem;color:rgba(255,255,255,0.9);margin:0 0 16px;">Change a child's life with your monthly support</p>
 			<blockquote style="font-size:1rem;font-weight:500;color:rgba(255,255,255,0.8);font-style:italic;margin:0 0 24px;padding:0 0 0 16px;border-left:4px solid #F97316;">"The one who cares for an orphan and I will be together in Paradise like this," and he held his index and middle fingers together. <cite style="display:block;font-size:0.8125rem;font-weight:400;color:rgba(255,255,255,0.6);margin-top:4px;font-style:normal;">— Prophet Muhammad (PBUH)</cite></blockquote>
-			<a href="/donate" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Start Sponsoring — ₹1,000/month →</a>
+			<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Start Sponsoring — ₹1,000/month →</a>
 		</div>
 	</div>
 </section>
@@ -109,7 +109,7 @@ get_header();
 		<div style="background:linear-gradient(135deg,#F59E0B,#F97316);border-radius:16px;padding:48px 32px;text-align:center;">
 			<blockquote style="font-size:1.125rem;font-weight:500;color:#fff;font-style:italic;margin:0 0 16px;">"The one who cares for an orphan and I will be together in Paradise like this (closing his index and middle fingers)."</blockquote>
 			<p style="font-size:1rem;color:rgba(255,255,255,0.9);margin:0 0 32px;">— Prophet Muhammad (PBUH)</p>
-			<a href="/donate" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Sponsor Now →</a>
+			<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Sponsor Now →</a>
 		</div>
 	</div>
 </section>

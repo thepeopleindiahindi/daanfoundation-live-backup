@@ -92,7 +92,7 @@ get_header();
 							</div>
 						</div>
 						<p style="font-size:0.875rem;color:#64748B;margin:0 0 16px;">₹<?php echo number_format( $appeal['raised'] ); ?> raised of ₹<?php echo number_format( $appeal['target'] ); ?></p>
-						<a href="/donate" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#F97316;padding:10px 24px;font-weight:700;color:#fff;text-decoration:none;font-size:0.875rem;transition:background 0.2s;" onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Donate Now</a>
+						<a href="/donate/" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#F97316;padding:10px 24px;font-weight:700;color:#fff;text-decoration:none;font-size:0.875rem;transition:background 0.2s;" onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Donate Now</a>
 					</div>
 				</div>
 			<?php endforeach; ?>
@@ -115,7 +115,7 @@ get_header();
 					</div>
 					<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 8px;">Eid Gift Distribution</h3>
 					<p style="font-size:0.9375rem;color:#475569;margin:0 0 16px;">Spread joy this Eid with gifts for orphaned and underprivileged children.</p>
-					<a href="/eid-gifts" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;color:#F97316;text-decoration:none;font-size:0.875rem;">Learn More →</a>
+					<a href="/eid-gifts/" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;color:#F97316;text-decoration:none;font-size:0.875rem;">Learn More →</a>
 				</div>
 				<div style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);">
 					<div style="width:56px;height:56px;border-radius:9999px;background:linear-gradient(135deg,#F97316,#EA580C);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
@@ -135,7 +135,7 @@ get_header();
 					</div>
 					<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 8px;">Water for All</h3>
 					<p style="font-size:0.9375rem;color:#475569;margin:0 0 16px;">Provide clean drinking water through wells and water projects.</p>
-					<a href="/water" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;color:#F97316;text-decoration:none;font-size:0.875rem;">Learn More →</a>
+					<a href="/water/" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;color:#F97316;text-decoration:none;font-size:0.875rem;">Learn More →</a>
 				</div>
 			</div>
 		</div>
@@ -148,7 +148,7 @@ get_header();
 		<div style="background:linear-gradient(135deg,#F59E0B,#F97316);border-radius:16px;padding:48px 32px;text-align:center;">
 			<h2 style="font-size:1.875rem;font-weight:700;color:#fff;margin:0 0 16px;">Not Sure Where to Give?</h2>
 			<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);margin:0 0 32px;">Let us direct your donation where it's needed most.</p>
-			<a href="/where-most-needed" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Let us decide →</a>
+			<a href="/where-most-needed/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Let us decide →</a>
 		</div>
 	</div>
 </section>

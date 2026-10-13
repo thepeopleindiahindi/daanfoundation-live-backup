@@ -96,12 +96,12 @@ get_header();
                 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
             );
             $qa_items = array(
-                array( 'Community Kitchen', 'Feed the hungry — ₹59 provides one meal', '/community-kitchen', 'linear-gradient(135deg, #F59E0B, #EA580C)', 0 ),
-                array( 'Fidyah & Kaffarah', 'Fulfil your Islamic obligation by feeding the needy', '/fidya', 'linear-gradient(135deg, #8B5CF6, #7C3AED)', 1 ),
-                array( 'Ramadan Iftar Appeal', 'Iftar meals for those fasting in need', '/ramadan', 'linear-gradient(135deg, #F43F5E, #E11D48)', 2 ),
-                array( 'Ration Kit Distribution', 'Essential food rations for poor families', '/where-most-needed', 'linear-gradient(135deg, #06B6D4, #0D9488)', 3 ),
-                array( 'Zakat', 'Calculate and pay your Zakat accurately', '/zakat', 'linear-gradient(135deg, #F97316, #EA580C)', 4 ),
-                array( 'Sadaqah', 'Earn ongoing rewards with voluntary charity', '/sadaqah', 'linear-gradient(135deg, #3B82F6, #4F46E5)', 5 ),
+                array( 'Community Kitchen', 'Feed the hungry — ₹59 provides one meal', '/community-kitchen/', 'linear-gradient(135deg, #F59E0B, #EA580C)', 0 ),
+                array( 'Fidyah & Kaffarah', 'Fulfil your Islamic obligation by feeding the needy', '/fidya/', 'linear-gradient(135deg, #8B5CF6, #7C3AED)', 1 ),
+                array( 'Ramadan Iftar Appeal', 'Iftar meals for those fasting in need', '/ramadan/', 'linear-gradient(135deg, #F43F5E, #E11D48)', 2 ),
+                array( 'Ration Kit Distribution', 'Essential food rations for poor families', '/where-most-needed/', 'linear-gradient(135deg, #06B6D4, #0D9488)', 3 ),
+                array( 'Zakat', 'Calculate and pay your Zakat accurately', '/zakat/', 'linear-gradient(135deg, #F97316, #EA580C)', 4 ),
+                array( 'Sadaqah', 'Earn ongoing rewards with voluntary charity', '/sadaqah/', 'linear-gradient(135deg, #3B82F6, #4F46E5)', 5 ),
             );
             foreach ( $qa_items as $qa ) : ?>
                 <a href="<?php echo esc_url( home_url( $qa[2] ) ); ?>" class="qa-card">
@@ -134,7 +134,7 @@ get_header();
                 <h2 class="h2" style="margin-bottom:0.5rem">Current Campaigns</h2>
                 <p class="text-slate-600">Support our ongoing humanitarian initiatives</p>
             </div>
-            <a href="<?php echo esc_url( home_url( '/appeals' ) ); ?>" class="view-all">
+            <a href="<?php echo esc_url( home_url( '/appeals/' ) ); ?>" class="view-all">
                 View All Campaigns
                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -145,10 +145,10 @@ get_header();
         <div class="campaign-grid">
             <?php
             $campaigns = array(
-                array( 'Community Kitchen', 'Free daily meals for people in need — serving with dignity since 2020', '/images/food-distribution-ramadan.jpg', 250000, 500000, '/community-kitchen' ),
-                array( 'Ration Kits Distribution', 'Essential food ration kits for poor families and vulnerable communities', '/images/ration-kit-front.jpg', 120000, 250000, '/where-most-needed' ),
-                array( 'Education Support', 'Helping poor children continue education and supporting families with school needs', '/images/aid-distribution-elderly.jpg', 85000, 200000, '/our-work/impact' ),
-                array( 'Fidyah & Kaffarah', 'Feed the needy through Fidyah and Kaffarah — fulfil your Islamic obligation', '/images/iftaar-distribution.jpg', 180000, 300000, '/fidya' ),
+                array( 'Community Kitchen', 'Free daily meals for people in need — serving with dignity since 2020', '/images/food-distribution-ramadan.jpg', 250000, 500000, '/community-kitchen/' ),
+                array( 'Ration Kits Distribution', 'Essential food ration kits for poor families and vulnerable communities', '/images/ration-kit-front.jpg', 120000, 250000, '/where-most-needed/' ),
+                array( 'Education Support', 'Helping poor children continue education and supporting families with school needs', '/images/aid-distribution-elderly.jpg', 85000, 200000, '/our-work/impact/' ),
+                array( 'Fidyah & Kaffarah', 'Feed the needy through Fidyah and Kaffarah — fulfil your Islamic obligation', '/images/iftaar-distribution.jpg', 180000, 300000, '/fidya/' ),
             );
             foreach ( $campaigns as $c ) :
                 $progress = round( ( $c[3] / $c[4] ) * 100 );
@@ -182,7 +182,7 @@ get_header();
         </div>
 
         <div class="view-all-mobile">
-            <a href="<?php echo esc_url( home_url( '/appeals' ) ); ?>">
+            <a href="<?php echo esc_url( home_url( '/appeals/' ) ); ?>">
                 View All Campaigns
                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -250,7 +250,7 @@ get_header();
                 <span style="display:inline-block;background:var(--primary);color:#fff;border-radius:9999px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.75rem;">Urgent</span>
                 <h2 style="color:#fff;font-size:1.75rem;font-weight:800;margin:0 0 0.5rem;">Emergency Appeal</h2>
                 <p style="color:rgba(255,255,255,0.9);margin:0 0 1.25rem;font-size:1rem;line-height:1.6;">Support our urgent relief efforts — help us respond quickly when it matters most.</p>
-                <a href="<?php echo esc_url( home_url( '/appeals' ) ); ?>"
+                <a href="<?php echo esc_url( home_url( '/appeals/' ) ); ?>"
                    style="display:inline-flex;align-items:center;gap:0.5rem;border-radius:9999px;background:#fff;padding:0.875rem 1.75rem;font-weight:700;color:var(--primary);text-decoration:none;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);transition:box-shadow 0.2s;"
                    onmouseover="this.style.boxShadow='0 10px 15px -3px rgba(0,0,0,0.1)'"
                    onmouseout="this.style.boxShadow='0 4px 6px -1px rgba(0,0,0,0.1)'">
@@ -276,7 +276,7 @@ get_header();
 
         <div class="program-grid">
             <!-- Program 1 — Community Kitchen -->
-            <a href="<?php echo esc_url( home_url( '/community-kitchen' ) ); ?>" class="program-card">
+            <a href="<?php echo esc_url( home_url( '/community-kitchen/' ) ); ?>" class="program-card">
                 <img src="/images/food-distribution-ramadan.jpg" alt="Community Kitchen" width="800" height="600" loading="lazy">
                 <div class="program-overlay"></div>
                 <div class="program-content">
@@ -287,7 +287,7 @@ get_header();
             </a>
 
             <!-- Program 2 — Ration Kit Distribution -->
-            <a href="<?php echo esc_url( home_url( '/where-most-needed' ) ); ?>" class="program-card">
+            <a href="<?php echo esc_url( home_url( '/where-most-needed/' ) ); ?>" class="program-card">
                 <img src="/images/extra-5.jpg" alt="Ration Kit Distribution" width="800" height="360" loading="lazy">
                 <div class="program-overlay"></div>
                 <div class="program-content">
@@ -298,7 +298,7 @@ get_header();
             </a>
 
             <!-- Program 3 — Fidyah & Kaffarah -->
-            <a href="<?php echo esc_url( home_url( '/fidya' ) ); ?>" class="program-card md-span-2">
+            <a href="<?php echo esc_url( home_url( '/fidya/' ) ); ?>" class="program-card md-span-2">
                 <img src="/images/iftaar-distribution.jpg" alt="Fidyah & Kaffarah" width="800" height="600" loading="lazy">
                 <div class="program-overlay"></div>
                 <div class="program-content">
@@ -341,7 +341,7 @@ get_header();
                     <div class="mission-stat-label">Beneficiaries Reached</div>
                 </div>
             </div>
-            <a href="<?php echo esc_url( home_url( '/about' ) ); ?>"
+            <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"
                style="display:inline-flex;align-items:center;gap:0.5rem;font-weight:600;color:var(--primary);transition:gap 0.2s"
                onmouseover="this.style.gap='0.75rem'" onmouseout="this.style.gap='0.5rem'">
                 Learn About Our Story
@@ -374,12 +374,12 @@ get_header();
                 'M16 7a4 4 0 11-8 0 4 4 0 018 0z M12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
             );
             $islamic = array(
-                array( 'Community Kitchen', 'Support our daily free meal program for the needy.', '/community-kitchen', '#FED7AA', '#F97316', 0 ),
-                array( 'Fidyah & Kaffarah', 'Fulfil your Islamic obligation by feeding the needy.', '/fidya', '#FECDD3', '#E11D48', 1 ),
-                array( 'Ramadan Iftar Appeal', 'Provide iftar meals to fasting families during Ramadan.', '/ramadan', '#DDD6FE', '#7C3AED', 2 ),
-                array( 'Ration Kit Distribution', 'Essential food rations for struggling families.', '/where-most-needed', '#FDE68A', '#D97706', 3 ),
-                array( 'Zakat', 'Fulfil your 2.5% obligation and purify your wealth.', '/zakat', '#A7F3D0', '#059669', 4 ),
-                array( 'Sadaqah', 'Give voluntary charity and earn continuous rewards.', '/sadaqah', '#CFFAFE', '#0891B2', 5 ),
+                array( 'Community Kitchen', 'Support our daily free meal program for the needy.', '/community-kitchen/', '#FED7AA', '#F97316', 0 ),
+                array( 'Fidyah & Kaffarah', 'Fulfil your Islamic obligation by feeding the needy.', '/fidya/', '#FECDD3', '#E11D48', 1 ),
+                array( 'Ramadan Iftar Appeal', 'Provide iftar meals to fasting families during Ramadan.', '/ramadan/', '#DDD6FE', '#7C3AED', 2 ),
+                array( 'Ration Kit Distribution', 'Essential food rations for struggling families.', '/where-most-needed/', '#FDE68A', '#D97706', 3 ),
+                array( 'Zakat', 'Fulfil your 2.5% obligation and purify your wealth.', '/zakat/', '#A7F3D0', '#059669', 4 ),
+                array( 'Sadaqah', 'Give voluntary charity and earn continuous rewards.', '/sadaqah/', '#CFFAFE', '#0891B2', 5 ),
             );
             foreach ( $islamic as $i ) : ?>
                 <a href="<?php echo esc_url( home_url( $i[2] ) ); ?>" class="islamic-card">
@@ -407,7 +407,7 @@ get_header();
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <section class="section section-warm">
     <div class="container" style="display:flex;justify-content:center;">
-        <a href="<?php echo esc_url( home_url( '/zakat-calculator' ) ); ?>" class="zakat-compact-card">
+        <a href="<?php echo esc_url( home_url( '/zakat-calculator/' ) ); ?>" class="zakat-compact-card">
             <span class="zakat-compact-icon">
                 <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#F97316">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
@@ -428,7 +428,7 @@ get_header();
                 <h2 class="h2" style="margin-bottom:0.5rem">How Your Donations Are Changing Lives</h2>
                 <p class="text-slate-600">Real stories from the communities we serve</p>
             </div>
-            <a href="<?php echo esc_url( home_url( '/news' ) ); ?>" class="view-all">
+            <a href="<?php echo esc_url( home_url( '/news/' ) ); ?>" class="view-all">
                 View all stories
                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -484,7 +484,7 @@ get_header();
                 <h2 class="h2" style="margin-bottom:0.5rem">Latest News</h2>
                 <p class="text-slate-600">Updates from our work across India</p>
             </div>
-            <a href="<?php echo esc_url( home_url( '/news' ) ); ?>" class="view-all">
+            <a href="<?php echo esc_url( home_url( '/news/' ) ); ?>" class="view-all">
                 View All News
                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -575,7 +575,7 @@ get_header();
             <div class="cta-content">
                 <h2>Make a Difference Today</h2>
                 <p>Your donation can provide food, warmth, and hope to those in need across India. Every contribution matters.</p>
-                <a href="<?php echo esc_url( home_url( '/donate' ) ); ?>"
+                <a href="<?php echo esc_url( home_url( '/donate/' ) ); ?>"
                    style="display:inline-flex;align-items:center;gap:0.5rem;border-radius:9999px;background:#fff;padding:1rem 2rem;font-weight:700;color:var(--primary);box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);transition:box-shadow 0.2s"
                    onmouseover="this.style.boxShadow='0 10px 15px -3px rgba(0,0,0,0.1)'"
                    onmouseout="this.style.boxShadow='0 4px 6px -1px rgba(0,0,0,0.1)'">

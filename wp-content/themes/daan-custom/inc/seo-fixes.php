@@ -432,7 +432,7 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
 		'@id'             => get_permalink( $post_id ) . '#breadcrumblist',
 		'itemListElement' => array(
 			array( '@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => home_url( '/' ) ),
-			array( '@type' => 'ListItem', 'position' => 2, 'name' => 'Our Work', 'item' => home_url( '/our-work' ) ),
+			array( '@type' => 'ListItem', 'position' => 2, 'name' => 'Our Work', 'item' => home_url( '/our-work/' ) ),
 			array( '@type' => 'ListItem', 'position' => 3, 'name' => get_the_title( $post_id ), 'item' => get_permalink( $post_id ) ),
 		),
 	);

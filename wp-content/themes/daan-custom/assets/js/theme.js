@@ -109,7 +109,7 @@
         const cause = document.getElementById('donate-cause');
         const amount = customAmount || selectedAmount || 0;
         const causeText = cause ? cause.value : 'Where Most Needed';
-        window.location.href = '/donate?amount=' + amount + '&cause=' + encodeURIComponent(causeText);
+        window.location.href = '/donate/?amount=' + amount + '&cause=' + encodeURIComponent(causeText);
     };
 
     /* ── Smooth Scroll for anchor links ────────────────────────────────── */

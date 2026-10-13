@@ -28,7 +28,7 @@ get_header();
 					<h1 style="font-size:2.25rem;font-weight:800;color:#111827;line-height:1.1;margin:0 0 16px;">Water for Life</h1>
 					<blockquote style="font-size:1.125rem;font-weight:600;color:#F97316;font-style:italic;margin:0 0 16px;padding:0 0 0 16px;border-left:4px solid #F97316;">"The best charity is giving water to drink." <cite style="display:block;font-size:0.875rem;font-weight:400;color:#64748B;margin-top:4px;font-style:normal;">— Prophet Muhammad (PBUH)</cite></blockquote>
 					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 24px;">Millions of people around the world lack access to clean, safe drinking water. Your donation can build a well, provide water filtration, and save lives. Water is a Sadaqah Jariyah — an ongoing charity that benefits communities for generations.</p>
-					<a href="/donate" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#F97316;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s,transform 0.2s;"
+					<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#F97316;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s,transform 0.2s;"
 					   onmouseover="this.style.background='#EA580C';this.style.transform='scale(1.02)'" onmouseout="this.style.background='#F97316';this.style.transform='scale(1)'">
 					   Build a Well <span style="font-size:1.25rem;">→</span>
 					</a>
@@ -117,7 +117,7 @@ get_header();
 		<div style="background:linear-gradient(135deg,#2563EB,#4338CA);border-radius:16px;padding:48px 32px;text-align:center;">
 			<h2 style="font-size:1.875rem;font-weight:700;color:#fff;margin:0 0 16px;">Give the Gift of Clean Water — Sadaqah Jariyah</h2>
 			<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);margin:0 0 32px;max-width:576px;margin-left:auto;margin-right:auto;">Your donation provides clean, safe drinking water to families in need. A Sadaqah Jariyah that keeps giving.</p>
-			<a href="/donate" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#2563EB;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Donate Now →</a>
+			<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#2563EB;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Donate Now →</a>
 		</div>
 	</div>
 </section>

@@ -84,7 +84,7 @@ get_header();
 
 	<!-- Back to Donate -->
 	<div style="text-align:center;">
-		<a href="/donate" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;border:2px solid #E2E8F0;padding:14px 32px;font-weight:700;color:#334155;text-decoration:none;transition:all 0.2s;"
+		<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;border:2px solid #E2E8F0;padding:14px 32px;font-weight:700;color:#334155;text-decoration:none;transition:all 0.2s;"
 		   onmouseover="this.style.borderColor='#F97316';this.style.color='#EA580C'" onmouseout="this.style.borderColor='#E2E8F0';this.style.color='#334155'">
 			<svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>

@@ -22,7 +22,7 @@ $page_data = daan_get_page_data( $page_slug );
 					<nav style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#64748B;flex-wrap:wrap;">
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Home</a>
 						<span>/</span>
-						<a href="<?php echo esc_url( home_url( '/our-work' ) ); ?>" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Our Work</a>
+						<a href="<?php echo esc_url( home_url( '/our-work/' ) ); ?>" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Our Work</a>
 						<span>/</span>
 						<span style="color:#111827;font-weight:600;"><?php echo esc_html( $page_data['title'] ?? '' ); ?></span>
 					</nav>

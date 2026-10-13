@@ -108,7 +108,7 @@ get_header();
 					<span style="display:inline-block;background:#FFF7ED;color:#9A3412;border-radius:9999px;padding:4px 12px;font-size:0.8125rem;font-weight:600;margin-bottom:12px;">Uttar Pradesh</span>
 					<h3 style="font-size:1.5rem;font-weight:700;color:#111827;margin:0 0 12px;">Ramadan Iftar Distribution — Our Community Kitchen's Roots</h3>
 					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 24px;">What began as a 15-day Ramadan Iftar pilot in Amroha in 2020 has grown into Daan Foundation's flagship Community Kitchen, providing daily Iftar meals and ration support to families across Uttar Pradesh — powered by Zakat and Sadaqah from generous donors.</p>
-					<a href="/ramadan" style="display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#F97316;text-decoration:none;transition:gap 0.2s;" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">Learn More →</a>
+					<a href="/ramadan/" style="display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#F97316;text-decoration:none;transition:gap 0.2s;" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">Learn More →</a>
 				</div>
 			</div>
 		</div>
@@ -118,7 +118,7 @@ get_header();
 <!-- CTA -->
 <section style="padding:48px 16px;">
 	<div style="max-width:1280px;margin:0 auto;text-align:center;">
-		<a href="/donate" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#F97316;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s;"
+		<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#F97316;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s;"
 		   onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Support Our Mission →</a>
 	</div>
 </section>

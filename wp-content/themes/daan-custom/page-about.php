@@ -240,7 +240,7 @@ get_header();
 				<div style="background:linear-gradient(135deg, #EA580C, #F97316);border-radius:16px;padding:48px 32px;text-align:center;">
 					<h2 style="font-size:1.875rem;font-weight:700;color:#fff;margin:0 0 16px;">Together, We Can Build a Hunger-Free India</h2>
 					<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);margin:0 0 32px;max-width:576px;margin-left:auto;margin-right:auto;">Your support makes everything possible. Join us in our mission to ensure that no one sleeps hungry.</p>
-					<a href="/donate" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Support Our Mission →</a>
+					<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Support Our Mission →</a>
 				</div>
 
 			</div>

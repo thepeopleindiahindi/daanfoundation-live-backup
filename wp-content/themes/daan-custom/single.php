@@ -17,7 +17,7 @@ while ( have_posts() ) :
         <nav class="flex items-center gap-2 text-sm text-slate-500">
           <a href="/" class="hover:text-orange-600 transition-colors">Home</a>
           <span>/</span>
-          <a href="/news" class="hover:text-orange-600 transition-colors">News</a>
+          <a href="/news/" class="hover:text-orange-600 transition-colors">News</a>
           <span>/</span>
           <span class="text-slate-900 font-medium"><?php the_title(); ?></span>
         </nav>

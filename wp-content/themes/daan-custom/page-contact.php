@@ -164,7 +164,7 @@ get_header();
 	<div style="max-width:640px;margin:0 auto;text-align:center;">
 		<h2 style="font-size:1.5rem;font-weight:700;color:#111827;margin:0 0 12px;">Looking for Quick Answers?</h2>
 		<p style="font-size:1rem;color:#475569;margin:0 0 24px;">Check out our frequently asked questions for instant answers.</p>
-		<a href="/faq" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;border:2px solid #E2E8F0;background:#fff;padding:14px 32px;font-weight:700;color:#334155;text-decoration:none;transition:border-color 0.2s,color 0.2s;"
+		<a href="/faq/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;border:2px solid #E2E8F0;background:#fff;padding:14px 32px;font-weight:700;color:#334155;text-decoration:none;transition:border-color 0.2s,color 0.2s;"
 		   onmouseover="this.style.borderColor='#F97316';this.style.color='#EA580C'" onmouseout="this.style.borderColor='#E2E8F0';this.style.color='#334155'">
 			View FAQs
 			<svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">

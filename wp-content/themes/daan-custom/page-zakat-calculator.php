@@ -13,7 +13,7 @@ get_header();
 		<nav style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#64748B;">
 			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Home</a>
 			<span>/</span>
-			<a href="/zakat" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Zakat</a>
+			<a href="/zakat/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Zakat</a>
 			<span>/</span>
 			<span style="color:#111827;font-weight:600;">Calculator</span>
 		</nav>
@@ -113,7 +113,7 @@ get_header();
 	<p style="font-size:0.875rem;color:#64748B;margin:24px 0 32px;text-align:center;">Note: This calculator is a guide. Please consult a scholar for complex cases.</p>
 
 	<div style="text-align:center;">
-		<a href="/donate" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#F97316;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s;"
+		<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#F97316;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s;"
 		   onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Pay Your Zakat →</a>
 	</div>
 </div>

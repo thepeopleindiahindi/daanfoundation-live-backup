@@ -32,7 +32,7 @@
 		</select>
 	</div>
 
-	<button onclick="window.location.href='/donate?amount=' + (document.querySelector('.custom-amount').value || '1000') + '&cause=' + encodeURIComponent(document.getElementById('sidebar-cause').value)" style="width:100%;border-radius:12px;background:#F59E0B;color:#fff;padding:14px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);transition:background 0.2s,box-shadow 0.2s;">Donate Now</button>
+	<button onclick="window.location.href='/donate/?amount=' + (document.querySelector('.custom-amount').value || '1000') + '&cause=' + encodeURIComponent(document.getElementById('sidebar-cause').value)" style="width:100%;border-radius:12px;background:#F59E0B;color:#fff;padding:14px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);transition:background 0.2s,box-shadow 0.2s;">Donate Now</button>
 
 	<div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-top:16px;font-size:0.75rem;color:#64748B;">
 		<span style="display:flex;align-items:center;gap:4px;">
