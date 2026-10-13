@@ -123,9 +123,9 @@ add_filter('script_loader_src', function ($src) {
 });
 
 // ── 5. Disable user enumeration ───────────────────────────────────────────
-add_filter('rest_user_query', function (array $args, WP_Query $query): array {
+add_filter('rest_user_query', function (array $args, $request): array {
     if (!current_user_can('list_users')) {
-        $args['post__in'] = [0]; // return no users
+        $args['include'] = [0]; // return no users
     }
     return $args;
 }, 10, 2);
