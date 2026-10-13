@@ -706,7 +706,10 @@ h1, h2, h3, h4, h5, h6 {
   .donation-widget { justify-self: end; }
 }
 
-/* Mobile: pull the donation widget up so it visibly peeks over the
+/* NOTE 2026-10-13: the hero now keeps its 2:3 artwork ratio on phones, so the
+   old -158px pull-up covered the baked-in headline; the card now sits directly
+   below the hero (still above the fold on a 375x812 screen).
+   Original note: pull the donation widget up so it visibly peeks over the
    hero's bottom edge on load — a scroll hint that there's a donation
    board below — desktop (>=768px) is untouched. On real phone widths
    (<=480px) the hero image's crop leaves enough empty margin below the
@@ -719,8 +722,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (max-width: 480px) {
   .hero-donate-section {
-    padding-top: 0;
-    margin-top: -158px;
+    padding-top: 0.75rem;
+    margin-top: 0;
     position: relative;
     z-index: 2;
   }
