@@ -66,9 +66,7 @@ get_header();
                     </svg>
                     Secure
                 </span>
-                <span>&bull;</span>
-                <span>Registered Charity</span>
-                <span>&bull;</span>
+                                <span>&bull;</span>
                 <span>100% Transparent</span>
             </div>
         </div>

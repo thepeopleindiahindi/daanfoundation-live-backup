@@ -297,22 +297,15 @@ body{font-family:'Open Sans',Arial,sans-serif;color:#333;line-height:1.6;margin:
 </dl>
 </div>
 
-<p>Your donation receipt serves as a record for your contribution. For 80G tax exemption certificates, please contact us with your donation details.</p>
+<p>Your donation receipt serves as a record for your contribution.</p>
 
-<div class='bank-info'>
-<strong>For 80G Certificate Reference:</strong><br>
-Bank: State Bank of India<br>
-A/C: 42818355421<br>
-IFSC: SBIN0003448<br>
-Branch: Amroha, UP<br>
-UPI: sbibhim.instant90923460741799790@sbipay
-</div>
+<p>Note: Daan Foundation is not registered under Section 80G; this donation is not eligible for tax deduction.</p>
 
 <p>With gratitude,<br><strong>Daan Foundation Team</strong></p>
 <p><a href='https://daanfoundation.in' style='color:#F97316;'>daanfoundation.in</a></p>
 </div>
 <div class='footer'>
-<p>Daan Foundation | Registered Charity No. 124456</p>
+<p>Daan Foundation | PAN: AAETD5465E</p>
 <p>Katkoi Plot No. 145, Amroha District, Uttar Pradesh, India 244221</p>
 </div>
 </div>
@@ -328,12 +321,12 @@ UPI: sbibhim.instant90923460741799790@sbipay
 }
 
 /* -------------------------------------------------------------------------
- * 7. 80G Certificate Generator
+ * 7. Donation receipt page
  * ------------------------------------------------------------------------- */
 
-add_action( 'template_redirect', 'daan_generate_80g_certificate' );
+add_action( 'template_redirect', 'daan_generate_donation_receipt_page' );
 
-function daan_generate_80g_certificate() {
+function daan_generate_donation_receipt_page() {
     if ( empty( $_GET['receipt'] ) ) {
         return;
     }
@@ -408,7 +401,7 @@ function daan_generate_80g_certificate() {
     ?>
 <!DOCTYPE html>
 <html>
-<head><title>80G Tax Exemption Receipt - Daan Foundation</title>
+<head><title>Donation Receipt - Daan Foundation</title>
 <style>
 body{font-family:'Open Sans',Arial,sans-serif;color:#333;margin:40px;line-height:1.6}
 .receipt{max-width:800px;margin:0 auto;border:2px solid #333;padding:40px}
@@ -427,8 +420,8 @@ body{font-family:'Open Sans',Arial,sans-serif;color:#333;margin:40px;line-height
 <div class="receipt">
 <div class="header">
 <h1>Daan Foundation</h1>
-<h2>80G Tax Exemption Certificate</h2>
-<p>Registered Charity No. 124456</p>
+<h2>Donation Receipt</h2>
+<p>PAN: AAETD5465E</p>
 </div>
 
 <div class="content">
@@ -455,9 +448,7 @@ body{font-family:'Open Sans',Arial,sans-serif;color:#333;margin:40px;line-height
 <div class="footer">
 <p>This is a computer-generated receipt and does not require a physical signature.</p>
 <p>For verification, please contact: <strong>daanfoundationindia@gmail.com</strong></p>
-<p><strong>Bank Details for 80G Reference:</strong><br>
-State Bank of India | A/C: 42818355421 | IFSC: SBIN0003448 | Branch: Amroha, UP</p>
-<p style="margin-top:12px;"><em>Daan Foundation is registered under Section 12A/80G of the Income Tax Act, 1961.</em></p>
+<p style="margin-top:12px;"><em>Note: Daan Foundation is not registered under Section 80G; this donation is not eligible for tax deduction.</em></p>
 </div>
 
 <div class="stamp">
