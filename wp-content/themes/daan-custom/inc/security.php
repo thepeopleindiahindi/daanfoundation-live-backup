@@ -130,6 +130,20 @@ add_filter('rest_user_query', function (array $args, $request): array {
     return $args;
 }, 10, 2);
 
+// Logged-out visitors get no /wp/v2/users routes at all (the single-user route leaked name + slug).
+// Logged-in users (editor author dropdown, Elementor, WooCommerce admin) keep full access.
+add_filter('rest_endpoints', function (array $endpoints): array {
+    if (is_user_logged_in()) {
+        return $endpoints;
+    }
+    foreach (array_keys($endpoints) as $route) {
+        if (strpos($route, '/wp/v2/users') === 0) {
+            unset($endpoints[$route]);
+        }
+    }
+    return $endpoints;
+});
+
 add_action('template_redirect', function () {
     if (is_author()) {
         wp_safe_redirect(home_url(), 301);
