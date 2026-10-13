@@ -99,13 +99,13 @@ get_header();
 						<?php endforeach; ?>
 					</div>
 					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 8px;text-align:justify;">Meals include dal-roti, rice, vegetables, and seasonal items. During Ramadan, we serve special Iftar meals.</p>
-					<p style="font-size:1.125rem;font-weight:700;color:#EA580C;margin:0;"><strong>500,000+ meals served since 2020 — ₹59 per meal</strong></p>
+					<p style="font-size:1.125rem;font-weight:700;color:#C2410C;margin:0;"><strong>500,000+ meals served since 2020 — ₹59 per meal</strong></p>
 				</div>
 
 				<!-- 6. Our Mission -->
 				<div style="background:#F8FAFC;border-radius:16px;padding:32px;">
 					<h2 style="font-size:1.875rem;font-weight:700;color:#111827;margin:0 0 16px;">Our Mission</h2>
-					<p style="font-size:1.25rem;font-weight:600;color:#EA580C;margin:0 0 16px;">"Ensuring that no one sleeps hungry."</p>
+					<p style="font-size:1.25rem;font-weight:600;color:#C2410C;margin:0 0 16px;">"Ensuring that no one sleeps hungry."</p>
 					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 16px;text-align:justify;">Our primary mission is to feed the hungry every single day. Beyond food, we are committed to:</p>
 					<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;">
 						<?php
@@ -240,7 +240,7 @@ get_header();
 				<div style="background:linear-gradient(135deg, #EA580C, #F97316);border-radius:16px;padding:48px 32px;text-align:center;">
 					<h2 style="font-size:1.875rem;font-weight:700;color:#fff;margin:0 0 16px;">Together, We Can Build a Hunger-Free India</h2>
 					<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);margin:0 0 32px;max-width:576px;margin-left:auto;margin-right:auto;">Your support makes everything possible. Join us in our mission to ensure that no one sleeps hungry.</p>
-					<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Support Our Mission →</a>
+					<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#C2410C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Support Our Mission →</a>
 				</div>
 
 			</div>

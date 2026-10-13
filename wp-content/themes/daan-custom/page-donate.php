@@ -50,7 +50,7 @@ get_header();
 		?>
 			<div style="display:flex;align-items:center;">
 				<div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-					<div id="step-circle-<?php echo $num; ?>" style="width:40px;height:40px;border-radius:9999px;background:#F97316;color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.875rem;font-weight:700;transition:background 0.3s;"><?php echo $num; ?></div>
+					<div id="step-circle-<?php echo $num; ?>" style="width:40px;height:40px;border-radius:9999px;background:#C2410C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.875rem;font-weight:700;transition:background 0.3s;"><?php echo $num; ?></div>
 					<span id="step-label-<?php echo $num; ?>" style="font-size:0.8125rem;font-weight:600;color:#111827;"><?php echo esc_html( $label ); ?></span>
 				</div>
 				<?php if ( ! $is_last ) : ?>
@@ -67,13 +67,13 @@ get_header();
 	<!-- STEP 1: Amount -->
 	<div id="step-1">
 		<div style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);padding:32px;">
-			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 24px;">Choose Your Giving Type</h3>
+			<h2 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 24px;">Choose Your Giving Type</h2>
 			<div style="display:flex;gap:12px;margin-bottom:32px;">
-				<button type="button" id="giving-onetime" onclick="setGivingType('one-time')" style="flex:1;padding:12px 0;border-radius:12px;border:2px solid #F97316;background:#FFF7ED;color:#EA580C;font-weight:700;font-size:0.9375rem;cursor:pointer;transition:all 0.2s;">One-Time</button>
+				<button type="button" id="giving-onetime" onclick="setGivingType('one-time')" style="flex:1;padding:12px 0;border-radius:12px;border:2px solid #F97316;background:#FFF7ED;color:#C2410C;font-weight:700;font-size:0.9375rem;cursor:pointer;transition:all 0.2s;">One-Time</button>
 				<button type="button" id="giving-monthly" onclick="setGivingType('monthly')" style="flex:1;padding:12px 0;border-radius:12px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:600;font-size:0.9375rem;cursor:pointer;transition:all 0.2s;">Monthly</button>
 			</div>
 
-			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Select Amount</h3>
+			<h2 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Select Amount</h2>
 			<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
 				<?php foreach ( array( 500, 1000, 2500, 5000 ) as $amt ) : ?>
 					<button type="button" onclick="selectDonateAmount(this, <?php echo $amt; ?>)" class="donate-amount-btn" data-amount="<?php echo $amt; ?>" style="padding:16px 0;border-radius:12px;font-size:1.125rem;font-weight:700;border:2px solid <?php echo $amt === 1000 ? '#F97316' : '#E2E8F0'; ?>;background:<?php echo $amt === 1000 ? '#FFF7ED' : '#fff'; ?>;color:<?php echo $amt === 1000 ? '#EA580C' : '#334155'; ?>;cursor:pointer;transition:all 0.2s;">₹<?php echo $amt; ?></button>
@@ -95,7 +95,7 @@ get_header();
 				<?php endforeach; ?>
 			</div>
 
-			<button type="button" onclick="goToStep(2)" style="width:100%;border-radius:12px;background:#F97316;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;">
+			<button type="button" onclick="goToStep(2)" style="width:100%;border-radius:12px;background:#C2410C;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;">
 				Continue — <span id="step1-amount-display">₹<?php echo number_format($preset_amount); ?></span>
 			</button>
 		</div>
@@ -183,7 +183,7 @@ get_header();
 
 			<div style="display:flex;gap:12px;">
 				<button type="button" onclick="goToStep(1)" style="flex:1;border-radius:12px;border:2px solid #E2E8F0;background:#fff;color:#475569;padding:14px 0;font-size:1rem;font-weight:600;cursor:pointer;transition:border-color 0.2s;">Back</button>
-				<button type="button" onclick="validateAndGoToStep3()" style="flex:3;border-radius:12px;background:#F97316;color:#fff;padding:14px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;">Continue</button>
+				<button type="button" onclick="validateAndGoToStep3()" style="flex:3;border-radius:12px;background:#C2410C;color:#fff;padding:14px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;">Continue</button>
 			</div>
 		</div>
 	</div>
@@ -245,7 +245,7 @@ get_header();
 				</div>
 			</div>
 
-			<button type="button" id="confirm-btn" onclick="confirmDonation()" style="width:100%;border-radius:12px;background:#F97316;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;margin-bottom:16px;">
+			<button type="button" id="confirm-btn" onclick="confirmDonation()" style="width:100%;border-radius:12px;background:#C2410C;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;margin-bottom:16px;">
 				Confirm Donation
 			</button>
 
@@ -273,10 +273,10 @@ get_header();
 		var ot = document.getElementById('giving-onetime');
 		var mo = document.getElementById('giving-monthly');
 		if (type === 'one-time') {
-			ot.style.borderColor = '#F97316'; ot.style.background = '#FFF7ED'; ot.style.color = '#EA580C'; ot.style.fontWeight = '700';
+			ot.style.borderColor = '#F97316'; ot.style.background = '#FFF7ED'; ot.style.color = '#C2410C'; ot.style.fontWeight = '700';
 			mo.style.borderColor = '#E2E8F0'; mo.style.background = '#fff'; mo.style.color = '#64748B'; mo.style.fontWeight = '600';
 		} else {
-			mo.style.borderColor = '#F97316'; mo.style.background = '#FFF7ED'; mo.style.color = '#EA580C'; mo.style.fontWeight = '700';
+			mo.style.borderColor = '#F97316'; mo.style.background = '#FFF7ED'; mo.style.color = '#C2410C'; mo.style.fontWeight = '700';
 			ot.style.borderColor = '#E2E8F0'; ot.style.background = '#fff'; ot.style.color = '#64748B'; ot.style.fontWeight = '600';
 		}
 		document.getElementById('summary-frequency').textContent = type === 'one-time' ? 'One-Time' : 'Monthly';
@@ -290,7 +290,7 @@ get_header();
 		document.querySelectorAll('.donate-amount-btn').forEach(function(b) {
 			b.style.borderColor = '#E2E8F0'; b.style.background = '#fff'; b.style.color = '#334155';
 		});
-		btn.style.borderColor = '#F97316'; btn.style.background = '#FFF7ED'; btn.style.color = '#EA580C';
+		btn.style.borderColor = '#F97316'; btn.style.background = '#FFF7ED'; btn.style.color = '#C2410C';
 		selectedAmount = amt;
 		document.getElementById('custom-donate-amount').value = '';
 		document.getElementById('step1-amount-display').textContent = '\u20b9' + amt.toLocaleString('en-IN');

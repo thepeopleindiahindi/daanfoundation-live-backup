@@ -2064,3 +2064,19 @@ h1, h2, h3, h4, h5, h6 {
  * orange link/stat text on light cards); button and background colours are untouched. */
 .bank-details span span, .bank-qr p, .footer-logo-text span, .footer-legal, .footer-legal a, .footer-legal span { color: #94A3B8; }
 .learn-more, .campaign-link, .mission-stat-num, .view-all, .view-all-mobile a { color: #C2410C; }
+
+/* A11Y 2026-10-13, option A (owner approved): deeper orange behind white text (WCAG AA 5.2:1).
+ * Brand orange stays on hero and large areas. Rollback = remove this block. */
+.donation-widget h2 { font-size: 1.25rem; font-weight: 700; color: #111827; text-align: center; margin-bottom: 0.5rem; }
+.donate-btn, .mobile-donate-btn, .donate-now-btn, .amount-btn.active, .program-badge, #newsletter-submit-btn { background: #C2410C; color: #fff; }
+.donate-now-btn { background-image: none; }
+.donate-btn:hover, .donate-now-btn:hover { background-color: #9A3412; }
+
+/* A11Y option A (cont.): classes whose orange comes from more specific rules or inline styles */
+.amount-btn.active { background: #C2410C !important; color: #fff !important; }
+.program-badge[style*="F97316" i] { background: #C2410C !important; }
+.program-badge[style*="F59E0B" i] { background: #B45309 !important; }
+.program-badge[style*="8B5CF6" i] { background: #7C3AED !important; }
+.learn-more, .mission-text a { color: #C2410C !important; }
+.text-orange-600 { color: #C2410C; }
+.prose a { color: #C2410C; }

@@ -57,7 +57,7 @@ get_header();
 						</svg>
 					</div>
 					<div>
-						<h4 style="font-size:1rem;font-weight:700;color:#111827;margin:0 0 4px;">Registered Office</h4>
+						<h3 style="font-size:1rem;font-weight:700;color:#111827;margin:0 0 4px;">Registered Office</h3>
 						<p style="font-size:0.9375rem;color:#475569;margin:0;text-align:left;">Katkoi Plot No. 145, Amroha District, Uttar Pradesh, India 244221</p>
 					</div>
 				</div>
@@ -70,8 +70,8 @@ get_header();
 						</svg>
 					</div>
 					<div>
-						<h4 style="font-size:1rem;font-weight:700;color:#111827;margin:0 0 4px;">Phone</h4>
-						<a href="tel:+918899152910" style="font-size:0.9375rem;color:#F97316;text-decoration:none;font-weight:600;">+91 88991 52910</a>
+						<h3 style="font-size:1rem;font-weight:700;color:#111827;margin:0 0 4px;">Phone</h3>
+						<a href="tel:+918899152910" style="font-size:0.9375rem;color:#C2410C;text-decoration:none;font-weight:600;">+91 88991 52910</a>
 					</div>
 				</div>
 
@@ -83,8 +83,8 @@ get_header();
 						</svg>
 					</div>
 					<div>
-						<h4 style="font-size:1rem;font-weight:700;color:#111827;margin:0 0 4px;">Email</h4>
-						<a href="mailto:daanfoundationindia@gmail.com" style="font-size:0.9375rem;color:#F97316;text-decoration:none;font-weight:600;">daanfoundationindia@gmail.com</a>
+						<h3 style="font-size:1rem;font-weight:700;color:#111827;margin:0 0 4px;">Email</h3>
+						<a href="mailto:daanfoundationindia@gmail.com" style="font-size:0.9375rem;color:#C2410C;text-decoration:none;font-weight:600;">daanfoundationindia@gmail.com</a>
 					</div>
 				</div>
 
@@ -96,7 +96,7 @@ get_header();
 						</svg>
 					</div>
 					<div>
-						<h4 style="font-size:1rem;font-weight:700;color:#111827;margin:0 0 4px;">Office Hours</h4>
+						<h3 style="font-size:1rem;font-weight:700;color:#111827;margin:0 0 4px;">Office Hours</h3>
 						<p style="font-size:0.9375rem;color:#475569;margin:0;text-align:left;">Mon-Fri: 9am - 5pm<br>Sat-Sun: Closed</p>
 					</div>
 				</div>
@@ -115,33 +115,33 @@ get_header();
 				<form id="daan-contact-form" method="post" onsubmit="return submitContactForm(event)">
 					<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
 						<div>
-							<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">First Name *</label>
+							<label for="contact-first" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">First Name *</label>
 							<input type="text" id="contact-first" name="first_name" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 						</div>
 						<div>
-							<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Last Name *</label>
+							<label for="contact-last" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Last Name *</label>
 							<input type="text" id="contact-last" name="last_name" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 						</div>
 					</div>
 
 					<div style="margin-bottom:16px;">
-						<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Email Address *</label>
+						<label for="contact-email" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Email Address *</label>
 						<input type="email" id="contact-email" name="email" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 					</div>
 
 					<div style="margin-bottom:16px;">
-						<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Subject *</label>
+						<label for="contact-subject" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Subject *</label>
 						<input type="text" id="contact-subject" name="subject" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 					</div>
 
 					<div style="margin-bottom:24px;">
-						<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Message *</label>
+						<label for="contact-message" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Message *</label>
 						<textarea id="contact-message" name="message" rows="5" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;font-family:inherit;resize:vertical;transition:border-color 0.2s;"></textarea>
 					</div>
 
 					<?php wp_nonce_field( 'daan_contact', 'daan_contact_nonce' ); ?>
 
-					<button type="submit" id="contact-submit-btn" style="width:100%;border-radius:12px;background:#F97316;color:#fff;padding:14px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;">Send Message</button>
+					<button type="submit" id="contact-submit-btn" style="width:100%;border-radius:12px;background:#C2410C;color:#fff;padding:14px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;">Send Message</button>
 				</form>
 			</div>
 

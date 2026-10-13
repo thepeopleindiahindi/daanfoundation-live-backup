@@ -28,7 +28,7 @@ get_header();
 <section class="section hero-donate-section">
     <div class="container" style="display:flex;justify-content:center;">
         <div class="donation-widget">
-            <h3>Make a Donation</h3>
+            <h2>Make a Donation</h2>
             <p class="widget-sub">Every contribution makes a difference</p>
 
             <div class="amount-grid">
@@ -247,11 +247,11 @@ get_header();
             <img src="<?php echo esc_url( home_url( '/images/aid-distribution-elderly.jpg' ) ); ?>" alt="Emergency Appeal — urgent relief distribution" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
             <div class="gradient-overlay-dark" style="position:absolute;inset:0;"></div>
             <div style="position:relative;padding:2rem;max-width:32rem;">
-                <span style="display:inline-block;background:var(--primary);color:#fff;border-radius:9999px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.75rem;">Urgent</span>
+                <span style="display:inline-block;background:#C2410C;color:#fff;border-radius:9999px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.75rem;">Urgent</span>
                 <h2 style="color:#fff;font-size:1.75rem;font-weight:800;margin:0 0 0.5rem;">Emergency Appeal</h2>
                 <p style="color:rgba(255,255,255,0.9);margin:0 0 1.25rem;font-size:1rem;line-height:1.6;">Support our urgent relief efforts — help us respond quickly when it matters most.</p>
                 <a href="<?php echo esc_url( home_url( '/appeals/' ) ); ?>"
-                   style="display:inline-flex;align-items:center;gap:0.5rem;border-radius:9999px;background:#fff;padding:0.875rem 1.75rem;font-weight:700;color:var(--primary);text-decoration:none;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);transition:box-shadow 0.2s;"
+                   style="display:inline-flex;align-items:center;gap:0.5rem;border-radius:9999px;background:#fff;padding:0.875rem 1.75rem;font-weight:700;color:#C2410C;text-decoration:none;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);transition:box-shadow 0.2s;"
                    onmouseover="this.style.boxShadow='0 10px 15px -3px rgba(0,0,0,0.1)'"
                    onmouseout="this.style.boxShadow='0 4px 6px -1px rgba(0,0,0,0.1)'">
                     View Emergency Appeals
@@ -342,7 +342,7 @@ get_header();
                 </div>
             </div>
             <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"
-               style="display:inline-flex;align-items:center;gap:0.5rem;font-weight:600;color:var(--primary);transition:gap 0.2s"
+               style="display:inline-flex;align-items:center;gap:0.5rem;font-weight:600;color:#C2410C;transition:gap 0.2s"
                onmouseover="this.style.gap='0.75rem'" onmouseout="this.style.gap='0.5rem'">
                 Learn About Our Story
                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -461,7 +461,7 @@ get_header();
                     : $story_fallback_images[ $i % count( $story_fallback_images ) ];
                 ?>
                 <a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" class="story-card">
-                    <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $post_id ) ); ?>" loading="lazy">
+                    <img src="<?php echo esc_url( $thumb ); ?>" alt="" loading="lazy">
                     <div class="story-overlay"></div>
 
                     <div class="story-content">
@@ -515,7 +515,7 @@ get_header();
                     : $news_fallback_images[ $i % count( $news_fallback_images ) ];
                 ?>
                 <a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" class="story-card">
-                    <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $post_id ) ); ?>" loading="lazy">
+                    <img src="<?php echo esc_url( $thumb ); ?>" alt="" loading="lazy">
                     <div class="story-overlay"></div>
                     <div class="story-content">
                         <h3><?php echo esc_html( wp_trim_words( get_the_title( $post_id ), 10, '…' ) ); ?></h3>
@@ -576,7 +576,7 @@ get_header();
                 <h2>Make a Difference Today</h2>
                 <p>Your donation can provide food, warmth, and hope to those in need across India. Every contribution matters.</p>
                 <a href="<?php echo esc_url( home_url( '/donate/' ) ); ?>"
-                   style="display:inline-flex;align-items:center;gap:0.5rem;border-radius:9999px;background:#fff;padding:1rem 2rem;font-weight:700;color:var(--primary);box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);transition:box-shadow 0.2s"
+                   style="display:inline-flex;align-items:center;gap:0.5rem;border-radius:9999px;background:#fff;padding:1rem 2rem;font-weight:700;color:#C2410C;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);transition:box-shadow 0.2s"
                    onmouseover="this.style.boxShadow='0 10px 15px -3px rgba(0,0,0,0.1)'"
                    onmouseout="this.style.boxShadow='0 4px 6px -1px rgba(0,0,0,0.1)'">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
