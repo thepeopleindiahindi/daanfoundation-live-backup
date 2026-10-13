@@ -18,9 +18,9 @@
             <div class="header-inner">
                 <!-- Logo -->
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo">
-                    <img src="<?php echo esc_url( home_url( '/images/daan-foundation-logo.png' ) ); ?>"
+                    <img src="<?php echo esc_url( home_url( '/images/daan-foundation-logo-192.png' ) ); ?>"
                          alt="Daan Foundation"
-                         width="280" height="80">
+                         width="192" height="192">
                     <div class="site-logo-text">
                         <span class="site-logo-title">Daan Foundation</span>
                         <span class="site-logo-tagline">Serving humanity with compassion</span>
