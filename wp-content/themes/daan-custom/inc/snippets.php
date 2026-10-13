@@ -301,6 +301,8 @@ body{font-family:'Open Sans',Arial,sans-serif;color:#333;line-height:1.6;margin:
 
 <p>Note: Daan Foundation is not registered under Section 80G; this donation is not eligible for tax deduction.</p>
 
+" . ( daan_receipt_url( $order_id ) ? "<p><a href='" . esc_url( daan_receipt_url( $order_id ) ) . "' style='color:#C2410C;'>View or print your receipt</a></p>" : "" ) . "
+
 <p>With gratitude,<br><strong>Daan Foundation Team</strong></p>
 <p><a href='https://daanfoundation.in' style='color:#F97316;'>daanfoundation.in</a></p>
 </div>
@@ -326,69 +328,158 @@ body{font-family:'Open Sans',Arial,sans-serif;color:#333;line-height:1.6;margin:
 
 add_action( 'template_redirect', 'daan_generate_donation_receipt_page' );
 
+/**
+ * Receipt links look like  /?receipt=<order id>&key=<WooCommerce order key>.
+ * Without the right key a visitor must type the e-mail address of the order. Every failed try
+ * looks identical (no hint whether the order exists) and is rate-limited per IP address and per order.
+ * Only paid orders (completed / processing) have a receipt.
+ */
+function daan_receipt_url( $order ) {
+    if ( is_numeric( $order ) && function_exists( 'wc_get_order' ) ) {
+        $order = wc_get_order( (int) $order );
+    }
+    if ( ! $order || ! is_a( $order, 'WC_Order' ) ) {
+        return '';
+    }
+    return add_query_arg(
+        array(
+            'receipt' => $order->get_id(),
+            'key'     => $order->get_order_key(),
+        ),
+        home_url( '/' )
+    );
+}
+
+function daan_receipt_client_ip() {
+    if ( class_exists( 'WC_Geolocation' ) ) {
+        $ip = WC_Geolocation::get_ip_address();
+        if ( $ip ) {
+            return $ip;
+        }
+    }
+    return isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown';
+}
+
+function daan_receipt_shell( $title, $inner, $status = 200 ) {
+    status_header( $status );
+    nocache_headers();
+    header( 'X-Robots-Tag: noindex, nofollow' );
+    echo '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>' . esc_html( $title ) . '</title>';
+    echo '<style>body{font-family:"Open Sans",Arial,sans-serif;color:#333;margin:0;background:#F8FAFC;line-height:1.6}.box{max-width:460px;margin:60px auto;background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:32px}h1{font-size:22px;margin:0 0 12px;color:#111827}.msg{background:#FFF7ED;border:1px solid #FDBA74;border-radius:8px;padding:10px 12px;color:#9A3412;font-size:14px}label{display:block;font-weight:600;font-size:14px;margin:16px 0 6px}input[type=email]{width:100%;box-sizing:border-box;padding:12px 14px;border:2px solid #E2E8F0;border-radius:10px;font-size:16px}button{margin-top:16px;width:100%;padding:12px;border:0;border-radius:10px;background:#C2410C;color:#fff;font-size:16px;font-weight:700;cursor:pointer}</style></head><body><div class="box">';
+    echo $inner; // built from escaped parts only.
+    echo '</div></body></html>';
+    exit;
+}
+
+function daan_receipt_form_html( $receipt_id, $message = '' ) {
+    $action = add_query_arg( 'receipt', rawurlencode( $receipt_id ), home_url( '/' ) );
+    $html   = '<h1>Donation receipt</h1>';
+    if ( '' !== $message ) {
+        $html .= '<p class="msg">' . esc_html( $message ) . '</p>';
+    }
+    $html .= '<p>To see this receipt, please enter the e-mail address you used for the donation.</p>';
+    $html .= '<form method="post" action="' . esc_url( $action ) . '"><label for="receipt_email">E-mail address</label><input type="email" id="receipt_email" name="receipt_email" required autocomplete="email"><button type="submit">Show receipt</button></form>';
+    return $html;
+}
+
 function daan_generate_donation_receipt_page() {
     if ( empty( $_GET['receipt'] ) ) {
         return;
     }
 
-    $input_id = sanitize_text_field( $_GET['receipt'] );
-
-    global $wpdb;
-
-    $donor_name = '';
-    $donor_email = '';
-    $donor_amount = 0;
-    $donor_cause = '';
-    $donor_frequency = '';
-    $donor_city = '';
-    $donor_state = '';
-    $donor_pincode = '';
-    $donor_date = '';
-    $donor_payment_id = '';
-    $donor_order_id = '';
-
-    // Try custom daan_donations table first (legacy Razorpay donations)
-    $table = $wpdb->prefix . 'daan_donations';
-    $donor = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table WHERE order_id = %s LIMIT 1", $input_id ) );
-
-    if ( $donor ) {
-        $donor_name      = $donor->first_name . ' ' . $donor->last_name;
-        $donor_email     = $donor->email;
-        $donor_amount    = $donor->amount;
-        $donor_cause     = $donor->cause;
-        $donor_frequency = $donor->frequency;
-        $donor_city      = $donor->city;
-        $donor_state     = $donor->state;
-        $donor_pincode   = $donor->pincode;
-        $donor_date      = date_i18n( 'F j, Y', strtotime( $donor->created_at ) );
-        $donor_payment_id = $donor->payment_id;
-        $donor_order_id  = $donor->order_id;
-        $txn_type        = 'Online Payment (Razorpay)';
+    $input_id = sanitize_text_field( wp_unslash( $_GET['receipt'] ) );
+    $key      = isset( $_GET['key'] ) ? sanitize_text_field( wp_unslash( $_GET['key'] ) ) : '';
+    $email    = '';
+    if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === $_SERVER['REQUEST_METHOD'] && isset( $_POST['receipt_email'] ) ) {
+        $email = strtolower( trim( sanitize_email( wp_unslash( $_POST['receipt_email'] ) ) ) );
     }
 
-    // Fallback: WooCommerce order
-    if ( ! $donor && function_exists( 'wc_get_order' ) ) {
-        $order = wc_get_order( intval( $input_id ) );
-        if ( $order ) {
-            $billing = $order->get_address( 'billing' );
-            $donor_name      = $billing['first_name'] . ' ' . $billing['last_name'];
-            $donor_email     = $billing['email'];
-            $donor_amount    = $order->get_total();
-            $donor_cause     = $order->get_meta( '_daan_donation_cause' ) ?: 'Donation';
-            $donor_frequency = $order->get_meta( '_daan_donation_frequency' ) ?: 'one-time';
-            $donor_city      = $billing['city'];
-            $donor_state     = $billing['state'];
-            $donor_pincode   = $billing['postcode'];
-            $donor_date      = $order->get_date_created()->date_i18n( 'F j, Y' );
-            $donor_order_id  = $order->get_order_number();
-            $payment_method  = $order->get_payment_method_title();
-            $txn_type        = $payment_method ?: 'Bank Transfer / UPI';
+    // Rate limit: at most 5 failed tries per IP per 15 minutes and 10 per receipt number per hour.
+    $ip_key    = 'daan_rcpt_ip_' . md5( daan_receipt_client_ip() );
+    $order_key = 'daan_rcpt_id_' . md5( $input_id );
+    $ip_fails  = (int) get_transient( $ip_key );
+    $id_fails  = (int) get_transient( $order_key );
+    if ( $ip_fails >= 5 || $id_fails >= 10 ) {
+        daan_receipt_shell( 'Too many attempts', '<h1>Too many attempts</h1><p>Please wait a while and try again later.</p>', 429 );
+    }
+
+    global $wpdb;
+    $record = null;
+
+    // WooCommerce order: valid key OR matching billing e-mail, paid orders only.
+    if ( function_exists( 'wc_get_order' ) && ctype_digit( $input_id ) ) {
+        $order = wc_get_order( (int) $input_id );
+        if ( $order && 'shop_order' === $order->get_type() && in_array( $order->get_status(), array( 'completed', 'processing' ), true ) ) {
+            $billing       = $order->get_address( 'billing' );
+            $billing_email = strtolower( trim( (string) $order->get_billing_email() ) );
+            $key_ok        = ( '' !== $key && hash_equals( (string) $order->get_order_key(), $key ) );
+            $email_ok      = ( '' !== $email && '' !== $billing_email && hash_equals( $billing_email, $email ) );
+            if ( $key_ok || $email_ok ) {
+                $created = $order->get_date_created();
+                $record  = array(
+                    'name'       => trim( $billing['first_name'] . ' ' . $billing['last_name'] ),
+                    'email'      => $billing['email'],
+                    'amount'     => $order->get_total(),
+                    'cause'      => $order->get_meta( '_daan_donation_cause' ) ?: 'Donation',
+                    'frequency'  => $order->get_meta( '_daan_donation_frequency' ) ?: 'one-time',
+                    'city'       => $billing['city'],
+                    'state'      => $billing['state'],
+                    'pincode'    => $billing['postcode'],
+                    'date'       => $created ? $created->date_i18n( 'F j, Y' ) : '',
+                    'payment_id' => '',
+                    'order_id'   => $order->get_order_number(),
+                    'txn_type'   => $order->get_payment_method_title() ?: 'Bank Transfer / UPI',
+                );
+            }
         }
     }
 
-    if ( ! $donor_name ) {
-        wp_die( 'Donation not found.', '404', array( 'response' => 404 ) );
+    // Legacy table (older Razorpay donations): e-mail must match.
+    if ( ! $record && '' !== $email ) {
+        $table = $wpdb->prefix . 'daan_donations';
+        $donor = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table WHERE order_id = %s LIMIT 1", $input_id ) );
+        if ( $donor && '' !== trim( (string) $donor->email ) && hash_equals( strtolower( trim( (string) $donor->email ) ), $email ) ) {
+            $record = array(
+                'name'       => trim( $donor->first_name . ' ' . $donor->last_name ),
+                'email'      => $donor->email,
+                'amount'     => $donor->amount,
+                'cause'      => $donor->cause,
+                'frequency'  => $donor->frequency,
+                'city'       => $donor->city,
+                'state'      => $donor->state,
+                'pincode'    => $donor->pincode,
+                'date'       => date_i18n( 'F j, Y', strtotime( $donor->created_at ) ),
+                'payment_id' => $donor->payment_id,
+                'order_id'   => $donor->order_id,
+                'txn_type'   => 'Online Payment (Razorpay)',
+            );
+        }
     }
+
+    if ( ! $record ) {
+        if ( '' !== $key || '' !== $email ) {
+            set_transient( $ip_key, $ip_fails + 1, 15 * MINUTE_IN_SECONDS );
+            set_transient( $order_key, $id_fails + 1, HOUR_IN_SECONDS );
+            daan_receipt_shell( 'Donation receipt', daan_receipt_form_html( $input_id, 'We could not find a receipt for these details. Please check and try again.' ) );
+        }
+        daan_receipt_shell( 'Donation receipt', daan_receipt_form_html( $input_id ) );
+    }
+
+    nocache_headers();
+    header( 'X-Robots-Tag: noindex, nofollow' );
+
+    $donor_name       = $record['name'];
+    $donor_email      = $record['email'];
+    $donor_amount     = $record['amount'];
+    $donor_cause      = $record['cause'];
+    $donor_frequency  = $record['frequency'];
+    $donor_city       = $record['city'];
+    $donor_state      = $record['state'];
+    $donor_pincode    = $record['pincode'];
+    $donor_date       = $record['date'];
+    $donor_payment_id = $record['payment_id'];
+    $donor_order_id   = $record['order_id'];
+    $txn_type         = $record['txn_type'];
 
     $amount_display = '₹' . number_format( $donor_amount );
     $address_line   = trim(
