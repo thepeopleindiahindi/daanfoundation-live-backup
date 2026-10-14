@@ -406,9 +406,24 @@ function daan_pay_handle_proof() {
 		$body .= '<tr><td style="color:#B91C1C">Warning</td><td style="color:#B91C1C">same UTR on order(s) #' . esc_html( implode( ', #', array_map( 'intval', $dups ) ) ) . '</td></tr>';
 	}
 	$body .= '</table>';
+	// Answer the donor first; the e-mail (SMTP takes several seconds) is sent after the response is closed.
+	ignore_user_abort( true );
+	$json = wp_json_encode( array( 'success' => true, 'data' => array( 'message' => $ok_msg ) ) );
+	status_header( 200 );
+	header( 'Content-Type: application/json; charset=utf-8' );
+	header( 'Content-Length: ' . strlen( $json ) );
+	header( 'Connection: close' );
+	echo $json; // phpcs:ignore WordPress.Security.EscapeOutput -- JSON built by wp_json_encode.
+	if ( function_exists( 'litespeed_finish_request' ) ) {
+		litespeed_finish_request();
+	} elseif ( function_exists( 'fastcgi_finish_request' ) ) {
+		fastcgi_finish_request();
+	} else {
+		@ob_end_flush();
+		@flush();
+	}
 	wp_mail( daan_pay_notify_recipient(), '[Daan] Payment reported — order #' . $order->get_order_number() . ' ' . daan_pay_amount_text( $order ), $body, array( 'Content-Type: text/html; charset=UTF-8' ) );
-
-	wp_send_json_success( array( 'message' => $ok_msg ) );
+	exit;
 }
 
 // Admins open screenshots through WordPress (the folder itself is closed to the web).
