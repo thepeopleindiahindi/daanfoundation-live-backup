@@ -129,7 +129,7 @@
         <div class="footer-bottom">
             <div class="container footer-bottom-inner">
                 <div class="footer-legal">
-                    <span>&copy; <?php echo date( 'Y' ); ?> Daan Foundation | PAN: AAETD5465E</span>
+                    <span>&copy; <?php echo date( 'Y' ); ?> Daan Foundation (Registered Trust) | Reg. No. 149/11-20/302 (Tehsil Amroha) | PAN: AAETD5465E</span>
                     <span class="sep">&bull;</span>
                     <a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a>
                     <a href="<?php echo esc_url( home_url( '/terms-conditions/' ) ); ?>">Terms of Use</a>

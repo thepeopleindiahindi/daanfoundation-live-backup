@@ -307,7 +307,7 @@ body{font-family:'Open Sans',Arial,sans-serif;color:#333;line-height:1.6;margin:
 <p><a href='https://daanfoundation.in' style='color:#F97316;'>daanfoundation.in</a></p>
 </div>
 <div class='footer'>
-<p>Daan Foundation | PAN: AAETD5465E</p>
+<p>Daan Foundation (Registered Trust) | Reg. No. 149/11-20/302 (Tehsil Amroha) | PAN: AAETD5465E</p>
 <p>Katkoi Plot No. 145, Amroha District, Uttar Pradesh, India 244221</p>
 </div>
 </div>
@@ -512,7 +512,7 @@ body{font-family:'Open Sans',Arial,sans-serif;color:#333;margin:40px;line-height
 <div class="header">
 <h1>Daan Foundation</h1>
 <h2>Donation Receipt</h2>
-<p>PAN: AAETD5465E</p>
+<p>Daan Foundation (Registered Trust) | Reg. No. 149/11-20/302 (Tehsil Amroha) | PAN: AAETD5465E</p>
 </div>
 
 <div class="content">
