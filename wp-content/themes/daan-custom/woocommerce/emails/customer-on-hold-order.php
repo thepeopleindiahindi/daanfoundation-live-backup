@@ -28,7 +28,9 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <?php echo $email_improvements_enabled ? '<div class="email-introduction">' : ''; ?>
 <?php /* translators: %s: Customer first name */ ?>
+<?php if ( ! ( function_exists( 'daan_pay_email_intro' ) && daan_pay_email_intro( $order ) ) ) : ?>
 <p><?php printf( esc_html__( 'Dear %s, Jazakallah Khair for your generous donation. Here are your donation details:', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
+<?php endif; ?>
 <?php echo $email_improvements_enabled ? '</div>' : ''; ?>
 
 <?php
