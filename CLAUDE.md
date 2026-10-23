@@ -75,3 +75,18 @@ Copilot subagents split page-building by concern: `page-coordinator` orchestrate
 - **`public/.htaccess` has a WordPress permalink rewrite block** (`RewriteRule . /index.php`) that gets copied verbatim into `dist/` and FTP'd to production. The React build only ships `index.html`, not `index.php` — this can break direct URL loads/refreshes on SPA routes other than `/`.
 - **`my-sweet-page-09/` is a git submodule** containing a near-duplicate copy of this same project (same file names, its own `.git`). It's not a subdirectory of the live app — edits belong in the repo root unless you're intentionally updating the submodule.
 - **Root-level clutter**: numerous one-off artifacts from prior scrape/debug/backup sessions live at the repo root (`wp-login-result*.html`, `temp_*.txt`, `tmp_*.txt`, `*.BACKUP-*.php`, `*.LIVE-BACKUP.php`, `wp-cookies.txt`, `output.txt`, `.docx`-derived content dumps, a 39MB `II update.zip`). These are not part of the build — don't assume they're referenced anywhere before deleting or editing them. (`ftp_upload.txt`, formerly in this list, has been deleted and gitignored — see "Live site vs. this repo's build pipeline" above.)
+
+## Daily work log — `log.md` (owner rule, 23 Oct 2026)
+
+At the end of every working day (and before closing any session in which work was done), append that day's entry to `log.md` in the repo root. This applies to every Claude window on this project: the thinking window and each execution window. Never overwrite or rewrite earlier days; only append (if an entry for today already exists, extend it). Format:
+
+```
+## YYYY-MM-DD (window: thinking / execution)
+- Done: what was changed or decided, with commit IDs, prompt numbers and live URLs
+- Verified: what was checked live and the result
+- Owner actions: what the owner did, or still has to do
+- Open / next: pending items and the next step
+- Risks / notes: anything a future session must know
+```
+
+Keep it factual and specific (numbers, commits, file paths). Never put secrets, passwords, tokens or donor personal data in it. Commit `log.md` (and `CLAUDE.md` when it changes) by explicit path. If the session ends before the day does, write the entry anyway. Full audit details stay in `reports/full-site-audit-2026-10-13/` (gitignored); the log only points to them.
