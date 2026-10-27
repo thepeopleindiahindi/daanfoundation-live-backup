@@ -2,7 +2,7 @@
 /**
  * Template Name: Donate
  *
- * 3-step donation form with UPI and Direct Bank Transfer.
+ * 3-step donation form, UPI only (bank transfer closed 2026-10-27).
  * Creates WooCommerce orders via daan_place_order AJAX handler.
  */
 $preset_amount = isset($_GET['amount']) ? max(1, intval($_GET['amount'])) : 1000;
@@ -209,15 +209,8 @@ get_header();
 			</div>
 
 			<div style="margin-bottom:20px;">
-				<label style="display:flex;align-items:flex-start;gap:12px;padding:16px;border-radius:12px;border:2px solid #F97316;background:#FFF7ED;cursor:pointer;margin-bottom:12px;" id="payment-bacs-label">
-					<input type="radio" name="payment_method" value="bacs" checked onchange="selectPaymentMethod(this)" style="accent-color:#F97316;width:20px;height:20px;margin-top:2px;">
-					<div>
-						<span style="font-weight:700;font-size:1rem;color:#111827;">Direct Bank Transfer (NEFT)</span>
-						<p style="font-size:0.8125rem;color:#64748B;margin:4px 0 0;">Transfer the donation amount to our bank account</p>
-					</div>
-				</label>
-				<label style="display:flex;align-items:flex-start;gap:12px;padding:16px;border-radius:12px;border:2px solid #E2E8F0;background:#fff;cursor:pointer;" id="payment-upi-label">
-					<input type="radio" name="payment_method" value="cheque" onchange="selectPaymentMethod(this)" style="accent-color:#F97316;width:20px;height:20px;margin-top:2px;">
+				<label style="display:flex;align-items:flex-start;gap:12px;padding:16px;border-radius:12px;border:2px solid #F97316;background:#FFF7ED;cursor:pointer;" id="payment-upi-label">
+					<input type="radio" name="payment_method" value="cheque" checked onchange="selectPaymentMethod(this)" style="accent-color:#F97316;width:20px;height:20px;margin-top:2px;">
 					<div>
 						<span style="font-weight:700;font-size:1rem;color:#111827;">Pay via UPI</span>
 						<p style="font-size:0.8125rem;color:#64748B;margin:4px 0 0;">Pay using GPay / PhonePe / PayTM</p>
@@ -225,24 +218,13 @@ get_header();
 				</label>
 			</div>
 
-			<div id="payment-bacs-details" style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:20px;margin-bottom:24px;">
-				<h4 style="font-size:1rem;font-weight:700;color:#92400E;margin:0 0 12px;">Bank Transfer Details</h4>
-				<div style="font-size:0.9375rem;color:#78350F;line-height:2;">
-					Account Name: <strong>Daan Foundation</strong><br>
-					Bank: <strong>State Bank of India</strong><br>
-					A/C No: <strong>42818355421</strong><br>
-					IFSC: <strong>SBIN0003448</strong><br>
-					Branch: Amroha, Uttar Pradesh
-				</div>
-				<p style="font-size:0.8125rem;color:#92400E;margin:12px 0 0;">After transferring, please keep the transaction reference for your records.</p>
-			</div>
-
-			<div id="payment-upi-details" style="display:none;text-align:center;margin-bottom:24px;">
+			<div id="payment-upi-details" style="text-align:center;margin-bottom:24px;">
 				<h4 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 16px;">Pay via UPI</h4>
 				<p style="font-size:0.9375rem;color:#64748B;margin:0 0 16px;">UPI ID: <strong>sbibhim.instant90923460741799790@sbipay</strong></p>
 				<div style="display:inline-block;background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:14px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
 					<img src="https://daanfoundation.in/wp-content/uploads/2026/08/QR-Code-SBI-Payment-Daan-Foundation.jpeg" alt="UPI QR Code for donations - Daan Foundation" width="200" height="220" style="display:block;width:200px;height:auto;max-width:100%;border-radius:8px;" loading="lazy">
 				</div>
+				<p style="font-size:0.875rem;color:#475569;margin:14px 0 0;line-height:1.6;">UPI se donate karein (QR scan ya UPI ID). / Donate by UPI (scan the QR or use the UPI ID).<br>₹1 lakh se zyada ke donation ke liye humse sampark karein / For donations above ₹1 lakh, please contact us: <a href="tel:+918899152910" style="color:#C2410C;font-weight:600;">+91 88991 52910</a> · <a href="mailto:daanfoundationindia@gmail.com" style="color:#C2410C;font-weight:600;">daanfoundationindia@gmail.com</a></p>
 			</div>
 
 			<button type="button" id="confirm-btn" onclick="confirmDonation()" style="width:100%;border-radius:12px;background:#C2410C;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;margin-bottom:16px;">
@@ -351,13 +333,8 @@ get_header();
 	};
 
 	window.selectPaymentMethod = function(radio) {
-		var isBacs = radio.value === 'bacs';
-		document.getElementById('payment-bacs-label').style.borderColor = isBacs ? '#F97316' : '#E2E8F0';
-		document.getElementById('payment-bacs-label').style.background = isBacs ? '#FFF7ED' : '#fff';
-		document.getElementById('payment-upi-label').style.borderColor = isBacs ? '#E2E8F0' : '#F97316';
-		document.getElementById('payment-upi-label').style.background = isBacs ? '#fff' : '#FFF7ED';
-		document.getElementById('payment-bacs-details').style.display = isBacs ? 'block' : 'none';
-		document.getElementById('payment-upi-details').style.display = isBacs ? 'none' : 'block';
+		// Only UPI is offered (bank transfer closed on 2026-10-27); keep the UPI box visible.
+		var u = document.getElementById('payment-upi-details'); if (u) { u.style.display = 'block'; }
 	};
 
 	window.confirmDonation = function() {

@@ -96,26 +96,24 @@
                     <ul>
                         <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About Us</a></li>
                         <li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact Us</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/bank-details/' ) ); ?>">Bank Details</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/donate/' ) ); ?>">Donate by UPI</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Bank Details -->
+        <!-- UPI donations only (since 2026-10-27) -->
         <div class="footer-bank">
             <div class="container bank-inner">
                 <div class="bank-info">
                     <h4>
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                        Bank Details
+                        UPI se donate karein / Donate by UPI
                     </h4>
                     <div class="bank-details">
-                        <span><span>Bank:</span> State Bank of India</span>
-                        <span><span>A/C:</span> 42818355421</span>
-                        <span><span>IFSC:</span> SBIN0003448</span>
-                        <span><span>Branch:</span> Amroha, UP</span>
-                        <span><span>UPI:</span> sbibhim.instant90923460741799790@sbipay</span>
+                        <span><span>UPI ID:</span> sbibhim.instant90923460741799790@sbipay</span>
+                        <span>UPI se donate karein (QR scan ya UPI ID). / Donate by UPI (scan the QR or use the UPI ID).</span>
+                        <span>₹1 lakh se zyada ke donation ke liye humse sampark karein / For donations above ₹1 lakh, contact us: <a href="tel:+918899152910">+91 88991 52910</a> · <a href="mailto:daanfoundationindia@gmail.com">daanfoundationindia@gmail.com</a></span>
                     </div>
                 </div>
                 <div class="bank-qr">

@@ -98,7 +98,6 @@
                         ),
                         'About' => home_url( '/about/' ),
                         'Contact' => home_url( '/contact/' ),
-                        'Bank Details' => home_url( '/bank-details/' ),
                     );
 
                     foreach ( $menu_items as $label => $data ) : ?>

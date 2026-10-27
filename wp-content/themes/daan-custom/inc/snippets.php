@@ -199,7 +199,11 @@ function daan_place_order() {
         wp_send_json_error( array( 'message' => 'Please fill all required fields.' ) );
     }
 
-    if ( ! in_array( $payment_method, array( 'bacs', 'cheque' ), true ) ) {
+    // Bank transfer was closed on 2026-10-27: an old cached form that still sends 'bacs' becomes a UPI order.
+    if ( 'bacs' === $payment_method ) {
+        $payment_method = 'cheque';
+    }
+    if ( 'cheque' !== $payment_method ) {
         wp_send_json_error( array( 'message' => 'Invalid payment method.' ) );
     }
 
@@ -231,11 +235,7 @@ function daan_place_order() {
     $fee->set_tax_status( 'none' );
     $order->add_item( $fee );
 
-    if ( 'bacs' === $payment_method ) {
-        $order->set_payment_method( 'bacs' );
-    } else {
-        $order->set_payment_method( 'cheque' );
-    }
+    $order->set_payment_method( 'cheque' ); // UPI only.
 
     $order->update_meta_data( '_daan_donation_cause', $cause );
     $order->update_meta_data( '_daan_donation_frequency', $frequency );

@@ -14,7 +14,8 @@
  * Preview: add  ?daan_preview=<secret token stored in option daan_payment_preview_token>  to a page URL
  * (no write happens in preview mode, the form only validates).
  *
- * Payment details are exactly those already shown on the live site (footer / Bank Details page).
+ * Payment details are exactly those already shown on the live site. Bank transfer was closed on 2026-10-27:
+ * every pending order (old bank-transfer orders too) now shows the UPI ID, QR and UPI app button.
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -27,11 +28,6 @@ function daan_payment_details() {
 		'payee'        => 'Daan Foundation',
 		'upi_id'       => 'sbibhim.instant90923460741799790@sbipay',
 		'qr_url'       => 'https://daanfoundation.in/wp-content/uploads/2026/08/QR-Code-SBI-Payment-Daan-Foundation.jpeg',
-		'bank_name'    => 'State Bank of India',
-		'account_name' => 'Daan Foundation',
-		'account_no'   => '42818355421',
-		'ifsc'         => 'SBIN0003448',
-		'branch'       => 'Amroha, UP',
 	);
 }
 
@@ -200,7 +196,7 @@ function daan_pay_box_html( $order ) {
 
 	<div class="daan-pay-card">
 		<p class="daan-pay-meta"><span>Order / ऑर्डर <strong>#<?php echo esc_html( $oid ); ?></strong></span><span>Amount / रकम <strong><?php echo esc_html( $amount ); ?></strong></span></p>
-		<?php if ( $is_upi ) : ?>
+		<?php if ( ! $is_upi ) : ?><p style="margin:0 0 12px;font-size:.95rem">बैंक ट्रांसफर अब बंद है, कृपया UPI से भुगतान करें। / Bank transfer is no longer offered; please pay by UPI.</p><?php endif; ?>
 			<h3>UPI से भुगतान करें / Pay with UPI</h3>
 			<ol class="daan-pay-steps">
 				<li>किसी भी UPI ऐप (PhonePe, Google Pay, Paytm, BHIM…) से नीचे का QR स्कैन करें, या मोबाइल पर बटन दबाएँ। / Scan the QR with any UPI app, or tap the button on mobile.</li>
@@ -213,20 +209,7 @@ function daan_pay_box_html( $order ) {
 				<dt>Name / नाम</dt><dd><?php echo esc_html( $d['payee'] ); ?></dd>
 			</dl>
 			<div class="daan-pay-qr"><img src="<?php echo esc_url( $d['qr_url'] ); ?>" width="220" height="200" alt="UPI QR code — Daan Foundation"></div>
-		<?php else : ?>
-			<h3>बैंक ट्रांसफर / Bank transfer</h3>
-			<ol class="daan-pay-steps">
-				<li>नीचे के खाते में <strong><?php echo esc_html( $amount ); ?></strong> ट्रांसफर करें (UPI, NEFT, IMPS या RTGS)। रेफरेंस में <strong>Order #<?php echo esc_html( $oid ); ?></strong> लिखें। / Transfer <strong><?php echo esc_html( $amount ); ?></strong> to the account below and write <strong>Order #<?php echo esc_html( $oid ); ?></strong> as the reference.</li>
-				<li>भुगतान के बाद नीचे UTR / रेफरेंस नंबर भरें। / After paying, enter the UTR / reference number below.</li>
-			</ol>
-			<dl class="daan-pay-kv">
-				<dt>Bank</dt><dd><?php echo esc_html( $d['bank_name'] ); ?></dd>
-				<dt>Account name</dt><dd><?php echo esc_html( $d['account_name'] ); ?></dd>
-				<dt>Account number</dt><dd><?php echo esc_html( $d['account_no'] ); ?></dd>
-				<dt>IFSC</dt><dd><?php echo esc_html( $d['ifsc'] ); ?></dd>
-				<dt>Branch</dt><dd><?php echo esc_html( $d['branch'] ); ?></dd>
-			</dl>
-		<?php endif; ?>
+			<p class="daan-pay-contact" style="font-size:.95rem;margin:12px 0 0">UPI se donate karein (QR scan ya UPI ID). / Donate by UPI (scan the QR or use the UPI ID).<br>₹1 lakh se zyada ke donation ke liye humse sampark karein / For donations above ₹1 lakh, contact us: <a href="tel:+918899152910">+91 88991 52910</a> · <a href="mailto:daanfoundationindia@gmail.com">daanfoundationindia@gmail.com</a></p>
 	</div>
 
 	<div class="daan-pay-card">
@@ -469,12 +452,9 @@ function daan_pay_email_html( $order ) {
 	$h .= '<p style="margin:0 0 6px;font-size:16px;font-weight:bold;color:#9A3412">Your donation is PENDING — please complete the payment.</p>';
 	$h .= '<p style="margin:0;font-size:13px">भुगतान मिलने के बाद ही दान पूरा माना जाएगा। / Your donation is counted only after we receive the payment.</p></div>';
 	$h .= '<p style="margin:0 0 10px">Order / ऑर्डर <strong>#' . esc_html( $oid ) . '</strong> &nbsp;·&nbsp; Amount / रकम <strong>' . esc_html( $amount ) . '</strong></p>';
-	if ( $is_upi ) {
-		$h .= '<p style="margin:0 0 6px"><strong>UPI ID:</strong> ' . esc_html( $d['upi_id'] ) . ' (' . esc_html( $d['payee'] ) . ')</p>';
-		$h .= '<p style="margin:0 0 6px"><a href="' . esc_url( daan_pay_upi_link( $order ), array( 'upi' ) ) . '" style="color:#C2410C;font-weight:bold">UPI ऐप से पे करें / Pay with UPI app</a> (mobile)</p>';
-	} else {
-		$h .= '<p style="margin:0 0 6px"><strong>Bank:</strong> ' . esc_html( $d['bank_name'] ) . ' &nbsp; <strong>A/C name:</strong> ' . esc_html( $d['account_name'] ) . '<br><strong>A/C no.:</strong> ' . esc_html( $d['account_no'] ) . ' &nbsp; <strong>IFSC:</strong> ' . esc_html( $d['ifsc'] ) . ' &nbsp; <strong>Branch:</strong> ' . esc_html( $d['branch'] ) . '<br>Reference / रेफरेंस: Order #' . esc_html( $oid ) . '</p>';
-	}
+	$h .= '<p style="margin:0 0 6px"><strong>UPI ID:</strong> ' . esc_html( $d['upi_id'] ) . ' (' . esc_html( $d['payee'] ) . ')</p>';
+	$h .= '<p style="margin:0 0 6px"><a href="' . esc_url( daan_pay_upi_link( $order ), array( 'upi' ) ) . '" style="color:#C2410C;font-weight:bold">UPI ऐप से पे करें / Pay with UPI app</a> (mobile)</p>';
+	$h .= '<p style="margin:0 0 6px">For donations above ₹1 lakh / ₹1 lakh se zyada ke liye: +91 88991 52910 · daanfoundationindia@gmail.com</p>';
 	$h .= '<p style="margin:14px 0 6px">QR code, "I have paid" form (UTR) और पूरी जानकारी यहाँ है / QR code, the "I have paid" form and full details are here:</p>';
 	$h .= '<p style="margin:0 0 6px"><a href="' . esc_url( $page ) . '" style="display:inline-block;background:#C2410C;color:#fff;text-decoration:none;font-weight:bold;padding:12px 18px;border-radius:8px">भुगतान पेज खोलें / Open payment page</a></p>';
 	$h .= '</div>';
