@@ -14,3 +14,10 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Risks / notes: local main is ahead of `backup/main` — no push until the repo is private. Before deleting either UPI plugin, confirm which one /donate/ uses. Delete ~/private-daan-backups/ (contains donor data) by 2026-11-12.
 - Done (execution window): read the new CLAUDE.md log rule; from now on every working day ends with an appended entry in log.md, and log.md / CLAUDE.md are committed by explicit path.
 - Verified: git tree clean apart from an untracked favicon-307.png (not ours, left alone); nothing pushed; no site changes today.
+
+## 2026-10-27 (window: execution)
+- Done: bank transfer closed, site is UPI-only (owner decision). Theme commit (local) changes page-donate.php, inc/snippets.php, footer.php, header.php, inc/payment-instructions.php; DB content edits in posts 6555, 6767, 6836, 6910, 7018 and page 6821; /bank-details/ (page 6781) drafted, /bank-details/ and /bank-detail/ 301 -> /donate/ (one hop); Customer-invoice e-mail text changed. Inventory: reports/full-site-audit-2026-10-13/drafts/06-bank-details-inventory.md; details in change_log.md Batch 12.
+- Verified: 80 URLs scanned: account last-4 and IFSC = 0 in public HTML; /donate/ and WooCommerce checkout offer only UPI; old bank order #7096 and UPI order #7112 payment pages show UPI ID + QR + button, 0 bank fields; /, /donate/, /cart/ 200 and /checkout/ 302 after every step.
+- Owner actions: check whether the QR image itself shows bank text; optionally delete the inactive widgets with old bank/UPI data and the disabled BACS account row; decide how big donors (>Rs 1 lakh) are answered.
+- Open / next: owner priority list unchanged (DB password, SSH password, repo private, workflow off in GitHub UI, inbox check, UPI app test, on-hold reconciliation, site-facts).
+- Risks / notes: no push (repo still public). Scratchpad tools had been cleaned; restored from reports/.../tools. Server backups for this batch: ~/private-daan-backups/2026-10-27_bank/ (contains old page data; delete with the other backups).
