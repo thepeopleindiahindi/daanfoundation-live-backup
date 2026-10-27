@@ -2080,3 +2080,19 @@ h1, h2, h3, h4, h5, h6 {
 .learn-more, .mission-text a { color: #C2410C !important; }
 .text-orange-600 { color: #C2410C; }
 .prose a { color: #C2410C; }
+/* Footer "Pay with UPI" card (2026-10-27): replaces the old two-column bank block. */
+.footer-bank .upi-card { max-width: 22rem; margin: 0 auto; padding: 1.25rem 1.25rem 1.1rem; text-align: center; border: 1px solid #1E293B; border-radius: 14px; background: rgba(255,255,255,0.03); }
+.upi-card-title { font-weight: 700; font-size: 1rem; color: #fff; margin: 0 0 0.9rem; }
+.upi-card-qr { display: block; width: 180px; max-width: 100%; height: auto; aspect-ratio: 1452 / 1600; object-fit: contain; margin: 0 auto 0.9rem; padding: 10px; background: #fff; border-radius: 12px; box-sizing: content-box; }
+.upi-card-text { font-size: 0.875rem; color: #CBD5E1; margin: 0 0 0.6rem; }
+.upi-card-id { font-size: 0.8125rem; color: #CBD5E1; margin: 0 0 0.6rem; line-height: 1.6; }
+.upi-card-label { color: #94A3B8; }
+.upi-card-value { color: #fff; font-weight: 600; word-break: break-all; overflow-wrap: anywhere; }
+.upi-copy-btn { margin-left: 0.4rem; padding: 0.2rem 0.65rem; font-size: 0.75rem; font-weight: 700; color: #fff; background: #C2410C; border: 0; border-radius: 6px; cursor: pointer; vertical-align: middle; }
+.upi-copy-btn:hover { background: #9A3412; }
+.upi-card-contact { font-size: 0.8125rem; color: #94A3B8; margin: 0; }
+.upi-card-contact a { color: #fff; font-weight: 600; }
+@media (max-width: 400px) { .upi-card-qr { width: 160px; } .footer-bank .upi-card { padding: 1rem; } }
+.footer-bank .upi-card, .footer-bank .upi-card h4, .footer-bank .upi-card p { text-align: center !important; }
+.upi-card-value { display: block; margin: 0.15rem 0 0.45rem; }
+.upi-copy-btn { margin-left: 0; }

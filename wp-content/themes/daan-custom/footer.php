@@ -102,26 +102,23 @@
             </div>
         </div>
 
-        <!-- UPI donations only (since 2026-10-27) -->
+        <!-- Pay with UPI (UPI only since 2026-10-27) -->
         <div class="footer-bank">
-            <div class="container bank-inner">
-                <div class="bank-info">
-                    <h4>
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                        UPI se donate karein / Donate by UPI
-                    </h4>
-                    <div class="bank-details">
-                        <span><span>UPI ID:</span> sbibhim.instant90923460741799790@sbipay</span>
-                        <span>UPI se donate karein (QR scan ya UPI ID). / Donate by UPI (scan the QR or use the UPI ID).</span>
-                        <span>₹1 lakh se zyada ke donation ke liye humse sampark karein / For donations above ₹1 lakh, contact us: <a href="tel:+918899152910">+91 88991 52910</a> · <a href="mailto:daanfoundationindia@gmail.com">daanfoundationindia@gmail.com</a></span>
-                    </div>
-                </div>
-                <div class="bank-qr">
-                    <p>UPI: sbibhim.instant90923460741799790@sbipay</p>
-                    <img src="https://daanfoundation.in/wp-content/uploads/2026/08/QR-Code-SBI-Payment-Daan-Foundation.jpeg" alt="UPI QR Code for donations - Daan Foundation" width="160" height="160" loading="lazy">
+            <div class="container">
+                <div class="upi-card">
+                    <h4 class="upi-card-title">Pay with UPI</h4>
+                    <img class="upi-card-qr" src="https://daanfoundation.in/wp-content/uploads/2026/08/QR-Code-SBI-Payment-Daan-Foundation.jpeg" alt="UPI QR code - Daan Foundation" loading="lazy" decoding="async">
+                    <p class="upi-card-text">Scan the QR code with any UPI app to donate.</p>
+                    <p class="upi-card-id"><span class="upi-card-label">UPI ID:</span> <span class="upi-card-value" id="footer-upi-id">sbibhim.instant90923460741799790@sbipay</span> <button type="button" class="upi-copy-btn" data-copy="sbibhim.instant90923460741799790@sbipay" aria-label="Copy UPI ID">Copy</button></p>
+                    <p class="upi-card-contact">Contact: <a href="tel:+918899152910">+91 88991 52910</a></p>
                 </div>
             </div>
         </div>
+        <script>
+        (function(){var b=document.querySelector('.upi-copy-btn');if(!b){return;}
+        b.addEventListener('click',function(){var t=b.getAttribute('data-copy'),done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},2000);};
+        if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,function(){});}else{var x=document.createElement('textarea');x.value=t;x.setAttribute('readonly','');x.style.position='absolute';x.style.left='-9999px';document.body.appendChild(x);x.select();try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(x);}});})();
+        </script>
 
         <!-- Bottom bar -->
         <div class="footer-bottom">
