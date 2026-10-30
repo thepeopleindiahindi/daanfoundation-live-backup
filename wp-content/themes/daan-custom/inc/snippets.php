@@ -200,10 +200,12 @@ function daan_place_order() {
     }
 
     // Bank transfer was closed on 2026-10-27: an old cached form that still sends 'bacs' becomes a UPI order.
-    if ( 'bacs' === $payment_method ) {
-        $payment_method = 'cheque';
+    // Since 2026-10-30 new donations use the UPI QR gateway (plugin upi-qr-payment); an old cached form
+    // that still sends 'cheque' or 'bacs' is accepted and becomes a UPI QR donation too.
+    if ( in_array( $payment_method, array( 'bacs', 'cheque' ), true ) ) {
+        $payment_method = 'upq_manual_qr';
     }
-    if ( 'cheque' !== $payment_method ) {
+    if ( 'upq_manual_qr' !== $payment_method ) {
         wp_send_json_error( array( 'message' => 'Invalid payment method.' ) );
     }
 
@@ -235,7 +237,13 @@ function daan_place_order() {
     $fee->set_tax_status( 'none' );
     $order->add_item( $fee );
 
-    $order->set_payment_method( 'cheque' ); // UPI only.
+    if ( function_exists( 'upq_is_upi_order' ) ) {
+        $order->set_payment_method( 'upq_manual_qr' ); // UPI QR (manual verification).
+        $order->set_payment_method_title( 'Pay via QR Code (UPI)' );
+        $order->update_meta_data( '_upq_receipt_pending', 'yes' );
+    } else {
+        $order->set_payment_method( 'cheque' ); // fallback if the plugin is off.
+    }
 
     $order->update_meta_data( '_daan_donation_cause', $cause );
     $order->update_meta_data( '_daan_donation_frequency', $frequency );

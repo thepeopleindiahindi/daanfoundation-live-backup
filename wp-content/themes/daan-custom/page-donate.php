@@ -210,7 +210,7 @@ get_header();
 
 			<div style="margin-bottom:20px;">
 				<label style="display:flex;align-items:flex-start;gap:12px;padding:16px;border-radius:12px;border:2px solid #F97316;background:#FFF7ED;cursor:pointer;" id="payment-upi-label">
-					<input type="radio" name="payment_method" value="cheque" checked onchange="selectPaymentMethod(this)" style="accent-color:#F97316;width:20px;height:20px;margin-top:2px;">
+					<input type="radio" name="payment_method" value="upq_manual_qr" checked onchange="selectPaymentMethod(this)" style="accent-color:#F97316;width:20px;height:20px;margin-top:2px;">
 					<div>
 						<span style="font-weight:700;font-size:1rem;color:#111827;">Pay via UPI</span>
 						<p style="font-size:0.8125rem;color:#64748B;margin:4px 0 0;">Pay using GPay / PhonePe / PayTM</p>

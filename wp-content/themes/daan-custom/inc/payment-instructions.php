@@ -24,6 +24,14 @@ defined( 'ABSPATH' ) || exit;
  * ------------------------------------------------------------------------- */
 
 function daan_payment_details() {
+	// Since 2026-10-30 the UPI QR gateway settings (plugin upi-qr-payment) are the single source.
+	if ( function_exists( 'upq_value' ) && '' !== trim( (string) upq_value( 'upi_id' ) ) && '' !== trim( (string) upq_value( 'qr_url' ) ) ) {
+		return array(
+			'payee'  => 'Daan Foundation',
+			'upi_id' => trim( (string) upq_value( 'upi_id' ) ),
+			'qr_url' => trim( (string) upq_value( 'qr_url' ) ),
+		);
+	}
 	return array(
 		'payee'        => 'Daan Foundation',
 		'upi_id'       => 'sbibhim.instant90923460741799790@sbipay',
@@ -52,17 +60,18 @@ function daan_pay_mode() {
 
 function daan_pay_is_pending( $order ) {
 	return $order && is_a( $order, 'WC_Order' ) && $order->has_status( 'on-hold' )
-		&& in_array( $order->get_payment_method(), array( 'bacs', 'cheque', 'wc-upi', 'dew-wc-upi' ), true );
+		&& in_array( $order->get_payment_method(), array( 'bacs', 'cheque', 'wc-upi', 'dew-wc-upi', 'upq_manual_qr' ), true );
 }
 
 /** "cheque" is the gateway that is titled "Pay via UPI" on this site. */
 function daan_pay_is_upi( $order ) {
-	return in_array( $order->get_payment_method(), array( 'cheque', 'wc-upi', 'dew-wc-upi' ), true );
+	return in_array( $order->get_payment_method(), array( 'cheque', 'wc-upi', 'dew-wc-upi', 'upq_manual_qr' ), true );
 }
 
 function daan_pay_method_label( $order ) {
 	$map = array(
-		'cheque'     => 'UPI',
+		'cheque'        => 'UPI',
+		'upq_manual_qr' => 'UPI QR',
 		'bacs'       => 'Bank transfer',
 		'wc-upi'     => 'UPI QR (old plugin)',
 		'dew-wc-upi' => 'UPI QR (old plugin)',
@@ -195,8 +204,11 @@ function daan_pay_box_html( $order ) {
 	</div>
 
 	<div class="daan-pay-card">
-		<p class="daan-pay-meta"><span>Order <strong>#<?php echo esc_html( $oid ); ?></strong></span><span>Amount <strong><?php echo esc_html( $amount ); ?></strong></span></p>
+		<p class="daan-pay-meta"><span>Donation <strong>#<?php echo esc_html( $oid ); ?></strong></span><span>Amount <strong><?php echo esc_html( $amount ); ?></strong></span></p>
 		<?php if ( ! $is_upi ) : ?><p style="margin:0 0 12px;font-size:.95rem">Bank transfer is no longer offered; please pay by UPI.</p><?php endif; ?>
+			<?php if ( function_exists( 'upq_card_html' ) && '' !== upq_card_html( '', 'pending' ) ) : ?>
+				<?php echo upq_card_html( '', 'pending' ); // phpcs:ignore WordPress.Security.EscapeOutput -- built from escaped parts. ?>
+			<?php else : ?>
 			<div class="upi-card upi-card--light">
 				<h3 class="upi-card-title">Pay with UPI</h3>
 				<img class="upi-card-qr" src="<?php echo esc_url( $d['qr_url'] ); ?>" alt="UPI QR code - Daan Foundation" decoding="async">
@@ -204,7 +216,7 @@ function daan_pay_box_html( $order ) {
 				<p class="upi-card-id"><span class="upi-card-label">UPI ID:</span> <span class="upi-card-value"><?php echo esc_html( $d['upi_id'] ); ?></span> <button type="button" class="upi-copy-btn" data-copy="<?php echo esc_attr( $d['upi_id'] ); ?>" aria-label="Copy UPI ID">Copy</button></p>
 				<p class="upi-card-contact">Contact: <a href="tel:+918899152910">+91 88991 52910</a></p>
 			</div>
-			<a class="daan-upi-btn" href="<?php echo esc_url( daan_pay_upi_link( $order ), array( 'upi' ) ); ?>">Pay <?php echo esc_html( $amount ); ?> with UPI app</a>
+			<?php endif; ?>
 	</div>
 
 	<div class="daan-pay-card">
@@ -445,9 +457,8 @@ function daan_pay_email_html( $order ) {
 	$h .= '<div style="background:#FFF7ED;border:2px solid #C2410C;border-radius:10px;padding:14px 16px;margin:0 0 16px">';
 	$h .= '<p style="margin:0 0 6px;font-size:16px;font-weight:bold;color:#9A3412">Your donation is PENDING — please complete the payment.</p>';
 	$h .= '<p style="margin:0;font-size:13px">Your donation is counted only after we receive the payment.</p></div>';
-	$h .= '<p style="margin:0 0 10px">Order <strong>#' . esc_html( $oid ) . '</strong> &nbsp;·&nbsp; Amount <strong>' . esc_html( $amount ) . '</strong></p>';
+	$h .= '<p style="margin:0 0 10px">Donation <strong>#' . esc_html( $oid ) . '</strong> &nbsp;·&nbsp; Amount <strong>' . esc_html( $amount ) . '</strong></p>';
 	$h .= '<p style="margin:0 0 6px"><strong>UPI ID:</strong> ' . esc_html( $d['upi_id'] ) . ' (' . esc_html( $d['payee'] ) . ')</p>';
-	$h .= '<p style="margin:0 0 6px"><a href="' . esc_url( daan_pay_upi_link( $order ), array( 'upi' ) ) . '" style="color:#C2410C;font-weight:bold">Pay with UPI app</a> (mobile)</p>';
 	$h .= '<p style="margin:14px 0 6px">QR code, the "I have paid" form and full details are here:</p>';
 	$h .= '<p style="margin:0 0 6px"><a href="' . esc_url( $page ) . '" style="display:inline-block;background:#C2410C;color:#fff;text-decoration:none;font-weight:bold;padding:12px 18px;border-radius:8px">Open payment page</a></p>';
 	$h .= '</div>';

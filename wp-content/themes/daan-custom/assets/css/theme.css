@@ -2147,3 +2147,9 @@ h1, h2, h3, h4, h5, h6 {
   .legal-toc-box summary::-webkit-details-marker { display: none; }
   .legal-toc-nav { max-height: calc(100vh - 180px); }
 }
+
+/* UPI QR gateway card (plugin upi-qr-payment), 2026-10-30 */
+.upq-card .upq-amount { margin: 0 0 0.6rem; font-size: 0.95rem; color: #111827; }
+.upq-card .upq-payee { font-size: 0.8125rem; color: #475569; margin: 0 0 0.6rem; }
+.upq-card .upq-instructions { font-size: 0.875rem; line-height: 1.55; }
+.upq-card .upq-instructions, .upq-card .upi-card-value { overflow-wrap: anywhere; word-break: break-word; }
