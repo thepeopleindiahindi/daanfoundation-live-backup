@@ -204,6 +204,7 @@ function daan_pay_box_html( $order ) {
 				<p class="upi-card-id"><span class="upi-card-label">UPI ID:</span> <span class="upi-card-value"><?php echo esc_html( $d['upi_id'] ); ?></span> <button type="button" class="upi-copy-btn" data-copy="<?php echo esc_attr( $d['upi_id'] ); ?>" aria-label="Copy UPI ID">Copy</button></p>
 				<p class="upi-card-contact">Contact: <a href="tel:+918899152910">+91 88991 52910</a></p>
 			</div>
+			<a class="daan-upi-btn" href="<?php echo esc_url( daan_pay_upi_link( $order ), array( 'upi' ) ); ?>">Pay <?php echo esc_html( $amount ); ?> with UPI app</a>
 	</div>
 
 	<div class="daan-pay-card">
@@ -442,14 +443,13 @@ function daan_pay_email_html( $order ) {
 
 	$h  = '<div style="font-family:Arial,sans-serif;font-size:15px;color:#1F2937;line-height:1.55">';
 	$h .= '<div style="background:#FFF7ED;border:2px solid #C2410C;border-radius:10px;padding:14px 16px;margin:0 0 16px">';
-	$h .= '<p style="margin:0 0 6px;font-size:18px;font-weight:bold;color:#7C2D12">आपका दान अभी लंबित (PENDING) है — कृपया भुगतान पूरा करें।</p>';
 	$h .= '<p style="margin:0 0 6px;font-size:16px;font-weight:bold;color:#9A3412">Your donation is PENDING — please complete the payment.</p>';
-	$h .= '<p style="margin:0;font-size:13px">भुगतान मिलने के बाद ही दान पूरा माना जाएगा। / Your donation is counted only after we receive the payment.</p></div>';
-	$h .= '<p style="margin:0 0 10px">Order / ऑर्डर <strong>#' . esc_html( $oid ) . '</strong> &nbsp;·&nbsp; Amount / रकम <strong>' . esc_html( $amount ) . '</strong></p>';
+	$h .= '<p style="margin:0;font-size:13px">Your donation is counted only after we receive the payment.</p></div>';
+	$h .= '<p style="margin:0 0 10px">Order <strong>#' . esc_html( $oid ) . '</strong> &nbsp;·&nbsp; Amount <strong>' . esc_html( $amount ) . '</strong></p>';
 	$h .= '<p style="margin:0 0 6px"><strong>UPI ID:</strong> ' . esc_html( $d['upi_id'] ) . ' (' . esc_html( $d['payee'] ) . ')</p>';
-	$h .= '<p style="margin:0 0 6px"><a href="' . esc_url( daan_pay_upi_link( $order ), array( 'upi' ) ) . '" style="color:#C2410C;font-weight:bold">UPI ऐप से पे करें / Pay with UPI app</a> (mobile)</p>';
-	$h .= '<p style="margin:14px 0 6px">QR code, "I have paid" form (UTR) और पूरी जानकारी यहाँ है / QR code, the "I have paid" form and full details are here:</p>';
-	$h .= '<p style="margin:0 0 6px"><a href="' . esc_url( $page ) . '" style="display:inline-block;background:#C2410C;color:#fff;text-decoration:none;font-weight:bold;padding:12px 18px;border-radius:8px">भुगतान पेज खोलें / Open payment page</a></p>';
+	$h .= '<p style="margin:0 0 6px"><a href="' . esc_url( daan_pay_upi_link( $order ), array( 'upi' ) ) . '" style="color:#C2410C;font-weight:bold">Pay with UPI app</a> (mobile)</p>';
+	$h .= '<p style="margin:14px 0 6px">QR code, the "I have paid" form and full details are here:</p>';
+	$h .= '<p style="margin:0 0 6px"><a href="' . esc_url( $page ) . '" style="display:inline-block;background:#C2410C;color:#fff;text-decoration:none;font-weight:bold;padding:12px 18px;border-radius:8px">Open payment page</a></p>';
 	$h .= '</div>';
 	return $h;
 }
@@ -483,7 +483,7 @@ add_action(
 		}
 		$url = function_exists( 'daan_receipt_url' ) ? daan_receipt_url( $order ) : '';
 		if ( $url ) {
-			echo '<p style="margin:16px 0"><a href="' . esc_url( $url ) . '" style="color:#C2410C;font-weight:bold">View or print your receipt / अपनी रसीद देखें</a></p>';
+			echo '<p style="margin:16px 0"><a href="' . esc_url( $url ) . '" style="color:#C2410C;font-weight:bold">View or print your receipt</a></p>';
 		}
 	},
 	20,
