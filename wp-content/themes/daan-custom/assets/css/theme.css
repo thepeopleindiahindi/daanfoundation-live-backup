@@ -2096,3 +2096,6 @@ h1, h2, h3, h4, h5, h6 {
 .footer-bank .upi-card, .footer-bank .upi-card h4, .footer-bank .upi-card p { text-align: center !important; }
 .upi-card-value { display: block; margin: 0.15rem 0 0.45rem; }
 .upi-copy-btn { margin-left: 0; }
+
+/* Round 2 (2026-10-30): mission badge on the homepage uses the option A deeper orange (white text 5.2:1). */
+.mission-badge { background: #C2410C; }

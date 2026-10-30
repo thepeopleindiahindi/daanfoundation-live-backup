@@ -89,7 +89,10 @@ add_action('wp_login_failed', function (string $username) {
     update_option($key, $entry, false);
 });
 
-add_filter('wp_authenticate', function ($user, $username) {
+// 'authenticate' is a filter (its return value is used); 'wp_authenticate' is an
+// action, so a WP_Error returned there was ignored and lockouts were never enforced.
+// Priority 30 runs after the core username/password check (20).
+add_filter('authenticate', function ($user, $username, $password) {
     if (daan_is_login_locked()) {
         return new WP_Error(
             'login_locked',
@@ -97,7 +100,7 @@ add_filter('wp_authenticate', function ($user, $username) {
         );
     }
     return $user;
-}, 10, 2);
+}, 30, 3);
 
 add_action('wp_login', function (string $username) {
     $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
