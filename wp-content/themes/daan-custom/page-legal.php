@@ -29,6 +29,11 @@ while ( have_posts() ) :
 				$settings = $el['settings'] ?? array();
 				if ( 'image' === $type && ! $daan_legal_image && ! empty( $settings['image'] ) ) {
 					$daan_legal_image = $settings['image'];
+				} elseif ( 'heading' === $type && isset( $settings['title'] ) ) {
+					// Same tag as Elementor's heading widget (default h2).
+					$tag              = in_array( $settings['header_size'] ?? '', array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span' ), true ) ? $settings['header_size'] : 'h2';
+					$tag              = 'h1' === $tag ? 'h2' : $tag; // the page title is the only H1
+					$daan_legal_html .= '<' . $tag . '>' . wp_kses_post( $settings['title'] ) . '</' . $tag . '>';
 				} elseif ( 'text-editor' === $type && isset( $settings['editor'] ) ) {
 					// Same steps as Elementor's text-editor widget output.
 					$daan_legal_html .= wptexturize( do_shortcode( shortcode_unautop( $settings['editor'] ) ) );
@@ -49,6 +54,18 @@ while ( have_posts() ) :
 	if ( preg_match( '#^\s*(<h2[^>]*>.*?</h2>)\s*(<p>\s*<em>.*?</em>\s*</p>)#s', $daan_legal_html, $m ) ) {
 		$daan_legal_intro = $m[1] . $m[2];
 		$daan_legal_html  = substr( $daan_legal_html, strlen( $m[0] ) );
+	}
+
+	// Heading order: if the body has no H2 (e.g. it starts at H3), lift every heading one level
+	// so H1 -> H2 has no gap. Tags only; the text is unchanged.
+	if ( ! preg_match( '#<h2[\s>]#i', $daan_legal_html ) && preg_match( '#<h3[\s>]#i', $daan_legal_html ) ) {
+		$daan_legal_html = preg_replace_callback(
+			'#<(/?)h([3-6])([\s>])#i',
+			function ( $hm ) {
+				return '<' . $hm[1] . 'h' . ( (int) $hm[2] - 1 ) . $hm[3];
+			},
+			$daan_legal_html
+		);
 	}
 
 	// Anchor ids for H2/H3 + table of contents.
