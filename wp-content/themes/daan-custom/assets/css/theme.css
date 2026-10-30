@@ -2099,3 +2099,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Round 2 (2026-10-30): mission badge on the homepage uses the option A deeper orange (white text 5.2:1). */
 .mission-badge { background: #C2410C; }
+
+/* Round 2 item 8 (2026-10-30): same UPI card on light backgrounds (/donate/, payment page). */
+.upi-card--light { max-width: 22rem; margin: 0 auto; padding: 1.25rem 1.25rem 1.1rem; text-align: center; border: 1px solid #E2E8F0; border-radius: 14px; background: #fff; }
+.upi-card--light .upi-card-title { color: #111827; }
+.upi-card--light .upi-card-qr { border: 1px solid #E2E8F0; }
+.upi-card--light .upi-card-text, .upi-card--light .upi-card-id, .upi-card--light .upi-card-contact { color: #475569; }
+.upi-card--light .upi-card-label { color: #475569; }
+.upi-card--light .upi-card-value { color: #111827; }
+.upi-card--light .upi-card-contact a { color: #C2410C; font-weight: 600; }
+.upi-card--light .upi-card-title, .upi-card--light p { text-align: center; }

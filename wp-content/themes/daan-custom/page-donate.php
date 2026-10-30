@@ -219,12 +219,13 @@ get_header();
 			</div>
 
 			<div id="payment-upi-details" style="text-align:center;margin-bottom:24px;">
-				<h4 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 16px;">Pay via UPI</h4>
-				<p style="font-size:0.9375rem;color:#64748B;margin:0 0 16px;">UPI ID: <strong>sbibhim.instant90923460741799790@sbipay</strong></p>
-				<div style="display:inline-block;background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:14px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
-					<img src="https://daanfoundation.in/wp-content/uploads/2026/08/QR-Code-SBI-Payment-Daan-Foundation.jpeg" alt="UPI QR Code for donations - Daan Foundation" width="200" height="220" style="display:block;width:200px;height:auto;max-width:100%;border-radius:8px;" loading="lazy">
+				<div class="upi-card upi-card--light">
+					<h4 class="upi-card-title">Pay with UPI</h4>
+					<img class="upi-card-qr" src="https://daanfoundation.in/wp-content/uploads/2026/08/QR-Code-SBI-Payment-Daan-Foundation.jpeg" alt="UPI QR code - Daan Foundation" loading="lazy" decoding="async">
+					<p class="upi-card-text">Scan the QR code with any UPI app to donate.</p>
+					<p class="upi-card-id"><span class="upi-card-label">UPI ID:</span> <span class="upi-card-value">sbibhim.instant90923460741799790@sbipay</span> <button type="button" class="upi-copy-btn" data-copy="sbibhim.instant90923460741799790@sbipay" aria-label="Copy UPI ID">Copy</button></p>
+					<p class="upi-card-contact">Contact: <a href="tel:+918899152910">+91 88991 52910</a></p>
 				</div>
-				<p style="font-size:0.875rem;color:#475569;margin:14px 0 0;line-height:1.6;">UPI se donate karein (QR scan ya UPI ID). / Donate by UPI (scan the QR or use the UPI ID).<br>₹1 lakh se zyada ke donation ke liye humse sampark karein / For donations above ₹1 lakh, please contact us: <a href="tel:+918899152910" style="color:#C2410C;font-weight:600;">+91 88991 52910</a> · <a href="mailto:daanfoundationindia@gmail.com" style="color:#C2410C;font-weight:600;">daanfoundationindia@gmail.com</a></p>
 			</div>
 
 			<button type="button" id="confirm-btn" onclick="confirmDonation()" style="width:100%;border-radius:12px;background:#C2410C;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;margin-bottom:16px;">

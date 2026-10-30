@@ -115,9 +115,9 @@
             </div>
         </div>
         <script>
-        (function(){var b=document.querySelector('.upi-copy-btn');if(!b){return;}
+        (function(){document.querySelectorAll('.upi-copy-btn').forEach(function(b){
         b.addEventListener('click',function(){var t=b.getAttribute('data-copy'),done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},2000);};
-        if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,function(){});}else{var x=document.createElement('textarea');x.value=t;x.setAttribute('readonly','');x.style.position='absolute';x.style.left='-9999px';document.body.appendChild(x);x.select();try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(x);}});})();
+        if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,function(){});}else{var x=document.createElement('textarea');x.value=t;x.setAttribute('readonly','');x.style.position='absolute';x.style.left='-9999px';document.body.appendChild(x);x.select();try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(x);}});});})();
         </script>
 
         <!-- Bottom bar -->

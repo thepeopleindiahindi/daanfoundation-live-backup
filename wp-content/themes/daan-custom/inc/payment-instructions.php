@@ -106,7 +106,7 @@ add_filter(
 	'woocommerce_thankyou_order_received_text',
 	function ( $text, $order ) {
 		if ( daan_pay_mode() && daan_pay_is_pending( $order ) ) {
-			return '<strong>Status: PENDING</strong> &mdash; भुगतान अभी नहीं मिला / payment not received yet.';
+			return '<strong>Status: PENDING</strong> &mdash; payment not received yet.';
 		}
 		return $text;
 	},
@@ -186,34 +186,28 @@ function daan_pay_box_html( $order ) {
 .daan-pay-card button[disabled]{opacity:.6;cursor:wait}
 .daan-msg{margin-top:12px;font-weight:600}.daan-msg.ok{color:#166534}.daan-msg.err{color:#B91C1C}
 .daan-hp{position:absolute;left:-9999px;height:0;overflow:hidden}
+.daan-pay .upi-card p{text-align:center!important}.daan-pay-card .upi-copy-btn{width:auto;margin:0 0 0 .4rem;padding:.2rem .65rem;font-size:.75rem;border-radius:6px}
 </style>
 <section class="daan-pay" id="daan-pay">
 	<div class="daan-pay-banner" role="status">
-		<p class="hi">आपका दान अभी लंबित (PENDING) है — कृपया भुगतान पूरा करें।</p>
 		<p class="en">Your donation is PENDING — please complete the payment.</p>
-		<p class="sub">भुगतान मिलने के बाद ही दान पूरा माना जाएगा। / Your donation is counted only after we receive the payment.</p>
+		<p class="sub">Your donation is counted only after we receive the payment.</p>
 	</div>
 
 	<div class="daan-pay-card">
-		<p class="daan-pay-meta"><span>Order / ऑर्डर <strong>#<?php echo esc_html( $oid ); ?></strong></span><span>Amount / रकम <strong><?php echo esc_html( $amount ); ?></strong></span></p>
-		<?php if ( ! $is_upi ) : ?><p style="margin:0 0 12px;font-size:.95rem">बैंक ट्रांसफर अब बंद है, कृपया UPI से भुगतान करें। / Bank transfer is no longer offered; please pay by UPI.</p><?php endif; ?>
-			<h3>UPI से भुगतान करें / Pay with UPI</h3>
-			<ol class="daan-pay-steps">
-				<li>किसी भी UPI ऐप (PhonePe, Google Pay, Paytm, BHIM…) से नीचे का QR स्कैन करें, या मोबाइल पर बटन दबाएँ। / Scan the QR with any UPI app, or tap the button on mobile.</li>
-				<li>रकम <strong><?php echo esc_html( $amount ); ?></strong> डालें और भुगतान करें। / Enter <strong><?php echo esc_html( $amount ); ?></strong> and pay.</li>
-				<li>भुगतान के बाद नीचे UTR नंबर (12 अंक) भरें। / After paying, enter the 12-digit UTR below.</li>
-			</ol>
-			<a class="daan-upi-btn" href="<?php echo esc_url( daan_pay_upi_link( $order ), array( 'upi' ) ); ?>">UPI ऐप से पे करें / Pay with UPI app — <?php echo esc_html( $amount ); ?></a>
-			<dl class="daan-pay-kv">
-				<dt>UPI ID</dt><dd><?php echo esc_html( $d['upi_id'] ); ?></dd>
-				<dt>Name / नाम</dt><dd><?php echo esc_html( $d['payee'] ); ?></dd>
-			</dl>
-			<div class="daan-pay-qr"><img src="<?php echo esc_url( $d['qr_url'] ); ?>" width="220" height="200" alt="UPI QR code — Daan Foundation"></div>
-			<p class="daan-pay-contact" style="font-size:.95rem;margin:12px 0 0">UPI se donate karein (QR scan ya UPI ID). / Donate by UPI (scan the QR or use the UPI ID).<br>₹1 lakh se zyada ke donation ke liye humse sampark karein / For donations above ₹1 lakh, contact us: <a href="tel:+918899152910">+91 88991 52910</a> · <a href="mailto:daanfoundationindia@gmail.com">daanfoundationindia@gmail.com</a></p>
+		<p class="daan-pay-meta"><span>Order <strong>#<?php echo esc_html( $oid ); ?></strong></span><span>Amount <strong><?php echo esc_html( $amount ); ?></strong></span></p>
+		<?php if ( ! $is_upi ) : ?><p style="margin:0 0 12px;font-size:.95rem">Bank transfer is no longer offered; please pay by UPI.</p><?php endif; ?>
+			<div class="upi-card upi-card--light">
+				<h3 class="upi-card-title">Pay with UPI</h3>
+				<img class="upi-card-qr" src="<?php echo esc_url( $d['qr_url'] ); ?>" alt="UPI QR code - Daan Foundation" decoding="async">
+				<p class="upi-card-text">Scan the QR code with any UPI app to donate.</p>
+				<p class="upi-card-id"><span class="upi-card-label">UPI ID:</span> <span class="upi-card-value"><?php echo esc_html( $d['upi_id'] ); ?></span> <button type="button" class="upi-copy-btn" data-copy="<?php echo esc_attr( $d['upi_id'] ); ?>" aria-label="Copy UPI ID">Copy</button></p>
+				<p class="upi-card-contact">Contact: <a href="tel:+918899152910">+91 88991 52910</a></p>
+			</div>
 	</div>
 
 	<div class="daan-pay-card">
-		<h3>मैंने भुगतान कर दिया / I have paid</h3>
+		<h3>I have paid</h3>
 		<form id="daan-proof-form" method="post" enctype="multipart/form-data" data-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>">
 			<div class="daan-fields">
 				<input type="hidden" name="action" value="daan_payment_proof">
@@ -224,11 +218,11 @@ function daan_pay_box_html( $order ) {
 					<input type="hidden" name="daan_preview" value="<?php echo esc_attr( isset( $_REQUEST['daan_preview'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['daan_preview'] ) ) : '' ); ?>">
 				<?php endif; ?>
 				<div class="daan-hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-				<label for="daan-utr">UTR / ट्रांज़ैक्शन नंबर <?php echo $is_upi ? '(12 अंक / digits)' : ''; ?></label>
+				<label for="daan-utr">UTR <?php echo $is_upi ? '(12 digits)' : ''; ?></label>
 				<input type="text" id="daan-utr" name="utr" required inputmode="text" autocomplete="off" maxlength="22" placeholder="<?php echo $is_upi ? '123456789012' : 'UTR / reference'; ?>">
-				<label for="daan-proof">स्क्रीनशॉट (वैकल्पिक) / Screenshot (optional) — JPG, PNG, PDF, max 3 MB</label>
+				<label for="daan-proof">Screenshot (optional) — JPG, PNG, PDF, max 3 MB</label>
 				<input type="file" id="daan-proof" name="proof" accept="image/jpeg,image/png,application/pdf">
-				<button type="submit">मैंने भुगतान कर दिया / I have paid</button>
+				<button type="submit">I have paid</button>
 			</div>
 			<div class="daan-msg" role="status" aria-live="polite"></div>
 		</form>
@@ -243,10 +237,10 @@ function daan_pay_box_html( $order ) {
 		fetch(f.getAttribute('data-url'),{method:'POST',body:new FormData(f),credentials:'same-origin'})
 			.then(function(r){return r.json();})
 			.then(function(j){
-				m.className='daan-msg '+(j&&j.success?'ok':'err'); m.textContent=(j&&j.data&&j.data.message)||'Error / त्रुटि';
+				m.className='daan-msg '+(j&&j.success?'ok':'err'); m.textContent=(j&&j.data&&j.data.message)||'Error';
 				if(j&&j.success){f.querySelector('.daan-fields').style.display='none';}else{b.disabled=false;}
 			})
-			.catch(function(){m.className='daan-msg err'; m.textContent='नेटवर्क त्रुटि, दोबारा कोशिश करें / Network error, please try again.'; b.disabled=false;});
+			.catch(function(){m.className='daan-msg err'; m.textContent='Network error, please try again.'; b.disabled=false;});
 	});
 })();
 </script>
@@ -271,22 +265,22 @@ function daan_pay_handle_proof() {
 	$fail = function ( $msg, $code = 400 ) {
 		wp_send_json_error( array( 'message' => $msg ), $code );
 	};
-	$generic = 'यह जानकारी दर्ज नहीं हो सकी। कृपया हमसे संपर्क करें। / We could not record this. Please contact us.';
+	$generic = 'We could not record this. Please contact us.';
 
 	if ( ! $mode ) {
 		$fail( $generic, 403 );
 	}
 	if ( ! empty( $_POST['website'] ) ) { // honeypot: pretend success.
-		wp_send_json_success( array( 'message' => 'धन्यवाद / Thank you.' ) );
+		wp_send_json_success( array( 'message' => 'Thank you.' ) );
 	}
 	if ( ! check_ajax_referer( 'daan_payment_proof', 'daan_nonce', false ) ) {
-		$fail( 'पेज पुराना हो गया है, कृपया रीफ़्रेश करें। / This page expired, please reload it.', 403 );
+		$fail( 'This page expired, please reload it.', 403 );
 	}
 
 	$ip_key = 'daan_pp_ip_' . md5( function_exists( 'daan_receipt_client_ip' ) ? daan_receipt_client_ip() : 'x' );
 	$tries  = (int) get_transient( $ip_key );
 	if ( $tries >= 10 ) {
-		$fail( 'बहुत अधिक कोशिशें। कुछ देर बाद फिर प्रयास करें। / Too many attempts. Please try again later.', 429 );
+		$fail( 'Too many attempts. Please try again later.', 429 );
 	}
 	set_transient( $ip_key, $tries + 1, HOUR_IN_SECONDS );
 
@@ -297,14 +291,14 @@ function daan_pay_handle_proof() {
 		$fail( $generic );
 	}
 	if ( (int) $order->get_meta( '_daan_proof_count' ) >= 5 ) {
-		$fail( 'आपकी जानकारी पहले ही मिल चुकी है, हम जाँच कर रहे हैं। / We already have your details and are checking them.' );
+		$fail( 'We already have your details and are checking them.' );
 	}
 
 	$utr = strtoupper( preg_replace( '/\s+/', '', isset( $_POST['utr'] ) ? sanitize_text_field( wp_unslash( $_POST['utr'] ) ) : '' ) );
 	if ( ! daan_pay_utr_ok( $utr, daan_pay_is_upi( $order ) ) ) {
 		$fail( daan_pay_is_upi( $order )
-			? 'UTR 12 अंकों का होना चाहिए। / The UTR must be exactly 12 digits.'
-			: 'कृपया सही UTR / रेफरेंस नंबर भरें (12 अंक, या 16–22 अक्षर-अंक)। / Please enter a valid UTR / reference (12 digits, or 16–22 letters and digits).' );
+			? 'The UTR must be exactly 12 digits.'
+			: 'Please enter a valid UTR / reference (12 digits, or 16–22 letters and digits).' );
 	}
 
 	// Optional screenshot: jpg / png / pdf, 3 MB, checked by content (not by the file name).
@@ -312,14 +306,14 @@ function daan_pay_handle_proof() {
 	$f      = isset( $_FILES['proof'] ) ? $_FILES['proof'] : null;
 	if ( $f && ! empty( $f['name'] ) ) {
 		if ( UPLOAD_ERR_OK !== (int) $f['error'] || ! is_uploaded_file( $f['tmp_name'] ) ) {
-			$fail( 'स्क्रीनशॉट अपलोड नहीं हो सका। / The screenshot could not be uploaded.' );
+			$fail( 'The screenshot could not be uploaded.' );
 		}
 		if ( (int) $f['size'] > 3 * 1024 * 1024 ) {
-			$fail( 'फ़ाइल 3 MB से बड़ी है। / The file is larger than 3 MB.' );
+			$fail( 'The file is larger than 3 MB.' );
 		}
 		$ext = strtolower( pathinfo( $f['name'], PATHINFO_EXTENSION ) );
 		if ( ! in_array( $ext, array( 'jpg', 'jpeg', 'png', 'pdf' ), true ) ) {
-			$fail( 'केवल JPG, PNG या PDF। / Only JPG, PNG or PDF.' );
+			$fail( 'Only JPG, PNG or PDF.' );
 		}
 		$mime = '';
 		if ( function_exists( 'finfo_open' ) ) {
@@ -333,7 +327,7 @@ function daan_pay_handle_proof() {
 			'application/pdf' => 'pdf',
 		);
 		if ( ! isset( $map[ $mime ] ) || ( 'application/pdf' !== $mime && ! @getimagesize( $f['tmp_name'] ) ) ) {
-			$fail( 'यह फ़ाइल स्वीकार नहीं है। / This file type is not accepted.' );
+			$fail( 'This file type is not accepted.' );
 		}
 		if ( 'preview' !== $mode ) {
 			$dir = daan_pay_proof_dir();
@@ -342,13 +336,13 @@ function daan_pay_handle_proof() {
 			}
 			$stored = bin2hex( random_bytes( 16 ) ) . '.' . $map[ $mime ];
 			if ( ! move_uploaded_file( $f['tmp_name'], $dir . '/' . $stored ) ) {
-				$fail( 'स्क्रीनशॉट सेव नहीं हो सका। / The screenshot could not be saved.' );
+				$fail( 'The screenshot could not be saved.' );
 			}
 			@chmod( $dir . '/' . $stored, 0640 );
 		}
 	}
 
-	$ok_msg = 'शुक्रिया! हम 24–48 घंटे में पुष्टि करेंगे। / Thank you! We will confirm within 24–48 hours.';
+	$ok_msg = 'Thank you! We will confirm within 24–48 hours.';
 	if ( 'preview' === $mode ) { // dry run: validation only, nothing is written or sent.
 		wp_send_json_success( array( 'message' => $ok_msg . ' [preview: nothing was saved]', 'dry' => true ) );
 	}
@@ -454,7 +448,6 @@ function daan_pay_email_html( $order ) {
 	$h .= '<p style="margin:0 0 10px">Order / ऑर्डर <strong>#' . esc_html( $oid ) . '</strong> &nbsp;·&nbsp; Amount / रकम <strong>' . esc_html( $amount ) . '</strong></p>';
 	$h .= '<p style="margin:0 0 6px"><strong>UPI ID:</strong> ' . esc_html( $d['upi_id'] ) . ' (' . esc_html( $d['payee'] ) . ')</p>';
 	$h .= '<p style="margin:0 0 6px"><a href="' . esc_url( daan_pay_upi_link( $order ), array( 'upi' ) ) . '" style="color:#C2410C;font-weight:bold">UPI ऐप से पे करें / Pay with UPI app</a> (mobile)</p>';
-	$h .= '<p style="margin:0 0 6px">For donations above ₹1 lakh / ₹1 lakh se zyada ke liye: +91 88991 52910 · daanfoundationindia@gmail.com</p>';
 	$h .= '<p style="margin:14px 0 6px">QR code, "I have paid" form (UTR) और पूरी जानकारी यहाँ है / QR code, the "I have paid" form and full details are here:</p>';
 	$h .= '<p style="margin:0 0 6px"><a href="' . esc_url( $page ) . '" style="display:inline-block;background:#C2410C;color:#fff;text-decoration:none;font-weight:bold;padding:12px 18px;border-radius:8px">भुगतान पेज खोलें / Open payment page</a></p>';
 	$h .= '</div>';
