@@ -74,3 +74,20 @@ add_action( 'wp_print_styles', function () {
 		wp_dequeue_style( 'wc-blocks-style' );
 	}
 }, 100 );
+
+// Legal pages (page-legal.php) render their content without Elementor, so
+// Elementor's CSS/JS (and its "elementorFrontendConfig is not defined" error) are not needed there.
+function daan_legal_drop_elementor_assets() {
+	if ( ! is_page_template( 'page-legal.php' ) ) {
+		return;
+	}
+	foreach ( array( 'elementor-frontend', 'elementor-frontend-modules', 'elementor-webpack-runtime', 'font-awesome-4-shim' ) as $h ) {
+		wp_dequeue_script( $h );
+	}
+	foreach ( array( 'elementor-frontend', 'elementor-gf-roboto', 'elementor-gf-robotoslab', 'elementor-post-3049', 'elementor-post-' . get_queried_object_id(), 'font-awesome-4-shim', 'font-awesome-5-all' ) as $h ) {
+		wp_dequeue_style( $h );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'daan_legal_drop_elementor_assets', 999 );
+add_action( 'wp_print_footer_scripts', 'daan_legal_drop_elementor_assets', 1 );
+add_action( 'wp_print_styles', 'daan_legal_drop_elementor_assets', 999 );

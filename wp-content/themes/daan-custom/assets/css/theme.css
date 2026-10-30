@@ -2109,3 +2109,41 @@ h1, h2, h3, h4, h5, h6 {
 .upi-card--light .upi-card-value { color: #111827; }
 .upi-card--light .upi-card-contact a { color: #C2410C; font-weight: 600; }
 .upi-card--light .upi-card-title, .upi-card--light p { text-align: center; }
+/* Legal pages (page-legal.php) - 2026-10-30. Theme tokens: slate text, orange accent, 760px reading width. */
+.legal-hero { background: #FFF7ED; border-bottom: 1px solid #FED7AA; }
+.legal-hero-inner { max-width: 1120px; margin: 0 auto; padding: 2.5rem 1rem 2rem; }
+.legal-title { font-size: 2.25rem; line-height: 1.2; font-weight: 800; color: #111827; margin: 0 0 0.75rem; letter-spacing: -0.01em; }
+.legal-intro h2 { font-size: 1.125rem; font-weight: 600; color: #334155; margin: 0 0 0.25rem; }
+.legal-intro p { margin: 0; font-size: 0.9375rem; color: #475569; text-align: left; }
+.legal-layout { max-width: 1120px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+.legal-body { max-width: 760px; min-width: 0; }
+.legal-image { display: block; width: 100%; height: auto; aspect-ratio: 2560 / 1696; max-height: 320px; object-fit: cover; border-radius: 12px; margin: 0 0 2rem; }
+.legal-content { font-size: 1.0625rem; line-height: 1.75; color: #1F2937; overflow-wrap: anywhere; }
+.legal-content p, .legal-content li { text-align: left; }
+.legal-content p { margin: 0 0 1rem; }
+.legal-content h2 { font-size: 1.5rem; line-height: 1.3; font-weight: 800; color: #111827; margin: 3rem 0 1rem; padding-top: 1.5rem; border-top: 2px solid #FED7AA; scroll-margin-top: 96px; }
+.legal-content h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.legal-content h3 { font-size: 1.1875rem; line-height: 1.4; font-weight: 700; color: #111827; margin: 2rem 0 0.75rem; scroll-margin-top: 96px; }
+.legal-content ul, .legal-content ol { margin: 0 0 1rem; padding-left: 1.4rem; list-style: disc; }
+.legal-content ol { list-style: decimal; }
+.legal-content li { margin: 0 0 0.5rem; display: list-item; }
+.legal-content a { color: #C2410C; text-decoration: underline; }
+.legal-content strong { color: #111827; font-weight: 700; }
+.legal-toc { margin: 0 0 1.5rem; }
+.legal-toc-box { border: 1px solid #E2E8F0; border-radius: 12px; background: #fff; }
+.legal-toc-box summary { cursor: pointer; padding: 0.75rem 1rem; font-weight: 700; font-size: 0.9375rem; color: #111827; list-style: revert; }
+.legal-toc-nav { padding: 0 1rem 0.75rem; max-height: 60vh; overflow-y: auto; }
+.legal-toc-list { list-style: none; margin: 0; padding: 0; font-size: 0.875rem; line-height: 1.45; }
+.legal-toc-list li { margin: 0; }
+.legal-toc-list a { display: block; padding: 0.3rem 0.5rem; border-radius: 6px; color: #475569; text-decoration: none; }
+.legal-toc-list a:hover, .legal-toc-list a:focus { color: #C2410C; background: #FFF7ED; }
+.legal-toc-list .legal-toc-h2 a { font-weight: 700; color: #111827; margin-top: 0.4rem; }
+.legal-toc-list .legal-toc-h3 a { padding-left: 1.1rem; }
+@media (min-width: 1024px) {
+  .legal-title { font-size: 3rem; }
+  .legal-layout.has-toc { display: grid; grid-template-columns: 260px minmax(0, 760px); gap: 3rem; align-items: start; }
+  .legal-toc { position: sticky; top: 96px; margin: 0; order: 0; }
+  .legal-toc-box summary { pointer-events: none; list-style: none; }
+  .legal-toc-box summary::-webkit-details-marker { display: none; }
+  .legal-toc-nav { max-height: calc(100vh - 180px); }
+}
