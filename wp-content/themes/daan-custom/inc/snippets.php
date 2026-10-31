@@ -78,12 +78,29 @@ function daan_create_custom_tables() {
  * 2. Contact Form AJAX Handler
  * ------------------------------------------------------------------------- */
 
+/**
+ * Per-IP limit for public forms: true once $max submissions were made from this IP within $window seconds.
+ */
+function daan_form_rate_limited( $form, $max, $window ) {
+    $key   = 'daan_form_rl_' . $form . '_' . md5( $_SERVER['REMOTE_ADDR'] ?? '' );
+    $tries = (int) get_transient( $key );
+    if ( $tries >= $max ) {
+        return true;
+    }
+    set_transient( $key, $tries + 1, $window );
+    return false;
+}
+
 add_action( 'wp_ajax_nopriv_daan_contact_form', 'daan_handle_contact_form' );
 add_action( 'wp_ajax_daan_contact_form', 'daan_handle_contact_form' );
 
 function daan_handle_contact_form() {
     if ( ! wp_verify_nonce( $_POST['daan_contact_nonce'] ?? '', 'daan_contact' ) ) {
         wp_send_json_error( array( 'message' => 'Security check failed.' ) );
+    }
+
+    if ( daan_form_rate_limited( 'contact', 5, HOUR_IN_SECONDS ) ) {
+        wp_send_json_error( array( 'message' => 'Too many messages from your connection. Please try again in an hour, or call us.' ) );
     }
 
     $first_name = sanitize_text_field( $_POST['first_name'] ?? '' );
@@ -139,6 +156,10 @@ function daan_handle_newsletter_signup() {
     $nonce = $_POST['_wpnonce'] ?? '';
     if ( ! wp_verify_nonce( $nonce, 'daan_newsletter' ) ) {
         wp_send_json_error( array( 'message' => 'Security check failed.' ) );
+    }
+
+    if ( daan_form_rate_limited( 'newsletter', 5, HOUR_IN_SECONDS ) ) {
+        wp_send_json_error( array( 'message' => 'Too many sign-ups from your connection. Please try again later.' ) );
     }
 
     $email = sanitize_email( $_POST['email'] ?? '' );
