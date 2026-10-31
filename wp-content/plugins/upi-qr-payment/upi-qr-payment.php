@@ -7,8 +7,10 @@
  *
  * Based on docs/UNIVERSAL_UPI_QR_Payment_System_Handover.md. Daan changes:
  *  - no upi:// "Pay" button anywhere;
- *  - the thank-you page box and the customer e-mail block come from the theme (inc/payment-instructions.php),
- *    which merges this gateway's settings with the existing UTR form, pending page and daily digest;
+ *  - since 2026-10-31 the handover box (upq-box), the thank-you "Complete your payment" section and
+ *    upq_email_html() are used as in the handover (Daan colours, contact line, no caveat/WhatsApp);
+ *    the theme's old pending card + "I have paid" UTR form are skipped for this gateway's orders
+ *    (inc/payment-instructions.php; older on-hold orders keep their old page). upq_card_html() is kept unused;
  *  - "Payment received" -> Completed (the Completed e-mail carries the receipt link); no stock handling;
  *  - only orders paid with this gateway get buttons, the on-hold timestamp and watcher e-mails.
  *    Older on-hold orders (cheque / bacs / wc-upi / dew-wc-upi) are never touched;
@@ -77,8 +79,9 @@ add_action( 'plugins_loaded', function () {
 		}
 
 		public function payment_fields() {
+			// Live cart total: WooCommerce re-renders this box whenever the checkout refreshes.
 			$amount = ( function_exists( 'WC' ) && WC()->cart ) ? WC()->cart->get_total() : '';
-			echo upq_card_html( $amount, 'checkout' ); // phpcs:ignore WordPress.Security.EscapeOutput -- built from escaped parts.
+			echo upq_box_html( $amount ); // phpcs:ignore WordPress.Security.EscapeOutput -- built from escaped parts.
 		}
 
 		public function process_payment( $order_id ) {
@@ -160,21 +163,141 @@ function upq_card_html( $amount_html = '', $context = 'checkout' ) {
 	return $h . '</div>';
 }
 
-/* Copy button at checkout: the payment box is re-rendered by AJAX, so the click handler is delegated. */
+/* ---- Handover box (same markup as qurbanieasy.com, Daan colours) — used at checkout, on /donate/, thank-you page, e-mail ---- */
+
+/** QR image: centred, max width from settings, NOT lazy-loaded (it is in the checkout fold). */
+function upq_qr_html( $max_width = 0 ) {
+	$url = trim( (string) upq_value( 'qr_url' ) );
+	if ( '' === $url ) {
+		return '';
+	}
+	$w  = $max_width ? (int) $max_width : (int) upq_value( 'qr_width', 260 );
+	$w  = max( 120, min( 420, $w ) );
+	$h  = '';
+	$id = attachment_url_to_postid( $url );
+	if ( $id ) {
+		$m = wp_get_attachment_metadata( $id );
+		if ( ! empty( $m['width'] ) && ! empty( $m['height'] ) ) {
+			$h = ' height="' . (int) round( $w * $m['height'] / $m['width'] ) . '"';
+		}
+	}
+	return '<p class="upq-qr-wrap" style="text-align:center;margin:12px 0;"><img class="upq-qr" src="' . esc_url( $url ) . '" alt="' . esc_attr( upq_value( 'qr_alt', 'UPI QR code' ) ) . '" width="' . $w . '"' . $h . ' style="display:block;margin:0 auto;width:100%;max-width:' . $w . 'px;height:auto;" loading="eager" decoding="async" fetchpriority="high"></p>';
+}
+
+/** UPI ID as text with a Copy button (copies exactly data-upi). */
+function upq_upi_html() {
+	$upi = trim( (string) upq_value( 'upi_id' ) );
+	if ( '' === $upi ) {
+		return '';
+	}
+	return '<p class="upq-upi" style="text-align:center;margin:8px 0;">UPI ID: <strong class="upq-upi-id">' . esc_html( $upi ) . '</strong> <button type="button" class="upq-copy" data-upi="' . esc_attr( $upi ) . '" aria-label="Copy UPI ID ' . esc_attr( $upi ) . '" style="margin-left:6px;padding:4px 12px;border:1px solid #047857;border-radius:4px;background:#fff;color:#047857;font-weight:700;cursor:pointer;">Copy</button></p>';
+}
+
+/** Payee-name note directly under the UPI ID ('' while the setting is empty). */
+function upq_payee_html( $style = '' ) {
+	$note = trim( (string) upq_value( 'payee_note' ) );
+	if ( '' === $note ) {
+		return '';
+	}
+	return '<p class="upq-payee" style="' . esc_attr( $style ?: 'text-align:center;margin:4px 0 10px;font-size:14px;line-height:1.5;' ) . '">' . esc_html( $note ) . '</p>';
+}
+
+/** Contact line (Daan addition; no WhatsApp). */
+function upq_contact_html( $style = '' ) {
+	$tel = trim( (string) upq_value( 'contact' ) );
+	if ( '' === $tel ) {
+		return '';
+	}
+	return '<p class="upq-contact" style="' . esc_attr( $style ?: 'text-align:center;margin:8px 0 0;font-size:14px;' ) . '">Contact: <a href="tel:' . esc_attr( preg_replace( '/[^0-9+]/', '', $tel ) ) . '">' . esc_html( $tel ) . '</a></p>';
+}
+
+/** The handover payment box. $amount_html '' = no amount line (the /donate/ form has no cart). */
+function upq_box_html( $amount_html = '' ) {
+	$h  = '<div class="upq-box">';
+	$d  = (string) upq_value( 'description' );
+	if ( '' !== $d ) {
+		$h .= wp_kses_post( wpautop( $d ) );
+	}
+	if ( '' !== $amount_html ) {
+		$h .= '<p class="upq-amount" style="text-align:center;margin:8px 0;font-size:16px;">Amount to pay: <strong>' . wp_kses_post( $amount_html ) . '</strong></p>';
+	}
+	$h .= upq_qr_html() . upq_upi_html() . upq_payee_html();
+	$ins = upq_instructions();
+	if ( '' !== $ins ) {
+		$h .= '<p class="upq-instructions"><strong>' . esc_html( $ins ) . '</strong></p>';
+	}
+	return $h . upq_contact_html() . '</div>';
+}
+
+/** Copy-button script + small styles: checkout, thank-you page and /donate/ only. */
+function upq_needs_assets() {
+	return ( function_exists( 'is_checkout' ) && is_checkout() ) || is_page_template( 'page-donate.php' ) || is_page( 'donate' );
+}
+
 add_action( 'wp_footer', function () {
-	if ( ! function_exists( 'is_checkout' ) || ! is_checkout() || is_order_received_page() ) {
+	if ( ! upq_needs_assets() ) {
 		return;
 	}
-	echo '<style>.upq-card{margin:8px auto}.upq-card .upq-amount{margin:0 0 .6rem;font-size:.95rem;color:#111827}.upq-card .upq-payee{font-size:.8125rem;color:#475569;margin:0 0 .6rem}.upq-card .upq-instructions{text-align:center}</style>';
-	echo '<script>(function(){document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".upq-copy");if(!b||b.getAttribute("data-upq-bound")){return;}e.preventDefault();var v=b.getAttribute("data-copy")||"";var done=function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy";},2000);};if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(v).then(done,function(){fb(v,done);});}else{fb(v,done);}function fb(t,cb){var a=document.createElement("textarea");a.value=t;a.setAttribute("readonly","");a.style.position="absolute";a.style.left="-9999px";document.body.appendChild(a);a.select();try{document.execCommand("copy");}catch(x){}document.body.removeChild(a);cb();}});})();</script>';
+	echo '<style>.upq-box{text-align:left}.upq-box p{margin:0 0 8px}.upq-box p,.upq-thanks p{text-align:left;hyphens:none;overflow-wrap:anywhere}.upq-instructions{font-size:14px;line-height:1.55}.payment_method_upq_manual_qr .payment_box{background:#FFF7ED!important;border:1px solid #FED7AA}.payment_method_upq_manual_qr .payment_box::before{border-bottom-color:#FFF7ED!important}.upq-upi-id{overflow-wrap:anywhere}.upq-thanks{border:1px solid #E2E8F0;border-left:4px solid #C2410C;border-radius:8px;padding:16px 18px;margin:0 0 24px;background:#fff}.upq-thanks h2{margin:0 0 8px;font-size:1.15rem}</style>';
+	echo '<script>(function(){document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".upq-copy");if(!b){return;}e.preventDefault();var v=b.getAttribute("data-upi")||"";var done=function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy";},2000);};if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(v).then(done,function(){fb(v,done);});}else{fb(v,done);}function fb(t,cb){var a=document.createElement("textarea");a.value=t;a.setAttribute("readonly","");a.style.position="absolute";a.style.left="-9999px";document.body.appendChild(a);a.select();try{document.execCommand("copy");}catch(x){}document.body.removeChild(a);cb();}});})();</script>';
 }, 50 );
 
-/* Admin e-mails for UPQ orders: the one-tap buttons above the order table. (Customer e-mail content comes from the theme.) */
-add_action( 'woocommerce_email_before_order_table', function ( $order, $sent_to_admin, $plain_text ) {
-	if ( ! upq_is_upi_order( $order ) || ! $sent_to_admin || $plain_text ) {
+/* Thank-you page: QR + amount + donation number + instructions, only while payment is still unverified. */
+add_action( 'woocommerce_thankyou_' . UPQ_GATEWAY_ID, function ( $order_id ) {
+	$order = wc_get_order( $order_id );
+	if ( ! $order || ! $order->has_status( array( 'on-hold', 'pending' ) ) ) {
 		return;
 	}
-	echo upq_admin_buttons_block( $order ); // phpcs:ignore WordPress.Security.EscapeOutput
+	echo '<section class="upq-thanks"><h2>Complete your payment</h2>';
+	echo '<p><strong>Donation number: #' . esc_html( $order->get_order_number() ) . '</strong></p>';
+	echo '<p class="upq-amount" style="text-align:center;margin:8px 0;font-size:16px;">Amount to pay: <strong>' . wp_kses_post( $order->get_formatted_order_total() ) . '</strong></p>';
+	echo upq_qr_html() . upq_upi_html() . upq_payee_html(); // phpcs:ignore WordPress.Security.EscapeOutput
+	echo '<p class="upq-instructions">' . esc_html( upq_instructions() ) . '</p>';
+	echo upq_contact_html(); // phpcs:ignore WordPress.Security.EscapeOutput
+	echo '</section>';
+}, 20 );
+
+/** "Complete your payment" block for customer e-mails (inline styles only). '' once paid. */
+function upq_email_html( $order ) {
+	if ( ! upq_is_upi_order( $order ) || ! $order->has_status( array( 'on-hold', 'pending' ) ) ) {
+		return '';
+	}
+	$p    = 'margin:0 0 10px;font-size:15px;line-height:1.6;color:#1F2937;text-align:left;';
+	$url  = trim( (string) upq_value( 'qr_url' ) );
+	$upi  = trim( (string) upq_value( 'upi_id' ) );
+	$html = '<div style="border:1px solid #FED7AA;background:#FFF7ED;border-radius:8px;padding:16px;margin:0 0 20px;">';
+	$html .= '<p style="' . $p . '"><strong>Complete your payment.</strong> Scan this QR code with any UPI app, or pay to the UPI ID below.</p>';
+	if ( '' !== $url ) {
+		$html .= '<p style="margin:0 0 10px;text-align:center;"><img src="' . esc_url( $url ) . '" alt="' . esc_attr( upq_value( 'qr_alt', 'UPI QR code' ) ) . '" width="220" style="display:inline-block;width:220px;max-width:100%;height:auto;border:1px solid #E2E8F0;border-radius:6px;"></p>';
+	}
+	if ( '' !== $upi ) {
+		$html .= '<p style="' . $p . 'text-align:center;">UPI ID: <strong style="font-size:17px;word-break:break-all;">' . esc_html( $upi ) . '</strong></p>';
+		$html .= upq_payee_html( 'margin:0 0 10px;font-size:14px;line-height:1.5;color:#1F2937;text-align:center;' );
+	}
+	$html .= '<p style="' . $p . '"><strong>Donation number: #' . esc_html( $order->get_order_number() ) . '</strong> &middot; Amount: <strong>' . wp_kses_post( $order->get_formatted_order_total() ) . '</strong></p>';
+	$html .= '<p style="' . $p . '">' . esc_html( upq_instructions() ) . '</p>';
+	$html .= upq_contact_html( 'margin:0;font-size:14px;line-height:1.5;color:#1F2937;' );
+	return $html . '</div>';
+}
+
+/* E-mails: customer on-hold / pending get the QR block above the order table (the "bill"); admin e-mails get the buttons. */
+add_action( 'woocommerce_email_before_order_table', function ( $order, $sent_to_admin, $plain_text ) {
+	if ( ! upq_is_upi_order( $order ) ) {
+		return;
+	}
+	if ( $sent_to_admin ) {
+		if ( ! $plain_text ) {
+			echo upq_admin_buttons_block( $order ); // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		return;
+	}
+	if ( $plain_text ) {
+		if ( $order->has_status( array( 'on-hold', 'pending' ) ) ) {
+			echo "\nPay by UPI: " . esc_html( upq_value( 'upi_id' ) ) . "\nDonation number: #" . esc_html( $order->get_order_number() ) . "\n" . esc_html( upq_instructions() ) . "\n"; // phpcs:ignore
+		}
+		return;
+	}
+	echo upq_email_html( $order ); // phpcs:ignore WordPress.Security.EscapeOutput
 }, 20, 3 );
 
 /* =====================================================================

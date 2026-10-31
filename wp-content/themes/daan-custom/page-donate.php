@@ -218,14 +218,18 @@ get_header();
 				</label>
 			</div>
 
-			<div id="payment-upi-details" style="text-align:center;margin-bottom:24px;">
-				<div class="upi-card upi-card--light">
+			<div id="payment-upi-details" style="margin-bottom:24px;">
+				<?php if ( function_exists( 'upq_box_html' ) && '' !== trim( (string) upq_value( 'qr_url' ) ) ) : ?>
+					<?php echo upq_box_html(); // phpcs:ignore WordPress.Security.EscapeOutput -- UPI QR plugin box (handover look). ?>
+				<?php else : ?>
+				<div class="upi-card upi-card--light" style="text-align:center;">
 					<h4 class="upi-card-title">Pay with UPI</h4>
 					<img class="upi-card-qr" src="https://daanfoundation.in/wp-content/uploads/2026/08/QR-Code-SBI-Payment-Daan-Foundation.jpeg" alt="UPI QR code - Daan Foundation" loading="lazy" decoding="async">
 					<p class="upi-card-text">Scan the QR code with any UPI app to donate.</p>
 					<p class="upi-card-id"><span class="upi-card-label">UPI ID:</span> <span class="upi-card-value">sbibhim.instant90923460741799790@sbipay</span> <button type="button" class="upi-copy-btn" data-copy="sbibhim.instant90923460741799790@sbipay" aria-label="Copy UPI ID">Copy</button></p>
 					<p class="upi-card-contact">Contact: <a href="tel:+918899152910">+91 88991 52910</a></p>
 				</div>
+				<?php endif; ?>
 			</div>
 
 			<button type="button" id="confirm-btn" onclick="confirmDonation()" style="width:100%;border-radius:12px;background:#C2410C;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;margin-bottom:16px;">

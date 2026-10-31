@@ -146,6 +146,11 @@ add_action(
 		if ( ! daan_pay_is_pending( $order ) ) {
 			return;
 		}
+		// Since 2026-10-31 UPI QR donations use the plugin's "Complete your payment" section (handover look);
+		// this old card + "I have paid" form stay only for older on-hold orders of other gateways.
+		if ( 'upq_manual_qr' === $order->get_payment_method() && function_exists( 'upq_email_html' ) ) {
+			return;
+		}
 		// The gateways' own thank-you text would repeat (or contradict) the box below.
 		if ( function_exists( 'WC' ) && WC()->payment_gateways() ) {
 			$gws = WC()->payment_gateways->payment_gateways();
@@ -468,6 +473,10 @@ function daan_pay_email_html( $order ) {
 /** Echoes the block and returns true when it applies (live mode, pending order). */
 function daan_pay_email_intro( $order ) {
 	if ( 'live' !== daan_pay_mode() || ! daan_pay_is_pending( $order ) ) {
+		return false;
+	}
+	// UPI QR donations: the plugin's upq_email_html() block is the "bill" (above the order table).
+	if ( 'upq_manual_qr' === $order->get_payment_method() && function_exists( 'upq_email_html' ) ) {
 		return false;
 	}
 	echo daan_pay_email_html( $order ); // phpcs:ignore WordPress.Security.EscapeOutput
