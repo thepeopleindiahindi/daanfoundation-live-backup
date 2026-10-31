@@ -56,3 +56,4 @@ tpl-sidebar-content.LIVE-BACKUP.php
 # Full-site audit working files (contain server/DB/ops details; repo is PUBLIC)
 reports/full-site-audit-2026-10-13/
 reports/site-audit-round2-2026-10-30/
+reports/security-audit-*/

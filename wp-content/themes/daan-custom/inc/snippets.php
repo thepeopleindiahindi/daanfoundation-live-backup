@@ -179,7 +179,20 @@ add_action( 'wp_ajax_daan_place_order', 'daan_place_order' );
 add_action( 'wp_ajax_nopriv_daan_place_order', 'daan_place_order' );
 
 function daan_place_order() {
-    $amount         = intval( $_POST['amount'] ?? 0 );
+    // The /donate/ page is never page-cached, so its nonce is always fresh; an old open tab gets a refresh message.
+    if ( ! check_ajax_referer( 'daan_place_order', 'daan_order_nonce', false ) ) {
+        wp_send_json_error( array( 'message' => 'This page has expired. Please refresh the page and try again.' ) );
+    }
+
+    // At most 10 donation orders per IP in 10 minutes (shared mobile IPs stay well below this; scripts do not).
+    $ip_key = 'daan_order_rl_' . md5( $_SERVER['REMOTE_ADDR'] ?? '' );
+    $tries  = (int) get_transient( $ip_key );
+    if ( $tries >= 10 ) {
+        wp_send_json_error( array( 'message' => 'Too many donation attempts. Please wait a few minutes and try again.' ) );
+    }
+    set_transient( $ip_key, $tries + 1, 10 * MINUTE_IN_SECONDS );
+
+    $amount        = intval( $_POST['amount'] ?? 0 );
     $cause          = sanitize_text_field( $_POST['cause'] ?? 'Where Most Needed' );
     $first_name     = sanitize_text_field( $_POST['first_name'] ?? '' );
     $last_name      = sanitize_text_field( $_POST['last_name'] ?? '' );

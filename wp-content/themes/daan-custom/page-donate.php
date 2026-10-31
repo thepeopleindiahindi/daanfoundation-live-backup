@@ -359,6 +359,7 @@ get_header();
 
 		var formData = new FormData();
 		formData.append('action', 'daan_place_order');
+		formData.append('daan_order_nonce', '<?php echo esc_js( wp_create_nonce( 'daan_place_order' ) ); ?>');
 		formData.append('amount', selectedAmount);
 		formData.append('cause', causeText);
 		formData.append('first_name', first);
