@@ -165,6 +165,27 @@ add_action(
 	5
 );
 
+/*
+ * Pending page of a UPI QR donation: the page starts with the status line and the "Complete your payment" box.
+ * Hidden only there: the theme title line (kept for screen readers as the page H1) and the checkout page's
+ * Elementor "Donate Now !" heading section. The status line is left-aligned (the theme justifies paragraphs).
+ */
+add_action(
+	'wp_head',
+	function () {
+		if ( ! function_exists( 'is_order_received_page' ) || ! is_order_received_page() ) {
+			return;
+		}
+		$id    = absint( get_query_var( 'order-received' ) );
+		$order = $id ? wc_get_order( $id ) : null;
+		if ( ! $order || 'upq_manual_qr' !== $order->get_payment_method() || ! $order->has_status( array( 'on-hold', 'pending' ) ) ) {
+			return;
+		}
+		echo '<style id="daan-upq-pending">.page-content>.page-title{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.elementor-element-2a824ff{display:none!important}.woocommerce-thankyou-order-received{text-align:left!important}</style>' . "\n";
+	},
+	99
+);
+
 function daan_pay_box_html( $order ) {
 	$d      = daan_payment_details();
 	$is_upi = daan_pay_is_upi( $order );
