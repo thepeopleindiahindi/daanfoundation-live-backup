@@ -63,3 +63,9 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Done (later, batch P2, owner "title: hatao"): pending page of UPI QR donations now starts with the status line + "Complete your payment" box: theme title line visually hidden (still the page H1 for screen readers), checkout page "Donate Now !" Elementor heading hidden, status line left-aligned; only for upq_manual_qr on-hold/pending orders (inc/payment-instructions.php).
 - Verified: test donation #7125 (arksuri@gmail.com, trashed after): 375 + 1440 OK, 1 H1, overflow 0, JS errors 0; old order #7096 page unchanged. Sticky header at 375 px: 0 px overlap with the QR while scrolling; the overlap seen in the full-page screenshot is a screenshot artifact, so no change made.
 - Risks / notes: one more on-hold e-mail to arksuri@gmail.com and admin new-order mail from #7125. No push.
+
+## 2026-11-01 (window: thinking)
+- Done: reviewed batches S1, D-1, D-2, P1, P2 (commits d05f634, f9fa885, 42eed38, cc0602e); approved route B for A1 (not started); gave the next prompt (order-overview grid on the pending page, CSP report review, inactive-plugin/cron list).
+- Verified: GitHub API on 2026-11-01: repo thepeopleindiahindi/daanfoundation-live-backup still private=false; the public main still holds wp-live-backup-2026-07-12/database/*.sql. /donate/ 200, upq-box present, upi:// 0, UTR form 0.
+- Owner actions: owner said they will secure GitHub themselves; still open: repo private, DB/WP-admin/SSH/hPanel/FTP passwords, revoke 3 app passwords, Rs 1 phone test + payee name, updates day/time.
+- Risks / notes: donor data stays public until the repo is private.
