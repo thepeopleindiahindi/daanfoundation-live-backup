@@ -170,20 +170,43 @@ add_action(
  * Hidden only there: the theme title line (kept for screen readers as the page H1) and the checkout page's
  * Elementor "Donate Now !" heading section. The status line is left-aligned (the theme justifies paragraphs).
  */
+function daan_is_upq_pending_view() {
+	static $is = null;
+	if ( ! did_action( 'wp' ) ) {
+		return false; // query not parsed yet (early gettext calls): do not cache.
+	}
+	if ( null === $is ) {
+		$is = false;
+		if ( function_exists( 'is_order_received_page' ) && is_order_received_page() ) {
+			$id    = absint( get_query_var( 'order-received' ) );
+			$order = $id ? wc_get_order( $id ) : null;
+			$is    = $order && 'upq_manual_qr' === $order->get_payment_method() && $order->has_status( array( 'on-hold', 'pending' ) );
+		}
+	}
+	return $is;
+}
+
 add_action(
 	'wp_head',
 	function () {
-		if ( ! function_exists( 'is_order_received_page' ) || ! is_order_received_page() ) {
+		if ( ! daan_is_upq_pending_view() ) {
 			return;
 		}
-		$id    = absint( get_query_var( 'order-received' ) );
-		$order = $id ? wc_get_order( $id ) : null;
-		if ( ! $order || 'upq_manual_qr' !== $order->get_payment_method() || ! $order->has_status( array( 'on-hold', 'pending' ) ) ) {
-			return;
-		}
-		echo '<style id="daan-upq-pending">.page-content>.page-title{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.elementor-element-2a824ff{display:none!important}.woocommerce-thankyou-order-received{text-align:left!important}</style>' . "\n";
+		// Order overview: 2x2 grid on phones, one row from 768 px; no dotted dividers.
+		echo '<style id="daan-upq-pending">.page-content>.page-title{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.elementor-element-2a824ff{display:none!important}.woocommerce-thankyou-order-received{text-align:left!important}'
+			. 'ul.woocommerce-order-overview{display:grid!important;grid-template-columns:1fr 1fr;gap:14px 16px;list-style:none;margin:12px 0 24px!important;padding:0!important}ul.woocommerce-order-overview::before,ul.woocommerce-order-overview::after{display:none!important}ul.woocommerce-order-overview li{float:none!important;border:0!important;margin:0!important;padding:0!important;min-width:0;overflow-wrap:anywhere}@media(min-width:768px){ul.woocommerce-order-overview{grid-template-columns:repeat(4,auto);justify-content:start;column-gap:40px}}</style>' . "\n";
 	},
 	99
+);
+
+// Pending page of a UPI QR donation: "Order number:" -> "Donation number:" in the overview.
+add_filter(
+	'gettext_woocommerce',
+	function ( $translation, $text ) {
+		return ( 'Order number:' === $text && daan_is_upq_pending_view() ) ? 'Donation number:' : $translation;
+	},
+	10,
+	2
 );
 
 function daan_pay_box_html( $order ) {

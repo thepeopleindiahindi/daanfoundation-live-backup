@@ -69,3 +69,9 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Verified: GitHub API on 2026-11-01: repo thepeopleindiahindi/daanfoundation-live-backup still private=false; the public main still holds wp-live-backup-2026-07-12/database/*.sql. /donate/ 200, upq-box present, upi:// 0, UTR form 0.
 - Owner actions: owner said they will secure GitHub themselves; still open: repo private, DB/WP-admin/SSH/hPanel/FTP passwords, revoke 3 app passwords, Rs 1 phone test + payee name, updates day/time.
 - Risks / notes: donor data stays public until the repo is private.
+
+## 2026-11-01 (window: execution)
+- Done: P3-1 pending page of UPI QR donations: order overview = 2x2 grid on phones / one row on desktop, dotted dividers removed, "Order number" -> "Donation number" (inc/payment-instructions.php, helper daan_is_upq_pending_view()). P3-2 CSP report-only scan of home, /donate/, pending page, /contact/, one blog post at 375 + 1440: only violation = worker-src blob: from wp-emoji-loader.min.js (harmless if enforced; add worker-src 'self' blob:); nothing enforced. P3-3 inactive plugins (8 + twentytwentyfive) and leftover cron jobs (give_*, charitable_*, suretriggers_*, astra_*) listed in owner-todo item 25; nothing deleted. Report: reports/security-audit-2026-10-31/ (Batch P3).
+- Verified: test donation #7127 (arksuri@gmail.com, trashed): 375 grid 2x2, desktop 1 row, label DONATION NUMBER, overflow 0; live md5 = repo; smoke OK.
+- Owner actions: item 25 decision (wp-console first); CSP safe-subset enforce decision; GitHub repo still public at last check.
+- Risks / notes: a real new UPI donation #7126 (on-hold) arrived — not touched. Test mails: on-hold for #7127 to arksuri@gmail.com + admin new-order mail. No push.
