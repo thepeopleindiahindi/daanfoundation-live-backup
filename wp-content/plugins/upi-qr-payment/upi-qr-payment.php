@@ -265,19 +265,19 @@ function upq_email_html( $order ) {
 	$p    = 'margin:0 0 10px;font-size:15px;line-height:1.6;color:#1F2937;text-align:left;';
 	$url  = trim( (string) upq_value( 'qr_url' ) );
 	$upi  = trim( (string) upq_value( 'upi_id' ) );
-	$html = '<div style="border:1px solid #FED7AA;background:#FFF7ED;border-radius:8px;padding:16px;margin:0 0 20px;">';
+	$html = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 20px;"><tr><td style="border:1px solid #FED7AA;background:#FFF7ED;border-radius:8px;padding:16px;box-sizing:border-box;">';
 	$html .= '<p style="' . $p . '"><strong>Complete your payment.</strong> Scan this QR code with any UPI app, or pay to the UPI ID below.</p>';
 	if ( '' !== $url ) {
-		$html .= '<p style="margin:0 0 10px;text-align:center;"><img src="' . esc_url( $url ) . '" alt="' . esc_attr( upq_value( 'qr_alt', 'UPI QR code' ) ) . '" width="220" style="display:inline-block;width:220px;max-width:100%;height:auto;border:1px solid #E2E8F0;border-radius:6px;"></p>';
+		$html .= '<p style="margin:0 0 10px;text-align:center;"><img src="' . esc_url( $url ) . '" alt="' . esc_attr( upq_value( 'qr_alt', 'UPI QR code' ) ) . '" width="240" style="display:block;margin:0 auto;width:240px;max-width:100%;height:auto;border:1px solid #E2E8F0;border-radius:6px;"></p>';
 	}
 	if ( '' !== $upi ) {
-		$html .= '<p style="' . $p . 'text-align:center;">UPI ID: <strong style="font-size:17px;word-break:break-all;">' . esc_html( $upi ) . '</strong></p>';
+		$html .= '<p style="' . $p . 'text-align:center;">UPI ID: <strong style="font-size:16px;word-break:break-all;">' . esc_html( $upi ) . '</strong></p>';
 		$html .= upq_payee_html( 'margin:0 0 10px;font-size:14px;line-height:1.5;color:#1F2937;text-align:center;' );
 	}
 	$html .= '<p style="' . $p . '"><strong>Donation number: #' . esc_html( $order->get_order_number() ) . '</strong> &middot; Amount: <strong>' . wp_kses_post( $order->get_formatted_order_total() ) . '</strong></p>';
 	$html .= '<p style="' . $p . '">' . esc_html( upq_instructions() ) . '</p>';
 	$html .= upq_contact_html( 'margin:0;font-size:14px;line-height:1.5;color:#1F2937;' );
-	return $html . '</div>';
+	return $html . '</td></tr></table>';
 }
 
 /* E-mails: customer on-hold / pending get the QR block above the order table (the "bill"); admin e-mails get the buttons. */
@@ -482,7 +482,7 @@ function upq_buttons_html( $order_id, $actions ) {
 		if ( '' === $u ) {
 			continue;
 		}
-		$out .= '<a href="' . esc_url( $u ) . '" style="display:inline-block;margin:0 8px 8px 0;padding:11px 16px;background:' . $defs[ $a ][2] . ';color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:14px;text-decoration:none;border-radius:6px;">' . esc_html( $defs[ $a ][0] ) . '</a>';
+		$out .= '<a class="upq-btn" href="' . esc_url( $u ) . '" style="display:inline-block;margin:0 8px 8px 0;padding:11px 16px;background:' . $defs[ $a ][2] . ';color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:14px;text-decoration:none;border-radius:6px;">' . esc_html( $defs[ $a ][0] ) . '</a>';
 	}
 	return $out;
 }
