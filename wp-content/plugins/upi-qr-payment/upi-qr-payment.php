@@ -376,6 +376,25 @@ function upq_record_action( $order, $action, $via ) {
 	$order->save_meta_data();
 }
 
+/** What happens after "Payment not received", when the 24-hour rule applies to this order. */
+function upq_timer_text( $order ) {
+	if ( ! function_exists( 'daan_ot_automation_on' ) || ! daan_ot_automation_on() || ! daan_ot_timer_in_scope( $order ) ) {
+		return '';
+	}
+	$at = (int) $order->get_meta( '_upq_pay_not_received_at' );
+	return ' It will be cancelled automatically' . ( $at ? ' at ' . wp_date( 'j M, g:i A', $at + DAAN_OT_CANCEL_DELAY ) : ' 24 hours after this' ) . ' unless Payment received is pressed first.';
+}
+
+/** "Payment received" stays reachable after "Payment not received": a fresh signed link behind a button. */
+function upq_pay_ok_form( $order ) {
+	$token = upq_token_make( $order->get_id(), 'pay_ok' );
+	if ( '' === $token ) {
+		return '';
+	}
+	$defs = upq_action_defs();
+	return '<form method="post" action="' . esc_url( home_url( '/' ) ) . '" style="margin-top:16px;"><input type="hidden" name="upq_act_token" value="' . esc_attr( $token ) . '"><button type="submit" style="width:100%;padding:14px;border:0;border-radius:6px;background:' . $defs['pay_ok'][2] . ';color:#fff;font-weight:700;font-size:16px;cursor:pointer;">Yes, ' . esc_html( $defs['pay_ok'][0] ) . '</button></form>';
+}
+
 function upq_already_text( $order ) {
 	$no = $order->get_order_number();
 	$l  = $order->get_meta( '_upq_last_action' );
@@ -409,7 +428,7 @@ function upq_run_action( $order, $action, $via = 'email button' ) {
 				} else {
 					$order->save();
 				}
-				$res = array( true, 'Donation #' . $no . ' stays On hold. A note was added.', 'done' );
+				$res = array( true, 'Donation #' . $no . ' stays On hold. A note was added.' . upq_timer_text( $order ), 'done' );
 				break;
 			case 'cancel':
 				$order->add_order_note( 'Cancelled via ' . $via . '.' );
@@ -537,6 +556,9 @@ add_action( 'template_redirect', function () {
 		upq_page( 'Already done', '<h2 style="margin:0 0 8px;">Already done</h2><p style="line-height:1.6;">' . esc_html( upq_already_text( $order ) ) . '</p><p style="font-size:13px;color:#5a5548;">No change was made.</p>' );
 	}
 	if ( in_array( $sig, (array) $order->get_meta( '_upq_links_used' ), true ) ) {
+		if ( 'pay_no' === $action ) {
+			upq_page( 'Payment not received', '<h2 style="margin:0 0 8px;">Payment not received is already recorded</h2><p style="line-height:1.6;">No change was made. If the money has arrived, press the button below.' . esc_html( upq_timer_text( $order ) ) . '</p>' . upq_pay_ok_form( $order ) );
+		}
 		upq_page( 'Link already used', '<h2 style="margin:0 0 8px;">This link was already used</h2><p>Each link works only once. No change was made.</p>', 410 );
 	}
 	$defs = upq_action_defs();
@@ -548,7 +570,7 @@ add_action( 'template_redirect', function () {
 			'<h2 style="margin:0 0 10px;font-size:20px;">Confirm: ' . esc_html( $defs[ $action ][0] ) . '</h2><p style="line-height:1.6;">Do you want to ' . sprintf( $defs[ $action ][1], esc_html( $no ) ) . '?</p>'
 			. '<p style="color:#5a5548;font-size:14px;">Donation #' . esc_html( $no ) . ' &middot; ' . esc_html( trim( $order->get_billing_first_name() ) ) . ' &middot; ' . wp_kses_post( $order->get_formatted_order_total() ) . ' &middot; ' . esc_html( wc_get_order_status_name( $order->get_status() ) ) . '</p>'
 			. '<form method="post" action="' . esc_url( home_url( '/' ) ) . '"><input type="hidden" name="upq_act_token" value="' . esc_attr( $token ) . '"><button type="submit" style="width:100%;padding:14px;border:0;border-radius:6px;background:' . $defs[ $action ][2] . ';color:#fff;font-weight:700;font-size:16px;cursor:pointer;">Yes, ' . esc_html( $defs[ $action ][0] ) . '</button></form>'
-			. '<p style="margin:14px 0 0;font-size:13px;color:#5a5548;">Not you? Just close this page; nothing happens.</p>'
+			. ( 'pay_no' === $action ? '<p style="margin:14px 0 0;font-size:13px;color:#5a5548;">' . esc_html( trim( upq_timer_text( $order ) ) ) . '</p>' : '' ) . '<p style="margin:14px 0 0;font-size:13px;color:#5a5548;">Not you? Just close this page; nothing happens.</p>'
 		);
 	}
 	// POST: act, then consume the link (a real failure leaves it usable for a retry).
@@ -560,7 +582,7 @@ add_action( 'template_redirect', function () {
 		$o2->update_meta_data( '_upq_links_used', array_slice( $used, -50 ) );
 		$o2->save_meta_data();
 	}
-	upq_page( $ok ? 'Done' : 'Not done', '<h2 style="margin:0 0 8px;color:' . ( $ok ? '#0E7A3E' : '#B3261E' ) . ';">' . ( $ok ? 'Done' : 'Not done' ) . '</h2><p style="line-height:1.6;">' . esc_html( $msg ) . '</p>', $ok ? 200 : 409 );
+	upq_page( $ok ? 'Done' : 'Not done', '<h2 style="margin:0 0 8px;color:' . ( $ok ? '#0E7A3E' : '#B3261E' ) . ';">' . ( $ok ? 'Done' : 'Not done' ) . '</h2><p style="line-height:1.6;">' . esc_html( $msg ) . '</p>' . ( $ok && 'pay_no' === $action ? upq_pay_ok_form( wc_get_order( $oid ) ) : '' ), $ok ? 200 : 409 );
 }, 0 );
 
 /* =====================================================================
@@ -578,7 +600,7 @@ add_action( 'upq_hold_watch_job', function () {
 	if ( '' === upq_secret() ) {
 		return;
 	}
-	$orders = wc_get_orders( array( 'limit' => 100, 'status' => array( 'on-hold' ), 'payment_method' => UPQ_GATEWAY_ID ) );
+	$orders = wc_get_orders( array( 'limit' => 100, 'status' => array( 'on-hold' ), 'payment_method' => UPQ_GATEWAY_ID, 'date_created' => daan_order_cutoff_range() ) );
 	foreach ( $orders as $o ) {
 		if ( ! upq_is_upi_order( $o ) ) { // belt and braces
 			continue;

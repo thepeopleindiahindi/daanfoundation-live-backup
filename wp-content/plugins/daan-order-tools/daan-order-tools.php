@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 const DAAN_OT_PAN_META     = '_daan_donor_pan';
-const DAAN_OT_MOBILE_ERROR = 'Please enter a valid 10-digit Indian mobile number. We call to confirm your details.';
+const DAAN_OT_MOBILE_ERROR = 'Please enter a valid 10-digit Indian mobile number.';
 const DAAN_OT_PAN_ERROR    = 'Please enter a valid PAN, for example ABCDE1234F, or leave this field empty.';
 const DAAN_OT_PAN_HELP    = 'PAN is not required. Daan Foundation is not registered under Section 80G.';
 
@@ -190,7 +190,7 @@ function daan_ot_export_page() {
 			<table class="form-table" role="presentation">
 				<tr>
 					<th scope="row"><label for="daan-from">From date</label></th>
-					<td><input type="date" id="daan-from" name="from"></td>
+					<td><input type="date" id="daan-from" name="from" value="<?php echo esc_attr( wp_date( 'Y-m-d', daan_order_cutoff() ) ); ?>"><p class="description">Starts at the cutoff by default. Choose an earlier date only when you need older orders.</p></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="daan-to">To date</label></th>
@@ -293,9 +293,7 @@ function daan_ot_export_download() {
 	);
 	$from = daan_ot_export_time( $_POST['from'] ?? '', '00:00:00' );
 	$to   = daan_ot_export_time( $_POST['to'] ?? '', '23:59:59' );
-	if ( null !== $from || null !== $to ) {
-		$query['date_created'] = ( null !== $from ? $from : 1 ) . '...' . ( null !== $to ? $to : time() ); // A start of 0 matches nothing.
-	}
+	$query['date_created'] = ( null !== $from ? $from : daan_order_cutoff() ) . '...' . ( null !== $to ? $to : time() );
 
 	if ( function_exists( 'set_time_limit' ) ) {
 		@set_time_limit( 0 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
@@ -364,3 +362,260 @@ function daan_ot_export_write( $out, $query, $include_pan ) {
 		$page++;
 	} while ( count( $orders ) === $query['limit'] );
 }
+
+/* -------------------------------------------------------------------------
+ * 6. PAN in WordPress personal data export and erase
+ * ------------------------------------------------------------------------- */
+
+function daan_ot_orders_with_pan( $email ) {
+	$orders = wc_get_orders(
+		array(
+			'type'          => 'shop_order',
+			'billing_email' => $email,
+			'status'        => array_merge( array_keys( wc_get_order_statuses() ), array( 'trash' ) ),
+			'limit'         => -1,
+		)
+	);
+	return array_filter(
+		$orders,
+		function ( $order ) {
+			return '' !== (string) $order->get_meta( DAAN_OT_PAN_META );
+		}
+	);
+}
+
+add_filter( 'wp_privacy_personal_data_exporters', function ( $exporters ) {
+	$exporters['daan-order-pan'] = array(
+		'exporter_friendly_name' => 'Daan donor PAN',
+		'callback'               => function ( $email ) {
+			$data = array();
+			foreach ( daan_ot_orders_with_pan( $email ) as $order ) {
+				$data[] = array(
+					'group_id'    => 'daan-order-pan',
+					'group_label' => 'Donor PAN',
+					'item_id'     => 'daan-pan-' . $order->get_id(),
+					'data'        => array(
+						array( 'name' => 'Donation number', 'value' => $order->get_order_number() ),
+						array( 'name' => 'PAN', 'value' => $order->get_meta( DAAN_OT_PAN_META ) ),
+					),
+				);
+			}
+			return array( 'data' => $data, 'done' => true );
+		},
+	);
+	return $exporters;
+} );
+
+add_filter( 'wp_privacy_personal_data_erasers', function ( $erasers ) {
+	$erasers['daan-order-pan'] = array(
+		'eraser_friendly_name' => 'Daan donor PAN',
+		'callback'             => function ( $email ) {
+			$removed = false;
+			foreach ( daan_ot_orders_with_pan( $email ) as $order ) {
+				$order->delete_meta_data( DAAN_OT_PAN_META );
+				$order->save_meta_data();
+				$removed = true;
+			}
+			return array( 'items_removed' => $removed, 'items_retained' => false, 'messages' => array(), 'done' => true );
+		},
+	);
+	return $erasers;
+} );
+
+/* -------------------------------------------------------------------------
+ * 7. Automation (one on/off setting): execution e-mail and the 24-hour timer
+ * ------------------------------------------------------------------------- */
+
+const DAAN_OT_ENABLED_OPTION = 'daan_ot_automation_enabled';
+const DAAN_OT_EXEC_FLAG      = '_daan_exec_mail_sent';
+const DAAN_OT_EXEC_ALERT     = '_daan_exec_mail_alert_at';
+const DAAN_OT_ALERT_TO       = 'daanfoundationindia@gmail.com';
+const DAAN_OT_BCC            = 'arksuri@gmail.com';
+const DAAN_OT_EXEC_DELAY     = 72 * HOUR_IN_SECONDS;
+const DAAN_OT_CANCEL_DELAY   = 24 * HOUR_IN_SECONDS;
+const DAAN_OT_UPQ_GATEWAY    = 'upq_manual_qr';
+
+function daan_ot_automation_on() {
+	return 'yes' === get_option( DAAN_OT_ENABLED_OPTION, 'no' );
+}
+
+/** Cause shown to the donor for a line, or '' when the line is out of scope. */
+function daan_ot_exec_cause( $item ) {
+	$name = trim( preg_replace( '/^Donation\s*[—–-]\s*/u', '', html_entity_decode( $item->get_name(), ENT_QUOTES, 'UTF-8' ) ) );
+	$key  = strtolower( $name );
+	$names = array( 'community kitchen', 'fidya', 'fidyah', 'kaffara', 'kaffarah', 'fidya and kaffara', 'fidya & kaffara', 'fidyah and kaffarah', 'fidyah & kaffarah' );
+	if ( in_array( $key, $names, true ) ) {
+		return $name;
+	}
+	// Community Kitchen, Fidyah & Kaffarah, Fidya and Kaffara: variations can carry a longer line name.
+	$products = array( 5925 => 'Community Kitchen', 6812 => 'Fidyah & Kaffarah', 5922 => 'Fidya and Kaffara' );
+	$id       = is_callable( array( $item, 'get_product_id' ) ) ? (int) $item->get_product_id() : 0;
+	return $products[ $id ] ?? '';
+}
+
+/** @return array{causes: string[], amount: float} */
+function daan_ot_exec_scope( $order ) {
+	$causes = array();
+	$amount = 0.0;
+	foreach ( $order->get_items( array( 'line_item', 'fee' ) ) as $item ) {
+		$cause = daan_ot_exec_cause( $item );
+		if ( '' !== $cause ) {
+			$causes[ $cause ] = $cause;
+			$amount          += (float) $item->get_total();
+		}
+	}
+	return array( 'causes' => array_values( $causes ), 'amount' => $amount );
+}
+
+/** True when this order should get its execution e-mail right now. */
+function daan_ot_exec_is_due( $order ) {
+	if ( ! $order instanceof WC_Order || ! $order->has_status( 'completed' ) || $order->get_meta( DAAN_OT_EXEC_FLAG ) || ! daan_order_after_cutoff( $order ) ) {
+		return false;
+	}
+	if ( time() < $order->get_date_created()->getTimestamp() + DAAN_OT_EXEC_DELAY || $order->get_total_refunded() > 0 || ! is_email( $order->get_billing_email() ) ) {
+		return false;
+	}
+	return (bool) daan_ot_exec_scope( $order )['causes'];
+}
+
+function daan_ot_exec_html( $order ) {
+	$scope = daan_ot_exec_scope( $order );
+	$first = trim( $order->get_billing_first_name() );
+	$p     = '<p style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#1F2937;margin:0 0 14px;">';
+	return $p . 'Dear ' . esc_html( '' !== $first ? $first : 'Donor' ) . ',</p>'
+		. $p . 'Thank you for your donation of ' . wp_kses_post( wc_price( $scope['amount'], array( 'currency' => $order->get_currency() ) ) ) . ' to ' . esc_html( implode( ' and ', $scope['causes'] ) ) . ' (Donation #' . esc_html( $order->get_order_number() ) . ').</p>'
+		. $p . 'By the grace of Allah, your contribution has been used in our food distribution work, helping provide meals to people in need.</p>'
+		. $p . 'May Allah accept your donation and reward you for your generosity.</p>'
+		. $p . 'Team Daan Foundation</p>';
+}
+
+/** Sends once. On failure: no flag, a note and an alert at most once a day per order; the next run retries. */
+function daan_ot_exec_process( $order ) {
+	if ( ! daan_ot_exec_is_due( $order ) ) {
+		return false;
+	}
+	$headers = array( 'Content-Type: text/html; charset=UTF-8', 'Bcc: ' . DAAN_OT_BCC );
+	if ( wp_mail( $order->get_billing_email(), 'Your donation has reached those in need', daan_ot_exec_html( $order ), $headers ) ) {
+		$order->update_meta_data( DAAN_OT_EXEC_FLAG, time() );
+		$order->save_meta_data();
+		$order->add_order_note( 'Execution email sent ' . wp_date( 'j M Y, g:i A' ) );
+		return true;
+	}
+	if ( time() - (int) $order->get_meta( DAAN_OT_EXEC_ALERT ) >= DAY_IN_SECONDS ) {
+		$order->update_meta_data( DAAN_OT_EXEC_ALERT, time() );
+		$order->save_meta_data();
+		$order->add_order_note( 'Execution email failed; it will be tried again on the next run.' );
+		wp_mail( DAAN_OT_ALERT_TO, 'Execution email failed – donation #' . $order->get_order_number(), '<p style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;">The execution email for donation <b>#' . esc_html( $order->get_order_number() ) . '</b> could not be sent. It will be tried again every hour.</p>', array( 'Content-Type: text/html; charset=UTF-8' ) );
+	}
+	return false;
+}
+
+/** The 24-hour rule applies to this order (setting aside whether the feature is on). */
+function daan_ot_timer_in_scope( $order ) {
+	return $order instanceof WC_Order && DAAN_OT_UPQ_GATEWAY === $order->get_payment_method() && daan_order_after_cutoff( $order );
+}
+
+/** Cancels when "Payment not received" was pressed 24 hours ago and nothing came after it. No button pressed: stays on hold. */
+function daan_ot_timer_process( $order ) {
+	if ( ! daan_ot_timer_in_scope( $order ) || ! $order->has_status( 'on-hold' ) ) {
+		return false;
+	}
+	$at = (int) $order->get_meta( '_upq_pay_not_received_at' );
+	if ( ! $at || time() < $at + DAAN_OT_CANCEL_DELAY ) {
+		return false;
+	}
+	$order->update_status( 'cancelled', 'Auto-cancelled: payment not received within 24 hours of "Payment not received".' );
+	return true;
+}
+
+// Leaving on-hold ends the timer, so an order put back on hold later does not cancel on an old time.
+add_action( 'woocommerce_order_status_changed', function ( $order_id, $from ) {
+	if ( 'on-hold' !== $from ) {
+		return;
+	}
+	$order = wc_get_order( $order_id );
+	if ( daan_ot_timer_in_scope( $order ) && $order->get_meta( '_upq_pay_not_received_at' ) ) {
+		$order->delete_meta_data( '_upq_pay_not_received_at' );
+		$order->save_meta_data();
+	}
+}, 10, 2 );
+
+function daan_ot_query_after_cutoff( $args ) {
+	return wc_get_orders( $args + array( 'type' => 'shop_order', 'limit' => -1, 'date_created' => daan_order_cutoff_range() ) );
+}
+
+function daan_ot_exec_candidates() {
+	return array_filter( daan_ot_query_after_cutoff( array( 'status' => array( 'wc-completed' ) ) ), 'daan_ot_exec_is_due' );
+}
+
+function daan_ot_timer_candidates() {
+	return array_filter(
+		daan_ot_query_after_cutoff( array( 'status' => array( 'wc-on-hold' ), 'payment_method' => DAAN_OT_UPQ_GATEWAY ) ),
+		function ( $order ) {
+			$at = (int) $order->get_meta( '_upq_pay_not_received_at' );
+			return $at && time() >= $at + DAAN_OT_CANCEL_DELAY;
+		}
+	);
+}
+
+add_action( 'daan_ot_hourly', function () {
+	if ( ! daan_ot_automation_on() ) {
+		return;
+	}
+	// One run at a time; a lock left by a crashed run expires after 15 minutes.
+	$lock = (int) get_option( 'daan_ot_cron_lock', 0 );
+	if ( $lock && time() - $lock < 15 * MINUTE_IN_SECONDS ) {
+		return;
+	}
+	update_option( 'daan_ot_cron_lock', time(), false );
+	try {
+		foreach ( daan_ot_timer_candidates() as $order ) {
+			daan_ot_timer_process( $order );
+		}
+		foreach ( daan_ot_exec_candidates() as $order ) {
+			daan_ot_exec_process( wc_get_order( $order->get_id() ) );
+		}
+	} finally {
+		delete_option( 'daan_ot_cron_lock' );
+	}
+} );
+
+add_action( 'init', function () {
+	if ( ! wp_next_scheduled( 'daan_ot_hourly' ) ) {
+		wp_schedule_event( time() + 600, 'hourly', 'daan_ot_hourly' );
+	}
+} );
+
+register_deactivation_hook( __FILE__, function () {
+	wp_clear_scheduled_hook( 'daan_ot_hourly' );
+} );
+
+add_action( 'admin_init', function () {
+	register_setting(
+		'daan_ot_automation',
+		DAAN_OT_ENABLED_OPTION,
+		array(
+			'type'              => 'string',
+			'default'           => 'no',
+			'sanitize_callback' => function ( $value ) {
+				return 'yes' === $value ? 'yes' : 'no';
+			},
+		)
+	);
+} );
+
+add_action( 'admin_menu', function () {
+	add_submenu_page( 'woocommerce', 'Order Automation', 'Order Automation', 'manage_options', 'daan-order-automation', function () {
+		?>
+		<div class="wrap">
+			<h1>Order Automation</h1>
+			<p>Applies only to orders created from <?php echo esc_html( wp_date( 'j M Y, g:i A', daan_order_cutoff() ) ); ?> on.</p>
+			<form method="post" action="options.php">
+				<?php settings_fields( 'daan_ot_automation' ); ?>
+				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_ENABLED_OPTION ); ?>" value="yes" <?php checked( daan_ot_automation_on() ); ?>> Send execution e-mails and auto-cancel 24 hours after "Payment not received"</label></p>
+				<?php submit_button(); ?>
+			</form>
+		</div>
+		<?php
+	} );
+}, 99 );

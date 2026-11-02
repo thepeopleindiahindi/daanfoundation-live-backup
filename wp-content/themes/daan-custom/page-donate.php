@@ -342,7 +342,7 @@ get_header();
 		var pan = document.getElementById('donor-pan').value.trim().toUpperCase();
 		var phoneOk = /^(?:\+91|0091|91|0)?[6-9]\d{9}$/.test(phone);
 		var panOk = !pan || /^[A-Z]{5}[0-9]{4}[A-Z]$/.test(pan);
-		showFieldError('donor-phone-error', 'donor-phone', phoneOk ? '' : 'Please enter a valid 10-digit Indian mobile number. We call to confirm your details.');
+		showFieldError('donor-phone-error', 'donor-phone', phoneOk ? '' : 'Please enter a valid 10-digit Indian mobile number.');
 		showFieldError('donor-pan-error', 'donor-pan', panOk ? '' : 'Please enter a valid PAN, for example ABCDE1234F, or leave this field empty.');
 		var first = document.getElementById('donor-firstname').value.trim();
 		var last = document.getElementById('donor-lastname').value.trim();

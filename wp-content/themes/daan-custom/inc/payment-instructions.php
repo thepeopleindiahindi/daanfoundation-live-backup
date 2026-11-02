@@ -559,7 +559,7 @@ add_action(
  * ------------------------------------------------------------------------- */
 
 function daan_pay_digest_html() {
-	$orders = wc_get_orders( array( 'status' => 'on-hold', 'limit' => -1, 'orderby' => 'date', 'order' => 'ASC' ) );
+	$orders = wc_get_orders( array( 'status' => 'on-hold', 'limit' => -1, 'orderby' => 'date', 'order' => 'ASC', 'date_created' => daan_order_cutoff_range() ) );
 	$now    = time();
 	$old    = array();
 	$new    = array();
