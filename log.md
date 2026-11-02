@@ -75,3 +75,10 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Verified: test donation #7127 (arksuri@gmail.com, trashed): 375 grid 2x2, desktop 1 row, label DONATION NUMBER, overflow 0; live md5 = repo; smoke OK.
 - Owner actions: item 25 decision (wp-console first); CSP safe-subset enforce decision; GitHub repo still public at last check.
 - Risks / notes: a real new UPI donation #7126 (on-hold) arrived — not touched. Test mails: on-hold for #7127 to arksuri@gmail.com + admin new-order mail. No push.
+
+## 2026-11-02 (window: execution)
+- Done: owner request (Daan Foundation): new plugin wp-content/plugins/daan-order-tools/ (mandatory Indian mobile, optional PAN in order meta _daan_donor_pan, admin-only WooCommerce > Export Customers direct CSV); wired into page-donate.php and inc/snippets.php (daan_place_order). Local only and uncommitted; not deployed, plugin not activated.
+- Verified: donate page JS syntax only (node --check). PHP not linted (no local PHP). No live or functional test run yet. Read-only survey of live plugins on both sites; no custom e-mail export found in the themes, must-use plugins or scanned plugins.
+- Owner actions: approve deploy; name the screen used to export today; have the CA check the PAN wording; change the SSH password and remove it from qubanueasy/SSH-CONNECT.md (it appeared in session output).
+- Open / next: backup, upload theme files + plugin, activate, php lint, run the 3 tests; confirm whether checkout is classic or block (PAN field is classic only; block checkout gets the mobile check only). Daan Code Snippets and cron not checked (production read blocked).
+- Risks / notes: another window has uncommitted e-mail layout work in the same tree (upi-qr-payment.php, functions.php, inc/email-layout.php, mu-plugins/daan-email-layout.php, e-mail templates); not mine, do not mix into this commit. Three failed SSH logins today from a helper-script mistake. No push.
