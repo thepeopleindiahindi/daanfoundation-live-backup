@@ -233,6 +233,19 @@ function daan_place_order() {
         wp_send_json_error( array( 'message' => 'Please fill all required fields.' ) );
     }
 
+    // Mobile is mandatory and PAN optional (plugin daan-order-tools); saved normalized.
+    $pan = '';
+    if ( function_exists( 'daan_ot_normalize_mobile' ) ) {
+        $phone = daan_ot_normalize_mobile( $phone );
+        if ( ! $phone ) {
+            wp_send_json_error( array( 'message' => DAAN_OT_MOBILE_ERROR ) );
+        }
+        $pan = daan_ot_normalize_pan( wp_unslash( $_POST['pan'] ?? '' ) );
+        if ( false === $pan ) {
+            wp_send_json_error( array( 'message' => DAAN_OT_PAN_ERROR ) );
+        }
+    }
+
     // Bank transfer was closed on 2026-10-27: an old cached form that still sends 'bacs' becomes a UPI order.
     // Since 2026-10-30 new donations use the UPI QR gateway (plugin upi-qr-payment); an old cached form
     // that still sends 'cheque' or 'bacs' is accepted and becomes a UPI QR donation too.
@@ -282,6 +295,9 @@ function daan_place_order() {
     $order->update_meta_data( '_daan_donation_cause', $cause );
     $order->update_meta_data( '_daan_donation_frequency', $frequency );
     $order->update_meta_data( '_daan_donation_type', 'custom_form' );
+    if ( $pan ) {
+        $order->update_meta_data( DAAN_OT_PAN_META, $pan );
+    }
 
     $order->calculate_totals();
     $order->set_status( 'on-hold', 'Donation placed via /donate/ form.' );

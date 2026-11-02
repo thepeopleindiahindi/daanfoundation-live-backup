@@ -123,8 +123,16 @@ get_header();
 			</div>
 
 			<div style="margin-bottom:16px;">
-				<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Phone Number (optional)</label>
-				<input type="tel" id="donor-phone" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;transition:border-color 0.2s;">
+				<label for="donor-phone" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Mobile Number *</label>
+				<input type="tel" id="donor-phone" required autocomplete="tel" inputmode="tel" aria-describedby="donor-phone-error" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;transition:border-color 0.2s;">
+				<div id="donor-phone-error" role="alert" style="display:none;color:#B91C1C;font-size:0.875rem;margin-top:6px;"></div>
+			</div>
+
+			<div style="margin-bottom:16px;">
+				<label for="donor-pan" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">PAN Card Number (Optional)</label>
+				<input type="text" id="donor-pan" maxlength="10" autocomplete="off" aria-describedby="donor-pan-help donor-pan-error" oninput="this.value=this.value.toUpperCase()" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;transition:border-color 0.2s;">
+				<div id="donor-pan-error" role="alert" style="display:none;color:#B91C1C;font-size:0.875rem;margin-top:6px;"></div>
+				<p id="donor-pan-help" style="font-size:0.8125rem;color:#64748B;margin:6px 0 0;">PAN is not required. Daan Foundation is not registered under Section 80G.</p>
 			</div>
 
 			<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
@@ -322,7 +330,20 @@ get_header();
 		currentStep = step;
 	};
 
+	function showFieldError(id, inputId, text) {
+		var box = document.getElementById(id);
+		box.textContent = text;
+		box.style.display = text ? 'block' : 'none';
+		document.getElementById(inputId).style.borderColor = text ? '#B91C1C' : '#E2E8F0';
+	}
+
 	window.validateAndGoToStep3 = function() {
+		var phone = document.getElementById('donor-phone').value.replace(/[\s\-().]/g, '');
+		var pan = document.getElementById('donor-pan').value.trim().toUpperCase();
+		var phoneOk = /^(?:\+91|0091|91|0)?[6-9]\d{9}$/.test(phone);
+		var panOk = !pan || /^[A-Z]{5}[0-9]{4}[A-Z]$/.test(pan);
+		showFieldError('donor-phone-error', 'donor-phone', phoneOk ? '' : 'Please enter a valid 10-digit Indian mobile number. We call to confirm your details.');
+		showFieldError('donor-pan-error', 'donor-pan', panOk ? '' : 'Please enter a valid PAN, for example ABCDE1234F, or leave this field empty.');
 		var first = document.getElementById('donor-firstname').value.trim();
 		var last = document.getElementById('donor-lastname').value.trim();
 		var email = document.getElementById('donor-email').value.trim();
@@ -334,6 +355,8 @@ get_header();
 		if (!city) { alert('Please enter your city.'); return; }
 		if (!state) { alert('Please select your state.'); return; }
 		if (!pincode || pincode.length !== 6 || !/^\d+$/.test(pincode)) { alert('Please enter a valid 6-digit pincode.'); return; }
+		if (!phoneOk) { document.getElementById('donor-phone').focus(); return; }
+		if (!panOk) { document.getElementById('donor-pan').focus(); return; }
 		goToStep(3);
 	};
 
@@ -370,6 +393,7 @@ get_header();
 		formData.append('last_name', last);
 		formData.append('email', email);
 		formData.append('phone', phone);
+		formData.append('pan', document.getElementById('donor-pan').value.trim());
 		formData.append('city', city);
 		formData.append('state', state);
 		formData.append('pincode', pincode);
