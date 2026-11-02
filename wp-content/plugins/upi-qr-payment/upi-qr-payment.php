@@ -366,7 +366,7 @@ function upq_action_defs() {
 	return array(
 		'pay_ok' => array( 'Payment received', 'mark donation #%s as PAYMENT RECEIVED (it becomes Completed and the donor gets the Completed e-mail with the receipt link)', '#18A957' ),
 		'pay_no' => array( 'Payment not received', 'record that the payment for donation #%s was NOT received (it stays On hold)', '#B3261E' ),
-		'cancel' => array( 'Cancel donation', 'CANCEL donation #%s (the donor gets the cancellation e-mail)', '#B3261E' ),
+		'cancel' => array( 'Cancel donation', 'CANCEL donation #%s', '#B3261E' ),
 	);
 }
 

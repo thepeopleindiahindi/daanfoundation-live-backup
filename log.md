@@ -104,3 +104,8 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Verified: test orders 7135-7166 (trashed): 56 checks, 54 passed; the 2 failures were stale CLI reads, repeated with direct DB reads and passed. 2 real sends returned true (To Foundation + Bcc owner; To owner). Mail render 360 + 1366, side-scroll 0. Smoke OK. 72h cases used a cutoff shifted inside the test process only, since no real order is 72h past the cutoff yet.
 - Owner actions: check Foundation inbox and Gmail for the test mails; decide ration-kit FAQ; check the older on-hold orders outside digest and watcher by hand.
 - Risks / notes: BCC proves only that the mail left the server, not donor inbox delivery. Orders with a partial refund get no execution mail. Failure note and alert at most once a day per order; retry hourly. wp_mail success depends on WP Mail SMTP. Backup: D:\claude\_private_backups\2026-11-02_automation\. No push.
+
+## 2026-11-02 (window: execution; cancel text)
+- Done: confirm page text of the Cancel action no longer says the donor gets a cancellation e-mail (upi-qr-payment.php). Text only. Backup: D:\claude\_private_backups\2026-11-02_canceltext\. owner-todo: repo inc/seo-fixes.php is not to be uploaded until the owner decides on the ration-kit FAQ.
+- Verified: signed Cancel link on one test order opened with GET only, Yes not pressed; status stayed on-hold; order trashed. Smoke OK.
+- Open / next: owner decision on ration-kit FAQ. No push.
