@@ -109,3 +109,8 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Done: confirm page text of the Cancel action no longer says the donor gets a cancellation e-mail (upi-qr-payment.php). Text only. Backup: D:\claude\_private_backups\2026-11-02_canceltext\. owner-todo: repo inc/seo-fixes.php is not to be uploaded until the owner decides on the ration-kit FAQ.
 - Verified: signed Cancel link on one test order opened with GET only, Yes not pressed; status stayed on-hold; order trashed. Smoke OK.
 - Open / next: owner decision on ration-kit FAQ. No push.
+
+## 2026-11-02 (window: execution; ration-kit FAQ decision)
+- Done: owner decided to remove the ration-kit FAQ. FAQ schema and the title/description lines removed from repo inc/seo-fixes.php, so repo now equals live. Live file not touched. Upload hold on this file is over.
+- Verified: md5 of repo copy equals live; post 6997 itself not changed.
+- Open / next: none on this item. No push.
