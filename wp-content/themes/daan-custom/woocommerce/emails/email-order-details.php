@@ -168,7 +168,7 @@ endif;
 				<tr class="order-totals order-totals-<?php echo esc_attr( $total['type'] ?? 'unknown' ); ?><?php echo esc_attr( $last_class ); ?>">
 					<th class="td text-align-left" scope="row" colspan="1" style="<?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>">
 						<?php
-						echo wp_kses_post( $total['label'] ) . ' ';
+						echo wp_kses_post( rtrim( $total['label'], ': ' ) ) . ' ';
 						if ( $email_improvements_enabled ) {
 							echo isset( $total['meta'] ) ? wp_kses_post( $total['meta'] ) : '';
 						}
@@ -182,7 +182,7 @@ endif;
 		if ( $order->get_customer_note() && ! $email_improvements_enabled ) {
 			?>
 			<tr>
-				<th class="td text-align-left" scope="row" colspan="1"><?php esc_html_e( 'Note:', 'woocommerce' ); ?></th>
+				<th class="td text-align-left" scope="row" colspan="1"><?php esc_html_e( 'Note', 'woocommerce' ); ?></th>
 				<td class="td text-align-left"><?php echo wp_kses( nl2br( wc_wptexturize_order_note( $order->get_customer_note() ) ), array() ); ?></td>
 			</tr>
 			<?php

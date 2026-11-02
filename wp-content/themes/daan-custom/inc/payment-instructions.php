@@ -461,7 +461,7 @@ function daan_pay_handle_proof() {
 		@ob_end_flush();
 		@flush();
 	}
-	wp_mail( daan_pay_notify_recipient(), '[Daan] Payment reported — order #' . $order->get_order_number() . ' ' . daan_pay_amount_text( $order ), $body, array( 'Content-Type: text/html; charset=UTF-8' ) );
+	wp_mail( daan_pay_notify_recipient(), '[Daan] Payment reported — donation #' . $order->get_order_number() . ' ' . daan_pay_amount_text( $order ), $body, array( 'Content-Type: text/html; charset=UTF-8' ) );
 	exit;
 }
 
@@ -582,8 +582,8 @@ function daan_pay_digest_html() {
 	$rows = array_slice( array_merge( $old, $new ), 0, $cap );
 	$h  = '<div style="font-family:Arial,sans-serif;font-size:14px;color:#1F2937">';
 	$h .= '<p><strong>' . count( $orders ) . '</strong> on-hold donations · <strong>' . count( $old ) . '</strong> older than 3 days · <strong>' . $withutr . '</strong> with a UTR from the donor.</p>';
-	$h .= '<p>Compare each UTR with your bank/UPI statement; if the money is there, open the order and set it to <em>Completed</em> (the donor then gets the receipt e-mail).</p>';
-	$h .= '<table cellpadding="6" cellspacing="0" border="1" style="border-collapse:collapse;border-color:#CBD5E1"><tr style="background:#F1F5F9"><th>Order</th><th>Date</th><th>Amount</th><th>Method</th><th>UTR?</th><th>Age</th></tr>';
+	$h .= '<p>Compare each UTR with your bank/UPI statement; if the money is there, open the donation and set it to <em>Completed</em> (the donor then gets the receipt e-mail).</p>';
+	$h .= '<table cellpadding="6" cellspacing="0" border="1" style="border-collapse:collapse;border-color:#CBD5E1"><tr style="background:#F1F5F9"><th>Donation</th><th>Date</th><th>Amount</th><th>Method</th><th>UTR?</th><th>Age</th></tr>';
 	foreach ( $rows as $r ) {
 		$o   = $r['o'];
 		$bg  = $r['age'] > 3 * DAY_IN_SECONDS ? '#FFF7ED' : '#FFFFFF';

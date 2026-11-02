@@ -132,14 +132,11 @@ function daan_handle_contact_form() {
         array( '%s', '%s', '%s', '%s', '%s' )
     );
 
-    $email_body = "Name: $first_name $last_name\nEmail: $email\nSubject: $subject\n\nMessage:\n$message";
-    $email_body .= "\n\n---\nSubmitted via Daan Foundation website contact form.";
-
     wp_mail(
         DAAN_NOTIFICATION_EMAIL,
         "Contact Form: $subject",
-        $email_body,
-        array( "From: $email", "Reply-To: $email" )
+        daan_email_contact_html( $first_name, $last_name, $email, $subject, $message ),
+        array( "From: $email", "Reply-To: $email", 'Content-Type: text/html; charset=UTF-8' )
     );
 
     wp_send_json_success( array( 'message' => 'Thank you for contacting us. We will get back to you within 24-48 hours.' ) );
@@ -186,7 +183,8 @@ function daan_handle_newsletter_signup() {
     wp_mail(
         $email,
         'Welcome to Daan Foundation Newsletter',
-        "Thank you for subscribing to the Daan Foundation newsletter!\n\nYou will now receive updates on our campaigns, impact stories, and Islamic giving opportunities.\n\nWarm regards,\nDaan Foundation Team"
+        daan_email_newsletter_html(),
+        array( 'Content-Type: text/html; charset=UTF-8' )
     );
 
     wp_send_json_success( array( 'message' => 'Thank you for subscribing!' ) );
@@ -392,6 +390,18 @@ add_action( 'template_redirect', 'daan_generate_donation_receipt_page' );
  * looks identical (no hint whether the order exists) and is rate-limited per IP address and per order.
  * Only paid orders (completed / processing) have a receipt.
  */
+/** Causes of a donation for the receipt: its lines first, then the saved cause, otherwise "Donation". Reads only. */
+function daan_receipt_cause( $order ) {
+    $causes = array();
+    foreach ( $order->get_items( array( 'line_item', 'fee' ) ) as $item ) {
+        $name = trim( preg_replace( '/^Donation\s*[—–-]\s*/u', '', html_entity_decode( $item->get_name(), ENT_QUOTES, 'UTF-8' ) ) );
+        if ( '' !== $name && 'Donation' !== $name ) {
+            $causes[ $name ] = $name;
+        }
+    }
+    return $causes ? implode( ', ', $causes ) : ( $order->get_meta( '_daan_donation_cause' ) ?: 'Donation' );
+}
+
 function daan_receipt_url( $order ) {
     if ( is_numeric( $order ) && function_exists( 'wc_get_order' ) ) {
         $order = wc_get_order( (int) $order );
@@ -478,7 +488,7 @@ function daan_generate_donation_receipt_page() {
                     'name'       => trim( $billing['first_name'] . ' ' . $billing['last_name'] ),
                     'email'      => $billing['email'],
                     'amount'     => $order->get_total(),
-                    'cause'      => $order->get_meta( '_daan_donation_cause' ) ?: 'Donation',
+                    'cause'      => daan_receipt_cause( $order ),
                     'frequency'  => $order->get_meta( '_daan_donation_frequency' ) ?: 'one-time',
                     'city'       => $billing['city'],
                     'state'      => $billing['state'],
@@ -539,7 +549,7 @@ function daan_generate_donation_receipt_page() {
     $donor_order_id   = $record['order_id'];
     $txn_type         = $record['txn_type'];
 
-    $amount_display = '₹' . number_format( $donor_amount );
+    $amount_display = '₹' . number_format( (float) $donor_amount, 2 );
     $address_line   = trim(
         ( $donor_city ? $donor_city : '' )
         . ( $donor_city && $donor_state ? ', ' : '' )
@@ -551,23 +561,26 @@ function daan_generate_donation_receipt_page() {
 <!DOCTYPE html>
 <html>
 <head><title>Donation Receipt - Daan Foundation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{font-family:'Open Sans',Arial,sans-serif;color:#333;margin:40px;line-height:1.6}
-.receipt{max-width:800px;margin:0 auto;border:2px solid #333;padding:40px}
-.header{text-align:center;border-bottom:2px solid #333;padding-bottom:20px;margin-bottom:20px}
-.header h1{margin:0;font-size:22px;color:#EA580C}
+body{font-family:'Open Sans',Arial,sans-serif;color:#111111;background:#F3F4F6;margin:0;padding:24px 12px;line-height:1.6}
+.receipt{max-width:800px;margin:0 auto;background:#fff;border:1px solid #E5E7EB;border-top:4px solid #EA580C;border-radius:8px;padding:32px 24px;box-sizing:border-box}
+.header{text-align:center;border-bottom:1px solid #E5E7EB;padding-bottom:20px;margin-bottom:20px}
+.header img{width:180px;max-width:60%;height:auto;margin-bottom:8px}
+.header h1{margin:0;font-size:22px;color:#C2410C}
 .header h2{margin:5px 0;font-size:18px}
 .content table{width:100%;border-collapse:collapse}
-.content td{padding:8px 12px;border-bottom:1px solid #E2E8F0}
-.content td:first-child{font-weight:600;width:180px;color:#475569}
-.footer{margin-top:30px;padding-top:20px;border-top:1px solid #E2E8F0;font-size:13px;color:#64748B}
+.content td{padding:8px 12px;border-bottom:1px solid #E5E7EB;overflow-wrap:anywhere}
+.content td:first-child{font-weight:600;width:40%;color:#666666}
+.footer{margin-top:30px;padding-top:20px;border-top:1px solid #E5E7EB;font-size:13px;color:#666666}
 .stamp{text-align:right;margin-top:30px}
 .stamp img{width:120px}
-@media print{body{margin:0}.receipt{border:none}.no-print{display:none}}
+@media print{body{margin:0;padding:0;background:#fff}.receipt{border:none}.no-print{display:none}}
 </style></head>
 <body>
 <div class="receipt">
 <div class="header">
+<img src="<?php echo esc_url( (string) get_option( 'woocommerce_email_header_image' ) ); ?>" alt="Daan Foundation">
 <h1>Daan Foundation</h1>
 <h2>Donation Receipt</h2>
 <p>Daan Foundation (Registered Trust) | Reg. No. 149/11-20/302 (Tehsil Amroha) | PAN: AAETD5465E</p>
@@ -589,8 +602,8 @@ body{font-family:'Open Sans',Arial,sans-serif;color:#333;margin:40px;line-height
 <?php if ( $donor_payment_id ) : ?>
 <tr><td>Payment ID</td><td><?php echo esc_html( $donor_payment_id ); ?></td></tr>
 <?php endif; ?>
-<tr><td>Order / Receipt No</td><td><?php echo esc_html( $donor_order_id ); ?></td></tr>
-<tr><td>Transaction Type</td><td><?php echo esc_html( $txn_type ); ?></td></tr>
+<tr><td>Donation / Receipt No</td><td><?php echo esc_html( $donor_order_id ); ?></td></tr>
+<tr><td>Payment method</td><td><?php echo esc_html( $txn_type ); ?></td></tr>
 </table>
 </div>
 
@@ -607,7 +620,7 @@ body{font-family:'Open Sans',Arial,sans-serif;color:#333;margin:40px;line-height
 </div>
 
 <div class="no-print" style="text-align:center;margin-top:20px;">
-<button onclick="window.print()" style="padding:10px 24px;background:#F97316;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:16px;">Print Receipt</button>
+<button onclick="window.print()" style="padding:10px 24px;background:#C2410C;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:16px;">Print Receipt</button>
 </div>
 </body>
 </html>

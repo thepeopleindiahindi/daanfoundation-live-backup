@@ -114,3 +114,10 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Done: owner decided to remove the ration-kit FAQ. FAQ schema and the title/description lines removed from repo inc/seo-fixes.php, so repo now equals live. Live file not touched. Upload hold on this file is over.
 - Verified: md5 of repo copy equals live; post 6997 itself not changed.
 - Open / next: none on this item. No push.
+
+## 2026-11-02 (window: execution; e-mail and receipt design)
+- Done: all WooCommerce and custom mails moved to one look from the live theme (logo, card, footer with Reg. No. + PAN + contact), donation wording in subjects and bodies, WooCommerce app advert removed from admin mails, contact and newsletter mails now HTML. Receipt page restyled; cause now read from the order lines (mixed causes joined, otherwise saved cause, otherwise "Donation"; nothing written to orders); amount shown as Rs 1.00 format; labels "Donation / Receipt No" and "Payment method". Table labels without colon. Files: inc/email-brand.php, inc/email-empty.php, mu-plugins/daan-email-layout.php, email-order-details.php, snippets.php, payment-instructions.php, functions.php. Preview and screenshots: reports/security-audit-2026-10-31/emails-v2/.
+- Verified: real Rs 1 journey #7180 via /donate/: on-hold, signed Payment received link, Completed, receipt shows Community Kitchen, 1.00, Reg/PAN/80G text unchanged. 21 checks passed, including QR block, both admin buttons, execution text + Bcc, digest wording. 360 + 1024 side-scroll 0. Live md5 = repo. Smoke OK. Test orders 7168-7187 range trashed; real mails only to the test order's address and the Foundation/owner admin copies.
+- Rollback: backup D:\claude\_private_backups\2026-11-02_emailbrand\ (code-before.tgz, db-before.sql.gz); remove the email-brand require in functions.php and restore the other files.
+- Owner actions: check Gmail for mails of #7180 (on-hold, Completed); Foundation inbox gets the new-donation copy.
+- Risks / notes: rendered in Chrome, not checked in the Gmail app by Claude. Contact and newsletter mails were not sent in a test; preview only. No push; repo inc/seo-fixes.php not uploaded.
