@@ -91,3 +91,15 @@ function daan_legal_drop_elementor_assets() {
 add_action( 'wp_enqueue_scripts', 'daan_legal_drop_elementor_assets', 999 );
 add_action( 'wp_print_footer_scripts', 'daan_legal_drop_elementor_assets', 1 );
 add_action( 'wp_print_styles', 'daan_legal_drop_elementor_assets', 999 );
+
+// Pages built with Elementor but rendered from theme templates (About, Zakat, Community Kitchen) never print
+// Elementor's content, so its config is missing and frontend.min.js throws "elementorFrontendConfig is not defined".
+// Only the scripts go; the styles stay, so the design does not change.
+add_action( 'wp_print_footer_scripts', function () {
+	if ( ! class_exists( '\Elementor\Plugin' ) || \Elementor\Plugin::$instance->frontend->has_elementor_in_page() ) {
+		return;
+	}
+	foreach ( array( 'elementor-frontend', 'elementor-frontend-modules', 'elementor-webpack-runtime' ) as $h ) {
+		wp_dequeue_script( $h );
+	}
+}, 1 );
