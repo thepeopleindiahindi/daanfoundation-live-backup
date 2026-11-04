@@ -2174,3 +2174,14 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 1280px) {
   .hero-donate-section .donation-widget { padding: 40px; }
 }
+
+/* Homepage only: closed mega-menus stretched the page sideways below 1366 px, so the last ones open inside the screen. */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  body.home .desktop-nav .nav-item:nth-child(3) .mega-menu { left: auto; right: 0; }
+}
+@media (min-width: 1024px) and (max-width: 1060px) {
+  body.home .desktop-nav .nav-item:nth-child(2) .mega-menu { left: -24px; }
+}
+/* Homepage Quick Actions: sub-line lines up with its heading; short card text without justified gaps. */
+.quick-actions-section .section-header p { margin-left: 0; text-align: left; }
+.quick-actions-section .qa-card p { text-align: left; }
