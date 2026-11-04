@@ -44,3 +44,13 @@ add_filter(
 		return home_url( '/donate/' );
 	}
 );
+
+// One of each cause: no quantity box on product or cart; the value stays 1, and donating again keeps it at 1.
+add_filter( 'woocommerce_is_sold_individually', '__return_true' );
+add_filter( 'woocommerce_add_to_cart_sold_individually_found_in_cart', '__return_false' );
+add_filter(
+	'option_woocommerce_checkout_privacy_policy_text',
+	function ( $text ) {
+		return str_replace( 'process your order', 'process your donation', (string) $text );
+	}
+);

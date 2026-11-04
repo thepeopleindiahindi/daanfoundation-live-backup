@@ -69,7 +69,7 @@ get_header();
 	<div style="max-width:1280px;margin:0 auto;">
 		<h2 style="font-size:1.875rem;font-weight:700;color:#111827;margin:0 0 32px;text-align:center;">Water Projects</h2>
 		<div style="display:grid;grid-template-columns:1fr;gap:24px;">
-			<style>@media (min-width:640px){.water-projects-grid{grid-template-columns:repeat(3,1fr)!important;}}</style>
+			<style>@media (min-width:640px){.water-projects-grid{max-width:420px;margin:0 auto;}}</style>
 			<div class="water-projects-grid" style="display:grid;grid-template-columns:1fr;gap:24px;">
 				<!-- Hand Pump Well -->
 				<div style="background:#fff;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);padding:24px;text-align:center;">
@@ -81,30 +81,6 @@ get_header();
 					<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 8px;">Hand Pump Well</h3>
 					<div style="display:inline-block;background:#FFF7ED;color:#C2410C;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">₹10,000</div>
 					<p style="font-size:0.9375rem;color:#475569;margin:0;">Provides clean water to a family, reducing waterborne diseases and improving health.</p>
-				</div>
-				<!-- Solar Well -->
-				<div style="background:#fff;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);padding:24px;text-align:center;">
-					<div style="width:64px;height:64px;border-radius:9999px;background:linear-gradient(135deg,#F97316,#EA580C);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
-						<svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2">
-							<circle cx="12" cy="12" r="4"/>
-							<path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-						</svg>
-					</div>
-					<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 8px;">Solar Well</h3>
-					<div style="display:inline-block;background:#F1F5F9;color:#475569;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">Coming Soon</div>
-					<p style="font-size:0.9375rem;color:#475569;margin:0;">Solar-powered well providing sustainable clean water for an entire community.</p>
-				</div>
-				<!-- Water Tanker Distribution -->
-				<div style="background:#fff;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);padding:24px;text-align:center;">
-					<div style="width:64px;height:64px;border-radius:9999px;background:linear-gradient(135deg,#F97316,#EA580C);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
-						<svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2">
-							<rect x="3" y="7" width="14" height="10" rx="2"/>
-							<path stroke-linecap="round" d="M17 9h2a2 2 0 012 2v4a2 2 0 01-2 2h-1M5 19a2 2 0 100-4 2 2 0 000 4zM16 19a2 2 0 100-4 2 2 0 000 4z"/>
-						</svg>
-					</div>
-					<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 8px;">Water Tanker Distribution</h3>
-					<div style="display:inline-block;background:#F1F5F9;color:#475569;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">Coming Soon</div>
-					<p style="font-size:0.9375rem;color:#475569;margin:0;">Emergency water supply tanker distribution for drought-affected and crisis-hit areas.</p>
 				</div>
 			</div>
 		</div>

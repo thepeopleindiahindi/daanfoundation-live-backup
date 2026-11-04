@@ -31,7 +31,7 @@ get_header();
 <!-- Calculator -->
 <div style="max-width:768px;margin:0 auto;padding:48px 16px;">
 	<div style="background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);padding:32px;">
-		<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 24px;">Your Wealth</h3>
+		<h2 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 24px;">Your Wealth</h2>
 
 		<div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px;">
 			<div>
@@ -60,7 +60,7 @@ get_header();
 			</div>
 		</div>
 
-		<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 24px;">Liabilities</h3>
+		<h2 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 24px;">Liabilities</h2>
 
 		<div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px;">
 			<div>
@@ -81,7 +81,7 @@ get_header();
 
 		<!-- Results -->
 		<div id="zakat-results" style="display:none;margin-top:32px;background:#F8FAFC;border-radius:16px;padding:24px;">
-			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Your Zakat Summary</h3>
+			<h2 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Your Zakat Summary</h2>
 			<div style="display:flex;flex-direction:column;gap:12px;">
 				<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #E2E8F0;">
 					<span style="font-size:0.9375rem;color:#64748B;">Total Assets</span>

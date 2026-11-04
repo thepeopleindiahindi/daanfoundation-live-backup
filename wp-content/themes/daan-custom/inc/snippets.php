@@ -136,7 +136,7 @@ function daan_handle_contact_form() {
         DAAN_NOTIFICATION_EMAIL,
         "Contact Form: $subject",
         daan_email_contact_html( $first_name, $last_name, $email, $subject, $message ),
-        array( "From: $email", "Reply-To: $email", 'Content-Type: text/html; charset=UTF-8' )
+        array( "Reply-To: $email", 'Content-Type: text/html; charset=UTF-8' )
     );
 
     wp_send_json_success( array( 'message' => 'Thank you for contacting us. We will get back to you within 24-48 hours.' ) );
@@ -419,12 +419,7 @@ function daan_receipt_url( $order ) {
 }
 
 function daan_receipt_client_ip() {
-    if ( class_exists( 'WC_Geolocation' ) ) {
-        $ip = WC_Geolocation::get_ip_address();
-        if ( $ip ) {
-            return $ip;
-        }
-    }
+    // The server's own value: forwarded-IP headers can be set by the visitor and would dodge the limits.
     return isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown';
 }
 

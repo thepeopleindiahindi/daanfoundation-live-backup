@@ -365,7 +365,7 @@ get_header();
                     : $story_fallback_images[ $i % count( $story_fallback_images ) ];
                 ?>
                 <a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" class="story-card">
-                    <img src="<?php echo esc_url( $thumb ); ?>" alt="" loading="lazy">
+                    <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
                     <div class="story-overlay"></div>
 
                     <div class="story-content">
@@ -419,7 +419,7 @@ get_header();
                     : $news_fallback_images[ $i % count( $news_fallback_images ) ];
                 ?>
                 <a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" class="story-card">
-                    <img src="<?php echo esc_url( $thumb ); ?>" alt="" loading="lazy">
+                    <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
                     <div class="story-overlay"></div>
                     <div class="story-content">
                         <h3><?php echo esc_html( wp_trim_words( get_the_title( $post_id ), 10, '…' ) ); ?></h3>

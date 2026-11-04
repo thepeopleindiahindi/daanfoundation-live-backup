@@ -111,3 +111,20 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 
 	return $description;
 }, 5 );
+
+// FAQ schema of three posts in English, the same wording as the posts (the Hinglish source lines are in inc/seo-fixes.php).
+function daan_faq_schema_english( $value ) {
+	static $map = array(
+		'Kya main apna oath ka Kaffara online pay kar sakta hoon Daan Foundation ke through?' => 'Can I pay my oath Kaffara online through Daan Foundation?',
+		'Haan, bilkul -- aap online donate kar sakte hain aur humein bata sakte hain ki yeh oath ka Kaffara hai, taaki hum ise sahi tarah se track karke 10 logon tak pohcha sakein.' => 'Yes. You can donate online and tell us that it is for oath Kaffara, so that we can track it properly and deliver it to 10 people.',
+		'Kya main kaffara ek hi baar mein online de sakta hoon?' => 'Can I pay kaffara online in one go?',
+		'Haan, aap poori kaffara amount ek hi baar mein Daan Foundation ko donate kar sakte hain, aur hum ise 60 logon tak meals ke roop mein pahuncha dete hain -- aapko khud logon dhundhne ki zaroorat nahi.' => 'Yes. You can donate the full kaffara amount to Daan Foundation in one go, and we deliver it as meals to 60 people. You do not need to find the people yourself.',
+		'Kya mera iftar donation sirf Amroha mein use hota hai ya doosre shehron mein bhi?' => 'Is my iftar donation used only in Amroha, or in other cities too?',
+		'Zyadatar Amroha mein hi, jahan roz ka kitchen chalta hai -- lekin Ramadan ke dauran kabhi-kabhi doosre shehron mein bhi pilot Iftar stalls lagte hain, agar us waqt active ho.' => 'Mostly in Amroha, where the daily kitchen runs. During Ramadan, pilot Iftar stalls are sometimes set up in other cities too, if active at that time.',
+	);
+	if ( is_array( $value ) ) {
+		return array_map( 'daan_faq_schema_english', $value );
+	}
+	return is_string( $value ) && isset( $map[ $value ] ) ? $map[ $value ] : $value;
+}
+add_filter( 'rank_math/json_ld', 'daan_faq_schema_english', 999 );

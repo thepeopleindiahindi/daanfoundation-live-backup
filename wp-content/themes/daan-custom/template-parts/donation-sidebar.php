@@ -6,7 +6,7 @@
  */
 ?>
 <aside style="background: #fff; border-radius: 16px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1); padding: 24px; position: sticky; top: 104px;">
-	<h3 style="font-size: 1.25rem; font-weight: 700; color: #111827; text-align: center; margin-bottom: 4px;">Make a Donation</h3>
+	<h2 style="font-size: 1.25rem; font-weight: 700; color: #111827; text-align: center; margin-bottom: 4px;">Make a Donation</h2>
 	<p style="text-align: center; font-size: 0.875rem; color: #64748B; margin-bottom: 20px;">Every contribution makes a difference</p>
 
 	<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">

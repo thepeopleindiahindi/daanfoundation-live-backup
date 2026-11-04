@@ -160,16 +160,7 @@ add_filter('wp_headers', function (array $headers): array {
     $headers['X-XSS-Protection']       = '1; mode=block';
     $headers['Referrer-Policy']        = 'strict-origin-when-cross-origin';
 
-    // Allow UPI/callback URLs to be framed (e.g., payment gateways)
-    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
-    $allow_frame = (
-        strpos($request_uri, '/upi-callback') !== false ||
-        strpos($request_uri, '/payment-callback') !== false
-    );
-
-    if (!$allow_frame) {
-        $headers['X-Frame-Options'] = 'SAMEORIGIN';
-    }
+    $headers['X-Frame-Options'] = 'SAMEORIGIN';
 
     return $headers;
 });

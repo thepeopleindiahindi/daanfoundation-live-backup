@@ -176,3 +176,8 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Verified: after crawl overflow 0, internal link errors 0; axe 0 on 5 rechecked pages; test orders 7211, 7212 trashed; smoke OK.
 - Owner actions: decision list in the round 3 chat report.
 - Risks / notes: not tested this round: admin screens, valid contact/newsletter submit, real Gmail, real phone, malware scan, core checksums. No push.
+
+## 2026-11-04 (window: execution; round 3 part 2)
+- Done: timezone Asia/Kolkata (stored timestamps same, next digest still 5 Nov 09:00 IST, 7130 count 0); Hinglish FAQ in 3 posts + schema to English (filter in inc/content-fixes.php, seo-fixes.php not uploaded); post 7018 UPI-only, slug donate-iftar-safely-upi with 301; /water/ Coming Soon cards removed; 14,828 failed scheduler rows + 44,485 logs deleted, 33 tables of removed plugins dropped; Elementor 4.3.6, Rank Math 1.0.281; old files above public_html removed (.htaccess files and hosting marker kept); .bak removed; headings, alts, desktop left-align, cart quantity hidden with value 1, privacy line; contact From header, IP source for limits, frame exception. Backup: D:\claude\_private_backups\2026-11-05_round3b\.
+- Verified: checksums core + 6 plugins OK; malware patterns 0; final crawl 73 URLs overflow 0, axe 0, H1 one each, heading skips 0 in scan; keyboard reaches donate confirm and checkout button; Lighthouse 11 page types; smoke OK.
+- Open / next: review findings R-1 to R-5 need owner decision (payment/automation behaviour not changed); C-03 numbers from owner; digest 5 Nov first real run. No push.

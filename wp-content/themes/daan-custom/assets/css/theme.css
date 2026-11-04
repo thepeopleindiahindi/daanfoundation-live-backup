@@ -2191,5 +2191,10 @@ h1, h2, h3, h4, h5, h6 {
 .skip-link:focus{left:8px}
 .bg-orange-600{background-color:#C2410C}
 .woocommerce div.product p.price,.woocommerce div.product span.price,.woocommerce div.product p.price bdi{color:#C2410C}
-@media (max-width:767px){p,.prose p,.description,.leading-relaxed{text-align:left}}
+p,.prose p,.description,.leading-relaxed{text-align:left}
 .woocommerce ul.products li.product .price,.woocommerce ul.products li.product .price bdi{color:#C2410C}.error404 .btn,.error-404 .btn{background:#C2410C;color:#fff}
+
+
+.woocommerce div.product div.images img{width:auto;max-width:100%;margin:0 auto}
+@media (min-width:1024px) and (max-width:1279px){.desktop-nav .nav-link,.desktop-nav .nav-item>a{white-space:nowrap;font-size:.875rem}.site-header .donate-btn,.header-donate-btn,.nav-donate-btn{white-space:nowrap}}
+table.shop_table.cart .product-quantity{display:none!important}
