@@ -263,7 +263,7 @@ function daan_pay_box_html( $order ) {
 				<img class="upi-card-qr" src="<?php echo esc_url( $d['qr_url'] ); ?>" alt="UPI QR code - Daan Foundation" decoding="async">
 				<p class="upi-card-text">Scan the QR code with any UPI app to donate.</p>
 				<p class="upi-card-id"><span class="upi-card-label">UPI ID:</span> <span class="upi-card-value"><?php echo esc_html( $d['upi_id'] ); ?></span> <button type="button" class="upi-copy-btn" data-copy="<?php echo esc_attr( $d['upi_id'] ); ?>" aria-label="Copy UPI ID">Copy</button></p>
-				<p class="upi-card-contact">Contact: <a href="tel:+918899152910">+91 88991 52910</a></p>
+				<p class="upi-card-contact">Contact: <a href="tel:+919528206525">+91 95282 06525</a></p>
 			</div>
 			<?php endif; ?>
 	</div>
@@ -558,8 +558,25 @@ add_action(
  * (d) Daily morning digest of on-hold orders (09:00 India time = 03:30 UTC)
  * ------------------------------------------------------------------------- */
 
+/** One digest line: details and small signed buttons side by side; the buttons wrap below on a phone. */
+function daan_pay_digest_row( $o, $bg, $details, $actions ) {
+	$btn = '';
+	if ( function_exists( 'upq_link_url' ) && function_exists( 'upq_is_upi_order' ) && upq_is_upi_order( $o ) ) {
+		$labels = array( 'pay_ok' => array( 'Payment received', '#18A957' ), 'pay_no' => array( 'Not received', '#B3261E' ) );
+		foreach ( $actions as $a ) {
+			$u = upq_link_url( $o->get_id(), $a );
+			if ( '' !== $u ) {
+				$btn .= '<a href="' . esc_url( $u ) . '" style="display:inline-block;margin:2px 6px 2px 0;padding:6px 10px;background:' . $labels[ $a ][1] . ';color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;border-radius:6px;">' . esc_html( $labels[ $a ][0] ) . '</a>';
+			}
+		}
+	}
+	return '<tr style="background:' . $bg . '"><td style="padding:10px 8px;border-bottom:1px solid #E5E7EB;font-size:14px;line-height:1.5;">'
+		. '<div style="display:inline-block;vertical-align:middle;width:280px;max-width:100%;margin-right:8px;"><a href="' . esc_url( $o->get_edit_order_url() ) . '" style="color:#C2410C;font-weight:700;">#' . esc_html( $o->get_order_number() ) . '</a> · ' . esc_html( $o->get_date_created() ? $o->get_date_created()->date_i18n( 'd M Y' ) : '' ) . '<br>' . $details . '</div>'
+		. '<div style="display:inline-block;vertical-align:middle;">' . $btn . '</div></td></tr>';
+}
+
 function daan_pay_digest_html() {
-	$orders = wc_get_orders( array( 'status' => 'on-hold', 'limit' => -1, 'orderby' => 'date', 'order' => 'ASC', 'date_created' => daan_order_cutoff_range() ) );
+	$orders = wc_get_orders( array( 'type' => 'shop_order', 'status' => 'on-hold', 'limit' => -1, 'orderby' => 'date', 'order' => 'ASC', 'date_created' => daan_order_cutoff_range() ) );
 	$now    = time();
 	$old    = array();
 	$new    = array();
@@ -583,18 +600,31 @@ function daan_pay_digest_html() {
 	$h  = '<div style="font-family:Arial,sans-serif;font-size:14px;color:#1F2937">';
 	$h .= '<p><strong>' . count( $orders ) . '</strong> on-hold donations · <strong>' . count( $old ) . '</strong> older than 3 days · <strong>' . $withutr . '</strong> with a UTR from the donor.</p>';
 	$h .= '<p>Compare each UTR with your bank/UPI statement; if the money is there, open the donation and set it to <em>Completed</em> (the donor then gets the receipt e-mail).</p>';
-	$h .= '<table cellpadding="6" cellspacing="0" border="1" style="border-collapse:collapse;border-color:#CBD5E1"><tr style="background:#F1F5F9"><th>Donation</th><th>Date</th><th>Amount</th><th>Method</th><th>UTR?</th><th>Age</th></tr>';
+	$h .= '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">';
 	foreach ( $rows as $r ) {
-		$o   = $r['o'];
-		$bg  = $r['age'] > 3 * DAY_IN_SECONDS ? '#FFF7ED' : '#FFFFFF';
-		$h  .= '<tr style="background:' . $bg . '"><td><a href="' . esc_url( $o->get_edit_order_url() ) . '">#' . esc_html( $o->get_order_number() ) . '</a></td><td>' . esc_html( $o->get_date_created() ? $o->get_date_created()->date_i18n( 'd M Y' ) : '' ) . '</td><td>' . esc_html( daan_pay_amount_text( $o ) ) . '</td><td>' . esc_html( daan_pay_method_label( $o ) ) . '</td><td>' . ( $r['utr'] ? '<strong>YES</strong>' : 'no' ) . '</td><td>' . (int) floor( $r['age'] / DAY_IN_SECONDS ) . ' d</td></tr>';
+		$o  = $r['o'];
+		$bg = $r['age'] > 3 * DAY_IN_SECONDS ? '#FFF7ED' : '#FFFFFF';
+		$h .= daan_pay_digest_row( $o, $bg, esc_html( daan_pay_amount_text( $o ) ) . ' · ' . esc_html( daan_pay_method_label( $o ) ) . ' · UTR: ' . ( $r['utr'] ? '<strong>YES</strong>' : 'no' ) . ' · ' . (int) floor( $r['age'] / DAY_IN_SECONDS ) . ' d', array( 'pay_ok', 'pay_no' ) );
 	}
 	$h .= '</table>';
 	if ( count( $orders ) > $cap ) {
 		$h .= '<p>… and ' . ( count( $orders ) - $cap ) . ' more: WooCommerce → Orders → On hold.</p>';
 	}
+	$cancelled = function_exists( 'daan_ot_auto_cancelled_orders' ) ? daan_ot_auto_cancelled_orders() : array();
+	if ( $cancelled ) {
+		$h .= '<h2 style="font-size:17px;margin:22px 0 8px;">Auto-cancelled</h2><p>Cancelled automatically in the last 7 days. If the money did arrive, press Payment received.</p>';
+		$h .= '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">';
+		foreach ( $cancelled as $o ) {
+			$h .= daan_pay_digest_row( $o, '#FFFFFF', esc_html( daan_pay_amount_text( $o ) ) . ' · cancelled ' . esc_html( wp_date( 'd M', (int) $o->get_meta( DAAN_OT_AUTO_CANCELLED ) ) ), array( 'pay_ok' ) );
+		}
+		$h .= '</table>';
+	}
 	$h .= '</div>';
-	return array( 'html' => $h, 'total' => count( $orders ), 'old' => count( $old ), 'utr' => $withutr );
+	$shown = array();
+	foreach ( $rows as $r ) {
+		$shown[] = $r['o']->get_id();
+	}
+	return array( 'html' => $h, 'total' => count( $orders ), 'old' => count( $old ), 'utr' => $withutr, 'shown' => $shown, 'cancelled' => count( $cancelled ) );
 }
 
 add_action(
@@ -604,10 +634,14 @@ add_action(
 			return;
 		}
 		$d = daan_pay_digest_html();
-		if ( 0 === $d['total'] ) {
-			return;
-		}
-		wp_mail( daan_pay_notify_recipient(), '[Daan] ' . $d['total'] . ' on-hold donations (' . $d['old'] . ' older than 3 days, ' . $d['utr'] . ' with UTR)', $d['html'], array( 'Content-Type: text/html; charset=UTF-8' ) );
+			if ( 0 === $d['total'] && 0 === $d['cancelled'] ) {
+				return;
+			}
+			$sent = wp_mail( daan_pay_notify_recipient(), '[Daan] ' . $d['total'] . ' on-hold donations (' . $d['old'] . ' older than 3 days, ' . $d['utr'] . ' with UTR)' . ( $d['cancelled'] ? ', ' . $d['cancelled'] . ' auto-cancelled' : '' ), $d['html'], array( 'Content-Type: text/html; charset=UTF-8' ) );
+			// The 24 hours start only once an order was really shown in a digest that went out.
+			if ( $sent && function_exists( 'daan_ot_mark_in_digest' ) ) {
+				daan_ot_mark_in_digest( $d['shown'] );
+			}
 	}
 );
 

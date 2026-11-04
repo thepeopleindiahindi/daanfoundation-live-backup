@@ -35,9 +35,13 @@
                         </div>
                     </a>
                     <div class="footer-contact">
-                        <a href="tel:+918899152910">
+                        <a href="tel:+919528206525">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                            +91 88991 52910
+                            +91 95282 06525
+                        </a>
+                        <a href="<?php echo esc_url( daan_whatsapp_url() ); ?>" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2zm5.5 12.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-1.4-.6-2.9-1.9-3.9-3.4-.2-.3 0-.5.1-.6l.7-1c.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 1.3.5 2.3.7 3.4.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+                            WhatsApp: +91 95282 06525
                         </a>
                         <a href="mailto:daanfoundationindia@gmail.com">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -110,7 +114,7 @@
                     <img class="upi-card-qr" src="https://daanfoundation.in/wp-content/uploads/2026/08/QR-Code-SBI-Payment-Daan-Foundation.jpeg" alt="UPI QR code - Daan Foundation" loading="lazy" decoding="async">
                     <p class="upi-card-text">Scan the QR code with any UPI app to donate.</p>
                     <p class="upi-card-id"><span class="upi-card-label">UPI ID:</span> <span class="upi-card-value" id="footer-upi-id">sbibhim.instant90923460741799790@sbipay</span> <button type="button" class="upi-copy-btn" data-copy="sbibhim.instant90923460741799790@sbipay" aria-label="Copy UPI ID">Copy</button></p>
-                    <p class="upi-card-contact">Contact: <a href="tel:+918899152910">+91 88991 52910</a></p>
+                    <p class="upi-card-contact">Contact: <a href="tel:+919528206525">+91 95282 06525</a></p>
                 </div>
             </div>
         </div>

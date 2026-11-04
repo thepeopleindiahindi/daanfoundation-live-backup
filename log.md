@@ -121,3 +121,12 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Rollback: backup D:\claude\_private_backups\2026-11-02_emailbrand\ (code-before.tgz, db-before.sql.gz); remove the email-brand require in functions.php and restore the other files.
 - Owner actions: check Gmail for mails of #7180 (on-hold, Completed); Foundation inbox gets the new-donation copy.
 - Risks / notes: rendered in Chrome, not checked in the Gmail app by Claude. Contact and newsletter mails were not sent in a test; preview only. No push; repo inc/seo-fixes.php not uploaded.
+
+## 2026-11-04 (window: execution)
+- Done: floating WhatsApp button (inc/whatsapp.php), WhatsApp link in footer and on the Contact page. Foundation number changed to +91 95282 06525 in theme, mu-plugin, upq contact setting, pages 693, 15, 6821 with Elementor data, Astra settings. Digest: pending donations after the cutoff only, small signed Payment received / Not received buttons on each line, "Auto-cancelled" section for 7 days. New rule: auto-cancel 24 hours after first digest or after Not received, whichever is earlier; no adding up.
+- Count before first run: 1 order in the rule, 0 can cancel right away; the first digest (5 Nov 09:00 IST) only starts its 24 hours.
+- Verified: 27 digest/timer checks passed on test orders; 72 URLs old number 0, new number 72, button 72, non-200 0; checkout + pending checked at 375 + desktop; wa.me opens the right number (no message sent); settled button overlap 0; smoke OK. Test orders trashed.
+- Not changed: donor phones in orders, revisions, UPI ID 8899152910@ptsbi of the disabled gateway, widget_block text with UPI No. 9412442458 and SBI details (not on scanned public pages), repo inc/seo-fixes.php comment.
+- Rollback: D:\claude\_private_backups\2026-11-04_whatsapp_digest\ (code-before.tgz, db-before.sql.gz). Restore files; for numbers restore the listed posts/options from the dump.
+- Owner actions: check images and outside services for the old number; first real digest on 5 Nov.
+- Risks / notes: first real digest not yet seen; images not read automatically. Contact page Elementor JSON was already invalid before this change (page renders from theme template). No push.

@@ -434,6 +434,9 @@ const DAAN_OT_BCC            = 'arksuri@gmail.com';
 const DAAN_OT_EXEC_DELAY     = 72 * HOUR_IN_SECONDS;
 const DAAN_OT_CANCEL_DELAY   = 24 * HOUR_IN_SECONDS;
 const DAAN_OT_UPQ_GATEWAY    = 'upq_manual_qr';
+const DAAN_OT_IN_DIGEST      = '_daan_digest_first_at';
+const DAAN_OT_AUTO_CANCELLED = '_daan_auto_cancelled_at';
+const DAAN_OT_REOPEN_WINDOW  = 7 * DAY_IN_SECONDS;
 
 function daan_ot_automation_on() {
 	return 'yes' === get_option( DAAN_OT_ENABLED_OPTION, 'no' );
@@ -515,29 +518,60 @@ function daan_ot_timer_in_scope( $order ) {
 	return $order instanceof WC_Order && DAAN_OT_UPQ_GATEWAY === $order->get_payment_method() && daan_order_after_cutoff( $order );
 }
 
-/** Cancels when "Payment not received" was pressed 24 hours ago and nothing came after it. No button pressed: stays on hold. */
+/** When this on-hold donation will be cancelled: 24 hours after the first digest or after "Not received", whichever is earlier. 0 = no timer. */
+function daan_ot_timer_deadline( $order ) {
+	$times = array_filter( array( (int) $order->get_meta( DAAN_OT_IN_DIGEST ), (int) $order->get_meta( '_upq_pay_not_received_at' ) ) );
+	return $times ? min( $times ) + DAAN_OT_CANCEL_DELAY : 0;
+}
+
 function daan_ot_timer_process( $order ) {
 	if ( ! daan_ot_timer_in_scope( $order ) || ! $order->has_status( 'on-hold' ) ) {
 		return false;
 	}
-	$at = (int) $order->get_meta( '_upq_pay_not_received_at' );
-	if ( ! $at || time() < $at + DAAN_OT_CANCEL_DELAY ) {
+	$deadline = daan_ot_timer_deadline( $order );
+	if ( ! $deadline || time() < $deadline ) {
 		return false;
 	}
-	$order->update_status( 'cancelled', 'Auto-cancelled: payment not received within 24 hours of "Payment not received".' );
+	$order->update_meta_data( DAAN_OT_AUTO_CANCELLED, time() );
+	$order->save_meta_data();
+	$order->update_status( 'cancelled', 'Auto-cancelled: payment not received within 24 hours.' );
 	return true;
 }
 
-// Leaving on-hold ends the timer, so an order put back on hold later does not cancel on an old time.
+/** Stamps the first digest time once; an order that already has it keeps it. */
+function daan_ot_mark_in_digest( $ids ) {
+	foreach ( (array) $ids as $id ) {
+		$order = wc_get_order( $id );
+		if ( daan_ot_timer_in_scope( $order ) && $order->has_status( 'on-hold' ) && ! $order->get_meta( DAAN_OT_IN_DIGEST ) ) {
+			$order->update_meta_data( DAAN_OT_IN_DIGEST, time() );
+			$order->save_meta_data();
+		}
+	}
+}
+
+/** True only for a donation this plugin auto-cancelled, for 7 days. */
+function daan_ot_auto_cancel_open( $order ) {
+	$at = (int) $order->get_meta( DAAN_OT_AUTO_CANCELLED );
+	return $at && $order->has_status( 'cancelled' ) && time() < $at + DAAN_OT_REOPEN_WINDOW;
+}
+
+function daan_ot_auto_cancelled_orders() {
+	return array_values( array_filter( daan_ot_query_after_cutoff( array( 'status' => array( 'wc-cancelled' ), 'payment_method' => DAAN_OT_UPQ_GATEWAY ) ), 'daan_ot_auto_cancel_open' ) );
+}
+
+// Leaving on-hold ends the timers, and leaving cancelled ends the auto-cancel mark, so old times never act later.
 add_action( 'woocommerce_order_status_changed', function ( $order_id, $from ) {
-	if ( 'on-hold' !== $from ) {
+	if ( ! in_array( $from, array( 'on-hold', 'cancelled' ), true ) ) {
 		return;
 	}
 	$order = wc_get_order( $order_id );
-	if ( daan_ot_timer_in_scope( $order ) && $order->get_meta( '_upq_pay_not_received_at' ) ) {
-		$order->delete_meta_data( '_upq_pay_not_received_at' );
-		$order->save_meta_data();
+	if ( ! daan_ot_timer_in_scope( $order ) ) {
+		return;
 	}
+	foreach ( 'on-hold' === $from ? array( '_upq_pay_not_received_at', DAAN_OT_IN_DIGEST ) : array( DAAN_OT_AUTO_CANCELLED ) as $key ) {
+		$order->delete_meta_data( $key );
+	}
+	$order->save_meta_data();
 }, 10, 2 );
 
 function daan_ot_query_after_cutoff( $args ) {
@@ -552,8 +586,8 @@ function daan_ot_timer_candidates() {
 	return array_filter(
 		daan_ot_query_after_cutoff( array( 'status' => array( 'wc-on-hold' ), 'payment_method' => DAAN_OT_UPQ_GATEWAY ) ),
 		function ( $order ) {
-			$at = (int) $order->get_meta( '_upq_pay_not_received_at' );
-			return $at && time() >= $at + DAAN_OT_CANCEL_DELAY;
+			$deadline = daan_ot_timer_deadline( $order );
+			return $deadline && time() >= $deadline;
 		}
 	);
 }
@@ -612,7 +646,7 @@ add_action( 'admin_menu', function () {
 			<p>Applies only to orders created from <?php echo esc_html( wp_date( 'j M Y, g:i A', daan_order_cutoff() ) ); ?> on.</p>
 			<form method="post" action="options.php">
 				<?php settings_fields( 'daan_ot_automation' ); ?>
-				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_ENABLED_OPTION ); ?>" value="yes" <?php checked( daan_ot_automation_on() ); ?>> Send execution e-mails and auto-cancel 24 hours after "Payment not received"</label></p>
+				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_ENABLED_OPTION ); ?>" value="yes" <?php checked( daan_ot_automation_on() ); ?>> Send execution e-mails and auto-cancel donations not paid 24 hours after their first digest or "Payment not received"</label></p>
 				<?php submit_button(); ?>
 			</form>
 		</div>

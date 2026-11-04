@@ -68,7 +68,7 @@ add_action( 'plugins_loaded', function () {
 				'upi_id'       => array( 'title' => 'UPI ID (shown with a Copy button)', 'type' => 'text', 'description' => 'Must be the same address as inside the QR code.', 'default' => '' ),
 				'payee_name'   => array( 'title' => 'Payee name shown by UPI apps (reference only)', 'type' => 'text', 'default' => '' ),
 				'payee_note'   => array( 'title' => 'Payee-name note (shown under the UPI ID; empty = hidden)', 'type' => 'textarea', 'default' => '' ),
-				'contact'      => array( 'title' => 'Contact phone (shown on the card)', 'type' => 'text', 'default' => '+91 88991 52910' ),
+				'contact'      => array( 'title' => 'Contact phone (shown on the card)', 'type' => 'text', 'default' => '+91 95282 06525' ),
 				'instructions' => array( 'title' => 'Instructions', 'type' => 'textarea', 'description' => 'Placeholder: {upi_id}.', 'default' => 'Scan the QR or pay to {upi_id}, enter the exact amount, then submit your UTR / transaction ID below. Your donation stays pending until our team verifies it.' ),
 			);
 		}
@@ -355,7 +355,14 @@ function upq_state( $order ) {
 }
 
 function upq_actions_allowed( $order, $context = '' ) {
-	if ( ! upq_is_upi_order( $order ) || 'unpaid' !== upq_state( $order ) ) {
+	if ( ! upq_is_upi_order( $order ) ) {
+		return array();
+	}
+	// An auto-cancelled donation can still be marked as paid for 7 days; one an admin cancelled cannot.
+	if ( function_exists( 'daan_ot_auto_cancel_open' ) && daan_ot_auto_cancel_open( $order ) ) {
+		return array( 'pay_ok' );
+	}
+	if ( 'unpaid' !== upq_state( $order ) ) {
 		return array();
 	}
 	return 'warning' === $context ? array( 'pay_ok', 'pay_no', 'cancel' ) : array( 'pay_ok', 'pay_no' );
@@ -381,8 +388,8 @@ function upq_timer_text( $order ) {
 	if ( ! function_exists( 'daan_ot_automation_on' ) || ! daan_ot_automation_on() || ! daan_ot_timer_in_scope( $order ) ) {
 		return '';
 	}
-	$at = (int) $order->get_meta( '_upq_pay_not_received_at' );
-	return ' It will be cancelled automatically' . ( $at ? ' at ' . wp_date( 'j M, g:i A', $at + DAAN_OT_CANCEL_DELAY ) : ' 24 hours after this' ) . ' unless Payment received is pressed first.';
+	$at = daan_ot_timer_deadline( $order );
+	return ' It will be cancelled automatically' . ( $at ? ' at ' . wp_date( 'j M, g:i A', $at ) : ' 24 hours after this' ) . ' unless Payment received is pressed first.';
 }
 
 /** "Payment received" stays reachable after "Payment not received": a fresh signed link behind a button. */
@@ -586,7 +593,7 @@ add_action( 'template_redirect', function () {
 }, 0 );
 
 /* =====================================================================
- * 6. On-hold watcher (UPQ donations only): warn after 7 days, then every 4 days. NEVER auto-cancel.
+ * 6. On-hold watcher (UPQ donations only): warn after 7 days, then every 4 days. Auto-cancel lives in plugin daan-order-tools.
  *    Sends only to the admin; never to donors; never for older gateways' orders.
  * ================================================================== */
 
@@ -615,7 +622,7 @@ add_action( 'upq_hold_watch_job', function () {
 			continue;
 		}
 		$no   = $o->get_order_number();
-		$html = '<p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;">Donation <b>#' . esc_html( $no ) . '</b> (' . esc_html( $o->get_formatted_billing_full_name() ) . ', ' . esc_html( $o->get_billing_phone() ) . ', ' . wp_kses_post( $o->get_formatted_order_total() ) . ') has been <b>on hold since ' . esc_html( wp_date( 'j M Y', $since ) ) . '</b>. It will NOT be cancelled automatically. Please check the UPI/bank app and choose:</p>'
+		$html = '<p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;">Donation <b>#' . esc_html( $no ) . '</b> (' . esc_html( $o->get_formatted_billing_full_name() ) . ', ' . esc_html( $o->get_billing_phone() ) . ', ' . wp_kses_post( $o->get_formatted_order_total() ) . ') has been <b>on hold since ' . esc_html( wp_date( 'j M Y', $since ) ) . '</b>. Please check the UPI/bank app and choose:</p>'
 			. upq_admin_buttons_block( $o, 'warning' );
 		if ( upq_send_admin_mail( 'Donation still on hold – #' . $no, $html ) ) {
 			$o->update_meta_data( '_upq_hold_warned_at', time() );

@@ -71,7 +71,8 @@ get_header();
 					</div>
 					<div>
 						<h3 style="font-size:1rem;font-weight:700;color:#111827;margin:0 0 4px;">Phone</h3>
-						<a href="tel:+918899152910" style="font-size:0.9375rem;color:#C2410C;text-decoration:none;font-weight:600;">+91 88991 52910</a>
+						<a href="tel:+919528206525" style="font-size:0.9375rem;color:#C2410C;text-decoration:none;font-weight:600;">+91 95282 06525</a>
+						<br><a href="<?php echo esc_url( daan_whatsapp_url() ); ?>" target="_blank" rel="noopener" style="font-size:0.9375rem;color:#C2410C;text-decoration:none;font-weight:600;">Chat on WhatsApp</a>
 					</div>
 				</div>
 

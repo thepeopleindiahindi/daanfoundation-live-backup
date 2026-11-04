@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) || exit;
 
 /** The footer of every Daan e-mail. Registration line as printed on the receipt. */
 function daan_email_footer_lines() {
-	return 'Daan Foundation (Registered Trust) | Reg. No. 149/11-20/302 (Tehsil Amroha) | PAN: AAETD5465E<br>Contact: +91 88991 52910 | <a href="mailto:daanfoundationindia@gmail.com" style="color:#C2410C;">daanfoundationindia@gmail.com</a>';
+	return 'Daan Foundation (Registered Trust) | Reg. No. 149/11-20/302 (Tehsil Amroha) | PAN: AAETD5465E<br>Contact: +91 95282 06525 | <a href="mailto:daanfoundationindia@gmail.com" style="color:#C2410C;">daanfoundationindia@gmail.com</a>';
 }
 
 add_filter( 'wp_mail', function ( $args ) {
