@@ -145,3 +145,8 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 
 ## 2026-11-04 (window: execution; WhatsApp icon)
 - Done: floating button colour #25D366 and the real WhatsApp icon (button + footer link). Backup: D:\claude\_private_backups\2026-11-04_wa_icon\. Verified on /contact/ at 375 + desktop; smoke OK. No push.
+
+## 2026-11-04 (window: execution; homepage donate card)
+- Done: cause: inline display:flex on .container (front-page.php:29) shrank .donation-widget to its content width (316 px). Added scoped CSS to theme.css + theme.min.css: full column width; mobile side 12 px, card 24/20 px, gap 12 px; tablet max 560 px, padding 32 px; laptop card fills its column (448 px at 1024, 656 px at 1440, max 720), section padding 32 px, card padding 32 to 40 px. whatsapp.php: .donate-now-btn added to the hide list. No front-page.php change. Backup: D:\claude\_private_backups\2026-11-04_home_card\.
+- Verified: live CSS has the block; 375 side-scroll 0; controls 311 px wide at 375; WhatsApp shown over Donate button 0; Donate flow reaches /donate/?amount=500&cause=Zakat, no order made. Proof: reports/security-audit-2026-10-31/home-donate-card/ (before, after, computed.json). Smoke OK.
+- Open / next: WhatsApp button can sit over the card corner and other controls on 375 (owner decision). 1024 px side-scroll 131 px existed before this change, not touched. No push.

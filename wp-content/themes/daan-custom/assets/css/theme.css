@@ -2153,3 +2153,24 @@ h1, h2, h3, h4, h5, h6 {
 .upq-card .upq-payee { font-size: 0.8125rem; color: #475569; margin: 0 0 0.6rem; }
 .upq-card .upq-instructions { font-size: 0.875rem; line-height: 1.55; }
 .upq-card .upq-instructions, .upq-card .upi-card-value { overflow-wrap: anywhere; word-break: break-word; }
+
+/* Homepage "Make a Donation" card: the flex container shrank it to its content width; let it fill its column. */
+.hero-donate-section .donation-widget { width: 100%; box-sizing: border-box; margin: 0 auto; }
+@media (max-width: 639px) {
+  .hero-donate-section > .container { padding-left: 12px; padding-right: 12px; }
+  .hero-donate-section .donation-widget { max-width: none; padding: 24px 20px; }
+  .hero-donate-section .amount-grid { gap: 12px; margin-bottom: 12px; }
+  .hero-donate-section .custom-amount-wrap { margin-bottom: 12px; }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero-donate-section > .container { padding-left: 24px; padding-right: 24px; }
+  .hero-donate-section .donation-widget { max-width: 560px; padding: 32px; }
+}
+@media (min-width: 1024px) {
+  .donate-quickactions-row .hero-donate-section { padding-top: 32px; padding-bottom: 32px; }
+  .hero-donate-section > .container { padding-left: 24px; padding-right: 24px; }
+  .hero-donate-section .donation-widget { max-width: 720px; padding: 32px; }
+}
+@media (min-width: 1280px) {
+  .hero-donate-section .donation-widget { padding: 40px; }
+}
