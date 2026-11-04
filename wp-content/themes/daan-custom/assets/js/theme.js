@@ -38,6 +38,10 @@
     const closeIcon = document.querySelector('.menu-icon-close');
 
     if (toggleBtn && mobileNav) {
+        new MutationObserver(function() {
+            toggleBtn.setAttribute('aria-expanded', mobileNav.classList.contains('open') ? 'true' : 'false');
+        }).observe(mobileNav, { attributes: true, attributeFilter: ['class'] });
+
         toggleBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             const isOpen = mobileNav.classList.toggle('open');

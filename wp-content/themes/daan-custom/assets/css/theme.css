@@ -2177,11 +2177,18 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Homepage only: closed mega-menus stretched the page sideways below 1366 px, so the last ones open inside the screen. */
 @media (min-width: 1024px) and (max-width: 1365px) {
-  body.home .desktop-nav .nav-item:nth-child(3) .mega-menu { left: auto; right: 0; }
+  .desktop-nav .nav-item:nth-child(3) .mega-menu { left: auto; right: 0; }
 }
 @media (min-width: 1024px) and (max-width: 1060px) {
-  body.home .desktop-nav .nav-item:nth-child(2) .mega-menu { left: -24px; }
+  .desktop-nav .nav-item:nth-child(2) .mega-menu { left: -24px; }
 }
 /* Homepage Quick Actions: sub-line lines up with its heading; short card text without justified gaps. */
 .quick-actions-section .section-header p { margin-left: 0; text-align: left; }
 .quick-actions-section .qa-card p { text-align: left; }
+
+/* Round 3 fixes */
+.skip-link{position:absolute;left:-9999px;top:8px;z-index:10000;background:#fff;color:#C2410C;padding:10px 16px;border-radius:8px;font-weight:700}
+.skip-link:focus{left:8px}
+.bg-orange-600{background-color:#C2410C}
+.woocommerce div.product p.price,.woocommerce div.product span.price,.woocommerce div.product p.price bdi{color:#C2410C}
+@media (max-width:767px){p,.prose p,.description,.leading-relaxed{text-align:left}}

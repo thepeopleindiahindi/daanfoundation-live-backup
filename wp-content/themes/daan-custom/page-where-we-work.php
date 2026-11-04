@@ -11,7 +11,7 @@ get_header();
 <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;">
 	<div style="max-width:1280px;margin:0 auto;padding:12px 16px;">
 		<nav style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#64748B;">
-			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Home</a>
+			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#C2410C'" onmouseout="this.style.color='#64748B'">Home</a>
 			<span>/</span>
 			<span style="color:#111827;font-weight:600;">Where We Work</span>
 		</nav>
@@ -34,26 +34,26 @@ get_header();
 </section>
 
 <!-- Global Stats -->
-<section style="background:#EA580C;padding:48px 16px;">
+<section style="background:#C2410C;padding:48px 16px;">
 	<div style="max-width:1280px;margin:0 auto;">
 		<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;text-align:center;">
 			<style>@media (min-width:640px){.ww-stats-grid{grid-template-columns:repeat(4,1fr)!important;}}</style>
 			<div class="ww-stats-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
 				<div>
 					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 4px;">6+</div>
-					<div style="font-size:0.9375rem;color:rgba(255,255,255,0.85);">States Covered</div>
+					<div style="font-size:0.9375rem;color:#fff;">States Covered</div>
 				</div>
 				<div>
 					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 4px;">600K+</div>
-					<div style="font-size:0.9375rem;color:rgba(255,255,255,0.85);">Beneficiaries Reached</div>
+					<div style="font-size:0.9375rem;color:#fff;">Beneficiaries Reached</div>
 				</div>
 				<div>
 					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 4px;">6+</div>
-					<div style="font-size:0.9375rem;color:rgba(255,255,255,0.85);">Years of Service</div>
+					<div style="font-size:0.9375rem;color:#fff;">Years of Service</div>
 				</div>
 				<div>
 					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 4px;">500K+</div>
-					<div style="font-size:0.9375rem;color:rgba(255,255,255,0.85);">Meals Distributed</div>
+					<div style="font-size:0.9375rem;color:#fff;">Meals Distributed</div>
 				</div>
 			</div>
 		</div>
@@ -108,7 +108,7 @@ get_header();
 					<span style="display:inline-block;background:#FFF7ED;color:#9A3412;border-radius:9999px;padding:4px 12px;font-size:0.8125rem;font-weight:600;margin-bottom:12px;">Uttar Pradesh</span>
 					<h3 style="font-size:1.5rem;font-weight:700;color:#111827;margin:0 0 12px;">Ramadan Iftar Distribution — Our Community Kitchen's Roots</h3>
 					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 24px;">What began as a 15-day Ramadan Iftar pilot in Amroha in 2020 has grown into Daan Foundation's flagship Community Kitchen, providing daily Iftar meals and ration support to families across Uttar Pradesh — powered by Zakat and Sadaqah from generous donors.</p>
-					<a href="/ramadan/" style="display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#F97316;text-decoration:none;transition:gap 0.2s;" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">Learn More →</a>
+					<a href="/ramadan/" style="display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#C2410C;text-decoration:none;transition:gap 0.2s;" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">Learn More →</a>
 				</div>
 			</div>
 		</div>
@@ -118,8 +118,8 @@ get_header();
 <!-- CTA -->
 <section style="padding:48px 16px;">
 	<div style="max-width:1280px;margin:0 auto;text-align:center;">
-		<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#F97316;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s;"
-		   onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Support Our Mission →</a>
+		<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#C2410C;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s;"
+		   onmouseover="this.style.background='#9A3412'" onmouseout="this.style.background='#C2410C'">Support Our Mission →</a>
 	</div>
 </section>
 

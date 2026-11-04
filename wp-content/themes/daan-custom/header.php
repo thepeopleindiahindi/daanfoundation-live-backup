@@ -11,6 +11,7 @@
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<a class="skip-link" href="#content">Skip to content</a>
 
 <div id="page">
     <header id="masthead" class="site-header">
@@ -147,7 +148,7 @@
 
                     <a href="<?php echo esc_url( home_url( '/donate/' ) ); ?>" class="donate-btn">Donate Now</a>
 
-                    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+                    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
                         <svg class="menu-icon menu-icon-open" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>

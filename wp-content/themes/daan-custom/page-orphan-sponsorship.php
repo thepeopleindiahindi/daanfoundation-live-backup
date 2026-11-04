@@ -11,7 +11,7 @@ get_header();
 <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;">
 	<div style="max-width:1280px;margin:0 auto;padding:12px 16px;">
 		<nav style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#64748B;">
-			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Home</a>
+			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#C2410C'" onmouseout="this.style.color='#64748B'">Home</a>
 			<span>/</span>
 			<span style="color:#111827;font-weight:600;">Sponsor an Orphan</span>
 		</nav>
@@ -19,14 +19,14 @@ get_header();
 </div>
 
 <!-- Full-bleed Hero -->
-<section style="position:relative;overflow:hidden;min-height:500px;background:url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/community-queue.jpg' ); ?>') center/cover no-repeat;">
+<section style="position:relative;overflow:hidden;min-height:500px;background:url('<?php echo esc_url( home_url( '/images/community-queue.jpg' ) ); ?>') center/cover no-repeat;">
 	<div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(15,23,42,0.8),rgba(15,23,42,0.6),rgba(15,23,42,0.4));"></div>
 	<div style="position:relative;z-index:10;max-width:1280px;margin:0 auto;padding:80px 16px;">
 		<div style="max-width:640px;">
 			<h1 style="font-size:2.25rem;font-weight:800;color:#fff;line-height:1.1;margin:0 0 16px;">Sponsor an Orphan</h1>
 			<p style="font-size:1.25rem;color:rgba(255,255,255,0.9);margin:0 0 16px;">Change a child's life with your monthly support</p>
 			<blockquote style="font-size:1rem;font-weight:500;color:rgba(255,255,255,0.8);font-style:italic;margin:0 0 24px;padding:0 0 0 16px;border-left:4px solid #F97316;">"The one who cares for an orphan and I will be together in Paradise like this," and he held his index and middle fingers together. <cite style="display:block;font-size:0.8125rem;font-weight:400;color:rgba(255,255,255,0.6);margin-top:4px;font-style:normal;">— Prophet Muhammad (PBUH)</cite></blockquote>
-			<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Start Sponsoring — ₹1,000/month →</a>
+			<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#C2410C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Start Sponsoring — ₹1,000/month →</a>
 		</div>
 	</div>
 </section>
@@ -81,22 +81,22 @@ get_header();
 </section>
 
 <!-- Impact Stats -->
-<section style="background:#EA580C;padding:48px 16px;">
+<section style="background:#C2410C;padding:48px 16px;">
 	<div style="max-width:1280px;margin:0 auto;">
 		<div style="display:grid;grid-template-columns:1fr;gap:24px;text-align:center;">
 			<style>@media (min-width:640px){.orphan-stats-grid{grid-template-columns:repeat(3,1fr)!important;}}</style>
 			<div class="orphan-stats-grid" style="display:grid;grid-template-columns:1fr;gap:24px;">
 				<div>
 					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 8px;">5,000+</div>
-					<div style="font-size:1rem;color:rgba(255,255,255,0.85);font-weight:600;">orphans supported</div>
+					<div style="font-size:1rem;color:#fff;font-weight:600;">orphans supported</div>
 				</div>
 				<div>
 					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 8px;">6+</div>
-					<div style="font-size:1rem;color:rgba(255,255,255,0.85);font-weight:600;">States Covered</div>
+					<div style="font-size:1rem;color:#fff;font-weight:600;">States Covered</div>
 				</div>
 				<div>
 					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 8px;">98%</div>
-					<div style="font-size:1rem;color:rgba(255,255,255,0.85);font-weight:600;">school attendance</div>
+					<div style="font-size:1rem;color:#fff;font-weight:600;">school attendance</div>
 				</div>
 			</div>
 		</div>
@@ -109,7 +109,7 @@ get_header();
 		<div style="background:linear-gradient(135deg,#F59E0B,#F97316);border-radius:16px;padding:48px 32px;text-align:center;">
 			<blockquote style="font-size:1.125rem;font-weight:500;color:#fff;font-style:italic;margin:0 0 16px;">"The one who cares for an orphan and I will be together in Paradise like this (closing his index and middle fingers)."</blockquote>
 			<p style="font-size:1rem;color:rgba(255,255,255,0.9);margin:0 0 32px;">— Prophet Muhammad (PBUH)</p>
-			<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Sponsor Now →</a>
+			<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#C2410C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Sponsor Now →</a>
 		</div>
 	</div>
 </section>

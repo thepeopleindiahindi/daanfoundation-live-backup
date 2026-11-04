@@ -11,7 +11,7 @@ get_header();
 <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;">
 	<div style="max-width:1280px;margin:0 auto;padding:12px 16px;">
 		<nav style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#64748B;">
-			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Home</a>
+			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#C2410C'" onmouseout="this.style.color='#64748B'">Home</a>
 			<span>/</span>
 			<span style="color:#111827;font-weight:600;">FAQ</span>
 		</nav>
@@ -34,9 +34,9 @@ get_header();
 		.faq-item { background:#fff;border-radius:16px;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);border:1px solid #E2E8F0;margin-bottom:12px;overflow:hidden; }
 		.faq-item summary { list-style:none;cursor:pointer;padding:20px 24px;font-size:1.0625rem;font-weight:700;color:#111827;display:flex;align-items:center;justify-content:space-between;gap:16px; }
 		.faq-item summary::-webkit-details-marker { display:none; }
-		.faq-item summary .faq-chevron { flex-shrink:0;width:20px;height:20px;color:#EA580C;transition:transform 0.2s; }
+		.faq-item summary .faq-chevron { flex-shrink:0;width:20px;height:20px;color:#C2410C;transition:transform 0.2s; }
 		.faq-item[open] summary .faq-chevron { transform:rotate(180deg); }
-		.faq-item summary:hover { color:#EA580C; }
+		.faq-item summary:hover { color:#C2410C; }
 		.faq-answer { padding:0 24px 20px;font-size:0.9375rem;color:#475569;line-height:1.625; }
 		.faq-category-title { font-size:1.5rem;font-weight:800;color:#111827;margin:40px 0 20px; }
 		.faq-category-title:first-child { margin-top:0; }
@@ -63,7 +63,7 @@ get_header();
 	<div style="background:linear-gradient(135deg,#EA580C,#F97316);border-radius:16px;padding:48px 32px;text-align:center;">
 		<h2 style="font-size:1.875rem;font-weight:700;color:#fff;margin:0 0 16px;">Still Have Questions?</h2>
 		<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);margin:0 0 32px;max-width:576px;margin-left:auto;margin-right:auto;">Our team is happy to help with anything not covered here.</p>
-		<a href="/contact/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Contact Us →</a>
+		<a href="/contact/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#C2410C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Contact Us →</a>
 	</div>
 </div>
 

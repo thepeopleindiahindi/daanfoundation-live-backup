@@ -42,7 +42,7 @@ get_header();
 
             <div class="custom-amount-wrap">
                 <span class="currency">₹</span>
-                <input type="number" class="custom-amount" placeholder="Other amount"
+                <input type="number" class="custom-amount" aria-label="Other amount" placeholder="Other amount"
                        oninput="clearAmounts(this)">
             </div>
 

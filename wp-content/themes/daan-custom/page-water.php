@@ -11,7 +11,7 @@ get_header();
 <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;">
 	<div style="max-width:1280px;margin:0 auto;padding:12px 16px;">
 		<nav style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#64748B;">
-			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Home</a>
+			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#C2410C'" onmouseout="this.style.color='#64748B'">Home</a>
 			<span>/</span>
 			<span style="color:#111827;font-weight:600;">Water for Life</span>
 		</nav>
@@ -26,10 +26,10 @@ get_header();
 			<div class="water-hero-grid" style="display:grid;grid-template-columns:1fr;gap:32px;align-items:center;">
 				<div>
 					<h1 style="font-size:2.25rem;font-weight:800;color:#111827;line-height:1.1;margin:0 0 16px;">Water for Life</h1>
-					<blockquote style="font-size:1.125rem;font-weight:600;color:#F97316;font-style:italic;margin:0 0 16px;padding:0 0 0 16px;border-left:4px solid #F97316;">"The best charity is giving water to drink." <cite style="display:block;font-size:0.875rem;font-weight:400;color:#64748B;margin-top:4px;font-style:normal;">— Prophet Muhammad (PBUH)</cite></blockquote>
+					<blockquote style="font-size:1.125rem;font-weight:600;color:#C2410C;font-style:italic;margin:0 0 16px;padding:0 0 0 16px;border-left:4px solid #F97316;">"The best charity is giving water to drink." <cite style="display:block;font-size:0.875rem;font-weight:400;color:#64748B;margin-top:4px;font-style:normal;">— Prophet Muhammad (PBUH)</cite></blockquote>
 					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 24px;">Millions of people around the world lack access to clean, safe drinking water. Your donation can build a well, provide water filtration, and save lives. Water is a Sadaqah Jariyah — an ongoing charity that benefits communities for generations.</p>
-					<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#F97316;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s,transform 0.2s;"
-					   onmouseover="this.style.background='#EA580C';this.style.transform='scale(1.02)'" onmouseout="this.style.background='#F97316';this.style.transform='scale(1)'">
+					<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#C2410C;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s,transform 0.2s;"
+					   onmouseover="this.style.background='#9A3412';this.style.transform='scale(1.02)'" onmouseout="this.style.background='#C2410C';this.style.transform='scale(1)'">
 					   Build a Well <span style="font-size:1.25rem;">→</span>
 					</a>
 				</div>
@@ -48,15 +48,15 @@ get_header();
 			<style>@media (min-width:640px){.water-stats-grid{grid-template-columns:repeat(3,1fr)!important;}}</style>
 			<div class="water-stats-grid" style="display:grid;grid-template-columns:1fr;gap:24px;">
 				<div style="background:#fff;border-radius:16px;padding:32px 16px;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);">
-					<div style="font-size:2.5rem;font-weight:800;color:#EA580C;margin:0 0 8px;">785M</div>
+					<div style="font-size:2.5rem;font-weight:800;color:#C2410C;margin:0 0 8px;">785M</div>
 					<div style="font-size:0.9375rem;color:#475569;font-weight:600;">people lack clean water</div>
 				</div>
 				<div style="background:#fff;border-radius:16px;padding:32px 16px;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);">
-					<div style="font-size:2.5rem;font-weight:800;color:#EA580C;margin:0 0 8px;">2B</div>
+					<div style="font-size:2.5rem;font-weight:800;color:#C2410C;margin:0 0 8px;">2B</div>
 					<div style="font-size:0.9375rem;color:#475569;font-weight:600;">use contaminated water</div>
 				</div>
 				<div style="background:#fff;border-radius:16px;padding:32px 16px;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);">
-					<div style="font-size:2.5rem;font-weight:800;color:#EA580C;margin:0 0 8px;">1,000</div>
+					<div style="font-size:2.5rem;font-weight:800;color:#C2410C;margin:0 0 8px;">1,000</div>
 					<div style="font-size:0.9375rem;color:#475569;font-weight:600;">children die daily from water diseases</div>
 				</div>
 			</div>
@@ -79,7 +79,7 @@ get_header();
 						</svg>
 					</div>
 					<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 8px;">Hand Pump Well</h3>
-					<div style="display:inline-block;background:#FFF7ED;color:#EA580C;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">₹10,000</div>
+					<div style="display:inline-block;background:#FFF7ED;color:#C2410C;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">₹10,000</div>
 					<p style="font-size:0.9375rem;color:#475569;margin:0;">Provides clean water to a family, reducing waterborne diseases and improving health.</p>
 				</div>
 				<!-- Solar Well -->
@@ -91,7 +91,7 @@ get_header();
 						</svg>
 					</div>
 					<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 8px;">Solar Well</h3>
-					<div style="display:inline-block;background:#F1F5F9;color:#64748B;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">Coming Soon</div>
+					<div style="display:inline-block;background:#F1F5F9;color:#475569;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">Coming Soon</div>
 					<p style="font-size:0.9375rem;color:#475569;margin:0;">Solar-powered well providing sustainable clean water for an entire community.</p>
 				</div>
 				<!-- Water Tanker Distribution -->
@@ -103,7 +103,7 @@ get_header();
 						</svg>
 					</div>
 					<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 8px;">Water Tanker Distribution</h3>
-					<div style="display:inline-block;background:#F1F5F9;color:#64748B;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">Coming Soon</div>
+					<div style="display:inline-block;background:#F1F5F9;color:#475569;border-radius:9999px;padding:4px 12px;font-size:0.875rem;font-weight:700;margin-bottom:12px;">Coming Soon</div>
 					<p style="font-size:0.9375rem;color:#475569;margin:0;">Emergency water supply tanker distribution for drought-affected and crisis-hit areas.</p>
 				</div>
 			</div>

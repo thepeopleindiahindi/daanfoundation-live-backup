@@ -11,9 +11,9 @@ get_header();
 <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;">
 	<div style="max-width:1280px;margin:0 auto;padding:12px 16px;">
 		<nav style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#64748B;">
-			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Home</a>
+			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#C2410C'" onmouseout="this.style.color='#64748B'">Home</a>
 			<span>/</span>
-			<a href="/zakat/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Zakat</a>
+			<a href="/zakat/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#C2410C'" onmouseout="this.style.color='#64748B'">Zakat</a>
 			<span>/</span>
 			<span style="color:#111827;font-weight:600;">Calculator</span>
 		</nav>
@@ -35,27 +35,27 @@ get_header();
 
 		<div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px;">
 			<div>
-				<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Cash & Bank Balance (₹)</label>
+				<label for="zakat-cash" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Cash & Bank Balance (₹)</label>
 				<input type="number" id="zakat-cash" value="0" min="0" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 			</div>
 			<div>
-				<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Gold (grams)</label>
+				<label for="zakat-gold" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Gold (grams)</label>
 				<input type="number" id="zakat-gold" value="0" min="0" step="0.01" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 			</div>
 			<div>
-				<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Silver (grams)</label>
+				<label for="zakat-silver" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Silver (grams)</label>
 				<input type="number" id="zakat-silver" value="0" min="0" step="0.01" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 			</div>
 			<div>
-				<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Business Assets (₹)</label>
+				<label for="zakat-business" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Business Assets (₹)</label>
 				<input type="number" id="zakat-business" value="0" min="0" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 			</div>
 			<div>
-				<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Savings & Investments (₹)</label>
+				<label for="zakat-savings" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Savings & Investments (₹)</label>
 				<input type="number" id="zakat-savings" value="0" min="0" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 			</div>
 			<div>
-				<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Other Assets (₹)</label>
+				<label for="zakat-other" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Other Assets (₹)</label>
 				<input type="number" id="zakat-other" value="0" min="0" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 			</div>
 		</div>
@@ -64,20 +64,20 @@ get_header();
 
 		<div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px;">
 			<div>
-				<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Outstanding Debts (₹)</label>
+				<label for="zakat-debts" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Outstanding Debts (₹)</label>
 				<input type="number" id="zakat-debts" value="0" min="0" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 			</div>
 			<div>
-				<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Loans (₹)</label>
+				<label for="zakat-loans" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Loans (₹)</label>
 				<input type="number" id="zakat-loans" value="0" min="0" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 			</div>
 			<div>
-				<label style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Other Deductions (₹)</label>
+				<label for="zakat-deductions" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Other Deductions (₹)</label>
 				<input type="number" id="zakat-deductions" value="0" min="0" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 			</div>
 		</div>
 
-		<button onclick="calculateZakat()" style="width:100%;border-radius:12px;background:#F97316;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;" onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Calculate</button>
+		<button onclick="calculateZakat()" style="width:100%;border-radius:12px;background:#C2410C;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;" onmouseover="this.style.background='#9A3412'" onmouseout="this.style.background='#C2410C'">Calculate</button>
 
 		<!-- Results -->
 		<div id="zakat-results" style="display:none;margin-top:32px;background:#F8FAFC;border-radius:16px;padding:24px;">
@@ -101,7 +101,7 @@ get_header();
 				</div>
 				<div id="zakat-due-row" style="display:flex;justify-content:space-between;padding:8px 0;">
 					<span style="font-size:0.9375rem;color:#64748B;">Zakat Due (2.5%)</span>
-					<span id="zakat-due" style="font-size:1.125rem;font-weight:800;color:#EA580C;">₹0</span>
+					<span id="zakat-due" style="font-size:1.125rem;font-weight:800;color:#C2410C;">₹0</span>
 				</div>
 				<div id="zakat-no-due" style="display:none;background:#ECFDF5;border-radius:12px;padding:16px;text-align:center;">
 					<p style="font-size:1rem;font-weight:600;color:#065F46;margin:0;">No Zakat Due — Your wealth is below the Nisab threshold.</p>
@@ -113,8 +113,8 @@ get_header();
 	<p style="font-size:0.875rem;color:#64748B;margin:24px 0 32px;text-align:center;">Note: This calculator is a guide. Please consult a scholar for complex cases.</p>
 
 	<div style="text-align:center;">
-		<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#F97316;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s;"
-		   onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Pay Your Zakat →</a>
+		<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#C2410C;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s;"
+		   onmouseover="this.style.background='#9A3412'" onmouseout="this.style.background='#C2410C'">Pay Your Zakat →</a>
 	</div>
 </div>
 

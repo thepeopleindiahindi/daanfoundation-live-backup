@@ -17,7 +17,7 @@
 
 	<div style="position: relative; margin-bottom: 20px;">
 		<span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #94A3B8; font-weight: 500;">₹</span>
-		<input type="number" class="custom-amount" placeholder="Other amount" oninput="clearAmounts(this)" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:10px 12px 10px 28px;font-size:1rem;font-weight:500;color:#111;transition:border-color 0.2s,box-shadow 0.2s;">
+		<input type="number" class="custom-amount" aria-label="Other amount" placeholder="Other amount" oninput="clearAmounts(this)" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:10px 12px 10px 28px;font-size:1rem;font-weight:500;color:#111;transition:border-color 0.2s,box-shadow 0.2s;">
 	</div>
 
 	<div style="margin-bottom: 20px;">

@@ -12,7 +12,7 @@
                 <!-- Mailchimp for WP: <?php echo do_shortcode('[mc4wp_form id="NEWSLETTER_FORM_ID"]'); ?> -->
                 <!-- Newsletter plugin: <?php echo do_shortcode('[newsletter_form]'); ?> -->
                 <form class="newsletter-form" id="daan-newsletter-form" onsubmit="return submitNewsletter(event)">
-                    <input type="email" id="newsletter-email" name="email" placeholder="Enter your email" required>
+                    <input type="email" id="newsletter-email" name="email" aria-label="Your email address" placeholder="Enter your email" required>
                     <button type="submit" id="newsletter-submit-btn">Subscribe</button>
                 </form>
                 <div id="newsletter-msg" style="margin-top:8px;font-size:0.875rem;"></div>

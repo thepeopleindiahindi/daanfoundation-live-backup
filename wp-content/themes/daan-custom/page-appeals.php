@@ -11,7 +11,7 @@ get_header();
 <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;">
 	<div style="max-width:1280px;margin:0 auto;padding:12px 16px;">
 		<nav style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#64748B;">
-			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EA580C'" onmouseout="this.style.color='#64748B'">Home</a>
+			<a href="/" style="color:#64748B;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#C2410C'" onmouseout="this.style.color='#64748B'">Home</a>
 			<span>/</span>
 			<span style="color:#111827;font-weight:600;">Emergency Appeals</span>
 		</nav>
@@ -77,7 +77,7 @@ get_header();
 					<div style="position:relative;height:200px;overflow:hidden;">
 						<img src="<?php echo esc_url( $appeal['image'] ); ?>" alt="<?php echo esc_attr( $appeal['alt'] ); ?>" width="800" height="600" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
 						<?php if ( ! empty( $appeal['urgent'] ) ) : ?>
-							<div style="position:absolute;top:12px;right:12px;background:#EF4444;color:#fff;border-radius:9999px;padding:4px 12px;font-size:0.75rem;font-weight:700;">Urgent</div>
+							<div style="position:absolute;top:12px;right:12px;background:#B91C1C;color:#fff;border-radius:9999px;padding:4px 12px;font-size:0.75rem;font-weight:700;">Urgent</div>
 						<?php endif; ?>
 					</div>
 					<div style="padding:20px;">
@@ -88,11 +88,11 @@ get_header();
 								<span><?php echo $percent; ?>%</span>
 							</div>
 							<div style="height:8px;background:#F3F4F6;border-radius:9999px;overflow:hidden;">
-								<div style="height:100%;width:<?php echo $percent; ?>%;background:#F97316;border-radius:9999px;"></div>
+								<div style="height:100%;width:<?php echo $percent; ?>%;background:#C2410C;border-radius:9999px;"></div>
 							</div>
 						</div>
 						<p style="font-size:0.875rem;color:#64748B;margin:0 0 16px;">₹<?php echo number_format( $appeal['raised'] ); ?> raised of ₹<?php echo number_format( $appeal['target'] ); ?></p>
-						<a href="/donate/" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#F97316;padding:10px 24px;font-weight:700;color:#fff;text-decoration:none;font-size:0.875rem;transition:background 0.2s;" onmouseover="this.style.background='#EA580C'" onmouseout="this.style.background='#F97316'">Donate Now</a>
+						<a href="/donate/" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#C2410C;padding:10px 24px;font-weight:700;color:#fff;text-decoration:none;font-size:0.875rem;transition:background 0.2s;" onmouseover="this.style.background='#9A3412'" onmouseout="this.style.background='#C2410C'">Donate Now</a>
 					</div>
 				</div>
 			<?php endforeach; ?>
@@ -115,7 +115,7 @@ get_header();
 					</div>
 					<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 8px;">Eid Gift Distribution</h3>
 					<p style="font-size:0.9375rem;color:#475569;margin:0 0 16px;">Spread joy this Eid with gifts for orphaned and underprivileged children.</p>
-					<a href="/eid-gifts/" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;color:#F97316;text-decoration:none;font-size:0.875rem;">Learn More →</a>
+					<a href="/eid-gifts/" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;color:#C2410C;text-decoration:none;font-size:0.875rem;">Learn More →</a>
 				</div>
 				<div style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);">
 					<div style="width:56px;height:56px;border-radius:9999px;background:linear-gradient(135deg,#F97316,#EA580C);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
@@ -125,7 +125,7 @@ get_header();
 					</div>
 					<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 8px;">Back to School</h3>
 					<p style="font-size:0.9375rem;color:#475569;margin:0 0 16px;">Help children return to school with books, uniforms, and supplies.</p>
-					<a href="#" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;color:#F97316;text-decoration:none;font-size:0.875rem;">Learn More →</a>
+					<a href="<?php echo esc_url( home_url( '/education-aid/' ) ); ?>" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;color:#C2410C;text-decoration:none;font-size:0.875rem;">Learn More →</a>
 				</div>
 				<div style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);">
 					<div style="width:56px;height:56px;border-radius:9999px;background:linear-gradient(135deg,#F97316,#EA580C);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
@@ -135,7 +135,7 @@ get_header();
 					</div>
 					<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 8px;">Water for All</h3>
 					<p style="font-size:0.9375rem;color:#475569;margin:0 0 16px;">Provide clean drinking water through wells and water projects.</p>
-					<a href="/water/" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;color:#F97316;text-decoration:none;font-size:0.875rem;">Learn More →</a>
+					<a href="/water/" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;color:#C2410C;text-decoration:none;font-size:0.875rem;">Learn More →</a>
 				</div>
 			</div>
 		</div>
@@ -148,7 +148,7 @@ get_header();
 		<div style="background:linear-gradient(135deg,#F59E0B,#F97316);border-radius:16px;padding:48px 32px;text-align:center;">
 			<h2 style="font-size:1.875rem;font-weight:700;color:#fff;margin:0 0 16px;">Not Sure Where to Give?</h2>
 			<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);margin:0 0 32px;">Let us direct your donation where it's needed most.</p>
-			<a href="/where-most-needed/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#EA580C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Let us decide →</a>
+			<a href="/where-most-needed/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#fff;padding:16px 32px;font-weight:700;color:#C2410C;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);transition:transform 0.2s,box-shadow 0.2s;">Let us decide →</a>
 		</div>
 	</div>
 </section>
