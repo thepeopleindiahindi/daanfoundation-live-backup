@@ -262,52 +262,6 @@ get_header();
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<!-- OUR PROGRAMS -->
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<section class="section">
-    <div class="container">
-        <div class="section-header">
-            <h2>Our Programs</h2>
-            <p>Supporting communities through sustainable development</p>
-        </div>
-
-        <div class="program-grid">
-            <!-- Program 1 — Community Kitchen -->
-            <a href="<?php echo esc_url( home_url( '/community-kitchen/' ) ); ?>" class="program-card">
-                <img src="/images/food-distribution-ramadan.jpg" alt="Community Kitchen" width="800" height="600" loading="lazy">
-                <div class="program-overlay"></div>
-                <div class="program-content">
-                    <span class="program-badge" style="background:#F97316">₹59/meal</span>
-                    <h3>Community Kitchen</h3>
-                    <p>Free daily meals served with dignity</p>
-                </div>
-            </a>
-
-            <!-- Program 2 — Ration Kit Distribution -->
-            <a href="<?php echo esc_url( home_url( '/where-most-needed/' ) ); ?>" class="program-card">
-                <img src="/images/extra-5.jpg" alt="Ration Kit Distribution" width="800" height="360" loading="lazy">
-                <div class="program-overlay"></div>
-                <div class="program-content">
-                    <span class="program-badge" style="background:#F59E0B">Essential Aid</span>
-                    <h3>Ration Kit Distribution</h3>
-                    <p>Essential food rations for poor families</p>
-                </div>
-            </a>
-
-            <!-- Program 3 — Fidyah & Kaffarah -->
-            <a href="<?php echo esc_url( home_url( '/fidya/' ) ); ?>" class="program-card md-span-2">
-                <img src="/images/iftaar-distribution.jpg" alt="Fidyah & Kaffarah" width="800" height="600" loading="lazy">
-                <div class="program-overlay"></div>
-                <div class="program-content">
-                    <span class="program-badge" style="background:#8B5CF6">Islamic Giving</span>
-                    <h3>Fidyah & Kaffarah</h3>
-                    <p>Fulfil your obligation by feeding the needy</p>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <!-- MISSION SECTION -->

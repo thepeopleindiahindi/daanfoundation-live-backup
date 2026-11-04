@@ -160,3 +160,8 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Done: front-page.php: second "Maximise Your Reward" section removed (the top one beside the donate card stays); Iftar Kits stat icon changed from the moon to a box, since the moon is used by Ramadan Iftar Appeal. Backup: D:\claude\_private_backups\2026-11-04_home_dedupe\. Shots: reports/security-audit-2026-10-31/home-dedupe/.
 - Verified: homepage heading count 1 at 375, 1024, 1440; side-scroll 0; smoke OK.
 - Open / next: arrows and menu chevrons still repeat as UI signs; causes still appear in Current Campaigns and Our Programs; other pages not checked. Owner decision. No push.
+
+## 2026-11-04 (window: execution; Our Programs removed)
+- Done: "Our Programs" section removed from front-page.php (owner request). Saved for return: local git tag home-with-our-programs (commit f5f37fa) and D:\claude\_private_backups\2026-11-04_our_programs\front-page.php.
+- Verified: heading count 0 at 375, 1024, 1440; side-scroll 0; smoke OK.
+- Risks / notes: owner said "save in GitHub"; not pushed because the repo is still to be made private (standing rule). Push the tag after that.
