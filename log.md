@@ -137,3 +137,8 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Rollback: D:\claude\_private_backups\2026-11-04_digest_rule\ (code-before.tgz, db-before.sql.gz; widgets are in the dump).
 - Owner actions: read the 5 and 6 Nov digests; press a button for 7130 before 6 Nov 3 PM.
 - Risks / notes: cancel time follows the real send time of the second digest (3 PM if sent at 9 AM), then the next hourly cron run. Pause toggle tested from the server, not clicked in wp-admin. First real digest not yet seen. No push.
+
+## 2026-11-04 (window: execution; WhatsApp button fix)
+- Done: inc/whatsapp.php: button fades only over .upq-box, .upq-thanks, .upi-card, .upq-copy, #place_order, .checkout-button, #confirm-btn. Mobile 48 px, footer gets 72 px extra space at the bottom. Backup: D:\claude\_private_backups\2026-11-04_wa_fix\whatsapp.php.before.
+- Verified: home, donate, contact, zakat, checkout, pending at 375 + desktop: visible on load on all except pending at 375 (payment box under it, as allowed); wrong hide 0, footer text covered 0, fields/buttons blocked at centre 0. Test order 7210 trashed. Smoke OK. Screenshots: reports/security-audit-2026-10-31/whatsapp-digest/button-fix/.
+- Risks / notes: the button can still sit over the right end of a field that is scrolled exactly under it. No push.
