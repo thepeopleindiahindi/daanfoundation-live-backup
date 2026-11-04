@@ -165,3 +165,8 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Done: "Our Programs" section removed from front-page.php (owner request). Saved for return: local git tag home-with-our-programs (commit f5f37fa) and D:\claude\_private_backups\2026-11-04_our_programs\front-page.php.
 - Verified: heading count 0 at 375, 1024, 1440; side-scroll 0; smoke OK.
 - Risks / notes: owner said "save in GitHub"; not pushed because the repo is still to be made private (standing rule). Push the tag after that.
+
+## 2026-11-04 (window: execution; route B preparation)
+- Done: docs/archive/home-with-our-programs/ (front-page.php + README, commit 3e5a051). Route B plan and file lists updated in reports/security-audit-2026-10-31/ (gitignored): 358 files, 17.29 MB, 13 added, 0 removed. owner-todo item 7 gives the order: old repo private, new empty private repo, then URL with "A1: OK". Decision: no push to the old repo even after it is private; its history holds the DB dump.
+- Verified: secret-pattern scan of the 358 files: 7 hits, 0 real secrets found; two value hits compared with live by hash only, no match. No value printed. Live site not changed.
+- Open / next: owner steps for A1; local tag home-with-our-programs does not move to the new repo, the archive folder does. No push, no new repo.
