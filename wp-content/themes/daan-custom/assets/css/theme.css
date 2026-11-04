@@ -2192,3 +2192,4 @@ h1, h2, h3, h4, h5, h6 {
 .bg-orange-600{background-color:#C2410C}
 .woocommerce div.product p.price,.woocommerce div.product span.price,.woocommerce div.product p.price bdi{color:#C2410C}
 @media (max-width:767px){p,.prose p,.description,.leading-relaxed{text-align:left}}
+.woocommerce ul.products li.product .price,.woocommerce ul.products li.product .price bdi{color:#C2410C}.error404 .btn,.error-404 .btn{background:#C2410C;color:#fff}

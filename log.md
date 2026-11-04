@@ -170,3 +170,9 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Done: docs/archive/home-with-our-programs/ (front-page.php + README, commit 3e5a051). Route B plan and file lists updated in reports/security-audit-2026-10-31/ (gitignored): 358 files, 17.29 MB, 13 added, 0 removed. owner-todo item 7 gives the order: old repo private, new empty private repo, then URL with "A1: OK". Decision: no push to the old repo even after it is private; its history holds the DB dump.
 - Verified: secret-pattern scan of the 358 files: 7 hits, 0 real secrets found; two value hits compared with live by hash only, no match. No value printed. Live site not changed.
 - Open / next: owner steps for A1; local tag home-with-our-programs does not move to the new repo, the archive folder does. No push, no new repo.
+
+## 2026-11-04 (window: execution; round 3 audit)
+- Done: audit of 73 URLs at 375, 768, 1024, 1440; 12 of 29 findings fixed (commit d7b43d0 and the next): side-scroll on 72 pages, contrast, labels, skip link, menu state, dead link, broken image, phone text alignment, donation wording on product/cart/checkout, Astra autoload off, failed scheduler jobs of deleted plugins cancelled, 1 meta description. Report: reports/site-audit-round3-2026-11-04/report.md. Backup: D:\claude\_private_backups\2026-11-04_round3\.
+- Verified: after crawl overflow 0, internal link errors 0; axe 0 on 5 rechecked pages; test orders 7211, 7212 trashed; smoke OK.
+- Owner actions: decision list in the round 3 chat report.
+- Risks / notes: not tested this round: admin screens, valid contact/newsletter submit, real Gmail, real phone, malware scan, core checksums. No push.

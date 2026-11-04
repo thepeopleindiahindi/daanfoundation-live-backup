@@ -81,7 +81,7 @@ get_header();
 			</div>
 			<div style="position:relative;margin-bottom:32px;">
 				<span style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#94A3B8;font-weight:600;font-size:1.125rem;">₹</span>
-				<input type="number" id="custom-donate-amount" placeholder="Other amount" oninput="customDonateAmount(this)" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:14px 16px 14px 36px;font-size:1.125rem;font-weight:500;color:#111;transition:border-color 0.2s;">
+				<input type="number" id="custom-donate-amount" aria-label="Other amount" placeholder="Other amount" oninput="customDonateAmount(this)" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:14px 16px 14px 36px;font-size:1.125rem;font-weight:500;color:#111;transition:border-color 0.2s;">
 			</div>
 
 			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Choose a Cause</h3>
