@@ -194,7 +194,7 @@ function daan_donation_terminology_strings( $translated, $original, $domain ) {
         'Order updates'                              => 'Donation Updates',
         'Order'                                       => 'Donation',
         'Orders'                                      => 'Donations',
-        'Thank you. Your order has been received.'   => 'Thank you. Your donation has been received.',
+        'Thank you. Your donation has been received.'   => 'Thank you. Your donation has been received.',
     );
 
     return isset( $replacements[ $original ] ) ? $replacements[ $original ] : $translated;

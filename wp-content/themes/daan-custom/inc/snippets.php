@@ -197,6 +197,11 @@ function daan_handle_newsletter_signup() {
 add_action( 'wp_ajax_daan_place_order', 'daan_place_order' );
 add_action( 'wp_ajax_nopriv_daan_place_order', 'daan_place_order' );
 
+/** Causes the /donate/ form may send: the live causes. */
+function daan_donation_causes() {
+    return array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Sadaqah', 'Sadaqah Jariyah', 'Fidyah & Kaffarah', 'Education Aid', 'Bank Interest', 'General' );
+}
+
 function daan_place_order() {
     // The /donate/ page is never page-cached, so its nonce is always fresh; an old open tab gets a refresh message.
     if ( ! check_ajax_referer( 'daan_place_order', 'daan_order_nonce', false ) ) {
@@ -225,6 +230,20 @@ function daan_place_order() {
 
     if ( $amount < 1 ) {
         wp_send_json_error( array( 'message' => 'Invalid donation amount.' ) );
+    }
+    if ( $amount > DAAN_MAX_DONATION ) {
+        wp_send_json_error( array( 'message' => daan_max_donation_message() ) );
+    }
+    if ( ! in_array( $cause, daan_donation_causes(), true ) ) {
+        wp_send_json_error( array( 'message' => 'Please choose a cause from the list.' ) );
+    }
+    if ( ! in_array( $frequency, array( 'one-time', 'monthly' ), true ) ) {
+        wp_send_json_error( array( 'message' => 'Please choose one-time or monthly.' ) );
+    }
+    foreach ( array( 'city' => $city, 'state' => $state ) as $label => $place ) {
+        if ( ! preg_match( "/^[\\p{L}\\p{M}][\\p{L}\\p{M} .,'&()-]{1,99}$/u", $place ) ) {
+            wp_send_json_error( array( 'message' => 'Please enter a valid ' . $label . '.' ) );
+        }
     }
 
     if ( ! $first_name || ! $last_name || ! $email ) {

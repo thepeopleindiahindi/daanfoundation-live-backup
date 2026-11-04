@@ -6,6 +6,7 @@
 defined( 'ABSPATH' ) || exit;
 
 const DAAN_ORDER_CUTOFF = '2026-11-01 00:00:00 +05:30';
+const DAAN_MAX_DONATION = 1000000; // Largest single donation in rupees, on /donate/ and checkout.
 
 function daan_order_cutoff() {
 	return (int) apply_filters( 'daan_order_cutoff', strtotime( DAAN_ORDER_CUTOFF ) );
@@ -19,4 +20,9 @@ function daan_order_cutoff_range() {
 function daan_order_after_cutoff( $order ) {
 	$created = $order->get_date_created();
 	return $created && $created->getTimestamp() >= daan_order_cutoff();
+}
+
+function daan_max_donation_message() {
+	$rupees = preg_replace( '/B(?=(dd)+d$)/', ',', (string) DAAN_MAX_DONATION );
+	return 'The largest donation we accept online is ₹' . $rupees . '. Please contact us for a larger amount.';
 }

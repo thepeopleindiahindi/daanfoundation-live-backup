@@ -74,7 +74,7 @@ if ($current_cat instanceof WP_Term) {
                 </h2>
                 <span class="text-sm text-slate-500 block mb-2"><?php echo get_the_date('F j, Y'); ?></span>
                 <p class="text-sm text-slate-600 line-clamp-2 mb-4"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
-                <a href="<?php the_permalink(); ?>" class="inline-flex items-center gap-1 text-orange-600 font-semibold text-sm hover:text-orange-700 transition-colors">
+                <a href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr( 'Read more: ' . get_the_title() ); ?>" class="inline-flex items-center gap-1 text-orange-600 font-semibold text-sm hover:text-orange-700 transition-colors">
                   Read More
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>

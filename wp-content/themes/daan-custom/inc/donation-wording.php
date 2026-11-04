@@ -45,6 +45,18 @@ add_filter(
 	}
 );
 
+// The same upper limit as the /donate/ form.
+add_action(
+	'woocommerce_after_checkout_validation',
+	function ( $data, $errors ) {
+		if ( WC()->cart && (float) WC()->cart->get_total( 'edit' ) > DAAN_MAX_DONATION ) {
+			$errors->add( 'daan_max_donation', daan_max_donation_message() );
+		}
+	},
+	10,
+	2
+);
+
 // One of each cause: no quantity box on product or cart; the value stays 1, and donating again keeps it at 1.
 add_filter( 'woocommerce_is_sold_individually', '__return_true' );
 add_filter( 'woocommerce_add_to_cart_sold_individually_found_in_cart', '__return_false' );

@@ -526,6 +526,29 @@ function daan_ot_autocancel_paused() {
 	return 'yes' === get_option( DAAN_OT_PAUSE_OPTION, 'no' );
 }
 
+/** Status straight from the database, past every cache. */
+function daan_ot_status_in_db( $order_id ) {
+	global $wpdb;
+	if ( \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled() ) {
+		$status = $wpdb->get_var( $wpdb->prepare( "SELECT status FROM {$wpdb->prefix}wc_orders WHERE id = %d", $order_id ) );
+	} else {
+		$status = $wpdb->get_var( $wpdb->prepare( "SELECT post_status FROM {$wpdb->posts} WHERE ID = %d", $order_id ) );
+	}
+	return preg_replace( '/^wc-/', '', (string) $status );
+}
+
+/** Takes a lock in one database step, so only one run can hold it; a lock left by a crashed run expires after 15 minutes. */
+function daan_ot_lock_take( $name ) {
+	global $wpdb;
+	$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name = %s AND CAST(option_value AS UNSIGNED) < %d", $name, time() - 15 * MINUTE_IN_SECONDS ) );
+	return 1 === (int) $wpdb->query( $wpdb->prepare( "INSERT IGNORE INTO {$wpdb->options} (option_name, option_value, autoload) VALUES (%s, %s, 'off')", $name, (string) time() ) );
+}
+
+function daan_ot_lock_release( $name ) {
+	global $wpdb;
+	$wpdb->delete( $wpdb->options, array( 'option_name' => $name ) );
+}
+
 /** When this on-hold donation will be cancelled. "Not received": 24 hours after it, whatever the digests say. No button: 6 hours after the second digest. 0 = no timer. */
 function daan_ot_timer_deadline( $order ) {
 	$not_received = (int) $order->get_meta( '_upq_pay_not_received_at' );
@@ -542,6 +565,10 @@ function daan_ot_timer_process( $order ) {
 	}
 	$deadline = daan_ot_timer_deadline( $order );
 	if ( ! $deadline || time() < $deadline ) {
+		return false;
+	}
+	// Last look in the database: Payment received may have been pressed after this run loaded the order.
+	if ( 'on-hold' !== daan_ot_status_in_db( $order->get_id() ) ) {
 		return false;
 	}
 	$order->update_meta_data( DAAN_OT_AUTO_CANCELLED, time() );
@@ -650,12 +677,9 @@ add_action( 'daan_ot_hourly', function () {
 	if ( ! daan_ot_automation_on() ) {
 		return;
 	}
-	// One run at a time; a lock left by a crashed run expires after 15 minutes.
-	$lock = (int) get_option( 'daan_ot_cron_lock', 0 );
-	if ( $lock && time() - $lock < 15 * MINUTE_IN_SECONDS ) {
+	if ( ! daan_ot_lock_take( 'daan_ot_cron_lock' ) ) {
 		return;
 	}
-	update_option( 'daan_ot_cron_lock', time(), false );
 	try {
 		foreach ( daan_ot_autocancel_paused() ? array() : daan_ot_timer_candidates() as $order ) {
 			daan_ot_timer_process( $order );
@@ -664,7 +688,7 @@ add_action( 'daan_ot_hourly', function () {
 			daan_ot_exec_process( wc_get_order( $order->get_id() ) );
 		}
 	} finally {
-		delete_option( 'daan_ot_cron_lock' );
+		daan_ot_lock_release( 'daan_ot_cron_lock' );
 	}
 } );
 
