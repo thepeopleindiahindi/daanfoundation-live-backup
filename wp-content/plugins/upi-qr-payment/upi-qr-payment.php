@@ -388,8 +388,11 @@ function upq_timer_text( $order ) {
 	if ( ! function_exists( 'daan_ot_automation_on' ) || ! daan_ot_automation_on() || ! daan_ot_timer_in_scope( $order ) ) {
 		return '';
 	}
-	$at = daan_ot_timer_deadline( $order );
-	return ' It will be cancelled automatically' . ( $at ? ' at ' . wp_date( 'j M, g:i A', $at ) : ' 24 hours after this' ) . ' unless Payment received is pressed first.';
+	if ( daan_ot_autocancel_paused() ) {
+		return ' Auto-cancel is paused.';
+	}
+	$at = (int) $order->get_meta( '_upq_pay_not_received_at' );
+	return ' It will be cancelled automatically' . ( $at ? ' at ' . wp_date( 'j M, g:i A', $at + DAAN_OT_CANCEL_DELAY, new DateTimeZone( 'Asia/Kolkata' ) ) . ' IST' : ' 24 hours after this' ) . ' unless Payment received is pressed first.';
 }
 
 /** "Payment received" stays reachable after "Payment not received": a fresh signed link behind a button. */
@@ -428,7 +431,9 @@ function upq_run_action( $order, $action, $via = 'email button' ) {
 				$res = array( true, 'Donation #' . $no . ' is marked Payment received (Completed).', 'done' );
 				break;
 			case 'pay_no':
-				$order->update_meta_data( '_upq_pay_not_received_at', time() );
+				if ( ! $order->get_meta( '_upq_pay_not_received_at' ) ) { // A second press must not add time.
+					$order->update_meta_data( '_upq_pay_not_received_at', time() );
+				}
 				$order->add_order_note( 'Payment NOT received, via ' . $via . '.' );
 				if ( $order->has_status( 'pending' ) ) {
 					$order->update_status( 'on-hold', 'Payment not received (admin ' . $via . ').' );
@@ -622,7 +627,7 @@ add_action( 'upq_hold_watch_job', function () {
 			continue;
 		}
 		$no   = $o->get_order_number();
-		$html = '<p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;">Donation <b>#' . esc_html( $no ) . '</b> (' . esc_html( $o->get_formatted_billing_full_name() ) . ', ' . esc_html( $o->get_billing_phone() ) . ', ' . wp_kses_post( $o->get_formatted_order_total() ) . ') has been <b>on hold since ' . esc_html( wp_date( 'j M Y', $since ) ) . '</b>. Please check the UPI/bank app and choose:</p>'
+		$html = '<p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;">Donation <b>#' . esc_html( $no ) . '</b> (' . esc_html( $o->get_formatted_billing_full_name() ) . ', ' . esc_html( $o->get_billing_phone() ) . ', ' . wp_kses_post( $o->get_formatted_order_total() ) . ') has been <b>on hold since ' . esc_html( wp_date( 'j M Y', $since ) ) . '</b>. With no button pressed it is cancelled 6 hours after its second digest; after "Payment not received", after 24 hours. Please check the UPI/bank app and choose:</p>'
 			. upq_admin_buttons_block( $o, 'warning' );
 		if ( upq_send_admin_mail( 'Donation still on hold – #' . $no, $html ) ) {
 			$o->update_meta_data( '_upq_hold_warned_at', time() );

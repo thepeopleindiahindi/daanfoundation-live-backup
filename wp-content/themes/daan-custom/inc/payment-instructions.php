@@ -596,15 +596,30 @@ function daan_pay_digest_html() {
 	usort( $new, function ( $a, $b ) { return ( $b['utr'] <=> $a['utr'] ) ?: ( $b['age'] <=> $a['age'] ); } );
 
 	$cap  = 150;
-	$rows = array_slice( array_merge( $old, $new ), 0, $cap );
+	// Donations about to be cancelled come first, so the 150 limit can never leave them out.
+	$soon = array_filter( array_merge( $old, $new ), function ( $r ) { return function_exists( 'daan_ot_digest_will_cancel' ) && daan_ot_digest_will_cancel( $r['o'] ); } );
+	$rest = array_filter( array_merge( $old, $new ), function ( $r ) { return ! ( function_exists( 'daan_ot_digest_will_cancel' ) && daan_ot_digest_will_cancel( $r['o'] ) ); } );
+	$rows = array_slice( array_merge( $soon, $rest ), 0, $cap );
+	$line = function ( $r ) {
+		$o = $r['o'];
+		return daan_pay_digest_row( $o, $r['age'] > 3 * DAY_IN_SECONDS ? '#FFF7ED' : '#FFFFFF', esc_html( daan_pay_amount_text( $o ) ) . ' · ' . esc_html( daan_pay_method_label( $o ) ) . ' · UTR: ' . ( $r['utr'] ? '<strong>YES</strong>' : 'no' ) . ' · ' . (int) floor( $r['age'] / DAY_IN_SECONDS ) . ' d', array( 'pay_ok', 'pay_no' ) );
+	};
+	$table = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">';
 	$h  = '<div style="font-family:Arial,sans-serif;font-size:14px;color:#1F2937">';
+	if ( function_exists( 'daan_ot_autocancel_paused' ) && daan_ot_autocancel_paused() ) {
+		$h .= '<p style="background:#FEF3C7;padding:10px 12px;border-radius:6px;font-weight:700;">Auto-cancel is paused</p>';
+	} elseif ( $soon ) {
+		$h .= '<h2 style="font-size:17px;margin:0 0 8px;color:#B3261E;">Will be cancelled today at 3 PM</h2><p>This is the second digest for these donations. Press Payment received if the money has arrived.</p>' . $table;
+		foreach ( $soon as $r ) {
+			$h .= $line( $r );
+		}
+		$h .= '</table>';
+	}
 	$h .= '<p><strong>' . count( $orders ) . '</strong> on-hold donations · <strong>' . count( $old ) . '</strong> older than 3 days · <strong>' . $withutr . '</strong> with a UTR from the donor.</p>';
-	$h .= '<p>Compare each UTR with your bank/UPI statement; if the money is there, open the donation and set it to <em>Completed</em> (the donor then gets the receipt e-mail).</p>';
-	$h .= '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">';
-	foreach ( $rows as $r ) {
-		$o  = $r['o'];
-		$bg = $r['age'] > 3 * DAY_IN_SECONDS ? '#FFF7ED' : '#FFFFFF';
-		$h .= daan_pay_digest_row( $o, $bg, esc_html( daan_pay_amount_text( $o ) ) . ' · ' . esc_html( daan_pay_method_label( $o ) ) . ' · UTR: ' . ( $r['utr'] ? '<strong>YES</strong>' : 'no' ) . ' · ' . (int) floor( $r['age'] / DAY_IN_SECONDS ) . ' d', array( 'pay_ok', 'pay_no' ) );
+	$h .= '<p>Compare each UTR with your bank/UPI statement; if the money is there, open the donation and set it to <em>Completed</em> (the donor then gets the receipt e-mail). With no button pressed, a donation is cancelled at 3 PM on the day of its second digest; after "Not received", 24 hours later.</p>';
+	$h .= $table;
+	foreach ( array_slice( $rows, count( $soon ) ) as $r ) {
+		$h .= $line( $r );
 	}
 	$h .= '</table>';
 	if ( count( $orders ) > $cap ) {

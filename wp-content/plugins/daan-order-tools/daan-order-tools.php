@@ -434,7 +434,11 @@ const DAAN_OT_BCC            = 'arksuri@gmail.com';
 const DAAN_OT_EXEC_DELAY     = 72 * HOUR_IN_SECONDS;
 const DAAN_OT_CANCEL_DELAY   = 24 * HOUR_IN_SECONDS;
 const DAAN_OT_UPQ_GATEWAY    = 'upq_manual_qr';
-const DAAN_OT_IN_DIGEST      = '_daan_digest_first_at';
+const DAAN_OT_PAUSE_OPTION   = 'daan_ot_pause_autocancel';
+const DAAN_OT_DIGEST_COUNT   = '_daan_digest_count';
+const DAAN_OT_DIGEST_DAY     = '_daan_digest_last_day';
+const DAAN_OT_SECOND_DIGEST  = '_daan_digest_second_at';
+const DAAN_OT_AFTER_SECOND   = 6 * HOUR_IN_SECONDS;
 const DAAN_OT_AUTO_CANCELLED = '_daan_auto_cancelled_at';
 const DAAN_OT_REOPEN_WINDOW  = 7 * DAY_IN_SECONDS;
 
@@ -518,14 +522,22 @@ function daan_ot_timer_in_scope( $order ) {
 	return $order instanceof WC_Order && DAAN_OT_UPQ_GATEWAY === $order->get_payment_method() && daan_order_after_cutoff( $order );
 }
 
-/** When this on-hold donation will be cancelled: 24 hours after the first digest or after "Not received", whichever is earlier. 0 = no timer. */
+function daan_ot_autocancel_paused() {
+	return 'yes' === get_option( DAAN_OT_PAUSE_OPTION, 'no' );
+}
+
+/** When this on-hold donation will be cancelled. "Not received": 24 hours after it, whatever the digests say. No button: 6 hours after the second digest. 0 = no timer. */
 function daan_ot_timer_deadline( $order ) {
-	$times = array_filter( array( (int) $order->get_meta( DAAN_OT_IN_DIGEST ), (int) $order->get_meta( '_upq_pay_not_received_at' ) ) );
-	return $times ? min( $times ) + DAAN_OT_CANCEL_DELAY : 0;
+	$not_received = (int) $order->get_meta( '_upq_pay_not_received_at' );
+	if ( $not_received ) {
+		return $not_received + DAAN_OT_CANCEL_DELAY;
+	}
+	$second = (int) $order->get_meta( DAAN_OT_SECOND_DIGEST );
+	return $second ? $second + DAAN_OT_AFTER_SECOND : 0;
 }
 
 function daan_ot_timer_process( $order ) {
-	if ( ! daan_ot_timer_in_scope( $order ) || ! $order->has_status( 'on-hold' ) ) {
+	if ( daan_ot_autocancel_paused() || ! daan_ot_timer_in_scope( $order ) || ! $order->has_status( 'on-hold' ) ) {
 		return false;
 	}
 	$deadline = daan_ot_timer_deadline( $order );
@@ -534,20 +546,62 @@ function daan_ot_timer_process( $order ) {
 	}
 	$order->update_meta_data( DAAN_OT_AUTO_CANCELLED, time() );
 	$order->save_meta_data();
-	$order->update_status( 'cancelled', 'Auto-cancelled: payment not received within 24 hours.' );
+	$order->update_status( 'cancelled', $order->get_meta( '_upq_pay_not_received_at' ) ? 'Auto-cancelled: payment not received within 24 hours of "Payment not received".' : 'Auto-cancelled: payment not received after two digests.' );
 	return true;
 }
 
-/** Stamps the first digest time once; an order that already has it keeps it. */
+function daan_ot_today() {
+	return wp_date( 'Y-m-d', null, new DateTimeZone( 'Asia/Kolkata' ) );
+}
+
+/** Counts a digest that really went out, once a day per order, only for the orders it really showed. */
 function daan_ot_mark_in_digest( $ids ) {
+	if ( daan_ot_autocancel_paused() ) {
+		return;
+	}
 	foreach ( (array) $ids as $id ) {
 		$order = wc_get_order( $id );
-		if ( daan_ot_timer_in_scope( $order ) && $order->has_status( 'on-hold' ) && ! $order->get_meta( DAAN_OT_IN_DIGEST ) ) {
-			$order->update_meta_data( DAAN_OT_IN_DIGEST, time() );
+		if ( ! daan_ot_timer_in_scope( $order ) || ! $order->has_status( 'on-hold' ) || daan_ot_today() === $order->get_meta( DAAN_OT_DIGEST_DAY ) ) {
+			continue;
+		}
+		$count = (int) $order->get_meta( DAAN_OT_DIGEST_COUNT ) + 1;
+		$order->update_meta_data( DAAN_OT_DIGEST_COUNT, $count );
+		$order->update_meta_data( DAAN_OT_DIGEST_DAY, daan_ot_today() );
+		if ( 2 === $count ) {
+			$order->update_meta_data( DAAN_OT_SECOND_DIGEST, time() );
+		}
+		$order->save_meta_data();
+	}
+}
+
+/** For the top section of the digest: this digest is (or already was) the second one, and no button was pressed. */
+function daan_ot_digest_will_cancel( $order ) {
+	if ( daan_ot_autocancel_paused() || ! daan_ot_timer_in_scope( $order ) || $order->get_meta( '_upq_pay_not_received_at' ) ) {
+		return false;
+	}
+	$count = (int) $order->get_meta( DAAN_OT_DIGEST_COUNT );
+	return $count >= 2 || ( 1 === $count && daan_ot_today() !== $order->get_meta( DAAN_OT_DIGEST_DAY ) );
+}
+
+/** After a pause every running timer keeps the time it had left, so nothing falls due at once. */
+add_filter( 'pre_update_option_' . DAAN_OT_PAUSE_OPTION, function ( $new, $old ) {
+	if ( 'yes' === $new && 'yes' !== $old ) {
+		update_option( 'daan_ot_paused_since', time(), false );
+	} elseif ( 'yes' !== $new && 'yes' === $old ) {
+		$paused = max( 0, time() - (int) get_option( 'daan_ot_paused_since', time() ) );
+		delete_option( 'daan_ot_paused_since' );
+		foreach ( daan_ot_query_after_cutoff( array( 'status' => array( 'wc-on-hold' ), 'payment_method' => DAAN_OT_UPQ_GATEWAY ) ) as $order ) {
+			foreach ( array( '_upq_pay_not_received_at', DAAN_OT_SECOND_DIGEST ) as $key ) {
+				$at = (int) $order->get_meta( $key );
+				if ( $at ) {
+					$order->update_meta_data( $key, $at + $paused );
+				}
+			}
 			$order->save_meta_data();
 		}
 	}
-}
+	return $new;
+}, 10, 2 );
 
 /** True only for a donation this plugin auto-cancelled, for 7 days. */
 function daan_ot_auto_cancel_open( $order ) {
@@ -568,7 +622,7 @@ add_action( 'woocommerce_order_status_changed', function ( $order_id, $from ) {
 	if ( ! daan_ot_timer_in_scope( $order ) ) {
 		return;
 	}
-	foreach ( 'on-hold' === $from ? array( '_upq_pay_not_received_at', DAAN_OT_IN_DIGEST ) : array( DAAN_OT_AUTO_CANCELLED ) as $key ) {
+	foreach ( 'on-hold' === $from ? array( '_upq_pay_not_received_at', DAAN_OT_DIGEST_COUNT, DAAN_OT_DIGEST_DAY, DAAN_OT_SECOND_DIGEST ) : array( DAAN_OT_AUTO_CANCELLED ) as $key ) {
 		$order->delete_meta_data( $key );
 	}
 	$order->save_meta_data();
@@ -603,7 +657,7 @@ add_action( 'daan_ot_hourly', function () {
 	}
 	update_option( 'daan_ot_cron_lock', time(), false );
 	try {
-		foreach ( daan_ot_timer_candidates() as $order ) {
+		foreach ( daan_ot_autocancel_paused() ? array() : daan_ot_timer_candidates() as $order ) {
 			daan_ot_timer_process( $order );
 		}
 		foreach ( daan_ot_exec_candidates() as $order ) {
@@ -627,6 +681,17 @@ register_deactivation_hook( __FILE__, function () {
 add_action( 'admin_init', function () {
 	register_setting(
 		'daan_ot_automation',
+		DAAN_OT_PAUSE_OPTION,
+		array(
+			'type'              => 'string',
+			'default'           => 'no',
+			'sanitize_callback' => function ( $value ) {
+				return 'yes' === $value ? 'yes' : 'no';
+			},
+		)
+	);
+	register_setting(
+		'daan_ot_automation',
 		DAAN_OT_ENABLED_OPTION,
 		array(
 			'type'              => 'string',
@@ -646,7 +711,9 @@ add_action( 'admin_menu', function () {
 			<p>Applies only to orders created from <?php echo esc_html( wp_date( 'j M Y, g:i A', daan_order_cutoff() ) ); ?> on.</p>
 			<form method="post" action="options.php">
 				<?php settings_fields( 'daan_ot_automation' ); ?>
-				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_ENABLED_OPTION ); ?>" value="yes" <?php checked( daan_ot_automation_on() ); ?>> Send execution e-mails and auto-cancel donations not paid 24 hours after their first digest or "Payment not received"</label></p>
+				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_ENABLED_OPTION ); ?>" value="yes" <?php checked( daan_ot_automation_on() ); ?>> Send execution e-mails and auto-cancel unpaid donations</label></p>
+				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_PAUSE_OPTION ); ?>" value="yes" <?php checked( daan_ot_autocancel_paused() ); ?>> Pause auto-cancel</label></p>
+				<p class="description">No button pressed: cancelled 6 hours after the second digest. "Payment not received": cancelled after 24 hours. While paused, nothing is cancelled and digests are not counted; timers continue from where they stopped. Execution e-mails are not affected.</p>
 				<?php submit_button(); ?>
 			</form>
 		</div>

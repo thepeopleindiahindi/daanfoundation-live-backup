@@ -130,3 +130,10 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Rollback: D:\claude\_private_backups\2026-11-04_whatsapp_digest\ (code-before.tgz, db-before.sql.gz). Restore files; for numbers restore the listed posts/options from the dump.
 - Owner actions: check images and outside services for the old number; first real digest on 5 Nov.
 - Risks / notes: first real digest not yet seen; images not read automatically. Contact page Elementor JSON was already invalid before this change (page renders from theme template). No push.
+
+## 2026-11-04 (window: execution; digest auto-cancel rule 2)
+- Done: replaced the 24-hour digest rule. No button: cancelled 6 hours after the second digest that really went out (once a day per order, shown orders only, failed digest not counted). Not received: 24 hours, digest count does not change it, second press adds no time. "Will be cancelled today at 3 PM" section on top of the digest (listed first, so the 150 limit cannot drop them). WooCommerce > Order Automation: "Pause auto-cancel"; on OFF running timers get the paused time added. Digest and 7-day warning text updated. 6 inactive block widgets with old SBI/UPI text removed.
+- Verified: 34 checks passed on test orders (trashed); digest 360 + 1024 side-scroll 0; smoke OK. Order 7130 has no count yet: 5 Nov digest = 1, 6 Nov digest = 2, earliest cancel 6 Nov 3 PM IST.
+- Rollback: D:\claude\_private_backups\2026-11-04_digest_rule\ (code-before.tgz, db-before.sql.gz; widgets are in the dump).
+- Owner actions: read the 5 and 6 Nov digests; press a button for 7130 before 6 Nov 3 PM.
+- Risks / notes: cancel time follows the real send time of the second digest (3 PM if sent at 9 AM), then the next hourly cron run. Pause toggle tested from the server, not clicked in wp-admin. First real digest not yet seen. No push.
