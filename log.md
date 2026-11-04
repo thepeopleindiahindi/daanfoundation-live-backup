@@ -142,3 +142,6 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Done: inc/whatsapp.php: button fades only over .upq-box, .upq-thanks, .upi-card, .upq-copy, #place_order, .checkout-button, #confirm-btn. Mobile 48 px, footer gets 72 px extra space at the bottom. Backup: D:\claude\_private_backups\2026-11-04_wa_fix\whatsapp.php.before.
 - Verified: home, donate, contact, zakat, checkout, pending at 375 + desktop: visible on load on all except pending at 375 (payment box under it, as allowed); wrong hide 0, footer text covered 0, fields/buttons blocked at centre 0. Test order 7210 trashed. Smoke OK. Screenshots: reports/security-audit-2026-10-31/whatsapp-digest/button-fix/.
 - Risks / notes: the button can still sit over the right end of a field that is scrolled exactly under it. No push.
+
+## 2026-11-04 (window: execution; WhatsApp icon)
+- Done: floating button colour #25D366 and the real WhatsApp icon (button + footer link). Backup: D:\claude\_private_backups\2026-11-04_wa_icon\. Verified on /contact/ at 375 + desktop; smoke OK. No push.
