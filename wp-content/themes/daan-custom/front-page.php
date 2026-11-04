@@ -204,7 +204,7 @@ get_header();
             <?php
             $stat_icons = array(
                 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z',
-                'M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z',
+                'M21 8l-9-5-9 5v8l9 5 9-5V8z M3 8l9 5 9-5 M12 13v8',
                 'M12 2v4 M12 6l-3 3 M12 6l3 3 M4.93 4.93l1.41 1.41 M2 12h4 M18 12h4 M4.93 19.07l1.41-1.41 M17.66 17.66l1.41 1.41 M12 20v2',
                 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2 M9 3a4 4 0 100 8 4 4 0 000-8z M23 21v-2a4 4 0 00-3-3.87 M16 3.13a4 4 0 010 7.75',
             );
@@ -351,54 +351,6 @@ get_header();
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<!-- ISLAMIC GIVING — Maximise Your Reward -->
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<section class="section">
-    <div class="container">
-        <div class="section-header">
-            <h2>Maximise Your Reward</h2>
-            <p>Choose a cause and earn blessings through your generosity</p>
-        </div>
-
-        <div class="islamic-grid">
-            <?php
-            $islamic_icons = array(
-                'M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2 M7 2v20 M14 2v20h4a2 2 0 002-2V2',
-                'M12 2v2 M6.5 12l5.5-5.5 5.5 5.5 M3 21h18 M3 21l4-8 M21 21l-4-8',
-                'M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z',
-                'M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z M3 6h18 M16 10a4 4 0 01-8 0',
-                'M4 2h16a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2z M8 6h8 M8 10h8 M8 14h5 M16 14h1 M8 18h8 M16 18h1',
-                'M16 7a4 4 0 11-8 0 4 4 0 018 0z M12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
-            );
-            $islamic = array(
-                array( 'Community Kitchen', 'Support our daily free meal program for the needy.', '/community-kitchen/', '#FED7AA', '#F97316', 0 ),
-                array( 'Fidyah & Kaffarah', 'Fulfil your Islamic obligation by feeding the needy.', '/fidya/', '#FECDD3', '#E11D48', 1 ),
-                array( 'Ramadan Iftar Appeal', 'Provide iftar meals to fasting families during Ramadan.', '/ramadan/', '#DDD6FE', '#7C3AED', 2 ),
-                array( 'Ration Kit Distribution', 'Essential food rations for struggling families.', '/where-most-needed/', '#FDE68A', '#D97706', 3 ),
-                array( 'Zakat', 'Fulfil your 2.5% obligation and purify your wealth.', '/zakat/', '#A7F3D0', '#059669', 4 ),
-                array( 'Sadaqah', 'Give voluntary charity and earn continuous rewards.', '/sadaqah/', '#CFFAFE', '#0891B2', 5 ),
-            );
-            foreach ( $islamic as $i ) : ?>
-                <a href="<?php echo esc_url( home_url( $i[2] ) ); ?>" class="islamic-card">
-                    <div class="islamic-card-icon" style="background:<?php echo $i[3]; ?>">
-                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="<?php echo $i[4]; ?>">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<?php echo $islamic_icons[$i[5]]; ?>" />
-                        </svg>
-                    </div>
-                    <h3><?php echo esc_html( $i[0] ); ?></h3>
-                    <p><?php echo esc_html( $i[1] ); ?></p>
-                    <span class="learn-more">
-                        Learn More
-                        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </span>
-                </a>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <!-- ZAKAT CALCULATOR — compact trigger; full calculator lives at /zakat-calculator -->

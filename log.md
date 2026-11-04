@@ -155,3 +155,8 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Done: scoped CSS in theme.css + theme.min.css: body.home mega-menus (Our Work right-aligned 1024-1365; Ways to Give -24 px at 1024-1060); Quick Actions sub-line left with heading; card text left-aligned. Backup: D:\claude\_private_backups\2026-11-04_home_fix2\.
 - Verified: scrollWidth = clientWidth at 375, 768, 1024, 1100, 1280, 1366, 1440, 1920; open menus inside the screen. 375 "3.50 %" explained: fullPage capture over ~16,384 px wraps the top of the page onto the bottom of the image; viewport-by-viewport old vs new CSS below the donate section 0.000 %, no section to restore. Smoke OK. Shots: reports/security-audit-2026-10-31/home-fix2/.
 - Risks / notes: same mega-menu side-scroll remains on other pages at 1024-1365 (homepage-only scope asked). No push; repo inc/seo-fixes.php not uploaded.
+
+## 2026-11-04 (window: execution; homepage duplicates)
+- Done: front-page.php: second "Maximise Your Reward" section removed (the top one beside the donate card stays); Iftar Kits stat icon changed from the moon to a box, since the moon is used by Ramadan Iftar Appeal. Backup: D:\claude\_private_backups\2026-11-04_home_dedupe\. Shots: reports/security-audit-2026-10-31/home-dedupe/.
+- Verified: homepage heading count 1 at 375, 1024, 1440; side-scroll 0; smoke OK.
+- Open / next: arrows and menu chevrons still repeat as UI signs; causes still appear in Current Campaigns and Our Programs; other pages not checked. Owner decision. No push.
