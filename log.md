@@ -207,3 +207,10 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Owner actions: check inbox for the test mails; delete 3 old application passwords on the admin user (Claude Fix, blonging, codex) if not needed; GitHub private; change passwords; C-03 numbers.
 - Open / next: inbox delivery, real phone and admin screens not tested. Custom code (2 plugins, theme) has no public checksums: pattern scan and repo compare only. /product/ amount box has step 100, so an amount like 150 is refused by the browser (report only, payment behaviour).
 - Risks / notes: no push; repo inc/seo-fixes.php not uploaded. Backups kept, none deleted.
+
+## 2026-11-05 (window: execution; amount box, Dear Donor, backups)
+- Done: inc/donation-wording.php: product amount box min 1, max 10,00,000, step 1; add-to-cart and cart update refuse 0, minus, non-number and above the limit; checkout refuses a donation line under Rs 1; empty name in WooCommerce mails becomes "Dear Donor,". Full DB backup on PC: D:\claude\_private_backups\2026-11-05_db_full\. File backup: D:\claude\_private_backups\2026-11-05_amount\.
+- Verified: 0, -5, 1000001, abc refused with empty cart; Rs 150 orders 7246, 7247 on the owner's address, total 150.00, trashed. Reset and new-account render "Dear Donor,", with a name "Dear Ali,". CSV SHA-256 on PC and server match. DB: gzip ok, dump completed, 76 tables. 7130 on-hold, untouched. Smoke OK.
+- Owner actions: delete by hand ~/private-daan-backups/onhold_donor_contacts_2026-10-13.csv and ~/db-backups/daanfoundation-db-backup-2026-09-14.sql.gz; Claude did not delete them (permanent deletion is outside what it may do).
+- Open / next: cart-page amount box and checkout Rs 1 check not exercised in a browser; DB backup not test-restored. Order 7246 page did not change within 40 s in the test though the order was made; 7247 changed within 20 s: watch for slow checkout.
+- Risks / notes: no push; repo inc/seo-fixes.php not uploaded.
