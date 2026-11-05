@@ -823,7 +823,7 @@ function daan_get_page_data( $slug ) {
 			'subtitle'      => 'A compulsory charitable donation given before Eid prayer, ensuring everyone can celebrate Eid with dignity.',
 			'gradient'      => 'from-indigo-600 to-purple-700',
 			'image'         => '/images/iftaar-distribution.jpg',
-			'default_cause' => 'ramadan-iftar',
+			'default_cause' => 'zakat-al-fitr',
 			'sections'      => array(
 				array(
 					'type'    => 'text',
@@ -889,7 +889,7 @@ function daan_get_page_data( $slug ) {
 					'heading'     => 'Pay Your Fitrana Today',
 					'description' => 'Fulfil your obligation and ensure that everyone can celebrate Eid with dignity. Your Fitrana provides food and joy to those who need it most.',
 					'button_text' => 'Pay Fitrana Now',
-					'button_url'  => '/donate/?cause=ramadan-iftar',
+					'button_url'  => '/donate/?cause=zakat-al-fitr',
 				),
 			),
 		),

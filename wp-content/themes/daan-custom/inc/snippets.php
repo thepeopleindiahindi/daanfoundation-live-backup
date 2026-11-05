@@ -199,12 +199,12 @@ add_action( 'wp_ajax_nopriv_daan_place_order', 'daan_place_order' );
 
 /** Causes the /donate/ form may send: the live causes. */
 function daan_donation_causes() {
-    return array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Sadaqah', 'Sadaqah Jariyah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal', 'Education Aid', 'Bank Interest', 'General' );
+    return array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Zakat al-Fitr', 'Sadaqah', 'Sadaqah Jariyah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal', 'Education Aid', 'Bank Interest', 'General' );
 }
 
 /** Causes shown as choices on the /donate/ form. */
 function daan_donate_form_causes() {
-    return array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Sadaqah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal' );
+    return array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Zakat al-Fitr', 'Sadaqah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal' );
 }
 
 /** The one mapping from a ?cause= value (name or slug, any case or spelling variant) to a cause. '' = not recognised. */
@@ -216,6 +216,7 @@ function daan_cause_from_link( $raw ) {
         'Community Kitchen' => array( 'community kitchen', 'kitchen' ),
         'Ramadan Iftar'     => array( 'ramadan iftar', 'ramadan iftaar', 'serving iftar', 'iftar', 'iftaar', 'ramadan' ),
         'Zakat'             => array( 'zakat', 'zakaat' ),
+        'Zakat al-Fitr'     => array( 'zakat al fitr', 'zakat ul fitr', 'zakat al fitrah', 'zakat fitr', 'zakatul fitr', 'fitrana', 'fitra', 'fitrah' ),
         'Sadaqah'           => array( 'sadaqah', 'sadaqa', 'sadqah', 'sadqa' ),
         'Sadaqah Jariyah'   => array( 'sadaqah jariyah', 'sadaqah jariya', 'sadqah jariyah', 'sadqa jariya' ),
         'Fidyah & Kaffarah' => array( 'fidyah and kaffarah', 'fidya and kaffara', 'fidya and kaffarah', 'fidyah and kaffara', 'fidya kaffarah', 'fidya kaffara', 'fidyah kaffarah', 'fidyah kaffara', 'fidya', 'fidyah', 'kaffara', 'kaffarah' ),

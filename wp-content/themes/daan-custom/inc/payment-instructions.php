@@ -602,7 +602,7 @@ function daan_pay_digest_html() {
 	$rows = array_slice( array_merge( $soon, $rest ), 0, $cap );
 	$line = function ( $r ) {
 		$o = $r['o'];
-		return daan_pay_digest_row( $o, $r['age'] > 3 * DAY_IN_SECONDS ? '#FFF7ED' : '#FFFFFF', esc_html( daan_pay_amount_text( $o ) ) . ' · ' . esc_html( daan_pay_method_label( $o ) ) . ' · UTR: ' . ( $r['utr'] ? '<strong>YES</strong>' : 'no' ) . ' · ' . (int) floor( $r['age'] / DAY_IN_SECONDS ) . ' d', array( 'pay_ok', 'pay_no' ) );
+		return daan_pay_digest_row( $o, $r['age'] > 3 * DAY_IN_SECONDS ? '#FFF7ED' : '#FFFFFF', esc_html( daan_pay_amount_text( $o ) ) . ' · ' . esc_html( daan_receipt_cause( $o ) ) . ' · ' . esc_html( daan_pay_method_label( $o ) ) . ' · UTR: ' . ( $r['utr'] ? '<strong>YES</strong>' : 'no' ) . ' · ' . (int) floor( $r['age'] / DAY_IN_SECONDS ) . ' d', array( 'pay_ok', 'pay_no' ) );
 	};
 	$table = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">';
 	$h  = '<div style="font-family:Arial,sans-serif;font-size:14px;color:#1F2937">';
@@ -630,7 +630,7 @@ function daan_pay_digest_html() {
 		$h .= '<h2 style="font-size:17px;margin:22px 0 8px;">Auto-cancelled</h2><p>Cancelled automatically in the last 7 days. If the money did arrive, press Payment received.</p>';
 		$h .= '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">';
 		foreach ( $cancelled as $o ) {
-			$h .= daan_pay_digest_row( $o, '#FFFFFF', esc_html( daan_pay_amount_text( $o ) ) . ' · cancelled ' . esc_html( wp_date( 'd M', (int) $o->get_meta( DAAN_OT_AUTO_CANCELLED ) ) ), array( 'pay_ok' ) );
+			$h .= daan_pay_digest_row( $o, '#FFFFFF', esc_html( daan_pay_amount_text( $o ) ) . ' · ' . esc_html( daan_receipt_cause( $o ) ) . ' · cancelled ' . esc_html( wp_date( 'd M', (int) $o->get_meta( DAAN_OT_AUTO_CANCELLED ) ) ), array( 'pay_ok' ) );
 		}
 		$h .= '</table>';
 	}
