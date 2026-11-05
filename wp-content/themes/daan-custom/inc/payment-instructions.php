@@ -615,6 +615,7 @@ function daan_pay_digest_html() {
 		}
 		$h .= '</table>';
 	}
+	$h .= daan_mail_failed_digest_html();
 	$h .= '<p><strong>' . count( $orders ) . '</strong> on-hold donations · <strong>' . count( $old ) . '</strong> older than 3 days · <strong>' . $withutr . '</strong> with a UTR from the donor.</p>';
 	$h .= '<p>Compare each UTR with your bank/UPI statement; if the money is there, open the donation and set it to <em>Completed</em> (the donor then gets the receipt e-mail). With no button pressed, a donation is cancelled at 3 PM on the day of its second digest; after "Not received", 24 hours later.</p>';
 	$h .= $table;
@@ -649,10 +650,11 @@ add_action(
 			return;
 		}
 		$d = daan_pay_digest_html();
-			if ( 0 === $d['total'] && 0 === $d['cancelled'] ) {
+			if ( 0 === $d['total'] && 0 === $d['cancelled'] && '' === daan_mail_failed_digest_html() ) {
 				return;
 			}
 			$sent = wp_mail( daan_pay_notify_recipient(), '[Daan] ' . $d['total'] . ' on-hold donations (' . $d['old'] . ' older than 3 days, ' . $d['utr'] . ' with UTR)' . ( $d['cancelled'] ? ', ' . $d['cancelled'] . ' auto-cancelled' : '' ), $d['html'], array( 'Content-Type: text/html; charset=UTF-8' ) );
+			daan_digest_send_result( (bool) $sent );
 			// The 24 hours start only once an order was really shown in a digest that went out.
 			if ( $sent && function_exists( 'daan_ot_mark_in_digest' ) ) {
 				daan_ot_mark_in_digest( $d['shown'] );

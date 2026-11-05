@@ -215,6 +215,7 @@ require_once get_template_directory() . '/inc/performance-fixes.php';
 require_once get_template_directory() . '/inc/payment-instructions.php';
 require_once get_template_directory() . '/inc/email-layout.php';
 require_once get_template_directory() . '/inc/email-brand.php';
+require_once get_template_directory() . '/inc/mail-reliability.php';
 require_once get_template_directory() . '/inc/whatsapp.php';
 require_once get_template_directory() . '/inc/donation-wording.php';
 

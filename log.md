@@ -221,3 +221,11 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Owner actions: delete by hand ~/private-daan-backups/onhold_donor_contacts_2026-10-13.csv (16796 bytes, SHA-256 matches PC) and ~/db-backups/daanfoundation-db-backup-2026-09-14.sql.gz (8977567 bytes; today's DB backup is on PC); Claude did not delete them. Check the inbox for sender and layout of mails after this change.
 - Open / next: an SMTP hang can still lose a mail, now without holding the donor (SMTP provider not changed). Inbox not seen.
 - Risks / notes: no push; repo inc/seo-fixes.php not uploaded.
+
+## 2026-11-05 (window: execution; SMTP timeout and mail retry)
+- Done: new inc/mail-reliability.php: SMTP Timeout 15; donor on-hold, admin new donation and completed mails get a sent flag, retry queue through Action Scheduler (5 min, 30 min, 2 hours), then order note, alert to the Foundation and a "Mail failed" line in the digest. Mail-after-response moved here from inc/snippets.php. Digest retries on failed send; counting unchanged (only on a real send). Execution mail rule unchanged. Backup: D:\claude\_private_backups\2026-11-05_mail_retry\.
+- Verified with a simulated stuck server (temporary tool, removed) on test orders 7281-7284, all trashed: page 0.9-1.8 s; failed mails queued; retry sent one copy, a second run sent none; Action Scheduler fired retries by itself; after 3 failures note and digest line; on-hold mail not resent after Completed; digest failure scheduled a retry, 7130 count stayed 1/1. Smoke OK.
+- SMTP: smtp.gmail.com:587 TLS, Gmail account. WP Mail SMTP keeps no mail log (debug events 0), so 7-day failure count and limit use cannot be read.
+- Owner actions: inbox check for "Mail failed – donation #7283" (alert send was not logged); check money on pairs #7219/#7220 and #7221/#7222; delete the 2 server backup files by hand.
+- Open / next: a stuck connection took 10-25 s to give up, not a hard 15 s. A successful digest retry was not run, to avoid counting real orders. Order notes now record mail failures from today.
+- Risks / notes: no push; repo inc/seo-fixes.php not uploaded.

@@ -225,65 +225,6 @@ function daan_idem_finish( $key, $order ) {
     $wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $key ) );
 }
 
-/**
- * Answer the donor first: e-mails of a donation request are held and sent after the response is closed (SMTP takes
- * several seconds, sometimes far more). Content and recipients stay as they were.
- */
-function daan_mail_after_response() {
-    // phpcs:ignore WordPress.Security.NonceVerification -- only decides when mail goes out.
-    $is_donation = ( wp_doing_ajax() && 'daan_place_order' === ( $_POST['action'] ?? '' ) ) || 'checkout' === ( $_GET['wc-ajax'] ?? '' );
-    if ( ! $is_donation ) {
-        return;
-    }
-    $queue   = array();
-    $sending = false;
-    add_filter(
-        'pre_wp_mail',
-        function ( $result, $atts ) use ( &$queue, &$sending ) {
-            if ( $sending ) {
-                return $result;
-            }
-            // WooCommerce sets these only while it calls wp_mail, so they are kept with the mail.
-            $queue[] = array( $atts, apply_filters( 'wp_mail_from', get_option( 'admin_email' ) ), apply_filters( 'wp_mail_from_name', 'WordPress' ), apply_filters( 'wp_mail_content_type', 'text/plain' ) );
-            return true;
-        },
-        1,
-        2
-    );
-    // After WooCommerce saves the session (priority 20).
-    add_action(
-        'shutdown',
-        function () use ( &$queue, &$sending ) {
-            if ( ! $queue ) {
-                return;
-            }
-            ignore_user_abort( true );
-            if ( function_exists( 'litespeed_finish_request' ) ) {
-                litespeed_finish_request();
-            } elseif ( function_exists( 'fastcgi_finish_request' ) ) {
-                fastcgi_finish_request();
-            }
-            $sending = true;
-            foreach ( $queue as $mail ) {
-                $set = array(
-                    'wp_mail_from'         => function () use ( $mail ) { return $mail[1]; },
-                    'wp_mail_from_name'    => function () use ( $mail ) { return $mail[2]; },
-                    'wp_mail_content_type' => function () use ( $mail ) { return $mail[3]; },
-                );
-                foreach ( $set as $hook => $fn ) {
-                    add_filter( $hook, $fn, 99999 );
-                }
-                wp_mail( $mail[0]['to'], $mail[0]['subject'], $mail[0]['message'], $mail[0]['headers'], $mail[0]['attachments'] );
-                foreach ( $set as $hook => $fn ) {
-                    remove_filter( $hook, $fn, 99999 );
-                }
-            }
-        },
-        30
-    );
-}
-daan_mail_after_response();
-
 add_action( 'wp_ajax_daan_place_order', 'daan_place_order' );
 add_action( 'wp_ajax_nopriv_daan_place_order', 'daan_place_order' );
 
