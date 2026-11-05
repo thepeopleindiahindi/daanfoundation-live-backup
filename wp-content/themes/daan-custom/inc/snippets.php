@@ -199,7 +199,38 @@ add_action( 'wp_ajax_nopriv_daan_place_order', 'daan_place_order' );
 
 /** Causes the /donate/ form may send: the live causes. */
 function daan_donation_causes() {
-    return array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Sadaqah', 'Sadaqah Jariyah', 'Fidyah & Kaffarah', 'Education Aid', 'Bank Interest', 'General' );
+    return array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Sadaqah', 'Sadaqah Jariyah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal', 'Education Aid', 'Bank Interest', 'General' );
+}
+
+/** Causes shown as choices on the /donate/ form. */
+function daan_donate_form_causes() {
+    return array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Sadaqah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal' );
+}
+
+/** The one mapping from a ?cause= value (name or slug, any case or spelling variant) to a cause. '' = not recognised. */
+function daan_cause_from_link( $raw ) {
+    $key = strtolower( html_entity_decode( (string) $raw, ENT_QUOTES, 'UTF-8' ) );
+    $key = trim( preg_replace( '/\s+/', ' ', str_replace( array( '&', '+', '-', '_' ), array( ' and ', ' ', ' ', ' ' ), $key ) ) );
+    $map = array(
+        'Where Most Needed' => array( 'where most needed', 'where needed', 'most needed' ),
+        'Community Kitchen' => array( 'community kitchen', 'kitchen' ),
+        'Ramadan Iftar'     => array( 'ramadan iftar', 'ramadan iftaar', 'serving iftar', 'iftar', 'iftaar', 'ramadan' ),
+        'Zakat'             => array( 'zakat', 'zakaat' ),
+        'Sadaqah'           => array( 'sadaqah', 'sadaqa', 'sadqah', 'sadqa' ),
+        'Sadaqah Jariyah'   => array( 'sadaqah jariyah', 'sadaqah jariya', 'sadqah jariyah', 'sadqa jariya' ),
+        'Fidyah & Kaffarah' => array( 'fidyah and kaffarah', 'fidya and kaffara', 'fidya and kaffarah', 'fidyah and kaffara', 'fidya kaffarah', 'fidya kaffara', 'fidyah kaffarah', 'fidyah kaffara', 'fidya', 'fidyah', 'kaffara', 'kaffarah' ),
+        'Eid Gifts'         => array( 'eid gifts', 'eid gift', 'eid' ),
+        'Winter Appeal'     => array( 'winter appeal', 'winter' ),
+        'Education Aid'     => array( 'education aid', 'education' ),
+        'Bank Interest'     => array( 'bank interest' ),
+        'General'           => array( 'general', 'general donation' ),
+    );
+    foreach ( $map as $cause => $names ) {
+        if ( in_array( $key, $names, true ) ) {
+            return $cause;
+        }
+    }
+    return '';
 }
 
 function daan_place_order() {

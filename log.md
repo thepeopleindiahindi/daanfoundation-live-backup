@@ -190,3 +190,8 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 ## 2026-11-05 (window: execution; correction)
 - Correction: the previous entry's "normal donations" was not proven when written. Retest found a bug from R-3: /donate/ links that preselect Fidyah & Kaffarah sent the cause with &amp; and were refused, from about 4 Nov afternoon to 5 Nov 08:46 IST. Fixed by decoding the cause on the server (inc/snippets.php). The amount message now shows Rs 10,00,000.
 - Verified: real donations for Fidyah & Kaffarah, Zakat, Community Kitchen, Where Most Needed reached the pending page; test orders 7218, 7223-7225 trashed; 7130 untouched; next digest 5 Nov 09:00; smoke OK. Donors refused in that window cannot be counted, the refusal is not logged.
+
+## 2026-11-05 (window: execution; donate links and causes)
+- Done: one mapping daan_cause_from_link() in inc/snippets.php for every ?cause= value; unknown value selects nothing and asks the donor; /donate/ without cause keeps Where Most Needed. Eid Gifts and Winter Appeal added to allowed list and form (not to execution mail). Sadaqah Jariyah page button corrected from community-kitchen to sadaqah-jariyah. Backup: D:\claude\_private_backups\2026-11-05_causes\. Link list: reports/site-audit-round3-2026-11-04/final/donate-links.json; crawl: final2/.
+- Report only: after the cutoff 1 real Where Most Needed order (cancelled); source link cannot be determined, orders hold no attribution data.
+- Open / next: owner decision on Fitrana (/zakat-al-fitr/ goes to Ramadan Iftar). No push; repo inc/seo-fixes.php not uploaded.

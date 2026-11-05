@@ -6,10 +6,11 @@
  * Creates WooCommerce orders via daan_place_order AJAX handler.
  */
 $preset_amount = isset($_GET['amount']) ? min( DAAN_MAX_DONATION, max(1, intval($_GET['amount'])) ) : 1000;
-$preset_cause  = isset($_GET['cause']) ? sanitize_text_field($_GET['cause']) : 'Where Most Needed';
-$causes        = array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Sadaqah', 'Fidyah & Kaffarah' );
-if (!in_array($preset_cause, $causes)) {
-    $preset_cause = 'Where Most Needed';
+// No ?cause= keeps the default. A value we do not recognise selects nothing, and the donor chooses.
+$preset_cause  = isset($_GET['cause']) ? daan_cause_from_link( sanitize_text_field( wp_unslash( $_GET['cause'] ) ) ) : 'Where Most Needed';
+$causes        = daan_donate_form_causes();
+if ( '' !== $preset_cause && ! in_array( $preset_cause, $causes, true ) ) {
+    $causes[] = $preset_cause; // A valid cause without its own line on the form, reached from a link.
 }
 get_header();
 ?>
@@ -279,7 +280,7 @@ get_header();
 
 	// Pre-select from URL params or defaults
 	var selectedAmount = <?php echo $preset_amount; ?>;
-	var causeText = '<?php echo esc_js($preset_cause); ?>';
+	var causeText = <?php echo wp_json_encode( $preset_cause ); ?>;
 
 	window.selectDonateAmount = function(btn, amt) {
 		document.querySelectorAll('.donate-amount-btn').forEach(function(b) {
@@ -318,6 +319,7 @@ get_header();
 
 	window.goToStep = function(step) {
 		if (step > 1 && selectedAmount > maxDonation) { alert(maxDonationText); return; }
+		if (step > 1 && !causeText) { alert('Please choose a cause.'); return; }
 		[1,2,3].forEach(function(s) {
 			var el = document.getElementById('step-' + s);
 			if (el) el.style.display = s === step ? 'block' : 'none';
@@ -380,6 +382,7 @@ get_header();
 		var paymentMethod = document.querySelector('input[name="payment_method"]:checked');
 
 		if (selectedAmount < 1) { alert('Please select a valid donation amount.'); return; }
+		if (!causeText) { alert('Please choose a cause.'); return; }
 		if (selectedAmount > maxDonation) { alert(maxDonationText); return; }
 		if (!paymentMethod) { alert('Please select a payment method.'); return; }
 
@@ -437,7 +440,7 @@ get_header();
 		customDonateAmount(document.getElementById('custom-donate-amount'));
 	}
 	// Pre-select cause from URL param
-	var causeRadio = document.querySelector('input[name="cause"][value="<?php echo esc_js($preset_cause); ?>"]');
+	var causeRadio = document.querySelector('input[name="cause"]:checked');
 	if (causeRadio) selectCause(causeRadio);
 })();
 </script>

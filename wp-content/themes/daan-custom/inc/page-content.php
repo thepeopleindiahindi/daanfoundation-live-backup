@@ -747,7 +747,7 @@ function daan_get_page_data( $slug ) {
 					'heading'     => 'Give Sadaqah Jariyah Today',
 					'description' => 'Invest in your eternal future by supporting our ongoing programmes. Every contribution creates a lasting legacy of compassion that continues to earn rewards.',
 					'button_text' => 'Give Ongoing Charity',
-					'button_url'  => '/donate/?cause=community-kitchen',
+					'button_url'  => '/donate/?cause=sadaqah-jariyah',
 				),
 			),
 		),
