@@ -217,7 +217,8 @@ function daan_place_order() {
     set_transient( $ip_key, $tries + 1, 10 * MINUTE_IN_SECONDS );
 
     $amount        = intval( $_POST['amount'] ?? 0 );
-    $cause          = sanitize_text_field( $_POST['cause'] ?? 'Where Most Needed' );
+    // The form can send & as &amp; when the cause came from the page address.
+    $cause          = html_entity_decode( sanitize_text_field( $_POST['cause'] ?? 'Where Most Needed' ), ENT_QUOTES, 'UTF-8' );
     $first_name     = sanitize_text_field( $_POST['first_name'] ?? '' );
     $last_name      = sanitize_text_field( $_POST['last_name'] ?? '' );
     $email          = sanitize_email( $_POST['email'] ?? '' );

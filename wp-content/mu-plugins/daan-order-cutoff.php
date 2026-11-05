@@ -23,6 +23,6 @@ function daan_order_after_cutoff( $order ) {
 }
 
 function daan_max_donation_message() {
-	$rupees = preg_replace( '/B(?=(dd)+d$)/', ',', (string) DAAN_MAX_DONATION );
+	$rupees = preg_replace( '/(\d)(?=(\d\d)+\d$)/', '$1,', (string) DAAN_MAX_DONATION );
 	return 'The largest donation we accept online is ₹' . $rupees . '. Please contact us for a larger amount.';
 }
