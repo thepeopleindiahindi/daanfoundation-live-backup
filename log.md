@@ -229,3 +229,8 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Owner actions: inbox check for "Mail failed – donation #7283" (alert send was not logged); check money on pairs #7219/#7220 and #7221/#7222; delete the 2 server backup files by hand.
 - Open / next: a stuck connection took 10-25 s to give up, not a hard 15 s. A successful digest retry was not run, to avoid counting real orders. Order notes now record mail failures from today.
 - Risks / notes: no push; repo inc/seo-fixes.php not uploaded.
+
+## 2026-11-05 (window: execution; failed mail notice and alert log)
+- Done: inc/mail-reliability.php: red wp-admin notice "Mail failed: donation #N" with Dismiss after the third failed retry (manage_options only, no donor data); alert result recorded as an order note and in the WooCommerce log, source daan-mail. Retry rules, payment and mail content unchanged. Backup: D:\claude\_private_backups\2026-11-05_mail_notice\.
+- Verified with a temporary simulator (removed) on test order 7285, trashed: alert sent logged and alert failed logged; notice rendered for the admin user, 0 for logged out; dismiss function cleared it; logged-out dismiss link changed nothing (302). 7130, 7219-7222 statuses unchanged. Smoke OK.
+- Open / next: notice and Dismiss click not seen in a real wp-admin browser (no login by Claude). Inbox not seen. No push; repo inc/seo-fixes.php not uploaded.

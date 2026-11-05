@@ -217,15 +217,61 @@ add_action(
 		$order->update_meta_data( DAAN_MAIL_FAILED_META, array_filter( $failed ) );
 		$order->save_meta_data();
 		$order->add_order_note( 'MAIL FAILED after 3 retries (' . $tracked['label'] . '). Please contact the donor or send it by hand.', false );
-		wp_mail(
-			DAAN_NOTIFICATION_EMAIL,
+		$notices              = (array) get_option( 'daan_mail_failed_notices', array() );
+		$notices[ $order_id ] = $order->get_order_number();
+		update_option( 'daan_mail_failed_notices', $notices, false );
+		daan_mail_send_alert(
 			'Mail failed – donation #' . $order->get_order_number(),
 			'<p>The ' . esc_html( $tracked['label'] ) . ' mail of donation <a href="' . esc_url( $order->get_edit_order_url() ) . '">#' . esc_html( $order->get_order_number() ) . '</a> failed after 3 retries.</p>',
-			array( 'Content-Type: text/html; charset=UTF-8' )
+			$order
 		);
 	},
 	10,
 	2
+);
+
+/** Sends the alert and records whether it went (subject and order number only). */
+function daan_mail_send_alert( $subject, $html, $order = null ) {
+	$ok     = wp_mail( DAAN_NOTIFICATION_EMAIL, $subject, $html, array( 'Content-Type: text/html; charset=UTF-8' ) );
+	$result = 'Alert mail ' . ( $ok ? 'sent' : 'failed' ) . ': ' . $subject;
+	wc_get_logger()->log( $ok ? 'info' : 'error', $result, array( 'source' => 'daan-mail' ) );
+	if ( $order ) {
+		$order->add_order_note( $result, false );
+	}
+}
+
+// The alert uses the same mail server, so wp-admin shows the failure too.
+add_action(
+	'admin_notices',
+	function () {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+		foreach ( (array) get_option( 'daan_mail_failed_notices', array() ) as $order_id => $number ) {
+			$url = wp_nonce_url( admin_url( 'admin-post.php?action=daan_mail_notice_dismiss&order=' . (int) $order_id ), 'daan_mail_notice_' . (int) $order_id );
+			echo '<div class="notice notice-error"><p><strong>Mail failed: donation #' . esc_html( $number ) . '</strong> <a href="' . esc_url( $url ) . '">Dismiss</a></p></div>';
+		}
+	}
+);
+
+function daan_mail_notice_dismiss( $order_id ) {
+	$notices = (array) get_option( 'daan_mail_failed_notices', array() );
+	unset( $notices[ $order_id ] );
+	update_option( 'daan_mail_failed_notices', $notices, false );
+}
+
+add_action(
+	'admin_post_daan_mail_notice_dismiss',
+	function () {
+		$order_id = isset( $_GET['order'] ) ? absint( $_GET['order'] ) : 0;
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( 'Not allowed.', 403 );
+		}
+		check_admin_referer( 'daan_mail_notice_' . $order_id );
+		daan_mail_notice_dismiss( $order_id );
+		wp_safe_redirect( wp_get_referer() ? wp_get_referer() : admin_url() );
+		exit;
+	}
 );
 
 /** Digest lines for mails that failed after all retries, last 14 days. */
@@ -254,5 +300,5 @@ function daan_digest_send_result( $sent ) {
 		return;
 	}
 	delete_option( 'daan_digest_retry' );
-	wp_mail( DAAN_NOTIFICATION_EMAIL, 'Mail failed – daily digest', '<p>The daily digest could not be sent after 3 retries.</p>', array( 'Content-Type: text/html; charset=UTF-8' ) );
+	daan_mail_send_alert( 'Mail failed – daily digest', '<p>The daily digest could not be sent after 3 retries.</p>' );
 }
