@@ -406,11 +406,15 @@ get_header();
 		formData.append('state', state);
 		formData.append('pincode', pincode);
 		formData.append('frequency', givingType);
+		formData.append('daan_token', '<?php echo esc_js( wp_generate_uuid4() ); ?>');
 		formData.append('payment_method', paymentMethod.value);
 
+		var aborter = new AbortController();
+		setTimeout(function() { aborter.abort(); }, 60000);
 		fetch('<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>', {
 			method: 'POST',
-			body: formData
+			body: formData,
+			signal: aborter.signal
 		})
 		.then(function(r) { return r.json(); })
 		.then(function(data) {
@@ -424,7 +428,7 @@ get_header();
 			}
 		})
 		.catch(function(err) {
-			alert('An error occurred. Please try again later.');
+			alert('We could not confirm your donation because of a network problem. No money has been taken. Please check your connection and press Confirm Donation again.');
 			processing.style.display = 'none';
 			btn.disabled = false;
 			btn.textContent = 'Confirm Donation';

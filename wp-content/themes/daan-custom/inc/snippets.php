@@ -194,6 +194,96 @@ function daan_handle_newsletter_signup() {
  * 4. Donation Order — WooCommerce Order Creation
  * ------------------------------------------------------------------------- */
 
+/** Key for one submitted form: its hidden token plus what was donated. '' when the form sent no token. */
+function daan_idem_key( $token, $parts ) {
+    $token = preg_replace( '/[^a-zA-Z0-9-]/', '', (string) wp_unslash( $token ) );
+    return '' === $token ? '' : 'daan_idem_' . md5( $token . '|' . implode( '|', $parts ) );
+}
+
+/** Returns the order this form already made in the last 2 minutes. Otherwise holds a database lock until daan_idem_finish(), so a second copy waits. */
+function daan_idem_begin( $key ) {
+    if ( '' === $key ) {
+        return null;
+    }
+    global $wpdb;
+    $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s, 15)', $key ) );
+    $id = (int) get_transient( $key );
+    if ( ! $id ) {
+        return null;
+    }
+    $wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $key ) );
+    $order = wc_get_order( $id );
+    return $order ? $order : null;
+}
+
+function daan_idem_finish( $key, $order ) {
+    if ( '' === $key ) {
+        return;
+    }
+    global $wpdb;
+    set_transient( $key, $order->get_id(), 2 * MINUTE_IN_SECONDS );
+    $wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $key ) );
+}
+
+/**
+ * Answer the donor first: e-mails of a donation request are held and sent after the response is closed (SMTP takes
+ * several seconds, sometimes far more). Content and recipients stay as they were.
+ */
+function daan_mail_after_response() {
+    // phpcs:ignore WordPress.Security.NonceVerification -- only decides when mail goes out.
+    $is_donation = ( wp_doing_ajax() && 'daan_place_order' === ( $_POST['action'] ?? '' ) ) || 'checkout' === ( $_GET['wc-ajax'] ?? '' );
+    if ( ! $is_donation ) {
+        return;
+    }
+    $queue   = array();
+    $sending = false;
+    add_filter(
+        'pre_wp_mail',
+        function ( $result, $atts ) use ( &$queue, &$sending ) {
+            if ( $sending ) {
+                return $result;
+            }
+            // WooCommerce sets these only while it calls wp_mail, so they are kept with the mail.
+            $queue[] = array( $atts, apply_filters( 'wp_mail_from', get_option( 'admin_email' ) ), apply_filters( 'wp_mail_from_name', 'WordPress' ), apply_filters( 'wp_mail_content_type', 'text/plain' ) );
+            return true;
+        },
+        1,
+        2
+    );
+    // After WooCommerce saves the session (priority 20).
+    add_action(
+        'shutdown',
+        function () use ( &$queue, &$sending ) {
+            if ( ! $queue ) {
+                return;
+            }
+            ignore_user_abort( true );
+            if ( function_exists( 'litespeed_finish_request' ) ) {
+                litespeed_finish_request();
+            } elseif ( function_exists( 'fastcgi_finish_request' ) ) {
+                fastcgi_finish_request();
+            }
+            $sending = true;
+            foreach ( $queue as $mail ) {
+                $set = array(
+                    'wp_mail_from'         => function () use ( $mail ) { return $mail[1]; },
+                    'wp_mail_from_name'    => function () use ( $mail ) { return $mail[2]; },
+                    'wp_mail_content_type' => function () use ( $mail ) { return $mail[3]; },
+                );
+                foreach ( $set as $hook => $fn ) {
+                    add_filter( $hook, $fn, 99999 );
+                }
+                wp_mail( $mail[0]['to'], $mail[0]['subject'], $mail[0]['message'], $mail[0]['headers'], $mail[0]['attachments'] );
+                foreach ( $set as $hook => $fn ) {
+                    remove_filter( $hook, $fn, 99999 );
+                }
+            }
+        },
+        30
+    );
+}
+daan_mail_after_response();
+
 add_action( 'wp_ajax_daan_place_order', 'daan_place_order' );
 add_action( 'wp_ajax_nopriv_daan_place_order', 'daan_place_order' );
 
@@ -310,6 +400,13 @@ function daan_place_order() {
         wp_send_json_error( array( 'message' => 'Checkout system unavailable.' ) );
     }
 
+    // The same form sent again (double click, retry on a slow network) goes to the order already made.
+    $idem_key = daan_idem_key( $_POST['daan_token'] ?? '', array( $email, $amount, $cause ) );
+    $existing = daan_idem_begin( $idem_key );
+    if ( $existing ) {
+        wp_send_json_success( array( 'order_id' => $existing->get_id(), 'redirect_url' => $existing->get_checkout_order_received_url() ) );
+    }
+
     $order = wc_create_order();
     if ( is_wp_error( $order ) ) {
         wp_send_json_error( array( 'message' => 'Could not create donation order.' ) );
@@ -352,6 +449,7 @@ function daan_place_order() {
     $order->calculate_totals();
     $order->set_status( 'on-hold', 'Donation placed via /donate/ form.' );
     $order->save();
+    daan_idem_finish( $idem_key, $order );
 
     $redirect_url = $order->get_checkout_order_received_url();
 

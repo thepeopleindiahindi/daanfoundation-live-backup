@@ -214,3 +214,10 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Owner actions: delete by hand ~/private-daan-backups/onhold_donor_contacts_2026-10-13.csv and ~/db-backups/daanfoundation-db-backup-2026-09-14.sql.gz; Claude did not delete them (permanent deletion is outside what it may do).
 - Open / next: cart-page amount box and checkout Rs 1 check not exercised in a browser; DB backup not test-restored. Order 7246 page did not change within 40 s in the test though the order was made; 7247 changed within 20 s: watch for slow checkout.
 - Risks / notes: no push; repo inc/seo-fixes.php not uploaded.
+
+## 2026-11-05 (window: execution; slow submit and duplicates)
+- Done: cause found with a temporary probe (removed): order made in 0.2 s, two SMTP mails take 8-9 s inside the request; one mail hung until PHP ended at about 120 s (order 7260), the same kind of stall as 7246. inc/snippets.php: mails of /donate/ and checkout requests sent after the response; hidden-token duplicate check, 2 minutes. page-donate.php: token, 60 s limit, clear network message. inc/donation-wording.php: checkout token, button Processing... and back on error. Backup: D:\claude\_private_backups\2026-11-05_mail_after\.
+- Verified: before /donate/ 9.7-18.8 s, checkout 9.6-13.0 s; after /donate/ 0.8-1.2 s, checkout 0.7-1.1 s (5 each, 375 px). Double click, slow network, blocked request tested; test orders 7248-7277 and later trashed; 7130 on-hold, untouched. Smoke OK. Report only: of 10 real orders after the cutoff, 2 same-email same-amount pairs within 10 minutes (gaps 8 s, 131 s); not changed.
+- Owner actions: delete by hand ~/private-daan-backups/onhold_donor_contacts_2026-10-13.csv (16796 bytes, SHA-256 matches PC) and ~/db-backups/daanfoundation-db-backup-2026-09-14.sql.gz (8977567 bytes; today's DB backup is on PC); Claude did not delete them. Check the inbox for sender and layout of mails after this change.
+- Open / next: an SMTP hang can still lose a mail, now without holding the donor (SMTP provider not changed). Inbox not seen.
+- Risks / notes: no push; repo inc/seo-fixes.php not uploaded.

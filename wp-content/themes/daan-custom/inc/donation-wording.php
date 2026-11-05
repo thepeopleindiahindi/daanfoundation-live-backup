@@ -127,6 +127,58 @@ add_filter(
 	1
 );
 
+// The same checkout sent twice (double click, retry on a slow network) goes to the order already made.
+add_action(
+	'woocommerce_checkout_before_customer_details',
+	function () {
+		echo '<input type="hidden" name="daan_token" value="' . esc_attr( wp_generate_uuid4() ) . '">';
+	}
+);
+function daan_checkout_idem_key() {
+	// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce checked the checkout nonce.
+	return daan_idem_key( $_POST['daan_token'] ?? '', array( sanitize_email( wp_unslash( $_POST['billing_email'] ?? '' ) ) ) );
+}
+add_action(
+	'woocommerce_before_checkout_process',
+	function () {
+		$existing = daan_idem_begin( daan_checkout_idem_key() );
+		if ( $existing ) {
+			wp_send_json( array( 'result' => 'success', 'redirect' => $existing->get_checkout_order_received_url() ) );
+		}
+	}
+);
+add_action(
+	'woocommerce_checkout_order_created',
+	function ( $order ) {
+		daan_idem_finish( daan_checkout_idem_key(), $order );
+	}
+);
+// The button says it is working, and comes back if the checkout fails.
+add_action(
+	'wp_footer',
+	function () {
+		if ( ! function_exists( 'is_checkout' ) || ! is_checkout() || is_order_received_page() ) {
+			return;
+		}
+		?>
+		<script>
+		jQuery(function ($) {
+			var label = '';
+			$('form.checkout').on('checkout_place_order', function () {
+				var b = $('#place_order');
+				label = b.text();
+				b.prop('disabled', true).text('Processing...');
+				return true;
+			});
+			$(document.body).on('checkout_error', function () {
+				if (label) { $('#place_order').prop('disabled', false).text(label); }
+			});
+		});
+		</script>
+		<?php
+	}
+);
+
 // An account e-mail with no name greets the donor.
 add_filter(
 	'woocommerce_mail_content',
