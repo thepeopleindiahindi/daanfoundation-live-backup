@@ -705,6 +705,92 @@ add_action( 'http_api_curl', function ( $handle, $args, $url ) {
 	}
 }, 10, 3 );
 
+/* Cron heartbeat: every cron run saves its time; a stop of over 3 hours gives an alert mail (max 1 a day),
+ * a red wp-admin notice, and a 503 on the secret status URL /?daan_cron_status=TOKEN (token in wp-admin only). */
+const DAAN_OT_CRON_LAST     = 'daan_ot_cron_last';      // any cron run (web or server)
+const DAAN_OT_CRON_CLI_LAST = 'daan_ot_cron_cli_last';  // run started by the server cron (CLI)
+const DAAN_OT_CRON_ALERTED  = 'daan_ot_cron_alerted_at';
+const DAAN_OT_CRON_TOKEN    = 'daan_ot_cron_token';
+const DAAN_OT_CRON_STALE    = 3 * HOUR_IN_SECONDS;
+
+function daan_ot_cron_beat() {
+	update_option( DAAN_OT_CRON_LAST, time(), false );
+	if ( 'cli' === PHP_SAPI ) {
+		update_option( DAAN_OT_CRON_CLI_LAST, time(), false );
+	}
+}
+add_action( 'shutdown', function () {
+	if ( wp_doing_cron() ) {
+		daan_ot_cron_beat();
+	}
+} );
+add_action( 'daan_ot_hourly', 'daan_ot_cron_beat', 1 );
+
+function daan_ot_cron_age() {
+	$last = (int) get_option( DAAN_OT_CRON_LAST, 0 );
+	return $last ? time() - $last : PHP_INT_MAX;
+}
+
+function daan_ot_cron_stale() {
+	return daan_ot_cron_age() > DAAN_OT_CRON_STALE;
+}
+
+function daan_ot_cron_token() {
+	$token = (string) get_option( DAAN_OT_CRON_TOKEN, '' );
+	if ( '' === $token ) {
+		$token = wp_generate_password( 32, false );
+		update_option( DAAN_OT_CRON_TOKEN, $token, false );
+	}
+	return $token;
+}
+
+function daan_ot_cron_when( $key ) {
+	$t = (int) get_option( $key, 0 );
+	return $t ? wp_date( 'j M Y, g:i A', $t, new DateTimeZone( 'Asia/Kolkata' ) ) : 'never';
+}
+
+// Checked on normal page loads (not by cron, which may be the thing that stopped), at most every 10 minutes.
+add_action( 'shutdown', function () {
+	if ( wp_doing_cron() || ( defined( 'WP_CLI' ) && WP_CLI ) || ! daan_ot_cron_stale() || get_transient( 'daan_ot_cron_checked' ) ) {
+		return;
+	}
+	set_transient( 'daan_ot_cron_checked', 1, 10 * MINUTE_IN_SECONDS );
+	if ( time() - (int) get_option( DAAN_OT_CRON_ALERTED, 0 ) < DAY_IN_SECONDS ) {
+		return;
+	}
+	update_option( DAAN_OT_CRON_ALERTED, time(), false );
+	if ( function_exists( 'fastcgi_finish_request' ) ) {
+		fastcgi_finish_request();
+	}
+	$html = '<p style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;">The site cron has not run since <b>' . esc_html( daan_ot_cron_when( DAAN_OT_CRON_LAST ) ) . '</b>. Execution emails, auto-cancel, the digest and mail retries are waiting. Please check the hPanel cron job.</p>';
+	wp_mail( array( DAAN_OT_ALERT_TO, DAAN_OT_BCC ), 'Cron stopped – daanfoundation.in', $html, array( 'Content-Type: text/html; charset=UTF-8' ) );
+}, 20 );
+
+add_action( 'admin_notices', function () {
+	if ( current_user_can( 'manage_options' ) && daan_ot_cron_stale() ) {
+		echo '<div class="notice notice-error"><p><b>Cron stopped:</b> the site cron has not run since ' . esc_html( daan_ot_cron_when( DAAN_OT_CRON_LAST ) ) . '. Execution emails, auto-cancel, digest and mail retries are waiting.</p></div>';
+	}
+} );
+
+// Outside check (UptimeRobot): 200 "CRON OK" or 503 "CRON STALE", with the last run time. Nothing else is shown.
+add_action( 'init', function () {
+	if ( ! isset( $_GET['daan_cron_status'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		return;
+	}
+	$given = (string) wp_unslash( $_GET['daan_cron_status'] ); // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
+	$token = (string) get_option( DAAN_OT_CRON_TOKEN, '' );
+	if ( '' === $token || ! hash_equals( $token, $given ) ) {
+		return;
+	}
+	nocache_headers();
+	header( 'Content-Type: text/plain; charset=UTF-8' );
+	header( 'X-Robots-Tag: noindex, nofollow' );
+	$stale = daan_ot_cron_stale();
+	status_header( $stale ? 503 : 200 );
+	echo ( $stale ? 'CRON STALE' : 'CRON OK' ) . "\nlast run: " . esc_html( daan_ot_cron_when( DAAN_OT_CRON_LAST ) ) . "\nserver cron last run: " . esc_html( daan_ot_cron_when( DAAN_OT_CRON_CLI_LAST ) ) . "\n";
+	exit;
+}, 0 );
+
 add_action( 'init', function () {
 	if ( ! wp_next_scheduled( 'daan_ot_hourly' ) ) {
 		wp_schedule_event( time() + 600, 'hourly', 'daan_ot_hourly' );
@@ -746,6 +832,9 @@ add_action( 'admin_menu', function () {
 		<div class="wrap">
 			<h1>Order Automation</h1>
 			<p>Applies only to orders created from <?php echo esc_html( wp_date( 'j M Y, g:i A', daan_order_cutoff() ) ); ?> on.</p>
+			<h2>Cron</h2>
+			<p>Last cron run: <b><?php echo esc_html( daan_ot_cron_when( DAAN_OT_CRON_LAST ) ); ?></b> · server cron (hPanel) last run: <b><?php echo esc_html( daan_ot_cron_when( DAAN_OT_CRON_CLI_LAST ) ); ?></b><?php echo daan_ot_cron_stale() ? ' · <b style="color:#b32d2e">STALE</b>' : ''; ?></p>
+			<p>Status URL for UptimeRobot (keep private): <code><?php echo esc_html( add_query_arg( 'daan_cron_status', daan_ot_cron_token(), home_url( '/' ) ) ); ?></code></p>
 			<form method="post" action="options.php">
 				<?php settings_fields( 'daan_ot_automation' ); ?>
 				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_ENABLED_OPTION ); ?>" value="yes" <?php checked( daan_ot_automation_on() ); ?>> Send execution e-mails and auto-cancel unpaid donations</label></p>
