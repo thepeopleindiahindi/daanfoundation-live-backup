@@ -501,11 +501,16 @@ function daan_ot_exec_process( $order ) {
 	if ( ! daan_ot_exec_is_due( $order ) ) {
 		return false;
 	}
-	$headers = array( 'Content-Type: text/html; charset=UTF-8', 'Bcc: ' . DAAN_OT_BCC );
-	if ( wp_mail( $order->get_billing_email(), 'Your donation has reached those in need', daan_ot_exec_html( $order ), $headers ) ) {
+	$headers = array( 'Content-Type: text/html; charset=UTF-8' );
+	$subject = 'Your donation has reached those in need';
+	$html    = daan_ot_exec_html( $order );
+	if ( wp_mail( $order->get_billing_email(), $subject, $html, $headers ) ) {
 		$order->update_meta_data( DAAN_OT_EXEC_FLAG, time() );
 		$order->save_meta_data();
 		$order->add_order_note( 'Execution email sent ' . wp_date( 'j M Y, g:i A' ) );
+		// Separate copy for the Foundation (replaces Bcc); the donor never sees this address.
+		$copy = wp_mail( DAAN_OT_BCC, '[Copy] #' . $order->get_order_number() . ' ' . $subject, $html, $headers );
+		$order->add_order_note( $copy ? 'Execution email copy sent to the Foundation.' : 'Execution email copy to the Foundation failed (donor mail was sent).' );
 		return true;
 	}
 	if ( time() - (int) $order->get_meta( DAAN_OT_EXEC_ALERT ) >= DAY_IN_SECONDS ) {
@@ -691,6 +696,14 @@ add_action( 'daan_ot_hourly', function () {
 		daan_ot_lock_release( 'daan_ot_cron_lock' );
 	}
 } );
+
+// The server resolves its own domain to an IPv6 address that resets the connection, so the WP-Cron
+// loopback (and Action Scheduler's) never ran from 11 Nov 2026. Requests to this site go over IPv4.
+add_action( 'http_api_curl', function ( $handle, $args, $url ) {
+	if ( wp_parse_url( $url, PHP_URL_HOST ) === wp_parse_url( site_url(), PHP_URL_HOST ) && defined( 'CURL_IPRESOLVE_V4' ) ) {
+		curl_setopt( $handle, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
+	}
+}, 10, 3 );
 
 add_action( 'init', function () {
 	if ( ! wp_next_scheduled( 'daan_ot_hourly' ) ) {
