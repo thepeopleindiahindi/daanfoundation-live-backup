@@ -93,6 +93,11 @@ function daan_pay_upi_link( $order ) {
 		. '&tn=' . rawurlencode( 'Order ' . $order->get_order_number() );
 }
 
+/** UPI QR donation from the cutoff on, not paid yet: donors see "Thank you", never "PENDING" (2026-11-15). Older orders keep their page. */
+function daan_pay_is_new_upq_unpaid( $order ) {
+	return function_exists( 'upq_is_new_order' ) && $order instanceof WC_Order && upq_is_new_order( $order ) && $order->has_status( array( 'on-hold', 'pending' ) );
+}
+
 function daan_pay_utr_ok( $utr, $is_upi ) {
 	if ( $is_upi ) {
 		return (bool) preg_match( '/^[0-9]{12}$/', $utr );
@@ -114,6 +119,9 @@ function daan_pay_notify_recipient() {
 add_filter(
 	'woocommerce_thankyou_order_received_text',
 	function ( $text, $order ) {
+		if ( daan_pay_mode() && daan_pay_is_new_upq_unpaid( $order ) ) {
+			return '<strong class="daan-ty-title">Thank you for your donation!</strong><br>' . esc_html( upq_thanks_text() );
+		}
 		if ( daan_pay_mode() && daan_pay_is_pending( $order ) ) {
 			return '<strong>Status: PENDING</strong> &mdash; payment not received yet.';
 		}
@@ -131,6 +139,9 @@ add_filter(
 		}
 		$id    = absint( get_query_var( 'order-received' ) );
 		$order = $id ? wc_get_order( $id ) : null;
+		if ( daan_pay_is_new_upq_unpaid( $order ) ) {
+			return 'Thank you for your donation';
+		}
 		return daan_pay_is_pending( $order ) ? 'Donation Pending — Complete Your Payment' : $title;
 	},
 	30
@@ -530,6 +541,9 @@ function daan_pay_email_intro( $order ) {
 add_filter(
 	'woocommerce_email_heading_customer_on_hold_order',
 	function ( $heading, $order = null ) {
+		if ( daan_pay_is_new_upq_unpaid( $order ) ) {
+			return 'Thank you for your donation';
+		}
 		if ( 'live' === daan_pay_mode() && daan_pay_is_pending( $order ) ) {
 			return 'Your donation is PENDING — please complete the payment';
 		}
@@ -575,7 +589,8 @@ function daan_pay_digest_row( $o, $bg, $details, $actions ) {
 		. '<div style="display:inline-block;vertical-align:middle;">' . $btn . '</div></td></tr>';
 }
 
-function daan_pay_digest_html() {
+/** @param bool $evening 6 PM digest: same list, no "will be cancelled" block, never counted for auto-cancel. */
+function daan_pay_digest_html( $evening = false ) {
 	$orders = wc_get_orders( array( 'type' => 'shop_order', 'status' => 'on-hold', 'limit' => -1, 'orderby' => 'date', 'order' => 'ASC', 'date_created' => daan_order_cutoff_range() ) );
 	$now    = time();
 	$old    = array();
@@ -597,8 +612,9 @@ function daan_pay_digest_html() {
 
 	$cap  = 150;
 	// Donations about to be cancelled come first, so the 150 limit can never leave them out.
-	$soon = array_filter( array_merge( $old, $new ), function ( $r ) { return function_exists( 'daan_ot_digest_will_cancel' ) && daan_ot_digest_will_cancel( $r['o'] ); } );
-	$rest = array_filter( array_merge( $old, $new ), function ( $r ) { return ! ( function_exists( 'daan_ot_digest_will_cancel' ) && daan_ot_digest_will_cancel( $r['o'] ) ); } );
+	$will = function ( $r ) use ( $evening ) { return ! $evening && function_exists( 'daan_ot_digest_will_cancel' ) && daan_ot_digest_will_cancel( $r['o'] ); };
+	$soon = array_filter( array_merge( $old, $new ), $will );
+	$rest = array_filter( array_merge( $old, $new ), function ( $r ) use ( $will ) { return ! $will( $r ); } );
 	$rows = array_slice( array_merge( $soon, $rest ), 0, $cap );
 	$line = function ( $r ) {
 		$o = $r['o'];
@@ -606,6 +622,9 @@ function daan_pay_digest_html() {
 	};
 	$table = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">';
 	$h  = '<div style="font-family:Arial,sans-serif;font-size:14px;color:#1F2937">';
+	if ( $evening ) {
+		$h .= '<p style="background:#EFF6FF;padding:10px 12px;border-radius:6px;">Evening digest (6 PM). It does not count toward auto-cancel; only the 9 AM digest counts.</p>';
+	}
 	if ( function_exists( 'daan_ot_autocancel_paused' ) && daan_ot_autocancel_paused() ) {
 		$h .= '<p style="background:#FEF3C7;padding:10px 12px;border-radius:6px;font-weight:700;">Auto-cancel is paused</p>';
 	} elseif ( $soon ) {
@@ -617,7 +636,7 @@ function daan_pay_digest_html() {
 	}
 	$h .= daan_mail_failed_digest_html();
 	$h .= '<p><strong>' . count( $orders ) . '</strong> on-hold donations · <strong>' . count( $old ) . '</strong> older than 3 days · <strong>' . $withutr . '</strong> with a UTR from the donor.</p>';
-	$h .= '<p>Compare each UTR with your bank/UPI statement; if the money is there, open the donation and set it to <em>Completed</em> (the donor then gets the receipt e-mail). With no button pressed, a donation is cancelled at 3 PM on the day of its second digest; after "Not received", 24 hours later.</p>';
+	$h .= '<p>Compare each UTR with your bank/UPI statement; if the money is there, open the donation and set it to <em>Completed</em> (the donor then gets the receipt e-mail). With no button pressed, a donation is cancelled at 3 PM on the day of its second 9 AM digest; after "Not received" (the donor gets one e-mail asking for the screenshot or UTR), 24 hours later.</p>';
 	$h .= $table;
 	foreach ( array_slice( $rows, count( $soon ) ) as $r ) {
 		$h .= $line( $r );
@@ -643,34 +662,40 @@ function daan_pay_digest_html() {
 	return array( 'html' => $h, 'total' => count( $orders ), 'old' => count( $old ), 'utr' => $withutr, 'shown' => $shown, 'cancelled' => count( $cancelled ) );
 }
 
+/** Sends one digest. Only the 9 AM one counts for auto-cancel (counting unchanged); the 6 PM one is a reminder only. */
+function daan_pay_send_digest( $evening = false ) {
+	if ( 'live' !== daan_pay_mode() ) {
+		return;
+	}
+	$d = daan_pay_digest_html( $evening );
+	if ( 0 === $d['total'] && 0 === $d['cancelled'] && '' === daan_mail_failed_digest_html() ) {
+		return;
+	}
+	$sent = wp_mail( daan_pay_notify_recipient(), '[Daan] ' . ( $evening ? 'Evening: ' : '' ) . $d['total'] . ' on-hold donations (' . $d['old'] . ' older than 3 days, ' . $d['utr'] . ' with UTR)' . ( $d['cancelled'] ? ', ' . $d['cancelled'] . ' auto-cancelled' : '' ), $d['html'], array( 'Content-Type: text/html; charset=UTF-8' ) );
+	daan_digest_send_result( (bool) $sent, $evening ? 'daan_pending_digest_evening' : 'daan_pending_digest' );
+	// The 24 hours start only once an order was really shown in a 9 AM digest that went out.
+	if ( $sent && ! $evening && function_exists( 'daan_ot_mark_in_digest' ) ) {
+		daan_ot_mark_in_digest( $d['shown'] );
+	}
+}
+add_action( 'daan_pending_digest', function () { daan_pay_send_digest( false ); } );
+add_action( 'daan_pending_digest_evening', function () { daan_pay_send_digest( true ); } );
+
+// 09:00 IST = 03:30 UTC (counts), 18:00 IST = 12:30 UTC (reminder only). Rollback of the evening one: wp cron event unschedule daan_pending_digest_evening.
 add_action(
-	'daan_pending_digest',
+	'init',
 	function () {
 		if ( 'live' !== daan_pay_mode() ) {
 			return;
 		}
-		$d = daan_pay_digest_html();
-			if ( 0 === $d['total'] && 0 === $d['cancelled'] && '' === daan_mail_failed_digest_html() ) {
-				return;
+		foreach ( array( 'daan_pending_digest' => '03:30:00', 'daan_pending_digest_evening' => '12:30:00' ) as $hook => $utc ) {
+			if ( ! wp_next_scheduled( $hook ) ) {
+				$t = strtotime( 'today ' . $utc . ' UTC' );
+				if ( $t <= time() ) {
+					$t += DAY_IN_SECONDS;
+				}
+				wp_schedule_event( $t, 'daily', $hook );
 			}
-			$sent = wp_mail( daan_pay_notify_recipient(), '[Daan] ' . $d['total'] . ' on-hold donations (' . $d['old'] . ' older than 3 days, ' . $d['utr'] . ' with UTR)' . ( $d['cancelled'] ? ', ' . $d['cancelled'] . ' auto-cancelled' : '' ), $d['html'], array( 'Content-Type: text/html; charset=UTF-8' ) );
-			daan_digest_send_result( (bool) $sent );
-			// The 24 hours start only once an order was really shown in a digest that went out.
-			if ( $sent && function_exists( 'daan_ot_mark_in_digest' ) ) {
-				daan_ot_mark_in_digest( $d['shown'] );
-			}
-	}
-);
-
-add_action(
-	'init',
-	function () {
-		if ( 'live' === daan_pay_mode() && ! wp_next_scheduled( 'daan_pending_digest' ) ) {
-			$t = strtotime( 'today 03:30:00 UTC' );
-			if ( $t <= time() ) {
-				$t += DAY_IN_SECONDS;
-			}
-			wp_schedule_event( $t, 'daily', 'daan_pending_digest' );
 		}
 	}
 );

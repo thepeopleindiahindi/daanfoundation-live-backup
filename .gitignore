@@ -57,3 +57,7 @@ tpl-sidebar-content.LIVE-BACKUP.php
 reports/full-site-audit-2026-10-13/
 reports/site-audit-round2-2026-10-30/
 reports/security-audit-*/
+
+# Working reports with renders, donor data or ops details (2026-11-15)
+reports/site-audit-round3-*/
+reports/donor-mails-*/

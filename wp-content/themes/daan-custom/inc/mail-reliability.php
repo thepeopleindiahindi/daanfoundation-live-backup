@@ -18,6 +18,7 @@ function daan_mail_tracked() {
 		'customer_on_hold_order'  => array( 'label' => 'donor on-hold', 'status' => 'on-hold' ),
 		'new_order'               => array( 'label' => 'admin new donation', 'status' => '' ),
 		'customer_completed_order' => array( 'label' => 'donor completed + receipt', 'status' => 'completed' ),
+		'customer_payment_not_found' => array( 'label' => 'donor payment not found', 'status' => 'on-hold' ),
 	);
 }
 
@@ -286,19 +287,21 @@ function daan_mail_failed_digest_html() {
 }
 
 /** The digest did not go out: try again 5 min, 30 min, 2 hours later, then tell the Foundation. Counting stays in the digest itself. */
-function daan_digest_send_result( $sent ) {
-	$state = get_option( 'daan_digest_retry', array() );
+function daan_digest_send_result( $sent, $hook = 'daan_pending_digest' ) {
+	// Morning and evening digest keep separate retry counts; a retry runs the same digest again (the evening one never counts).
+	$opt   = 'daan_pending_digest' === $hook ? 'daan_digest_retry' : 'daan_digest_retry_evening';
+	$state = get_option( $opt, array() );
 	if ( $sent ) {
-		delete_option( 'daan_digest_retry' );
+		delete_option( $opt );
 		return;
 	}
 	$tries  = (int) ( $state['tries'] ?? 0 );
 	$delays = daan_mail_retry_delays();
 	if ( $tries < count( $delays ) ) {
-		update_option( 'daan_digest_retry', array( 'tries' => $tries + 1 ), false );
-		as_schedule_single_action( time() + $delays[ $tries ], 'daan_pending_digest', array(), DAAN_MAIL_GROUP );
+		update_option( $opt, array( 'tries' => $tries + 1 ), false );
+		as_schedule_single_action( time() + $delays[ $tries ], $hook, array(), DAAN_MAIL_GROUP );
 		return;
 	}
-	delete_option( 'daan_digest_retry' );
-	daan_mail_send_alert( 'Mail failed – daily digest', '<p>The daily digest could not be sent after 3 retries.</p>' );
+	delete_option( $opt );
+	daan_mail_send_alert( 'Mail failed – ' . ( 'daan_pending_digest' === $hook ? 'morning' : 'evening' ) . ' digest', '<p>The ' . ( 'daan_pending_digest' === $hook ? '9 AM' : '6 PM' ) . ' digest could not be sent after 3 retries.</p>' );
 }

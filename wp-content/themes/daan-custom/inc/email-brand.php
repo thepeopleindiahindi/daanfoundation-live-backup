@@ -12,9 +12,9 @@ defined( 'ABSPATH' ) || exit;
 /** Subject and heading per e-mail id. %s = donation number. */
 function daan_email_brand_titles() {
 	return array(
-		'customer_on_hold_order'    => array( 'Please complete your donation #%s', '' ),
+		'customer_on_hold_order'    => array( 'Thank you for your donation #%s', '' ),
 		'customer_processing_order' => array( 'We have received your donation #%s', 'Thank you for your donation' ),
-		'customer_completed_order'  => array( 'Your donation #%s is confirmed', 'Thank you for your donation' ),
+		'customer_completed_order'  => array( 'Payment received — your donation #%s is confirmed', 'Thank you for your donation' ),
 		'customer_refunded_order'   => array( 'Your donation #%s has been refunded', 'Your donation has been refunded' ),
 		'customer_failed_order'     => array( 'Your donation #%s could not be completed', 'Your donation could not be completed' ),
 		'customer_cancelled_order'  => array( 'Your donation #%s has been cancelled', 'Your donation has been cancelled' ),
@@ -100,11 +100,23 @@ function daan_email_brand_strings() {
 }
 
 function daan_email_brand_gettext( $translation, $text ) {
+	// Completed mail, first line, with the donation number (2026-11-15).
+	if ( 'We have finished processing your order.' === $text && ! empty( $GLOBALS['daan_email_order'] ) ) {
+		return '✅ We have received your payment. Your donation #' . $GLOBALS['daan_email_order']->get_order_number() . ' is confirmed.';
+	}
 	$map = daan_email_brand_strings();
 	return $map[ $text ] ?? $translation;
 }
-add_action( 'woocommerce_email_header', function () { add_filter( 'gettext_woocommerce', 'daan_email_brand_gettext', 20, 2 ); }, 1 );
-add_action( 'woocommerce_email_footer', function () { remove_filter( 'gettext_woocommerce', 'daan_email_brand_gettext', 20 ); }, 99 );
+add_action(
+	'woocommerce_email_header',
+	function ( $heading = '', $email = null ) {
+		$GLOBALS['daan_email_order'] = ( $email && isset( $email->object ) && $email->object instanceof WC_Order ) ? $email->object : null;
+		add_filter( 'gettext_woocommerce', 'daan_email_brand_gettext', 20, 2 );
+	},
+	1,
+	2
+);
+add_action( 'woocommerce_email_footer', function () { remove_filter( 'gettext_woocommerce', 'daan_email_brand_gettext', 20 ); $GLOBALS['daan_email_order'] = null; }, 99 );
 
 add_filter(
 	'woocommerce_email_footer_text',

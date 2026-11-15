@@ -119,6 +119,22 @@ function upq_is_upi_order( $order ) {
 	return $order instanceof WC_Order && UPQ_GATEWAY_ID === $order->get_payment_method();
 }
 
+/** UPI QR donation made from the order cutoff on: donor text "Thank you", QR below as "If you haven't paid yet" (2026-11-15). */
+function upq_is_new_order( $order ) {
+	return upq_is_upi_order( $order ) && function_exists( 'daan_order_after_cutoff' ) && daan_order_after_cutoff( $order );
+}
+
+/** The one line donors see on the thank-you page and in the on-hold e-mail. */
+function upq_thanks_text() {
+	return 'Thank you! We have received your donation request. Our team verifies every UPI payment, and you will receive a confirmation email soon.';
+}
+
+function upq_not_paid_text() {
+	return 'If you haven\'t paid yet, scan this QR with any UPI app or pay to ' . trim( (string) upq_value( 'upi_id' ) ) . '.';
+}
+
+const UPQ_WHATSAPP = '+91 95282 06525';
+
 /** Instructions with {upi_id} filled in. */
 function upq_instructions() {
 	$text = (string) upq_value( 'instructions' );
@@ -245,14 +261,28 @@ add_action( 'wp_footer', function () {
 /* Thank-you page: QR + amount + donation number + instructions, only while payment is still unverified. */
 add_action( 'woocommerce_thankyou_' . UPQ_GATEWAY_ID, function ( $order_id ) {
 	$order = wc_get_order( $order_id );
-	if ( ! $order || ! $order->has_status( array( 'on-hold', 'pending' ) ) ) {
-		return;
+	if ( ! $order || ! $order->has_status( array( 'on-hold', 'pending' ) ) || upq_is_new_order( $order ) ) {
+		return; // New donations: the smaller box below the donation details (next hook).
 	}
 	echo '<section class="upq-thanks"><h2>Complete your payment</h2>';
 	echo '<p><strong>Donation number: #' . esc_html( $order->get_order_number() ) . '</strong></p>';
 	echo '<p class="upq-amount" style="text-align:center;margin:8px 0;font-size:16px;">Amount to pay: <strong>' . wp_kses_post( $order->get_formatted_order_total() ) . '</strong></p>';
 	echo upq_qr_html() . upq_upi_html() . upq_payee_html(); // phpcs:ignore WordPress.Security.EscapeOutput
 	echo '<p class="upq-instructions">' . esc_html( upq_instructions() ) . '</p>';
+	echo upq_contact_html(); // phpcs:ignore WordPress.Security.EscapeOutput
+	echo '</section>';
+}, 20 );
+
+/* New donations: "If you haven't paid yet" box below the donation details (WooCommerce prints them at priority 10). */
+add_action( 'woocommerce_thankyou', function ( $order_id ) {
+	$order = wc_get_order( $order_id );
+	if ( ! $order || ! upq_is_new_order( $order ) || ! $order->has_status( array( 'on-hold', 'pending' ) ) ) {
+		return;
+	}
+	echo '<section class="upq-thanks upq-thanks--small"><h2>If you haven\'t paid yet</h2>';
+	echo '<p>' . esc_html( upq_not_paid_text() ) . '</p>';
+	echo '<p class="upq-amount" style="text-align:center;margin:8px 0;font-size:16px;">Donation #' . esc_html( $order->get_order_number() ) . ' &middot; Amount: <strong>' . wp_kses_post( $order->get_formatted_order_total() ) . '</strong></p>';
+	echo upq_qr_html( 180 ) . upq_upi_html() . upq_payee_html(); // phpcs:ignore WordPress.Security.EscapeOutput
 	echo upq_contact_html(); // phpcs:ignore WordPress.Security.EscapeOutput
 	echo '</section>';
 }, 20 );
@@ -280,6 +310,42 @@ function upq_email_html( $order ) {
 	return $html . '</td></tr></table>';
 }
 
+/** New donations: small "If you haven't paid yet" block for the customer e-mail, below the donation details. '' once paid. */
+function upq_email_small_html( $order ) {
+	if ( ! upq_is_new_order( $order ) || ! $order->has_status( array( 'on-hold', 'pending' ) ) ) {
+		return '';
+	}
+	$p    = 'margin:0 0 8px;font-size:14px;line-height:1.6;color:#1F2937;text-align:left;';
+	$url  = trim( (string) upq_value( 'qr_url' ) );
+	$upi  = trim( (string) upq_value( 'upi_id' ) );
+	$html = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:16px 0 20px;"><tr><td style="border:1px solid #E5E7EB;background:#F9FAFB;border-radius:8px;padding:14px;box-sizing:border-box;">';
+	$html .= '<p style="' . $p . '">' . esc_html( upq_not_paid_text() ) . '</p>';
+	if ( '' !== $url ) {
+		$html .= '<p style="margin:0 0 8px;text-align:center;"><img src="' . esc_url( $url ) . '" alt="' . esc_attr( upq_value( 'qr_alt', 'UPI QR code' ) ) . '" width="160" style="display:block;margin:0 auto;width:160px;max-width:100%;height:auto;border:1px solid #E2E8F0;border-radius:6px;"></p>';
+	}
+	if ( '' !== $upi ) {
+		$html .= '<p style="' . $p . 'text-align:center;">UPI ID: <strong style="word-break:break-all;">' . esc_html( $upi ) . '</strong></p>';
+		$html .= upq_payee_html( 'margin:0 0 8px;font-size:13px;line-height:1.5;color:#1F2937;text-align:center;' );
+	}
+	$html .= '<p style="' . $p . 'text-align:center;">Donation #' . esc_html( $order->get_order_number() ) . ' &middot; Amount: <strong>' . wp_kses_post( $order->get_formatted_order_total() ) . '</strong></p>';
+	$html .= upq_contact_html( 'margin:0;font-size:13px;line-height:1.5;color:#1F2937;text-align:center;' );
+	return $html . '</td></tr></table>';
+}
+
+add_action( 'woocommerce_email_after_order_table', function ( $order, $sent_to_admin, $plain_text, $email = null ) {
+	if ( $sent_to_admin || ! upq_is_new_order( $order ) || ! $order->has_status( array( 'on-hold', 'pending' ) ) ) {
+		return;
+	}
+	if ( $email && ! in_array( $email->id, array( 'customer_on_hold_order', 'customer_invoice' ), true ) ) {
+		return; // Only the "Thank you" (on-hold) mail and a manual invoice carry the QR.
+	}
+	if ( $plain_text ) {
+		echo "\n" . esc_html( upq_not_paid_text() ) . "\nDonation number: #" . esc_html( $order->get_order_number() ) . "\n"; // phpcs:ignore
+		return;
+	}
+	echo upq_email_small_html( $order ); // phpcs:ignore WordPress.Security.EscapeOutput
+}, 20, 4 );
+
 /* E-mails: customer on-hold / pending get the QR block above the order table (the "bill"); admin e-mails get the buttons. */
 add_action( 'woocommerce_email_before_order_table', function ( $order, $sent_to_admin, $plain_text ) {
 	if ( ! upq_is_upi_order( $order ) ) {
@@ -290,6 +356,9 @@ add_action( 'woocommerce_email_before_order_table', function ( $order, $sent_to_
 			echo upq_admin_buttons_block( $order ); // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		return;
+	}
+	if ( upq_is_new_order( $order ) ) {
+		return; // New donations: small block after the details (above).
 	}
 	if ( $plain_text ) {
 		if ( $order->has_status( array( 'on-hold', 'pending' ) ) ) {
@@ -372,7 +441,7 @@ function upq_actions_allowed( $order, $context = '' ) {
 function upq_action_defs() {
 	return array(
 		'pay_ok' => array( 'Payment received', 'mark donation #%s as PAYMENT RECEIVED (it becomes Completed and the donor gets the Completed e-mail with the receipt link)', '#18A957' ),
-		'pay_no' => array( 'Payment not received', 'record that the payment for donation #%s was NOT received (it stays On hold)', '#B3261E' ),
+		'pay_no' => array( 'Payment not received', 'record that the payment for donation #%s was NOT received (it stays On hold; the donor gets one e-mail asking for the screenshot or UTR on WhatsApp within 24 hours)', '#B3261E' ),
 		'cancel' => array( 'Cancel donation', 'CANCEL donation #%s', '#B3261E' ),
 	);
 }
@@ -440,7 +509,7 @@ function upq_run_action( $order, $action, $via = 'email button' ) {
 				} else {
 					$order->save();
 				}
-				$res = array( true, 'Donation #' . $no . ' stays On hold. A note was added.' . upq_timer_text( $order ), 'done' );
+				$res = array( true, 'Donation #' . $no . ' stays On hold. A note was added.' . upq_timer_text( $order ) . upq_not_found_mail( $order ), 'done' );
 				break;
 			case 'cancel':
 				$order->add_order_note( 'Cancelled via ' . $via . '.' );
@@ -460,6 +529,95 @@ function upq_run_action( $order, $action, $via = 'email button' ) {
 		upq_send_admin_mail( 'Action failed – donation #' . $no, '<p>The action <b>' . esc_html( $action ) . '</b> (via ' . esc_html( $via ) . ') did not work: ' . esc_html( $res[1] ) . '. Nothing was changed. Please open the donation.</p>' );
 	}
 	return $res;
+}
+
+/* ---- "We could not find your payment": donor e-mail on the first "Payment not received" (2026-11-15) ---- */
+
+const UPQ_NF_EMAIL_ID = 'customer_payment_not_found';
+const UPQ_NF_META     = '_upq_not_found_mail'; // time of the one send; never cleared, so a second press sends nothing.
+
+add_filter( 'woocommerce_email_classes', function ( $emails ) {
+	if ( ! class_exists( 'UPQ_Email_Payment_Not_Found' ) && class_exists( 'WC_Email' ) ) {
+		/** Same WooCommerce layout (header, card, footer) as the other donor mails; tracked by the mail retry queue. */
+		class UPQ_Email_Payment_Not_Found extends WC_Email {
+			public function __construct() {
+				$this->id             = UPQ_NF_EMAIL_ID;
+				$this->customer_email = true;
+				$this->title          = 'Payment not found (donor)';
+				$this->description    = 'Sent once to the donor when "Payment not received" is first pressed on a UPI QR donation.';
+				$this->placeholders   = array( '{order_number}' => '', '{order_date}' => '' );
+				parent::__construct();
+			}
+			public function get_default_subject() {
+				return 'We could not find your payment — donation #{order_number}';
+			}
+			public function get_default_heading() {
+				return 'We could not find your payment';
+			}
+			public function trigger( $order_id ) {
+				$this->setup_locale();
+				$order        = wc_get_order( $order_id );
+				$this->object = $order;
+				$ok           = false;
+				if ( $order ) {
+					$this->recipient                     = $order->get_billing_email();
+					$this->placeholders['{order_number}'] = $order->get_order_number();
+					$this->placeholders['{order_date}']   = wc_format_datetime( $order->get_date_created() );
+					if ( $this->is_enabled() && $this->get_recipient() ) {
+						$ok = $this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
+					}
+				}
+				$this->restore_locale();
+				return $ok;
+			}
+			private function amount() {
+				return html_entity_decode( wp_strip_all_tags( wc_price( $this->object->get_total(), array( 'currency' => $this->object->get_currency() ) ) ), ENT_QUOTES, 'UTF-8' );
+			}
+			public function body_text() {
+				$no = $this->object->get_order_number();
+				return array(
+					'We could not find your payment for donation #' . $no . ' of ' . $this->amount() . '.',
+					'If you have already paid, please send the payment screenshot or UTR on WhatsApp ' . UPQ_WHATSAPP . ' within 24 hours. Otherwise this donation will be cancelled.',
+				);
+			}
+			public function get_content_html() {
+				$name = trim( (string) $this->object->get_billing_first_name() );
+				$t    = $this->body_text();
+				$wa   = 'https://wa.me/' . preg_replace( '/[^0-9]/', '', UPQ_WHATSAPP );
+				ob_start();
+				do_action( 'woocommerce_email_header', $this->get_heading(), $this );
+				echo '<p>Dear ' . esc_html( '' !== $name ? $name : 'Donor' ) . ',</p>';
+				echo '<p>' . esc_html( $t[0] ) . '</p>';
+				echo '<p>' . str_replace( esc_html( UPQ_WHATSAPP ), '<a href="' . esc_url( $wa ) . '">' . esc_html( UPQ_WHATSAPP ) . '</a>', esc_html( $t[1] ) ) . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput
+				do_action( 'woocommerce_email_footer', $this );
+				return ob_get_clean();
+			}
+			public function get_content_plain() {
+				$name = trim( (string) $this->object->get_billing_first_name() );
+				return 'Dear ' . ( '' !== $name ? $name : 'Donor' ) . ",\n\n" . implode( "\n\n", $this->body_text() ) . "\n";
+			}
+		}
+	}
+	if ( class_exists( 'UPQ_Email_Payment_Not_Found' ) ) {
+		$emails['UPQ_Email_Payment_Not_Found'] = new UPQ_Email_Payment_Not_Found();
+	}
+	return $emails;
+} );
+
+/** First "Payment not received" on a new UPI QR donation: one e-mail to the donor, recorded in an order note. Returns text for the admin page. */
+function upq_not_found_mail( $order ) {
+	$order = wc_get_order( $order->get_id() );
+	if ( ! $order || ! upq_is_new_order( $order ) || ! $order->has_status( 'on-hold' ) || $order->get_meta( UPQ_NF_META ) || ! $order->get_billing_email() ) {
+		return '';
+	}
+	// Flag first: a second press or a parallel request never sends a second copy. A failed send goes to the retry queue.
+	$order->update_meta_data( UPQ_NF_META, time() );
+	$order->save_meta_data();
+	$emails = WC()->mailer()->get_emails();
+	$ok     = isset( $emails['UPQ_Email_Payment_Not_Found'] ) && $emails['UPQ_Email_Payment_Not_Found']->trigger( $order->get_id() );
+	$order  = wc_get_order( $order->get_id() );
+	$order->add_order_note( $ok ? 'Donor e-mail sent: "We could not find your payment" (screenshot or UTR on WhatsApp within 24 hours).' : 'Donor e-mail "We could not find your payment" did not go out now; it is in the retry queue.', false );
+	return $ok ? ' The donor was e-mailed once (screenshot or UTR on WhatsApp within 24 hours).' : ' The donor e-mail did not go out now; it will be tried again.';
 }
 
 /* =====================================================================

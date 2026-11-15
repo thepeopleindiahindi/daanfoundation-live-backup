@@ -28,7 +28,11 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <?php echo $email_improvements_enabled ? '<div class="email-introduction">' : ''; ?>
 <?php /* translators: %s: Customer first name */ ?>
-<?php if ( ! ( function_exists( 'daan_pay_email_intro' ) && daan_pay_email_intro( $order ) ) ) : ?>
+<?php if ( function_exists( 'upq_is_new_order' ) && upq_is_new_order( $order ) && $order->has_status( array( 'on-hold', 'pending' ) ) ) : ?>
+<p><?php echo esc_html( 'Dear ' . ( '' !== trim( (string) $order->get_billing_first_name() ) ? $order->get_billing_first_name() : 'Donor' ) . ',' ); ?></p>
+<p><strong><?php echo esc_html( upq_thanks_text() ); ?></strong></p>
+<p>Here are your donation details:</p>
+<?php elseif ( ! ( function_exists( 'daan_pay_email_intro' ) && daan_pay_email_intro( $order ) ) ) : ?>
 <p><?php printf( esc_html__( 'Dear %s, Jazakallah Khair for your generous donation. Here are your donation details:', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
 <?php endif; ?>
 <?php echo $email_improvements_enabled ? '</div>' : ''; ?>
