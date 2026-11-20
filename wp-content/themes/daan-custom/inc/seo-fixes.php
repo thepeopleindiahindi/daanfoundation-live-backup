@@ -144,10 +144,11 @@ function daan_get_faq_data() {
 		array(
 			'topic' => 'Fidya & Kaffarah',
 			'faqs'  => array(
-				array( 'What is Fidya?', 'Fidya is a donation made when someone cannot fast during Ramadan due to illness or old age and cannot make up the fasts later. It involves feeding one person for each missed fast.' ),
-				array( 'What is Kaffarah?', 'Kaffarah is a penalty paid for deliberately breaking a fast without valid reason. It requires fasting for 60 consecutive days or feeding 60 poor people for each fast broken.' ),
-				array( 'When should I pay Fidya vs Kaffarah?', 'Pay Fidya if you cannot fast due to long-term illness or old age. Pay Kaffarah if you deliberately broke a fast without valid excuse.' ),
-				array( 'How much is Fidya?', 'Fidya is the cost of one meal per missed fast. The amount varies by region but is typically approximately ₹59 per day (cost of one meal).' ),
+				array( 'Can I give Fidya or Kaffarah through Daan Foundation right now?', 'Fidyah and Kaffarah donations are temporarily paused while we update this programme with our scholars. Our Iftar and Community Kitchen donations are general charity (Sadaqah), not Fidyah or Kaffarah.' ),
+				array( 'What is Fidya?', 'Fidya is a donation made when someone cannot fast during Ramadan due to illness or old age and cannot make up the fasts later. For each missed fast, the fidya is equal to sadaqat-ul-fitr.' ),
+				array( 'How much is Fidya?', 'One sadaqat-ul-fitr per missed fast: about 1.75 kg of wheat, or its price. An Iftar meal, or an Iftar plus one meal, is not Fidya.' ),
+				array( 'What is Kaffarah?', 'Kaffarah is the expiation for deliberately breaking a Ramadan fast without a valid reason, or for breaking a sworn oath. For a broken oath it is feeding ten needy people two full meals each. For other details, please ask a qualified mufti.' ),
+				array( 'When should I pay Fidya vs Kaffarah?', 'Fidya is for someone who cannot fast due to long-term illness or old age. Kaffarah is for someone who deliberately broke a fast without valid excuse, or broke an oath.' ),
 			),
 		),
 	);

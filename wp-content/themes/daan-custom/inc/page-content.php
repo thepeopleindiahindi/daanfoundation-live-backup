@@ -31,7 +31,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'A Daily Mission Against Hunger',
 					'paragraphs' => array(
 						'Daan Foundation\'s Community Kitchen is a daily mission to fight hunger across India, serving free, nutritious meals to thousands of individuals and families. Every single evening, our dedicated team prepares and distributes freshly cooked meals, ensuring that no one in our community goes to bed hungry. What began as a small iftar distribution effort during Ramadan 2020 has blossomed into a full-scale, year-round feeding programme that touches countless lives.',
-						'Since our inception, we have served over 500,000 meals, each one prepared with care and delivered with dignity. Our kitchen operates on the simple yet profound belief that access to food is a fundamental human right, and we are committed to upholding that right for every person who comes to us. The cost of providing each meal is just ₹59, a small price for the immense impact it carries.',
+						'Since our inception, we have served over 500,000 meals, each one prepared with care and delivered with dignity. Our kitchen operates on the simple yet profound belief that access to food is a fundamental human right, and we are committed to upholding that right for every person who comes to us. The cost of providing each meal is just ₹60, a small price for the immense impact it carries.',
 						'We serve all community members without any discrimination of caste, creed, religion, or background. Every person who walks through our doors is welcomed with respect and offered a warm, nutritious meal. Our commitment to inclusive service has made the Community Kitchen a trusted and beloved institution in the communities we serve.'
 					)
 				),
@@ -40,7 +40,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => '500,000+ Meals Served',
 					'items'   => array(
 						array( 'icon' => 'rice', 'title' => '500,000+ Meals', 'desc' => 'Served since 2020 with love and care' ),
-						array( 'icon' => 'rupee', 'title' => '₹59/Meal', 'desc' => 'Cost to provide one nutritious meal' ),
+						array( 'icon' => 'rupee', 'title' => '₹60/Meal', 'desc' => 'Cost to provide one nutritious meal' ),
 						array( 'icon' => 'calendar', 'title' => 'Daily', 'desc' => 'Evening meal service, 365 days a year' ),
 						array( 'icon' => 'users', 'title' => 'All Communities', 'desc' => 'Served without any discrimination' ),
 					)
@@ -128,7 +128,7 @@ function daan_get_page_data( $slug ) {
 				array(
 					'type'        => 'cta',
 					'heading'     => 'Join This Mission of Humanity',
-					'description' => 'Your contribution of just ₹59 can provide a nutritious meal to someone in need. Together, we can ensure that no one goes to bed hungry.',
+					'description' => 'Your contribution of just ₹60 can provide a nutritious meal to someone in need. Together, we can ensure that no one goes to bed hungry.',
 					'button_text' => 'Support the Kitchen',
 					'button_url'  => '/donate/?cause=community-kitchen',
 				),
@@ -174,7 +174,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'Community Kitchen & Food Support',
 					'paragraphs' => array(
-						'Your Zakat funds directly support our flagship Community Kitchen programme, which serves free meals to thousands of individuals every single day. We serve widows, orphans, daily wage labourers, homeless individuals, elderly persons, disabled persons, low-income families, and students who cannot afford proper meals. Each meal costs just ₹59, meaning your Zakat can provide hundreds of meals to those who need them most.',
+						'Your Zakat funds directly support our flagship Community Kitchen programme, which serves free meals to thousands of individuals every single day. We serve widows, orphans, daily wage labourers, homeless individuals, elderly persons, disabled persons, low-income families, and students who cannot afford proper meals. Each meal costs just ₹60, meaning your Zakat can provide hundreds of meals to those who need them most.',
 						'Since our founding, we have distributed over 500,000 meals through our Community Kitchen. Your Zakat ensures that this vital work continues and expands to reach even more vulnerable communities across India.'
 					)
 				),
@@ -280,7 +280,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Community Kitchen',
 					'paragraphs' => array(
 						'Your Sadaqah directly supports our Community Kitchen programme, which serves over 500,000 free meals to individuals and families in need. Every contribution helps us prepare and distribute nutritious meals to those who cannot afford them, serving all community members without any discrimination.',
-						'Whether you give ₹59 for one meal or ₹5,900 for a hundred meals, every rupee of your Sadaqah creates an immediate and tangible impact in someone\'s life. You can also consider Sadaqah Jariyah (ongoing charity) — a continuous act of charity that continues to benefit people and earn you rewards long after you have given it.'
+						'Whether you give ₹60 for one meal or ₹6,000 for a hundred meals, every rupee of your Sadaqah creates an immediate and tangible impact in someone\'s life. You can also consider Sadaqah Jariyah (ongoing charity) — a continuous act of charity that continues to benefit people and earn you rewards long after you have given it.'
 					)
 				),
 				array(
@@ -330,14 +330,19 @@ function daan_get_page_data( $slug ) {
 			'subtitle'      => 'A charitable compensation for those unable to fast during Ramadan due to valid long-term reasons.',
 			'gradient'      => 'from-emerald-600 to-teal-700',
 			'image'         => '/images/extra-2.jpg',
-			'default_cause' => 'fidya-kaffarah',
+			'default_cause' => 'ramadan-iftar',
 			'sections'      => array(
+				array(
+					'type'    => 'notice',
+					'heading' => 'Fidyah & Kaffarah donations are temporarily paused',
+					'content' => 'We are updating this programme with our scholars. Meanwhile, our Iftar and Community Kitchen donations are general charity (Sadaqah), not Fidyah or Kaffarah. An Iftar meal, or an Iftar plus one meal, is not Fidyah.',
+				),
 				array(
 					'type'    => 'text',
 					'heading' => 'What is Fidya?',
 					'paragraphs' => array(
-						'Fidya is a charitable compensation prescribed for Muslims who are unable to fast during Ramadan due to a valid, long-term reason such as old age or chronic illness. Instead of fasting, the individual must feed one needy person for each day of Ramadan that is missed. This provision reflects the mercy and practicality of Islamic teachings, ensuring that those who genuinely cannot fast can still fulfil their spiritual obligations.',
-						'For each missed fast, the fidya amount is equivalent to the cost of feeding one person two meals or providing one meal (sadaqat-ul-fitr). The compensation must be given to those in need, ensuring that the intention of the fast — developing empathy for the hungry and less fortunate — is still fulfilled through the act of feeding others.'
+						'Fidya is a charitable compensation for Muslims who are unable to fast during Ramadan due to a lasting reason such as old age or a chronic illness with no hope of recovery. If recovery is possible later, the missed fasts should be made up instead.',
+						'For each missed fast, the fidya is equal to sadaqat-ul-fitr: about 1.75 kg of wheat, or its price. For guidance on paying your fidya, please ask a qualified mufti.'
 					)
 				),
 				array(
@@ -346,57 +351,11 @@ function daan_get_page_data( $slug ) {
 					'source'  => '— Qur\'an 2:184'
 				),
 				array(
-					'type'    => 'checklist',
-					'heading' => 'How Daan Foundation Uses Fidya',
-					'items'   => array(
-						'Providing nutritious meals to the hungry through our Community Kitchen',
-						'Distributing ration kits to low-income families and vulnerable individuals',
-						'Supporting iftar distributions for the poor during Ramadan',
-						'Providing food support to orphans, widows, and elderly persons',
-						'Ensuring your Fidya reaches those most in need with complete transparency',
-					)
-				),
-				array(
-					'type'    => 'text',
-					'heading' => 'Community Kitchen',
-					'paragraphs' => array(
-						'Your Fidya contributions support our Community Kitchen, which provides free, nutritious meals to thousands of individuals every day. Each meal costs just ₹59, and your Fidya can provide multiple meals to those who need them most. We serve all community members regardless of background, ensuring that your compensation reaches the deserving with dignity and respect.',
-						'Since 2020, we have served over 500,000 meals through our Community Kitchen programme. By giving your Fidya through Daan Foundation, you are directly contributing to this vital work and ensuring that your spiritual obligation is fulfilled in the most impactful way possible.'
-					)
-				),
-				array(
-					'type'    => 'comparison',
-					'heading' => 'Who Should Pay Fidya vs Kaffarah',
-					'col1'    => array(
-						'heading' => 'Fidya',
-						'items'   => array(
-							'For those permanently unable to fast due to old age or chronic illness',
-							'Feed one needy person per missed fast day',
-							'Approximately ₹60 per day for 30 days',
-							'Based on the cost of a full meal (two meals or one fitrana)',
-						)
-					),
-					'col2'    => array(
-						'heading' => 'Kaffarah',
-						'items'   => array(
-							'For intentionally breaking a fast without valid reason',
-							'Fast 60 consecutive days OR feed 60 needy people',
-							'Approximately ₹3,540 or fast 60 days',
-							'More severe due to the intentional nature of the violation',
-						)
-					),
-				),
-				array(
-					'type'    => 'notice',
-					'heading' => 'Fulfil Your Obligation With Confidence',
-					'content' => 'Daan Foundation handles your Fidya with the utmost care and religious compliance, ensuring it reaches those who genuinely need it.',
-				),
-				array(
 					'type'        => 'cta',
-					'heading'     => 'Fulfil Your Fidya Today',
-					'description' => 'Give your Fidya through Daan Foundation and ensure that your compensation reaches those who need it most. Every contribution goes directly to feeding the hungry.',
-					'button_text' => 'Pay Fidya Now',
-					'button_url'  => '/donate/?cause=fidya-kaffarah',
+					'heading'     => 'Donate Iftar This Ramadan',
+					'description' => 'Iftar donation is general charity (Sadaqah), not Fidyah or Kaffarah.',
+					'button_text' => 'Donate Iftar',
+					'button_url'  => '/ramadan/',
 				),
 			),
 		),
@@ -406,68 +365,27 @@ function daan_get_page_data( $slug ) {
 			'subtitle'      => 'Feeding those in need through Daan Foundation — fulfil your Kaffarah with compassion.',
 			'gradient'      => 'from-red-600 to-rose-700',
 			'image'         => '/images/food-distribution-ramadan.jpg',
-			'default_cause' => 'fidya-kaffarah',
+			'default_cause' => 'ramadan-iftar',
 			'sections'      => array(
+				array(
+					'type'    => 'notice',
+					'heading' => 'Kaffarah & Fidyah donations are temporarily paused',
+					'content' => 'We are updating this programme with our scholars. Meanwhile, our Iftar and Community Kitchen donations are general charity (Sadaqah), not Kaffarah or Fidyah.',
+				),
 				array(
 					'type'    => 'text',
 					'heading' => 'What is Kaffarah?',
 					'paragraphs' => array(
-						'Kaffarah (expiation) is a religious obligation for a Muslim who intentionally breaks a fast during Ramadan without a valid Islamic reason. The prescribed expiation is to either fast for 60 consecutive days or, if one is unable to do so, to feed 60 needy people two meals each, providing them with a full day\'s sustenance. This requirement underscores the sanctity of the Ramadan fast and the importance of fulfilling one\'s spiritual commitments.',
-						'Kaffarah also applies to other situations such as breaking an oath, where the expiation involves feeding ten needy people, clothing them, or freeing a slave. If none of these are possible, a fast of three days is observed. The severity of Kaffarah reflects the gravity of the violation while still providing a path to redemption and spiritual renewal.'
+						'Kaffarah (expiation) is due when a Ramadan fast is intentionally broken without a valid reason, or when a sworn oath (Qasam) is broken.',
+						'For a broken oath, the kaffarah is feeding ten needy people two full meals each (morning and evening). One meal is not enough. For a broken fast, and for any other details, please ask a qualified mufti.'
 					)
-				),
-				array(
-					'type'    => 'checklist',
-					'heading' => 'How Daan Foundation Uses Kaffarah',
-					'items'   => array(
-						'Feeding 60 needy people two nutritious meals each through our Community Kitchen',
-						'Distributing ration kits containing staple food items to low-income families',
-						'Supporting our daily meal programme for the homeless and vulnerable',
-						'Providing iftar meals to the poor during Ramadan',
-						'Ensuring complete transparency in the distribution of your Kaffarah',
-					)
-				),
-				array(
-					'type'    => 'text',
-					'heading' => 'Community Kitchen',
-					'paragraphs' => array(
-						'Your Kaffarah directly supports our Community Kitchen, which serves free, nutritious meals to thousands of individuals daily. Each meal costs just ₹59, and feeding 60 people for your Kaffarah amounts to ₹3,540, ensuring 60 individuals receive a full day\'s nourishment. This is a powerful way to transform a spiritual obligation into a tangible act of compassion that directly benefits your community.',
-						'Since 2020, we have served over 500,000 meals through our Community Kitchen. By entrusting your Kaffarah to Daan Foundation, you can be confident that your expiation is being fulfilled correctly and that your contribution is making a real difference in the lives of those who need it most.'
-					)
-				),
-				array(
-					'type'    => 'comparison',
-					'heading' => 'Kaffarah for Broken Fast vs Broken Oath',
-					'col1'    => array(
-						'heading' => 'Kaffarah for Broken Fast',
-						'items'   => array(
-							'Applicable when a Ramadan fast is intentionally broken without valid reason',
-							'Fast 60 consecutive days without interruption',
-							'Or feed 60 needy people (₹3,540 at ₹59/meal × 2 meals × 60 people)',
-							'Cannot be waived; must be fulfilled to make up for the broken fast',
-						)
-					),
-					'col2'    => array(
-						'heading' => 'Kaffarah for Broken Oath',
-						'items'   => array(
-							'Applicable when a sworn oath is broken',
-							'Feed ten needy people one full meal each',
-							'Or clothe ten needy people, or free a slave',
-							'If unable, fast for three consecutive days',
-						)
-					),
-				),
-				array(
-					'type'    => 'notice',
-					'heading' => 'Fulfil Your Kaffarah With Confidence',
-					'content' => 'Daan Foundation ensures your Kaffarah is distributed according to Islamic guidelines, feeding those in need with dignity and respect.',
 				),
 				array(
 					'type'        => 'cta',
-					'heading'     => 'Fulfil Your Kaffarah Today',
-					'description' => 'Complete your expiation with confidence through Daan Foundation. Your Kaffarah will provide nutritious meals to those who need them most.',
-					'button_text' => 'Pay Kaffarah Now',
-					'button_url'  => '/donate/?cause=fidya-kaffarah',
+					'heading'     => 'Donate Iftar This Ramadan',
+					'description' => 'Iftar donation is general charity (Sadaqah), not Fidyah or Kaffarah.',
+					'button_text' => 'Donate Iftar',
+					'button_url'  => '/ramadan/',
 				),
 			),
 		),
@@ -516,7 +434,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Community Kitchen',
 					'paragraphs' => array(
 						'Building on the iftar distribution, we established our year-round Community Kitchen that continues the spirit of Ramadan every single day. The kitchen serves free, nutritious meals to anyone in need, 365 days a year, with the same love and dedication that characterised our first Ramadan distribution. Over 500,000 meals have been served since our founding.',
-						'The Community Kitchen embodies the Ramadan spirit of generosity throughout the year, ensuring that the hunger-alleviating work that began in the holy month never stops. Each meal costs just ₹59, making every contribution a meaningful investment in human dignity.'
+						'The Community Kitchen embodies the Ramadan spirit of generosity throughout the year, ensuring that the hunger-alleviating work that began in the holy month never stops. Each meal costs just ₹60, making every contribution a meaningful investment in human dignity.'
 					)
 				),
 				array(
@@ -647,7 +565,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'Community Kitchen',
 					'paragraphs' => array(
-						'A significant portion of this fund supports our Community Kitchen, which serves over 500,000 free meals to individuals and families in need. Your donation helps us maintain this vital service daily, ensuring that no one in our community goes hungry. Each meal costs just ₹59, and every contribution translates directly into nourishment for someone in need.',
+						'A significant portion of this fund supports our Community Kitchen, which serves over 500,000 free meals to individuals and families in need. Your donation helps us maintain this vital service daily, ensuring that no one in our community goes hungry. Each meal costs just ₹60, and every contribution translates directly into nourishment for someone in need.',
 						'The Community Kitchen serves all community members without discrimination, welcoming everyone with dignity and respect. Whether it is a daily wage labourer who earned nothing today, a widow struggling to feed her children, or an elderly person living alone, our kitchen is a reliable source of warmth and nourishment.'
 					)
 				),
@@ -722,7 +640,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Community Kitchen',
 					'paragraphs' => array(
 						'Our Community Kitchen is the ideal vehicle for Sadaqah Jariyah. With over 500,000 meals served since 2020, it is a proven, sustainable programme that continues to grow and serve more people every year. Your contribution to the kitchen ensures that free, nutritious meals are provided to those in need every single day, creating a perpetual stream of rewards for you.',
-						'Each meal costs just ₹59, making it accessible for anyone to participate in this ongoing charity. Whether you contribute ₹5,900 for 100 meals or ₹59,000 for 1,000 meals, you are establishing a legacy of compassion that will continue to earn rewards long after you have given.'
+						'Each meal costs just ₹60, making it accessible for anyone to participate in this ongoing charity. Whether you contribute ₹6,000 for 100 meals or ₹60,000 for 1,000 meals, you are establishing a legacy of compassion that will continue to earn rewards long after you have given.'
 					)
 				),
 				array(
@@ -853,7 +771,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'Community Kitchen',
 					'paragraphs' => array(
-						'Your Fitrana contributions support our Community Kitchen, which serves over 500,000 free meals to individuals and families in need. During Eid, we expand our operations to ensure that everyone can celebrate with a proper meal. Each meal costs just ₹59, and your Fitrana can provide multiple meals to those who need them most.',
+						'Your Fitrana contributions support our Community Kitchen, which serves over 500,000 free meals to individuals and families in need. During Eid, we expand our operations to ensure that everyone can celebrate with a proper meal. Each meal costs just ₹60, and your Fitrana can provide multiple meals to those who need them most.',
 						'By giving your Fitrana through Daan Foundation, you ensure that your obligation is fulfilled correctly and that your contribution is maximised to help as many people as possible.'
 					)
 				),
@@ -1367,7 +1285,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Community Kitchen',
 					'paragraphs' => array(
 						'The Community Kitchen is at the heart of everything we do. Every evening, freshly cooked meals are prepared and distributed to labourers, families, elderly individuals, and anyone in need.',
-						'Approximate cost per meal: ₹59. Operating daily since 2020, the Community Kitchen has served hundreds of thousands of meals — one plate at a time.'
+						'Approximate cost per meal: ₹60. Operating daily since 2020, the Community Kitchen has served hundreds of thousands of meals — one plate at a time.'
 					)
 				),
 				array(

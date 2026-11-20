@@ -99,7 +99,7 @@ get_header();
 						<?php endforeach; ?>
 					</div>
 					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 8px;text-align:justify;">Meals include dal-roti, rice, vegetables, and seasonal items. During Ramadan, we serve special Iftar meals.</p>
-					<p style="font-size:1.125rem;font-weight:700;color:#C2410C;margin:0;"><strong>500,000+ meals served since 2020 — ₹59 per meal</strong></p>
+					<p style="font-size:1.125rem;font-weight:700;color:#C2410C;margin:0;"><strong>500,000+ meals served since 2020 — ₹60 per meal</strong></p>
 				</div>
 
 				<!-- 6. Our Mission -->

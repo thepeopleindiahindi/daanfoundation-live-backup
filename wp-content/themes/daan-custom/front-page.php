@@ -94,7 +94,7 @@ get_header();
                 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
             );
             $qa_items = array(
-                array( 'Community Kitchen', 'Feed the hungry — ₹59 provides one meal', '/community-kitchen/', 'linear-gradient(135deg, #F59E0B, #EA580C)', 0 ),
+                array( 'Community Kitchen', 'Feed the hungry — ₹60 provides one meal', '/community-kitchen/', 'linear-gradient(135deg, #F59E0B, #EA580C)', 0 ),
                 array( 'Fidyah & Kaffarah', 'Fulfil your Islamic obligation by feeding the needy', '/fidya/', 'linear-gradient(135deg, #8B5CF6, #7C3AED)', 1 ),
                 array( 'Ramadan Iftar Appeal', 'Iftar meals for those fasting in need', '/ramadan/', 'linear-gradient(135deg, #F43F5E, #E11D48)', 2 ),
                 array( 'Ration Kit Distribution', 'Essential food rations for poor families', '/where-most-needed/', 'linear-gradient(135deg, #06B6D4, #0D9488)', 3 ),
