@@ -840,9 +840,134 @@ add_action( 'admin_menu', function () {
 				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_ENABLED_OPTION ); ?>" value="yes" <?php checked( daan_ot_automation_on() ); ?>> Send execution e-mails and auto-cancel unpaid donations</label></p>
 				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_PAUSE_OPTION ); ?>" value="yes" <?php checked( daan_ot_autocancel_paused() ); ?>> Pause auto-cancel</label></p>
 				<p class="description">No button pressed: cancelled 6 hours after the second digest. "Payment not received": cancelled after 24 hours. While paused, nothing is cancelled and digests are not counted; timers continue from where they stopped. Execution e-mails are not affected.</p>
+				<h2>Fidyah &amp; Kaffarah</h2>
+				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_FK_PAUSE_OPTION ); ?>" value="yes" <?php checked( daan_fk_paused() ); ?>> Pause Fidyah &amp; Kaffarah donations</label></p>
+				<p class="description">While ticked, no NEW Fidyah &amp; Kaffarah donation can be made (form, links, product page, checkout) and donors see a notice. Existing orders are not affected: digest, buttons, auto-cancel, receipts and execution e-mails continue. Untick to reopen.</p>
 				<?php submit_button(); ?>
 			</form>
 		</div>
 		<?php
 	} );
 }, 99 );
+
+/* -------------------------------------------------------------------------
+ * 8. Temporary hold on NEW Fidyah & Kaffarah donations (owner, 2026-11-20).
+ *    One checkbox under WooCommerce > Order Automation. Existing orders are
+ *    untouched: digest, buttons, auto-cancel, receipts and execution e-mails
+ *    keep running. Untick the box to reopen; nothing here deletes anything.
+ * ------------------------------------------------------------------------- */
+
+const DAAN_OT_FK_PAUSE_OPTION = 'daan_ot_fk_paused';
+const DAAN_OT_FK_PRODUCTS     = array( 6812, 5922 );
+const DAAN_OT_FK_POSTS        = array( 5849, 6768, 6946, 6978 ); // Pages/posts about Fidyah or Kaffarah.
+const DAAN_OT_FK_MESSAGE      = 'Fidyah & Kaffarah donations are temporarily paused. Please choose another cause.';
+
+function daan_fk_paused() {
+	return 'yes' === get_option( DAAN_OT_FK_PAUSE_OPTION, 'no' );
+}
+
+/** True for any spelling of the Fidyah & Kaffarah cause or line name. */
+function daan_fk_is_cause( $name ) {
+	$key = strtolower( html_entity_decode( (string) $name, ENT_QUOTES, 'UTF-8' ) );
+	return (bool) preg_match( '/fid[iy]a|kaff?ara/', $key );
+}
+
+function daan_fk_is_product( $product ) {
+	$product = is_numeric( $product ) ? wc_get_product( $product ) : $product;
+	if ( ! $product ) {
+		return false;
+	}
+	$id = $product->get_parent_id() ? $product->get_parent_id() : $product->get_id();
+	return in_array( (int) $id, DAAN_OT_FK_PRODUCTS, true );
+}
+
+function daan_fk_notice_html() {
+	return '<div class="daan-fk-notice" role="status" style="border:2px solid #F59E0B;background:#FFFBEB;color:#78350F;border-radius:12px;padding:16px 20px;margin:16px 0;text-align:left;font-size:1rem;line-height:1.6;">'
+		. '<strong style="display:block;font-size:1.0625rem;margin-bottom:6px;color:#78350F;">Fidyah &amp; Kaffarah donations are temporarily paused.</strong>'
+		. 'We are reviewing how these donations are distributed with our scholars, to make sure they fully meet the religious requirements. We will reopen this soon. For any question, contact us on WhatsApp '
+		. '<a href="https://wa.me/919528206525" target="_blank" rel="noopener" style="color:#B45309;font-weight:700;text-decoration:underline;">+91 95282 06525</a>.'
+		. '</div>';
+}
+
+// Products 6812 and 5922 cannot be bought (cart, checkout and Store API all check this).
+add_filter( 'woocommerce_is_purchasable', function ( $ok, $product ) {
+	return ( $ok && daan_fk_paused() && daan_fk_is_product( $product ) ) ? false : $ok;
+}, 20, 2 );
+add_filter( 'woocommerce_variation_is_purchasable', function ( $ok, $product ) {
+	return ( $ok && daan_fk_paused() && daan_fk_is_product( $product ) ) ? false : $ok;
+}, 20, 2 );
+
+add_filter( 'woocommerce_add_to_cart_validation', function ( $ok, $product_id ) {
+	if ( $ok && daan_fk_paused() && daan_fk_is_product( (int) $product_id ) ) {
+		wc_add_notice( DAAN_OT_FK_MESSAGE, 'error' );
+		return false;
+	}
+	return $ok;
+}, 20, 2 );
+
+// Checkout (classic and block): no NEW order with a Fidyah & Kaffarah line or cause.
+add_action( 'woocommerce_checkout_create_order', function ( $order ) {
+	if ( ! daan_fk_paused() ) {
+		return;
+	}
+	foreach ( $order->get_items() as $item ) {
+		if ( daan_fk_is_product( (int) $item->get_product_id() ) || daan_fk_is_cause( $item->get_name() ) ) {
+			throw new Exception( DAAN_OT_FK_MESSAGE );
+		}
+	}
+	if ( daan_fk_is_cause( $order->get_meta( '_daan_donation_cause' ) ) ) {
+		throw new Exception( DAAN_OT_FK_MESSAGE );
+	}
+}, 5 );
+add_action( 'woocommerce_store_api_checkout_update_order_from_request', function ( $order ) {
+	if ( ! daan_fk_paused() ) {
+		return;
+	}
+	foreach ( $order->get_items() as $item ) {
+		if ( daan_fk_is_product( (int) $item->get_product_id() ) ) {
+			if ( class_exists( '\Automattic\WooCommerce\StoreApi\Exceptions\RouteException' ) ) {
+				throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'daan_fk_paused', DAAN_OT_FK_MESSAGE, 400 );
+			}
+			throw new Exception( DAAN_OT_FK_MESSAGE );
+		}
+	}
+} );
+
+// Product page: notice where the add-to-cart button was.
+add_action( 'woocommerce_single_product_summary', function () {
+	global $product;
+	if ( daan_fk_paused() && $product && daan_fk_is_product( $product ) ) {
+		echo daan_fk_notice_html(); // phpcs:ignore WordPress.Security.EscapeOutput
+	}
+}, 25 );
+
+// Pages/posts: donate links for this cause become the notice; content stays as it is.
+add_filter( 'the_content', function ( $content ) {
+	if ( ! daan_fk_paused() || is_admin() ) {
+		return $content;
+	}
+	$pattern = '~<a\b[^>]*href=["\'][^"\']*(?:cause=(?:fid|kaff)[^"\']*|/product/(?:fidyah-kaffarah|fidya-and-kaffara)/?|add-to-cart=(?:6812|5922)[^"\']*)["\'][^>]*>.*?</a>~is';
+	$content = preg_replace( $pattern, daan_fk_notice_html(), $content );
+	if ( in_array( (int) get_the_ID(), DAAN_OT_FK_POSTS, true ) && in_the_loop() && is_singular() ) {
+		// Plain /donate/ links here would lead to a form without this cause: keep the words, drop the link.
+		$content = preg_replace( '~<a\b[^>]*href=["\'](?:https?://(?:www\.)?daanfoundation\.in)?/donate/?["\'][^>]*>(.*?)</a>~is', '$1', $content );
+		if ( false === strpos( $content, 'daan-fk-notice' ) ) {
+			$content = daan_fk_notice_html() . $content;
+		}
+	}
+	return $content;
+}, 20 );
+
+add_action( 'admin_init', function () {
+	register_setting(
+		'daan_ot_automation',
+		DAAN_OT_FK_PAUSE_OPTION,
+		array(
+			'type'              => 'string',
+			'default'           => 'no',
+			'sanitize_callback' => function ( $value ) {
+				return 'yes' === $value ? 'yes' : 'no';
+			},
+		)
+	);
+} );

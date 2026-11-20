@@ -235,7 +235,16 @@ function daan_donation_causes() {
 
 /** Causes shown as choices on the /donate/ form. */
 function daan_donate_form_causes() {
-    return array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Zakat al-Fitr', 'Sadaqah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal' );
+    $causes = array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Zakat al-Fitr', 'Sadaqah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal' );
+    if ( daan_fk_hold_on() ) {
+        $causes = array_values( array_diff( $causes, array( 'Fidyah & Kaffarah' ) ) );
+    }
+    return $causes;
+}
+
+/** Temporary hold on new Fidyah & Kaffarah donations (setting in plugin daan-order-tools). */
+function daan_fk_hold_on() {
+    return function_exists( 'daan_fk_paused' ) && daan_fk_paused();
 }
 
 /** The one mapping from a ?cause= value (name or slug, any case or spelling variant) to a cause. '' = not recognised. */
@@ -300,6 +309,9 @@ function daan_place_order() {
     }
     if ( ! in_array( $cause, daan_donation_causes(), true ) ) {
         wp_send_json_error( array( 'message' => 'Please choose a cause from the list.' ) );
+    }
+    if ( 'Fidyah & Kaffarah' === $cause && daan_fk_hold_on() ) {
+        wp_send_json_error( array( 'message' => DAAN_OT_FK_MESSAGE ) );
     }
     if ( ! in_array( $frequency, array( 'one-time', 'monthly' ), true ) ) {
         wp_send_json_error( array( 'message' => 'Please choose one-time or monthly.' ) );

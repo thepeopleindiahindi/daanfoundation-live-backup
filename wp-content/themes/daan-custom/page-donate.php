@@ -9,6 +9,11 @@ $preset_amount = isset($_GET['amount']) ? min( DAAN_MAX_DONATION, max(1, intval(
 // No ?cause= keeps the default. A value we do not recognise selects nothing, and the donor chooses.
 $preset_cause  = isset($_GET['cause']) ? daan_cause_from_link( sanitize_text_field( wp_unslash( $_GET['cause'] ) ) ) : 'Where Most Needed';
 $causes        = daan_donate_form_causes();
+// Fidyah & Kaffarah on hold: a link for it shows the notice and the donor chooses a cause themself.
+$fk_link_held  = 'Fidyah & Kaffarah' === $preset_cause && daan_fk_hold_on();
+if ( $fk_link_held ) {
+    $preset_cause = '';
+}
 if ( '' !== $preset_cause && ! in_array( $preset_cause, $causes, true ) ) {
     $causes[] = $preset_cause; // A valid cause without its own line on the form, reached from a link.
 }
@@ -86,6 +91,7 @@ get_header();
 			</div>
 
 			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Choose a Cause</h3>
+			<?php if ( $fk_link_held ) { echo daan_fk_notice_html(); } // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			<div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
 				<?php foreach ( $causes as $cause ) :
 					$is_selected = $cause === $preset_cause; ?>

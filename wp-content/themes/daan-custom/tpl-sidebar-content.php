@@ -158,6 +158,9 @@ $page_data = daan_get_page_data( $page_slug );
 						<p class="text-sm text-orange-700"><?php echo esc_html( $section['content'] ?? '' ); ?></p>
 					</section>
 
+				<?php elseif ( 'cta' === $type && daan_fk_hold_on() && preg_match( '/cause=(fid|kaff)/i', $section['button_url'] ?? '' ) ) : ?>
+					<section><?php echo daan_fk_notice_html(); // phpcs:ignore WordPress.Security.EscapeOutput ?></section>
+
 				<?php elseif ( 'cta' === $type ) : ?>
 					<section class="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-8 text-center">
 						<h2 class="text-2xl font-bold text-white mb-2"><?php echo esc_html( $section['heading'] ?? '' ); ?></h2>

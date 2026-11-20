@@ -31,7 +31,9 @@
 				<option selected>Zakat al-Fitr</option>
 			<?php endif; ?>
 			<option>Sadaqah</option>
-			<option>Fidyah & Kaffarah</option>
+			<?php if ( ! daan_fk_hold_on() ) : ?>
+				<option>Fidyah & Kaffarah</option>
+			<?php endif; ?>
 		</select>
 	</div>
 

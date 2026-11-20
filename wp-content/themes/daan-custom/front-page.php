@@ -169,7 +169,7 @@ get_header();
                         <h3><?php echo esc_html( $c[0] ); ?></h3>
                         <p><?php echo esc_html( $c[1] ); ?></p>
                         <span class="campaign-link">
-                            Donate now
+                            <?php echo ( 'Fidyah & Kaffarah' === $c[0] && daan_fk_hold_on() ) ? 'Temporarily paused &middot; learn more' : 'Donate now'; ?>
                             <svg class="arrow" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
