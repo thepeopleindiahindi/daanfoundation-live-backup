@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+> **Islami content rule (owner, 2026-11-20):** Islami content badalne se pehle docs/fiqh/decisions.md padho; uske khilaf kuch mat likho; har naya faisla wahin darj karo.
+
 ## What this repo is
 
 The website for Daan Foundation (daanfoundation.in), an India-based nonprofit. It is currently **three overlapping things in one tree**, at different stages of a migration:
