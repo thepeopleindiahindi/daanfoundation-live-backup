@@ -274,3 +274,10 @@ One entry per day, appended at the end of each working day (rule in CLAUDE.md). 
 - Owner actions: Untick the box when the Mufti sahab gives clarification.
 - Open / next: Post 6767 (Zakat/Kaffara guide) left as-is; its button goes to the homepage.
 - Risks / notes: Backup of the 7 live files before the change: backups/fk-hold-20261120-1124/ (on PC). Rollback: re-upload those files, or simply set the option to `no`.
+
+## 2026-11-20 (window: execution, Fidyah/Kaffarah CHARAN 0)
+- Done: Mufti sahab ka jawab (voice note, 20 Nov) source note me save kiya: `docs/fiqh/2026-11-20-mufti-fidyah-kaffarah.md` (sirf 4 baatein). Read-only inventory banayi: `reports/fidyah-kaffarah-fix-2026-11-20/inventory.md` (gitignored), 58 jagah, IDs F-01 to F-58. Ginti: A fidyah rakam/paribhasha 12, B qasam kaffara 10, C roze ka kaffara (60) 13, D iftar ko fidya 5, E Terms 3, F emails/system 8, G schema/meta 7.
+- Verified: live DB scan sirf SELECT se (posts, postmeta incl. Elementor data/cache, options, terms, alt), live theme/plugin files grep, llms.txt (live 404). Site par kuch nahi badla. Refund, Privacy, Zakat calculator, widgets, Code Snippets, upi-qr-payment: 0 jagah.
+- Owner actions: inventory ke "Owner ke liye sawaal" (11) ka jawab dena; fidya ka ₹ rate, Kaffarah band karna, pages ka rewrite/redirect, purane FK orders ki execution mail.
+- Open / next: CHARAN 1 (fix) owner ke jawab ke baad. Sabse gambhir: /fidya-and-kaffara/ (5849) Iftar = fidya, post 6946 (qasam 1 khana, ₹590), /kaffarah/ "one full meal"/₹3,540, /faq/ "Fidya ₹59", Terms §41.2.
+- Risks / notes: FK hold (7b204fd) abhi on hai. Products 6812/5922 se 36 order lines maujood; purane orders ko na chhedein. Roze ke kaffare (60), kapde, ration kit ka hukm Mufti ke jawab me nahi; apni taraf se na likhein.
