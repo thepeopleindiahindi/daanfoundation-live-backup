@@ -37,7 +37,7 @@ There is no local WordPress or PHP dev command in `package.json` — see `docs/l
 
 ## Deployment
 
-`.github/workflows/deploy-hostinger.yml` runs on every push to `main`: `npm install && npm run build`, then FTPS-deploys `./dist/` to the Hostinger webroot. **No lint or test gate in CI** — broken code can reach production on merge.
+`.github/workflows/deploy-hostinger.yml` no longer runs on push: its `push` trigger was removed in commit `3541be4` (2026-10-13) and only `workflow_dispatch` remains, so pushing to `backup` main does not deploy anything (verified: 0 new Actions runs after the 2026-11-15 and 2026-11-20 pushes). Never run it by hand — it would FTP the SPA's `./dist/` over the live WordPress webroot (`.htaccess`, `robots.txt`, `/api/`). Owner rule since 2026-11-15: commit + push to `backup` main after every batch; never push to `origin`.
 
 `scripts/go-live.sh`, `backup.sh`, `rollback.sh`, `import-pages.sh` are for the *separate* WordPress cutover (require WP-CLI and a real server; not runnable locally as-is — `SITE_ROOT` etc. are placeholder paths).
 
