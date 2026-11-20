@@ -47,6 +47,14 @@ get_header();
 				<input type="number" id="zakat-silver" value="0" min="0" step="0.01" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 			</div>
 			<div>
+				<label for="zakat-gold-price" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Today's Gold Price (₹ per gram)</label>
+				<input type="number" id="zakat-gold-price" value="0" min="0" step="0.01" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
+			</div>
+			<div>
+				<label for="zakat-silver-price" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Today's Silver Price (₹ per gram)</label>
+				<input type="number" id="zakat-silver-price" value="0" min="0" step="0.01" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
+			</div>
+			<div>
 				<label for="zakat-business" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Business Assets (₹)</label>
 				<input type="number" id="zakat-business" value="0" min="0" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 			</div>
@@ -96,8 +104,8 @@ get_header();
 					<span id="zakat-wealth" style="font-size:1rem;font-weight:700;color:#111827;">₹0</span>
 				</div>
 				<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #E2E8F0;">
-					<span style="font-size:0.9375rem;color:#64748B;">Nisab Threshold (Silver)</span>
-					<span id="zakat-nisab" style="font-size:1rem;font-weight:700;color:#111827;">~₹45,000</span>
+					<span id="zakat-nisab-label" style="font-size:0.9375rem;color:#64748B;">Nisab Threshold (612.36 g silver)</span>
+					<span id="zakat-nisab" style="font-size:1rem;font-weight:700;color:#111827;">—</span>
 				</div>
 				<div id="zakat-due-row" style="display:flex;justify-content:space-between;padding:8px 0;">
 					<span style="font-size:0.9375rem;color:#64748B;">Zakat Due (2.5%)</span>
@@ -110,7 +118,7 @@ get_header();
 		</div>
 	</div>
 
-	<p style="font-size:0.875rem;color:#64748B;margin:24px 0 32px;text-align:center;">Note: This calculator is a guide. Please consult a scholar for complex cases.</p>
+	<p style="font-size:0.875rem;color:#64748B;margin:24px 0 32px;text-align:center;">Note: This calculator follows Hanafi fiqh (Nisab: 87.48 g gold, or 612.36 g silver for mixed wealth). Zakat is due only if this wealth has been in your ownership for a full lunar year. It is a guide only, not a fatwa; please consult a qualified mufti for complex cases.</p>
 
 	<div style="text-align:center;">
 		<a href="/donate/" style="display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:#C2410C;padding:16px 32px;font-weight:700;color:#fff;text-decoration:none;box-shadow:0 20px 25px -5px rgba(249,115,22,0.3);transition:background 0.2s;"
@@ -130,8 +138,19 @@ function calculateZakat() {
 	var loans = parseFloat(document.getElementById('zakat-loans').value) || 0;
 	var deductions = parseFloat(document.getElementById('zakat-deductions').value) || 0;
 
-	var goldPricePerGram = 6500;
-	var silverPricePerGram = 85;
+	// Prices are entered by the user (no fixed rates). Nisab: 87.48 g gold / 612.36 g silver (docs/fiqh/decisions.md).
+	var goldPricePerGram = parseFloat(document.getElementById('zakat-gold-price').value) || 0;
+	var silverPricePerGram = parseFloat(document.getElementById('zakat-silver-price').value) || 0;
+
+	var noDueText = document.querySelector('#zakat-no-due p');
+	if ((gold > 0 && goldPricePerGram <= 0) || silverPricePerGram <= 0) {
+		document.getElementById('zakat-results').style.display = 'block';
+		document.getElementById('zakat-due-row').style.display = 'none';
+		document.getElementById('zakat-no-due').style.display = 'block';
+		noDueText.textContent = 'Please enter today\'s silver price per gram' + (gold > 0 ? ' and gold price per gram' : '') + ' in your city.';
+		return;
+	}
+	noDueText.textContent = 'No Zakat Due — Your wealth is below the Nisab threshold.';
 
 	var goldValue = gold * goldPricePerGram;
 	var silverValue = silver * silverPricePerGram;
@@ -140,12 +159,15 @@ function calculateZakat() {
 	var totalLiabilities = debts + loans + deductions;
 	var zakatableWealth = totalAssets - totalLiabilities;
 
-	var nisabSilver = 612 * silverPricePerGram;
+	// Only gold, with no cash, silver or trade goods at all: gold Nisab. Otherwise: value of 612.36 g silver.
+	var onlyGold = gold > 0 && cash === 0 && silver === 0 && business === 0 && savings === 0 && other === 0;
+	var nisabSilver = onlyGold ? 87.48 * goldPricePerGram : 612.36 * silverPricePerGram;
 
 	document.getElementById('zakat-total-assets').textContent = '₹' + totalAssets.toLocaleString('en-IN');
 	document.getElementById('zakat-total-deductions').textContent = '₹' + totalLiabilities.toLocaleString('en-IN');
 	document.getElementById('zakat-wealth').textContent = '₹' + zakatableWealth.toLocaleString('en-IN');
-	document.getElementById('zakat-nisab').textContent = '~₹' + nisabSilver.toLocaleString('en-IN');
+	document.getElementById('zakat-nisab-label').textContent = onlyGold ? 'Nisab Threshold (87.48 g gold)' : 'Nisab Threshold (612.36 g silver)';
+	document.getElementById('zakat-nisab').textContent = '₹' + Math.round(nisabSilver).toLocaleString('en-IN');
 
 	var resultsDiv = document.getElementById('zakat-results');
 	resultsDiv.style.display = 'block';

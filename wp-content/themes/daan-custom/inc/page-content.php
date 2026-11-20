@@ -15,6 +15,17 @@
  * @return array|null  Page data array or null if not found.
  */
 function daan_get_page_data( $slug ) {
+	// Fitrana / Fidyah rate: one setting in plugin daan-order-tools (docs/fiqh/decisions.md D-006).
+	$fitra = '₹' . ( function_exists( 'daan_fitrana_rate' ) ? daan_fitrana_rate() : 80 );
+
+	// Core texts, the same wording on every page (docs/fiqh/decisions.md D-007 to D-010).
+	$zakat_use   = 'Your Zakat is given only to eligible Muslim recipients, and always in a way that makes them its owner. In our Community Kitchen, meals are not served at a shared table: each person receives a full plate of food, or has their own container filled, and takes it as their own. Zakat is never used for staff salaries, gas, packing, rent, transport or any other running cost.';
+	$zakat_who   = 'Zakat can be given only to a Muslim who is genuinely in need, meaning someone who does not own wealth equal to the Nisab beyond their basic needs, and who is not from the family of the Prophet ﷺ (Sayyid / Banu Hashim). Being a widow, an orphan or elderly does not by itself make a person eligible; they must also be in need.';
+	$all_welcome = 'Our kitchen serves everyone in need, of every faith, community and background, and turns no one away. Meals for those who are not eligible for Zakat are funded from Sadaqah and general donations, never from Zakat. Zakat is kept in a separate account.';
+	$iftar_kit   = 'Iftar kits are handed out at our Community Kitchen after Asr, and people may take them home. Each kit is given to the person as their own and contains a plate of freshly cooked food, two dates, one banana, and either one egg or one bottle of soft drink. We do not provide Sehri.';
+	$iftar_zakat = 'Zakat may be given for Iftar kits, because each kit becomes the recipient\'s property. However, we request that you give for Iftar as Sadaqah rather than Zakat. Our Iftar programme is generally funded by Sadaqah, so that it can reach as many fasting people as possible.';
+	$scholar     = 'This page gives general information based on Hanafi fiqh, with reference to rulings of Darul Uloom Deoband. It is not a fatwa. For your own situation, please consult a qualified mufti.';
+
 	$pages = array(
 		'community-kitchen' => array(
 			'title'             => 'Community Kitchen',
@@ -58,7 +69,16 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Food Served With Respect',
 					'paragraphs' => array(
 						'At Daan Foundation, we believe that how food is served is just as important as the food itself. Every meal is presented with care and respect, served on clean utensils in a dignified manner that honours the person receiving it. We never forget that the individuals we serve are our brothers and sisters, and they deserve nothing less than the utmost respect and compassion.',
-						'Our volunteers are trained to serve with a smile, to make eye contact, and to treat every recipient with the warmth and dignity they deserve. This approach has created an atmosphere of trust and mutual respect that sets our Community Kitchen apart from traditional food distribution programmes.'
+						'Our volunteers are trained to serve with a smile, to make eye contact, and to treat every recipient with the warmth and dignity they deserve. This approach has created an atmosphere of trust and mutual respect that sets our Community Kitchen apart from traditional food distribution programmes.',
+						'We do not seat people at a shared table. Each person receives a full plate, or has their own container filled, and takes the food as their own.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'How Your Zakat and Sadaqah Are Used Here',
+					'paragraphs' => array(
+						$zakat_use,
+						$all_welcome,
 					)
 				),
 				array(
@@ -146,52 +166,52 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'What is Zakat?',
 					'paragraphs' => array(
-						'Zakat is one of the Five Pillars of Islam, an obligatory act of worship that requires Muslims who possess wealth above a certain threshold (known as Nisab) to give 2.5% of their accumulated wealth annually to those in need. It is not merely a charitable recommendation but a divine commandment that purifies one\'s wealth and blesses what remains. Zakat serves as a powerful mechanism for wealth redistribution, ensuring that the more fortunate members of society support the less fortunate.',
-						'The Qur\'an explicitly mentions eight categories of Zakat recipients: the poor, the needy, Zakat administrators, those whose hearts are to be reconciled, those in bondage, those in debt, in the cause of Allah, and the wayfarer. By fulfilling this obligation, Muslims not only comply with a fundamental tenet of their faith but also contribute to building a more equitable and compassionate society.'
+						'Zakat is one of the five pillars of Islam. It is an obligatory act of worship for every sane, adult Muslim who owns wealth equal to or above the Nisab, beyond their basic needs and debts, for one full lunar year. The amount due is 2.5% (one-fortieth) of that wealth. It is not merely a charitable recommendation but a divine commandment that purifies one\'s wealth and blesses what remains.',
+						'The Qur\'an names eight categories of Zakat recipients (Qur\'an 9:60): the poor, the needy, those employed to collect it, those whose hearts are to be reconciled, freeing captives, those in debt, in the cause of Allah, and the stranded traveller. As a charitable trust, Daan Foundation distributes Zakat to the poor and the needy.'
 					)
 				),
 				array(
 					'type'    => 'text',
 					'heading' => 'Zakat in the Light of the Qur\'an',
 					'paragraphs' => array(
-						'Allah says in the Qur\'an: "And those in whose wealth there is a known right, for the one who asks and the one who is deprived." (Qur\'an 70:24-25). This powerful verse reminds us that wealth is a trust from Allah, and embedded within it is a right that belongs to those who are in need.',
-						'The institution of Zakat is mentioned alongside prayer (Salah) in over 80 verses of the Qur\'an, highlighting its fundamental importance in Islamic practice. It is a comprehensive system of social welfare that, when properly implemented, has the power to eliminate poverty from society.'
+						'Allah says in the Qur\'an: "And those in whose wealth there is a known right, for the one who asks and the one who is deprived." (Qur\'an 70:24-25). This verse reminds us that wealth is a trust from Allah, and embedded within it is a right that belongs to those who are in need.',
+						'Allah mentions Zakat together with Salah in many verses of the Qur\'an, showing that caring for those in need is part of worship itself.'
 					)
 				),
 				array(
 					'type'    => 'grid',
 					'heading' => 'How Daan Foundation Uses Zakat',
 					'items'   => array(
-						array( 'icon' => 'utensils', 'title' => 'Community Kitchen', 'desc' => 'Daily free meals for the hungry and underprivileged' ),
-						array( 'icon' => 'moon', 'title' => 'Ramadan Iftar', 'desc' => 'Iftar meals for fasting individuals during Ramadan' ),
-						array( 'icon' => 'package', 'title' => 'Ration Kits', 'desc' => 'Essential food supplies for families in need' ),
-						array( 'icon' => 'shirt', 'title' => 'Clothing Support', 'desc' => 'New and gently used clothing for those in need' ),
-						array( 'icon' => 'heart-pulse', 'title' => 'Medical Assistance', 'desc' => 'Healthcare support and emergency medical aid' ),
-						array( 'icon' => 'book', 'title' => 'Educational Support', 'desc' => 'School supplies and educational sponsorship for children' ),
+						array( 'icon' => 'utensils', 'title' => 'Community Kitchen', 'desc' => 'A full plate of food handed to each eligible person as their own' ),
+						array( 'icon' => 'package', 'title' => 'Ration Kits', 'desc' => 'Food supplies given to eligible families as their own' ),
+						array( 'icon' => 'shirt', 'title' => 'Clothing Support', 'desc' => 'Clothing given to eligible recipients' ),
+						array( 'icon' => 'heart-pulse', 'title' => 'Medical Assistance', 'desc' => 'Medical help given to, or on behalf of, eligible recipients' ),
+						array( 'icon' => 'book', 'title' => 'Educational Support', 'desc' => 'School supplies and fees for eligible children' ),
 					)
 				),
 				array(
 					'type'    => 'text',
 					'heading' => 'Community Kitchen & Food Support',
 					'paragraphs' => array(
-						'Your Zakat funds directly support our flagship Community Kitchen programme, which serves free meals to thousands of individuals every single day. We serve widows, orphans, daily wage labourers, homeless individuals, elderly persons, disabled persons, low-income families, and students who cannot afford proper meals. Each meal costs just ₹60, meaning your Zakat can provide hundreds of meals to those who need them most.',
-						'Since our founding, we have distributed over 500,000 meals through our Community Kitchen. Your Zakat ensures that this vital work continues and expands to reach even more vulnerable communities across India.'
+						$zakat_use,
+						$all_welcome,
+						'Each meal costs ₹60, so your Zakat can feed many eligible people. Since our founding, we have distributed over 500,000 meals through our Community Kitchen.'
 					)
 				),
 				array(
 					'type'    => 'text',
 					'heading' => 'Nisab — The Threshold for Zakat',
 					'paragraphs' => array(
-						'Zakat becomes obligatory when a Muslim\'s wealth exceeds the Nisab threshold and a full lunar year has passed. The Nisab is calculated based on the value of 87.48 grams of gold or 612.36 grams of silver. As of the current rates, the silver Nisab is approximately ₹45,000, making it more accessible for many Muslims to participate in this blessed obligation.',
-						'The gold Nisab is approximately ₹6,50,000 based on prevailing gold prices. Many scholars recommend using the silver Nisab as the benchmark, as it allows more people to fulfil this obligation and maximises the benefit to those in need. For Fitrana (Zakat al-Fitr), which is a separate obligation, the amount is approximately ₹60 per person, given before Eid prayer.'
+						'Zakat becomes due when your wealth reaches the Nisab and a full lunar year passes over it. The Nisab is 87.48 grams of gold or 612.36 grams of silver.',
+						'If you own only gold, with no cash, silver or trade goods at all, the gold Nisab applies. If you own any cash, silver or trade goods, even alongside gold, your combined wealth is measured against the value of 612.36 grams of silver at today\'s price. Please check the current silver rate in your city, or use our Zakat Calculator.'
 					)
 				),
 				array(
 					'type'    => 'text',
 					'heading' => 'What is Fitrana (Zakat al-Fitr)?',
 					'paragraphs' => array(
-						'Fitrana, also called Zakat al-Fitr, is a charitable donation given before Eid prayer at the end of Ramadan. It is meant to help poor and needy people so they can also celebrate Eid with dignity and happiness.',
-						'Through Ramadan food distribution and ration support activities, Daan Foundation tries to help vulnerable families during the holy month. Visit our dedicated Zakat al-Fitr page to learn more and contribute.'
+						'Sadaqat al-Fitr (Fitrana) is a separate obligation, due on Eid al-Fitr at the end of Ramadan, so that people in need can also celebrate Eid with dignity. Through Daan Foundation, Fitrana is ' . $fitra . ' per person.',
+						'Visit our Zakat al-Fitr page to learn who must pay it and to contribute.'
 					)
 				),
 				array(
@@ -209,7 +229,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'Transparency & Responsibility',
 					'paragraphs' => array(
-						'We take our responsibility in handling Zakat funds with the utmost seriousness. Every rupee of your Zakat is meticulously tracked and allocated to programmes that directly benefit eligible recipients. We follow religious guidelines meticulously, ensuring that Zakat funds are distributed only to those who qualify under the eight categories defined in the Qur\'an.',
+						'We take our responsibility in handling Zakat funds with the utmost seriousness. Zakat is kept in a separate account and is tracked from the donor to the recipient. ' . $zakat_who,
 						'Our financial records are maintained with complete transparency, and we provide detailed reports to donors upon request. We believe that trust is the foundation of Islamic charity, and we work tirelessly to honour the trust you place in us.'
 					)
 				),
@@ -222,13 +242,20 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'faq',
 					'heading' => 'Frequently Asked Questions',
 					'items'   => array(
-						array( 'q' => 'What is Zakat?', 'a' => 'Zakat is one of the five pillars of Islam. It is a mandatory charitable contribution, typically 2.5% of a Muslim\'s total savings and wealth above a minimum amount known as the Nisab.' ),
-						array( 'q' => 'Who must pay Zakat?', 'a' => 'Zakat is obligatory for every adult Muslim who owns wealth above the Nisab threshold for one lunar year. The wealth must be in excess of basic needs and debts.' ),
-						array( 'q' => 'What is the Nisab?', 'a' => 'The Nisab is the minimum amount of wealth a Muslim must possess before Zakat becomes obligatory. It is calculated based on the value of gold (87.48 grams) or silver (612.36 grams).' ),
+						array( 'q' => 'What is Zakat?', 'a' => 'Zakat is one of the five pillars of Islam. It is a mandatory charitable contribution of 2.5% of a Muslim\'s zakatable wealth above a minimum amount known as the Nisab.' ),
+						array( 'q' => 'Who must pay Zakat?', 'a' => 'Zakat is obligatory for every sane, adult Muslim who owns wealth equal to or above the Nisab, beyond basic needs and debts, for one full lunar year.' ),
+						array( 'q' => 'What is the Nisab?', 'a' => 'The Nisab is 87.48 grams of gold or 612.36 grams of silver. If you own any cash, silver or trade goods, your combined wealth is measured against the value of 612.36 grams of silver.' ),
 						array( 'q' => 'How is Zakat calculated?', 'a' => 'Zakat is calculated as 2.5% of your total zakatable assets minus any debts. Zakatable assets include cash, savings, investments, gold, silver, and business inventory.' ),
-						array( 'q' => 'When should I pay Zakat?', 'a' => 'Zakat is due once a full lunar year has passed since your wealth exceeded the Nisab. Many Muslims choose to pay during Ramadan for increased blessings.' ),
-						array( 'q' => 'Who can receive Zakat?', 'a' => 'There are eight categories of Zakat recipients mentioned in the Qur\'an: the poor, the needy, Zakat administrators, those whose hearts are to be reconciled, freeing captives, those in debt, in the cause of Allah, and travellers in need.' ),
+						array( 'q' => 'When should I pay Zakat?', 'a' => 'Zakat is due once a full lunar year has passed since your wealth reached the Nisab. Many Muslims choose to pay during Ramadan.' ),
+						array( 'q' => 'Who can receive Zakat?', 'a' => $zakat_who ),
+						array( 'q' => 'Does any of my Zakat go to running costs?', 'a' => 'No. Zakat is never used for salaries, gas, packing, rent, transport or other running costs. These are met from general donations.' ),
+						array( 'q' => 'Can I give Zakat for Iftar?', 'a' => $iftar_zakat ),
 					),
+				),
+				array(
+					'type'    => 'notice',
+					'heading' => 'Please Note',
+					'content' => $scholar,
 				),
 				array(
 					'type'        => 'cta',
@@ -251,7 +278,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'What is Sadaqah?',
 					'paragraphs' => array(
-						'Sadaqah is a voluntary act of charity given purely for the sake of Allah, without any obligation or fixed amount. Unlike Zakat, which is an obligatory pillar of Islam with specific rules and calculations, Sadaqah can be given at any time, in any amount, and in any form — including kind words, a smile, or any act of goodness. The Prophet Muhammad (peace be upon him) said, "Every act of goodness is Sadaqah."',
+						'Sadaqah is a voluntary act of charity given purely for the sake of Allah, without any obligation or fixed amount. Unlike Zakat, which is an obligatory pillar of Islam with specific rules and calculations, Sadaqah can be given at any time, in any amount, and in any form — including kind words, a smile, or any act of goodness. The Prophet Muhammad (peace be upon him) said, "Every act of goodness is Sadaqah." (Sahih Muslim 1005)',
 						'The beauty of Sadaqah lies in its flexibility and accessibility. Anyone, regardless of their financial circumstances, can give Sadaqah. A kind word to someone who is distressed, helping a neighbour with their chores, or simply smiling at a stranger — all of these are forms of Sadaqah that are beloved to Allah.'
 					)
 				),
@@ -260,7 +287,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'The Meaning of Sadaqah',
 					'paragraphs' => array(
 						'The word Sadaqah is derived from the Arabic root Sidq, which means truthfulness and sincerity. This etymological connection reminds us that true charity emanates from a genuine and sincere heart, reflecting the truth of one\'s faith through action. When we give Sadaqah, we are not merely transferring wealth — we are expressing the depth of our faith and our connection to humanity.',
-						'Allah says in the Qur\'an: "Who is it that would loan Allah a goodly loan so He may multiply it for him many times over?" (Qur\'an 2:245). This beautiful verse describes charity as a loan to Allah Himself, promising abundant returns in this life and the next. The Prophet Muhammad (peace be upon him) said, "Sadaqah extinguishes sin as water extinguishes fire," and "The believer\'s shade on the Day of Resurrection will be his Sadaqah."'
+						'Allah says in the Qur\'an: "Who is it that would loan Allah a goodly loan so He may multiply it for him many times over?" (Qur\'an 2:245). This beautiful verse describes charity as a loan to Allah Himself, promising abundant returns in this life and the next. The Prophet Muhammad (peace be upon him) said: "…charity extinguishes sins just as water extinguishes fire." (Jami\' at-Tirmidhi 2616, graded Hasan)'
 					)
 				),
 				array(
@@ -280,7 +307,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Community Kitchen',
 					'paragraphs' => array(
 						'Your Sadaqah directly supports our Community Kitchen programme, which serves over 500,000 free meals to individuals and families in need. Every contribution helps us prepare and distribute nutritious meals to those who cannot afford them, serving all community members without any discrimination.',
-						'Whether you give ₹60 for one meal or ₹6,000 for a hundred meals, every rupee of your Sadaqah creates an immediate and tangible impact in someone\'s life. You can also consider Sadaqah Jariyah (ongoing charity) — a continuous act of charity that continues to benefit people and earn you rewards long after you have given it.'
+						'Whether you give ₹60 for one meal or ₹6,000 for a hundred meals, every rupee of your Sadaqah creates an immediate and tangible impact in someone\'s life. You can also consider Sadaqah Jariyah (ongoing charity), which we use only for the lasting assets of our kitchen, such as utensils, stoves and storage.'
 					)
 				),
 				array(
@@ -298,7 +325,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'Why Sadaqah Matters',
 					'paragraphs' => array(
-						'Sadaqah has the power to transform both the giver and the receiver. For the giver, it purifies the heart, increases gratitude, and brings immense spiritual rewards. For the receiver, it provides relief from hardship, restores dignity, and offers hope for a better tomorrow. The Prophet Muhammad (peace be upon him) said, "Give Sadaqah without delay, for it stands in the way of calamity."',
+						'Sadaqah has the power to transform both the giver and the receiver. For the giver, it purifies the heart, increases gratitude, and brings immense spiritual rewards. For the receiver, it provides relief from hardship, restores dignity, and offers hope for a better tomorrow.',
 						'By giving Sadaqah through Daan Foundation, you ensure that your charity reaches those who need it most, creating a lasting impact that goes far beyond the immediate act of giving.'
 					)
 				),
@@ -312,7 +339,8 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Frequently Asked Questions',
 					'items'   => array(
 						array( 'q' => 'What is the difference between Sadaqah and Zakat?', 'a' => 'Zakat is an obligatory annual charity calculated at 2.5% of wealth, while Sadaqah is voluntary charity that can be given at any time in any amount.' ),
-						array( 'q' => 'What is Sadaqah Jariyah?', 'a' => 'Sadaqah Jariyah is ongoing charity that continues to benefit people and earn rewards for the giver even after death, such as building a well or supporting a community kitchen.' ),
+						array( 'q' => 'What is Sadaqah Jariyah?', 'a' => 'Sadaqah Jariyah is charity whose benefit continues over time, such as a well, a mosque or lasting facilities that keep serving people, so its reward continues even after death. At Daan Foundation, Sadaqah Jariyah donations are used only for lasting kitchen assets, such as utensils, stoves and storage.' ),
+						array( 'q' => 'Can Sadaqah be given to non-Muslims?', 'a' => 'Yes. Voluntary Sadaqah can help anyone in need. Zakat and Fitrana, however, can be given only to eligible Muslims.' ),
 					),
 				),
 				array(
@@ -335,20 +363,20 @@ function daan_get_page_data( $slug ) {
 				array(
 					'type'    => 'notice',
 					'heading' => 'Fidyah & Kaffarah donations are temporarily paused',
-					'content' => 'We are updating this programme with our scholars. Meanwhile, our Iftar and Community Kitchen donations are general charity (Sadaqah), not Fidyah or Kaffarah. An Iftar meal, or an Iftar plus one meal, is not Fidyah.',
+					'content' => 'We are updating this programme with our scholars. Meanwhile, please note that our Iftar and Community Kitchen donations are not Fidyah or Kaffarah. An Iftar meal, or an Iftar plus one meal, is not Fidyah.',
 				),
 				array(
 					'type'    => 'text',
 					'heading' => 'What is Fidya?',
 					'paragraphs' => array(
 						'Fidya is a charitable compensation for Muslims who are unable to fast during Ramadan due to a lasting reason such as old age or a chronic illness with no hope of recovery. If recovery is possible later, the missed fasts should be made up instead.',
-						'For each missed fast, the fidya is equal to sadaqat-ul-fitr: about 1.75 kg of wheat, or its price. For guidance on paying your fidya, please ask a qualified mufti.'
+						'For each missed fast, the fidya is equal to sadaqat-ul-fitr: about 1.75 kg of wheat, or its price. At Daan Foundation this is ' . $fitra . ' per missed fast, the same as our Fitrana rate (Fidyah donations are currently paused). For guidance on paying your fidya, please ask a qualified mufti.'
 					)
 				),
 				array(
 					'type'    => 'quote',
-					'quote'   => '"Fasting is for a fixed number of days. But if any of you is ill or on a journey, the same number of days from other days. And as for those who can fast with difficulty (e.g., old and sick), they have a choice either to fast or to feed a poor person for every day of fasting missed."',
-					'source'  => '— Qur\'an 2:184'
+					'quote'   => '"…And upon those who are able [to fast, but with hardship] — a ransom [as substitute] of feeding a poor person [each day]…"',
+					'source'  => '— Qur\'an 2:184 (Saheeh International)'
 				),
 				array(
 					'type'        => 'cta',
@@ -370,14 +398,14 @@ function daan_get_page_data( $slug ) {
 				array(
 					'type'    => 'notice',
 					'heading' => 'Kaffarah & Fidyah donations are temporarily paused',
-					'content' => 'We are updating this programme with our scholars. Meanwhile, our Iftar and Community Kitchen donations are general charity (Sadaqah), not Kaffarah or Fidyah.',
+					'content' => 'We are updating this programme with our scholars. Meanwhile, please note that our Iftar and Community Kitchen donations are not Kaffarah or Fidyah.',
 				),
 				array(
 					'type'    => 'text',
 					'heading' => 'What is Kaffarah?',
 					'paragraphs' => array(
 						'Kaffarah (expiation) is due when a Ramadan fast is intentionally broken without a valid reason, or when a sworn oath (Qasam) is broken.',
-						'For a broken oath, the kaffarah is feeding ten needy people two full meals each (morning and evening). One meal is not enough. For a broken fast, and for any other details, please ask a qualified mufti.'
+						'For a broken oath, the kaffarah is feeding ten needy people two full meals each (morning and evening) (Qur\'an 5:89). One meal is not enough. For a broken fast, and for any other details, please ask a qualified mufti.'
 					)
 				),
 				array(
@@ -417,8 +445,8 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'Ramadan — A Month of Compassion',
 					'paragraphs' => array(
-						'Ramadan is the holiest month in the Islamic calendar, a time of fasting, prayer, reflection, and heightened charity. During this month, Muslims fast from dawn to sunset, experiencing hunger and thirst to develop empathy for the less fortunate. It is a month when rewards for good deeds are multiplied, and the act of feeding a fasting person carries immense spiritual merit.',
-						'The Prophet Muhammad (peace be upon him) said, "Whoever feeds a fasting person will have a reward like that of the fasting person, without any reduction in his reward." This beautiful teaching inspires thousands of our donors to contribute generously during Ramadan, ensuring that those who are fasting can break their fast with a nutritious meal provided with love and respect.'
+						'Ramadan is the holiest month in the Islamic calendar, a time of fasting, prayer, reflection, and heightened charity. During this month, Muslims fast from dawn to sunset, experiencing hunger and thirst to develop empathy for the less fortunate. It is a month of mercy in which the Prophet ﷺ was at his most generous (Sahih al-Bukhari 6), and the act of feeding a fasting person carries immense spiritual merit.',
+						'The Prophet Muhammad (peace be upon him) said: "Whoever gives food to a fasting person to break his fast will have the same reward as him, without the fasting person\'s reward being reduced in the slightest." (Jami\' at-Tirmidhi 807, graded Sahih) This beautiful teaching inspires thousands of our donors to contribute generously during Ramadan, ensuring that those who are fasting can break their fast with a nutritious meal provided with love and respect.'
 					)
 				),
 				array(
@@ -426,7 +454,21 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Iftar Distribution Since 2020',
 					'paragraphs' => array(
 						'Since 2020, Daan Foundation has been distributing iftar meals to thousands of people every evening during Ramadan. Our iftar distribution serves daily wage labourers, homeless individuals, orphans, widows, elderly persons, disabled persons, low-income families, students, rickshaw pullers, and construction workers. What began with distributing 1,000 meals in our first year has grown to serving thousands daily by 2025.',
-						'Each iftar meal consists of nutritious and fulfilling food, including fruits, dates, snacks, and a main meal, all packed hygienically and distributed with warmth and dignity. Our volunteers ensure that every person receives their meal with a smile and a greeting of "Ramadan Mubarak," making the distribution a truly compassionate experience.'
+						'Our volunteers ensure that every person receives their kit with a smile and a greeting of "Ramadan Mubarak," making the distribution a truly compassionate experience.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'What Is in an Iftar Kit',
+					'paragraphs' => array(
+						$iftar_kit,
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Can I Give Zakat for Iftar?',
+					'paragraphs' => array(
+						$iftar_zakat,
 					)
 				),
 				array(
@@ -441,7 +483,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'Food Without Discrimination',
 					'paragraphs' => array(
-						'At Daan Foundation, we serve all community members without any discrimination of caste, creed, religion, gender, or background. Our iftar distributions and Community Kitchen are open to everyone who is in need. We believe that hunger knows no religion, and neither should compassion. This commitment to inclusive service has made us a trusted organisation in the diverse communities we serve.',
+						'At Daan Foundation, we serve all community members without any discrimination of caste, creed, religion, gender, or background. Our iftar distributions and Community Kitchen are open to everyone who is in need. We believe that hunger knows no religion, and neither should compassion. Meals for those who are not eligible for Zakat are funded from Sadaqah and general donations, never from Zakat.',
 						'Our volunteers come from various backgrounds and faiths, united by the common goal of serving humanity. This spirit of unity and inclusivity is the true essence of Ramadan and the core value of Daan Foundation.'
 					)
 				),
@@ -449,7 +491,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'The Spirit of Charity in Ramadan',
 					'paragraphs' => array(
-						'The Prophet Muhammad (peace be upon him) was the most generous of people, and his generosity increased during Ramadan when Angel Jibreel would review the Qur\'an with him each night. The Prophet was "more generous than the blowing wind" during this blessed month. This tradition of heightened generosity during Ramadan is one that Daan Foundation strives to embody and facilitate for our donors.',
+						'The Prophet Muhammad (peace be upon him) was the most generous of people, and his generosity increased during Ramadan when Angel Jibreel would review the Qur\'an with him each night. The Prophet was "more generous than the blowing wind" during this blessed month (Sahih al-Bukhari 6; Sahih Muslim 2308). This tradition of heightened generosity during Ramadan is one that Daan Foundation strives to embody and facilitate for our donors.',
 						'By donating through Daan Foundation during Ramadan, you are continuing a blessed tradition that dates back to the Prophet himself. Your contributions ensure that the blessings of Ramadan reach those who need them most, creating a chain of generosity that uplifts entire communities.'
 					)
 				),
@@ -615,55 +657,43 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'What is Sadaqah Jariyah?',
 					'paragraphs' => array(
-						'Sadaqah Jariyah means "ongoing charity" — a virtuous act that continues to benefit others and earn rewards for the giver long after the act itself has been performed. The Prophet Muhammad (peace be upon him) said, "When a person dies, his deeds come to an end except for three: ongoing charity (Sadaqah Jariyah), beneficial knowledge, or a righteous child who prays for him." (Sahih Muslim). This hadith highlights the unique power of Sadaqah Jariyah as a means of continuous spiritual reward even after death.',
-						'Unlike one-time charity, Sadaqah Jariyah creates a lasting impact that keeps giving. It is an investment in the hereafter, a way to ensure that your legacy of goodness continues to benefit humanity and earn you rewards long after you have left this world. The beauty of this concept is that the donor continues to receive rewards for every single benefit that stems from their original act of giving.'
+						'Sadaqah Jariyah means "ongoing charity": charity whose benefit continues over time, so that its reward continues for the giver even after death. The Prophet Muhammad (peace be upon him) said, "When a person dies, his deeds come to an end except for three: ongoing charity (Sadaqah Jariyah), beneficial knowledge, or a righteous child who prays for him." (Sahih Muslim 1631)',
+						'Common examples are a well, a mosque, or lasting facilities that keep serving people for years.'
 					)
 				),
 				array(
 					'type'    => 'text',
 					'heading' => 'Why It Is Important',
 					'paragraphs' => array(
-						'Sadaqah Jariyah represents the highest form of charitable giving in Islam because of its enduring impact. When you contribute to a project that continues to serve people year after year, every meal served, every person helped, and every life touched becomes a source of reward for you. This is the ultimate form of investment — one that pays dividends in the hereafter.',
-						'For those who wish to leave a lasting legacy of goodness, Sadaqah Jariyah is the perfect vehicle. It ensures that your name continues to be associated with acts of compassion and service, and that you continue to earn rewards even after you are no longer in a position to perform good deeds yourself.'
+						'Sadaqah Jariyah is among the most rewarding forms of charity because its benefit lasts. For those who wish to leave a lasting legacy of goodness, it is a way to keep benefiting people even after one is no longer able to perform good deeds oneself.'
 					)
 				),
 				array(
 					'type'    => 'text',
 					'heading' => 'Sadaqah Jariyah at Daan Foundation',
 					'paragraphs' => array(
-						'Daan Foundation offers several opportunities for Sadaqah Jariyah, with our Community Kitchen being the most impactful example. Every day, our kitchen serves hundreds of free meals to those in need, and this will continue as long as we have the resources to operate. By contributing to our Community Kitchen or other ongoing programmes, you are establishing a stream of continuous charity that will benefit people for years to come.',
-						'Every meal served from your contribution, every person nourished, every life touched — all of these become ongoing acts of charity that earn you rewards. This is the essence of Sadaqah Jariyah, and it is one of the most powerful ways to invest in your eternal future while making a tangible difference in the present.'
-					)
-				),
-				array(
-					'type'    => 'text',
-					'heading' => 'Community Kitchen',
-					'paragraphs' => array(
-						'Our Community Kitchen is the ideal vehicle for Sadaqah Jariyah. With over 500,000 meals served since 2020, it is a proven, sustainable programme that continues to grow and serve more people every year. Your contribution to the kitchen ensures that free, nutritious meals are provided to those in need every single day, creating a perpetual stream of rewards for you.',
-						'Each meal costs just ₹60, making it accessible for anyone to participate in this ongoing charity. Whether you contribute ₹6,000 for 100 meals or ₹60,000 for 1,000 meals, you are establishing a legacy of compassion that will continue to earn rewards long after you have given.'
+						'Sadaqah Jariyah donations are used only for lasting kitchen assets, such as utensils, stoves and storage. These assets keep our Community Kitchen running and continue to serve meals to people in need over many years.',
+						'Day-to-day meals are not counted as Sadaqah Jariyah. If you wish to pay for meals, please give Sadaqah or Zakat to our Community Kitchen; each meal costs ₹60.'
 					)
 				),
 				array(
 					'type'    => 'grid',
-					'heading' => 'Examples of Sadaqah Jariyah',
+					'heading' => 'What Your Sadaqah Jariyah Provides',
 					'items'   => array(
-						array( 'icon' => 'utensils', 'title' => 'Feeding the Hungry', 'desc' => 'Support an ongoing meal programme that feeds the hungry daily' ),
-						array( 'icon' => 'book', 'title' => 'Education', 'desc' => 'Sponsor a child\'s education for lasting impact' ),
-						array( 'icon' => 'stethoscope', 'title' => 'Medical Support', 'desc' => 'Fund ongoing healthcare services for the needy' ),
-						array( 'icon' => 'briefcase', 'title' => 'Self-Reliance', 'desc' => 'Support livelihood training that enables independence' ),
-						array( 'icon' => 'lightbulb', 'title' => 'Knowledge', 'desc' => 'Share beneficial knowledge that continues to guide others' ),
-						array( 'icon' => 'leaf', 'title' => 'Environment', 'desc' => 'Plant trees or support environmental sustainability' ),
+						array( 'icon' => 'utensils', 'title' => 'Utensils', 'desc' => 'Cooking vessels and serving utensils used every day' ),
+						array( 'icon' => 'seasonal', 'title' => 'Stoves', 'desc' => 'Cooking stoves and kitchen equipment' ),
+						array( 'icon' => 'package', 'title' => 'Storage', 'desc' => 'Storage for grain, rations and supplies' ),
 					)
 				),
 				array(
 					'type'    => 'notice',
-					'heading' => 'Earn Rewards That Never Stop',
-					'content' => 'Your Sadaqah Jariyah through Daan Foundation continues to earn you rewards for every meal served, every person helped, and every life touched.',
+					'heading' => 'A Lasting Benefit',
+					'content' => 'Your Sadaqah Jariyah through Daan Foundation provides lasting kitchen assets that continue to serve people in need for years.',
 				),
 				array(
 					'type'        => 'cta',
 					'heading'     => 'Give Sadaqah Jariyah Today',
-					'description' => 'Invest in your eternal future by supporting our ongoing programmes. Every contribution creates a lasting legacy of compassion that continues to earn rewards.',
+					'description' => 'Help equip our Community Kitchen with lasting assets, such as utensils, stoves and storage, that serve people in need for years.',
 					'button_text' => 'Give Ongoing Charity',
 					'button_url'  => '/donate/?cause=sadaqah-jariyah',
 				),
@@ -747,32 +777,22 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'What is Zakat al-Fitr?',
 					'paragraphs' => array(
-						'Zakat al-Fitr, also known as Fitrana, is a compulsory charitable donation that every Muslim who possesses wealth beyond their basic needs must pay before the Eid al-Fitr prayer. It is a purification of the fast and a means of ensuring that even the poorest members of the community can celebrate Eid with dignity and joy. The amount is approximately ₹60 per person, making it accessible for all who are obligated to give.',
-						'The primary purpose of Zakat al-Fitr is to enable the less fortunate to partake in the Eid celebrations and to compensate for any shortcomings in one\'s fast during Ramadan. It is a beautiful expression of Islamic solidarity, ensuring that the joy of Eid is shared by everyone, regardless of their financial circumstances.'
+						'Sadaqat al-Fitr (Fitrana) is wajib on every Muslim who, on the morning of Eid al-Fitr, owns wealth equal to the Nisab beyond their basic needs. Unlike Zakat, a full year does not need to pass on this wealth. It purifies the fast and helps people in need celebrate Eid with dignity.',
+						'Through Daan Foundation, Fitrana is ' . $fitra . ' per person. It is paid for yourself and for your minor children.'
 					)
 				),
 				array(
 					'type'    => 'quote',
 					'quote'   => 'The Prophet Muhammad (peace be upon him) enjoined Zakat al-Fitr as a purification for the fasting person from any idle or obscene speech, and as food for the needy. Whoever pays it before the Eid prayer, it is an accepted Zakat, and whoever pays it after the prayer, it is merely an ordinary charity.',
-					'source'  => '— Sunan Abu Dawud & Ibn Majah'
+					'source'  => '— Sunan Abi Dawud 1609 (graded Hasan by al-Albani); Sunan Ibn Majah 1827'
 				),
 				array(
 					'type'    => 'checklist',
 					'heading' => 'How We Use Fitrana',
 					'items'   => array(
-						'Preparing and distributing nutritious Eid meals for needy families',
-						'Providing ration kits containing staple food items for Eid celebration',
-						'Supporting our Community Kitchen that serves free meals throughout the year',
-						'Distributing food packages to orphans, widows, and elderly persons',
-						'Ensuring that the joy of Eid reaches every deserving family in our network',
-					)
-				),
-				array(
-					'type'    => 'text',
-					'heading' => 'Community Kitchen',
-					'paragraphs' => array(
-						'Your Fitrana contributions support our Community Kitchen, which serves over 500,000 free meals to individuals and families in need. During Eid, we expand our operations to ensure that everyone can celebrate with a proper meal. Each meal costs just ₹60, and your Fitrana can provide multiple meals to those who need them most.',
-						'By giving your Fitrana through Daan Foundation, you ensure that your obligation is fulfilled correctly and that your contribution is maximised to help as many people as possible.'
+						'Fitrana is given only to eligible Muslim families who are in need',
+						'It is given as food kits, ration or cash that the family owns',
+						'It is never used for running costs',
 					)
 				),
 				array(
@@ -781,31 +801,36 @@ function daan_get_page_data( $slug ) {
 					'col1'    => array(
 						'heading' => 'Who Should Pay',
 						'items'   => array(
-							'Every Muslim who possesses food in excess of their basic needs',
-							'Must be paid on behalf of every family member, including dependents',
-							'Must be given before the Eid prayer to be valid as Zakat al-Fitr',
-							'Approximately ₹60 per person, based on staple food grains',
+							'Every Muslim who owns wealth equal to the Nisab beyond basic needs on Eid morning',
+							'Paid for yourself and your minor children; for your wife or adult children it is not wajib on you, but you may pay with their permission',
+							'Best given before the Eid prayer',
+							$fitra . ' per person through Daan Foundation',
 						)
 					),
 					'col2'    => array(
 						'heading' => 'Zakat vs Fitrana',
 						'items'   => array(
 							'Zakat is 2.5% of annual wealth; Fitrana is a fixed amount per person',
-							'Zakat has a Nisab threshold; Fitrana is obligatory for all who can afford it',
-							'Zakat can be given anytime; Fitrana must be given before Eid prayer',
+							'Zakat needs a full year on wealth above the Nisab; Fitrana needs only ownership of the Nisab on Eid morning',
+							'Zakat can be given at any time once due; Fitrana is due on Eid al-Fitr',
 							'Zakat purifies wealth; Fitrana purifies the fast and feeds the needy',
 						)
 					),
 				),
 				array(
 					'type'    => 'notice',
-					'heading' => 'Pay Before Eid Prayer',
-					'content' => 'Zakat al-Fitr must be paid before the Eid prayer to be accepted as such. Daan Foundation ensures timely distribution to those in need.',
+					'heading' => 'Please Give Before Eid Prayer',
+					'content' => 'Please send your Fitrana early in Ramadan, so that it can reach families in need in good time for Eid.',
+				),
+				array(
+					'type'    => 'notice',
+					'heading' => 'Please Note',
+					'content' => $scholar,
 				),
 				array(
 					'type'        => 'cta',
 					'heading'     => 'Pay Your Fitrana Today',
-					'description' => 'Fulfil your obligation and ensure that everyone can celebrate Eid with dignity. Your Fitrana provides food and joy to those who need it most.',
+					'description' => 'Fulfil your obligation and help families in need celebrate Eid with dignity.',
 					'button_text' => 'Pay Fitrana Now',
 					'button_url'  => '/donate/?cause=zakat-al-fitr',
 				),
@@ -1677,6 +1702,13 @@ function daan_get_page_data( $slug ) {
 					'paragraphs' => array(
 						'Since 2020, Daan Foundation has continuously distributed food and supported vulnerable families through various welfare initiatives. Maintaining regular charitable work over several years requires planning, coordination, and sustainable systems.',
 						'Our goal is not only to distribute assistance, but also to maintain trust, accountability, and long-term continuity in serving communities.'
+					)
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Zakat Is the Exception',
+					'paragraphs' => array(
+						'One exception is Zakat. Islamic rulings do not allow Zakat to be spent on salaries, gas, packing, rent, transport or other running costs, so every rupee of Zakat goes to eligible recipients, who receive it as their own. Zakat is kept in a separate account. Our running costs are met only from general donations and Sadaqah.',
 					)
 				),
 				array(

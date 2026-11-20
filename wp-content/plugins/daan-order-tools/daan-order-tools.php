@@ -843,6 +843,9 @@ add_action( 'admin_menu', function () {
 				<h2>Fidyah &amp; Kaffarah</h2>
 				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_FK_PAUSE_OPTION ); ?>" value="yes" <?php checked( daan_fk_paused() ); ?>> Pause Fidyah &amp; Kaffarah donations</label></p>
 				<p class="description">While ticked, no NEW Fidyah &amp; Kaffarah donation can be made (form, links, product page, checkout) and donors see a notice. Existing orders are not affected: digest, buttons, auto-cancel, receipts and execution e-mails continue. Untick to reopen.</p>
+				<h2>Fitrana / Fidyah rate</h2>
+				<p><label>₹ <input type="number" min="1" step="1" style="width:90px" name="<?php echo esc_attr( DAAN_OT_FITRANA_OPTION ); ?>" value="<?php echo esc_attr( daan_fitrana_rate() ); ?>"> per person (Fitrana) and per missed fast (Fidyah)</label></p>
+				<p class="description">One setting for both. It is shown on the Zakat, Zakat al-Fitr and Fidya pages and in the Terms. Update it every year (docs/fiqh/decisions.md, D-006).</p>
 				<?php submit_button(); ?>
 			</form>
 		</div>
@@ -967,6 +970,39 @@ add_action( 'admin_init', function () {
 			'default'           => 'no',
 			'sanitize_callback' => function ( $value ) {
 				return 'yes' === $value ? 'yes' : 'no';
+			},
+		)
+	);
+} );
+
+/* -------------------------------------------------------------------------
+ * 9. Fitrana / Fidyah rate (owner, 2026-11-20, docs/fiqh/decisions.md D-006).
+ *    One number under WooCommerce > Order Automation, used for Fitrana (per
+ *    person) and Fidyah (per missed fast). Theme: daan_fitrana_rate();
+ *    pages and posts: [daan_fitrana_rate] prints "₹80".
+ * ------------------------------------------------------------------------- */
+
+const DAAN_OT_FITRANA_OPTION = 'daan_fitrana_rate';
+
+function daan_fitrana_rate() {
+	$rate = (int) get_option( DAAN_OT_FITRANA_OPTION, 80 );
+	return $rate > 0 ? $rate : 80;
+}
+
+add_shortcode( 'daan_fitrana_rate', function () {
+	return '&#8377;' . number_format_i18n( daan_fitrana_rate() );
+} );
+
+add_action( 'admin_init', function () {
+	register_setting(
+		'daan_ot_automation',
+		DAAN_OT_FITRANA_OPTION,
+		array(
+			'type'              => 'integer',
+			'default'           => 80,
+			'sanitize_callback' => function ( $value ) {
+				$value = (int) $value;
+				return $value > 0 ? $value : 80;
 			},
 		)
 	);
