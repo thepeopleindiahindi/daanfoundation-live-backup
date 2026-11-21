@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 > **Islami content rule (owner, 2026-11-20):** Islami content badalne se pehle docs/fiqh/decisions.md padho; uske khilaf kuch mat likho; har naya faisla wahin darj karo. Site par sirf Bhartiya idaron ke hawale/links; bahar ki websites ke link nahi.
 
+> **URL rule (owner, 2026-11-21):** Purane URLs aur unki Google ranking hamari property hain. Koi bhi purana URL redirect, delete, draft ya slug change karne se pehle owner se poochho.
+
 ## What this repo is
 
 The website for Daan Foundation (daanfoundation.in), an India-based nonprofit. It is currently **three overlapping things in one tree**, at different stages of a migration:

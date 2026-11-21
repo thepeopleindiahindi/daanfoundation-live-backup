@@ -1250,12 +1250,25 @@ add_action( 'woocommerce_checkout_create_order', function ( $order ) {
 	}
 } );
 
-// Old Bank Interest product and ?cause=bank-interest go to the Interest kit; ?cause=fitrana goes to the Fitrana kit.
-add_action( 'template_redirect', function () {
-	if ( is_singular( 'product' ) && 'bank-interest' === get_post_field( 'post_name', get_queried_object_id() ) && get_option( 'daan_kit_interest_product' ) ) {
-		wp_safe_redirect( daan_kit_url( 'interest' ), 301 );
-		exit;
+// Old Bank Interest product page (/product/bank-interest/) stays LIVE and indexed (owner, 2026-11-21: old URLs are our
+// property). Same title, meta, slug, canonical; it cannot be bought; its page shows the Interest kit and a button to it.
+const DAAN_OT_OLD_INTEREST_PRODUCT = 5923;
+
+add_filter( 'woocommerce_is_purchasable', function ( $ok, $product ) {
+	return ( $product && DAAN_OT_OLD_INTEREST_PRODUCT === (int) $product->get_id() ) ? false : $ok;
+}, 30, 2 );
+
+add_filter( 'woocommerce_short_description', function ( $text ) {
+	if ( ! is_singular( 'product' ) || DAAN_OT_OLD_INTEREST_PRODUCT !== (int) get_queried_object_id() ) {
+		return $text;
 	}
+	return '<p>Interest money must be given away, without any intention of reward, to people in need. Daan Foundation uses it only for ration kits, which each family receives and owns. Your entire interest amount goes into the kit items; the cost of transport and our website is paid by Daan Foundation from its general funds. It is not counted as Zakat and is never used for staff, buildings or running costs.</p>'
+		. '<p><strong>Each kit: ' . daan_rupees( daan_kit_price() ) . '. What is in one kit:</strong></p>' . daan_kit_items_html()
+		. '<p><a href="' . esc_url( daan_kit_url( 'interest' ) ) . '" style="display:inline-block;border-radius:9999px;background:#C2410C;color:#fff;padding:12px 24px;font-weight:700;text-decoration:none;">Give Ration Kits (' . daan_rupees( daan_kit_price() ) . ' each)</a></p>';
+}, 20 );
+
+// ?cause=bank-interest goes to the Interest kit; ?cause=fitrana goes to the Fitrana kit (added 2026-11-21).
+add_action( 'template_redirect', function () {
 	if ( isset( $_GET['cause'] ) && function_exists( 'daan_cause_from_link' ) && is_page( 'donate' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$cause = daan_cause_from_link( sanitize_text_field( wp_unslash( $_GET['cause'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( 'Bank Interest' === $cause && get_option( 'daan_kit_interest_product' ) ) {

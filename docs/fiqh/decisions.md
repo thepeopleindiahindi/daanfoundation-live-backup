@@ -61,3 +61,9 @@ Status: **live** = site par lag chuka · **hold** = jaan-boojh kar roka gaya · 
 - D-025: zakat me sirf is saal ki qist — Bhartiya hawala.
 - D-027: Qur'an 2:184 ki vyakhya — Bhartiya/Hanafi tafseer na milne se sirf Mufti Taqi Usmani ka tarjuma laga hai.
 - Google ke liye FAQ schema (SEO hold): post 6967 ke schema me abhi bhi "pilot Iftar stalls" (inc/seo-fixes.php + content-fixes mapping); posts 6946/6978 ka purana kaffara schema.
+
+## URL niyam
+
+| ID | Tareekh | Vishay | Faisla | Source | Site par kahan | Status |
+|---|---|---|---|---|---|---|
+| D-032 | 2026-11-21 | Purane URLs | Purane URLs aur unki Google ranking hamari property hain. Koi bhi purana URL redirect, delete, draft ya slug change karne se pehle owner se poochho. /product/bank-interest/ ka 301 hata kar wapas live (200): wahi title, meta, slug, canonical; product khareeda nahi ja sakta; page par Ration Kit (Interest Money) ki jaankari + button naye product par | Owner | Plugin daan-order-tools (old product 5923), CLAUDE.md | live |
