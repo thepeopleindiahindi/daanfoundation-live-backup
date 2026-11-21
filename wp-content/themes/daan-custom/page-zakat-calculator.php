@@ -72,7 +72,7 @@ get_header();
 
 		<div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px;">
 			<div>
-				<label for="zakat-debts" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Outstanding Debts (₹)</label>
+				<label for="zakat-debts" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:6px;">Debts due this Islamic year (₹) — for long loans such as a home loan, only this year's instalments</label>
 				<input type="number" id="zakat-debts" value="0" min="0" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:12px 16px;font-size:1rem;color:#111;background:#fff;transition:border-color 0.2s;">
 			</div>
 			<div>

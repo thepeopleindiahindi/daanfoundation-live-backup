@@ -843,9 +843,17 @@ add_action( 'admin_menu', function () {
 				<h2>Fidyah &amp; Kaffarah</h2>
 				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_FK_PAUSE_OPTION ); ?>" value="yes" <?php checked( daan_fk_paused() ); ?>> Pause Fidyah &amp; Kaffarah donations</label></p>
 				<p class="description">While ticked, no NEW Fidyah &amp; Kaffarah donation can be made (form, links, product page, checkout) and donors see a notice. Existing orders are not affected: digest, buttons, auto-cancel, receipts and execution e-mails continue. Untick to reopen.</p>
-				<h2>Fitrana / Fidyah rate</h2>
-				<p><label>₹ <input type="number" min="1" step="1" style="width:90px" name="<?php echo esc_attr( DAAN_OT_FITRANA_OPTION ); ?>" value="<?php echo esc_attr( daan_fitrana_rate() ); ?>"> per person (Fitrana) and per missed fast (Fidyah)</label></p>
-				<p class="description">One setting for both. It is shown on the Zakat, Zakat al-Fitr and Fidya pages and in the Terms. Update it every year (docs/fiqh/decisions.md, D-006).</p>
+				<h2>Fitrana, Fidyah &amp; Ration Kits</h2>
+				<p class="description"><b>This year's estimate; may change in Ramadan.</b> Every amount on the site (Zakat, Zakat al-Fitr, Fidya, Bank Interest pages, Terms, both kit products) comes from here (docs/fiqh/decisions.md D-006, D-021, D-029).</p>
+				<table class="form-table" role="presentation">
+					<tr><th>Fitrana: wheat (₹ per person)</th><td><input type="number" min="1" step="1" style="width:110px" name="<?php echo esc_attr( DAAN_OT_FITRANA_OPTION ); ?>" value="<?php echo esc_attr( daan_fitrana_rate() ); ?>"> <span class="description">The minimum. Also Fidyah per missed fast.</span></td></tr>
+					<tr><th>Fitrana: barley (₹ per person)</th><td><input type="number" min="1" step="1" style="width:110px" name="daan_rate_barley" value="<?php echo esc_attr( daan_rate( 'barley' ) ); ?>"></td></tr>
+					<tr><th>Fitrana: dates (₹ per person)</th><td><input type="number" min="1" step="1" style="width:110px" name="daan_rate_dates" value="<?php echo esc_attr( daan_rate( 'dates' ) ); ?>"></td></tr>
+					<tr><th>Fitrana: raisins (₹ per person)</th><td><input type="number" min="1" step="1" style="width:110px" name="daan_rate_raisins" value="<?php echo esc_attr( daan_rate( 'raisins' ) ); ?>"></td></tr>
+					<tr><th>Ration kit price (₹ per kit)</th><td><input type="number" min="1" step="1" style="width:110px" name="daan_kit_price" value="<?php echo esc_attr( daan_kit_price() ); ?>"> <span class="description">Both kit products: Ration Kit (Interest Money) and Fitrana Ration Kit.</span></td></tr>
+					<tr><th>Kit food value for Fitrana (internal, not shown)</th><td><input type="number" min="0" step="1" style="width:110px" name="daan_kit_food_value" value="<?php echo esc_attr( (string) get_option( 'daan_kit_food_value', '' ) ); ?>"> <span class="description">₹ value of the food items in one kit. Leave EMPTY until confirmed: while empty, the Fitrana calculator stays hidden.</span></td></tr>
+					<tr><th>Ration kit items (one per line)</th><td><textarea name="daan_kit_items" rows="18" cols="60"><?php echo esc_textarea( daan_kit_items_text() ); ?></textarea><p class="description">Name and weight only, no prices. The same list shows on both kit products, the Bank Interest page and the Zakat al-Fitr page.</p></td></tr>
+				</table>
 				<?php submit_button(); ?>
 			</form>
 		</div>
@@ -976,34 +984,373 @@ add_action( 'admin_init', function () {
 } );
 
 /* -------------------------------------------------------------------------
- * 9. Fitrana / Fidyah rate (owner, 2026-11-20, docs/fiqh/decisions.md D-006).
- *    One number under WooCommerce > Order Automation, used for Fitrana (per
- *    person) and Fidyah (per missed fast). Theme: daan_fitrana_rate();
- *    pages and posts: [daan_fitrana_rate] prints "₹80".
+ * 9. Fitrana, Fidyah and Ration Kits (owner, 2026-11-21;
+ *    docs/fiqh/decisions.md D-006, D-019 to D-022, D-029, D-030).
+ *    All amounts and the kit list are set under WooCommerce > Order Automation.
+ *    Shortcodes: [daan_fitrana_rate] (wheat), [daan_rate item="barley"],
+ *    [daan_kit_price], [daan_kit_items], [daan_fitrana_calculator].
+ *    Two kit products (ids in options daan_kit_interest_product and
+ *    daan_kit_fitrana_product): fixed price from the setting, quantity only on
+ *    these two, never in one cart together, no execution e-mail.
  * ------------------------------------------------------------------------- */
 
-const DAAN_OT_FITRANA_OPTION = 'daan_fitrana_rate';
+const DAAN_OT_FITRANA_OPTION = 'daan_fitrana_rate'; // Wheat, per person; also Fidyah per missed fast.
 
 function daan_fitrana_rate() {
-	$rate = (int) get_option( DAAN_OT_FITRANA_OPTION, 80 );
-	return $rate > 0 ? $rate : 80;
+	$rate = (int) get_option( DAAN_OT_FITRANA_OPTION, 90 );
+	return $rate > 0 ? $rate : 90;
+}
+
+/** Fitrana rate per person for wheat, barley, dates or raisins. */
+function daan_rate( $item ) {
+	$defaults = array( 'wheat' => 90, 'barley' => 175, 'dates' => 525, 'raisins' => 3500 );
+	if ( 'wheat' === $item ) {
+		return daan_fitrana_rate();
+	}
+	if ( ! isset( $defaults[ $item ] ) ) {
+		return 0;
+	}
+	$rate = (int) get_option( 'daan_rate_' . $item, $defaults[ $item ] );
+	return $rate > 0 ? $rate : $defaults[ $item ];
+}
+
+function daan_kit_price() {
+	$price = (int) get_option( 'daan_kit_price', 1500 );
+	return $price > 0 ? $price : 1500;
+}
+
+/** Internal value of the food items in one kit; 0 while the setting is empty. */
+function daan_kit_food_value() {
+	$value = (int) get_option( 'daan_kit_food_value', 0 );
+	return $value > 0 ? $value : 0;
+}
+
+function daan_kit_items_text() {
+	$text = trim( (string) get_option( 'daan_kit_items', '' ) );
+	if ( '' !== $text ) {
+		return $text;
+	}
+	return implode(
+		"\n",
+		array(
+			'Aata — 5 kg',
+			'Chawal — 5 kg',
+			'Cheeni — 1 kg',
+			'Patti — 250 g',
+			'Haldi — 100 g',
+			'Lal Mirch — 100 g',
+			'Dhaniya — 100 g',
+			'Namak — 1 kg',
+			'Refined Oil — 3 pouch',
+			'Surf — 500 g',
+			'Kala Chana — 500 g',
+			'Arhar Dal — 200 g',
+			'Moong Dal — 200 g',
+			'Masoor Dal — 200 g',
+			'Urad Dal — 200 g',
+			'Chana Dal — 200 g',
+			'Aaloo — 3 kg',
+			'Garam Masala Mix — 100 g pkt (60 g jeera + 40 g other masale)',
+		)
+	);
+}
+
+function daan_kit_items_html() {
+	$lines = array_filter( array_map( 'trim', explode( "\n", daan_kit_items_text() ) ) );
+	$html  = '<ul class="daan-kit-items" style="columns:2;column-gap:24px;margin:8px 0 16px;padding-left:20px;">';
+	foreach ( $lines as $line ) {
+		$html .= '<li style="margin:0 0 4px;break-inside:avoid;">' . esc_html( $line ) . '</li>';
+	}
+	return $html . '</ul>';
+}
+
+function daan_rupees( $amount ) {
+	return '&#8377;' . number_format_i18n( (int) $amount );
 }
 
 add_shortcode( 'daan_fitrana_rate', function () {
-	return '&#8377;' . number_format_i18n( daan_fitrana_rate() );
+	return daan_rupees( daan_fitrana_rate() );
 } );
+add_shortcode( 'daan_rate', function ( $atts ) {
+	$atts = shortcode_atts( array( 'item' => 'wheat' ), $atts );
+	return daan_rupees( daan_rate( sanitize_key( $atts['item'] ) ) );
+} );
+add_shortcode( 'daan_kit_price', function () {
+	return daan_rupees( daan_kit_price() );
+} );
+add_shortcode( 'daan_kit_items', 'daan_kit_items_html' );
 
 add_action( 'admin_init', function () {
+	$positive = function ( $default ) {
+		return function ( $value ) use ( $default ) {
+			$value = (int) $value;
+			return $value > 0 ? $value : $default;
+		};
+	};
+	register_setting( 'daan_ot_automation', DAAN_OT_FITRANA_OPTION, array( 'type' => 'integer', 'default' => 90, 'sanitize_callback' => $positive( 90 ) ) );
+	register_setting( 'daan_ot_automation', 'daan_rate_barley', array( 'type' => 'integer', 'default' => 175, 'sanitize_callback' => $positive( 175 ) ) );
+	register_setting( 'daan_ot_automation', 'daan_rate_dates', array( 'type' => 'integer', 'default' => 525, 'sanitize_callback' => $positive( 525 ) ) );
+	register_setting( 'daan_ot_automation', 'daan_rate_raisins', array( 'type' => 'integer', 'default' => 3500, 'sanitize_callback' => $positive( 3500 ) ) );
+	register_setting( 'daan_ot_automation', 'daan_kit_price', array( 'type' => 'integer', 'default' => 1500, 'sanitize_callback' => $positive( 1500 ) ) );
 	register_setting(
 		'daan_ot_automation',
-		DAAN_OT_FITRANA_OPTION,
+		'daan_kit_food_value',
 		array(
-			'type'              => 'integer',
-			'default'           => 80,
+			'type'              => 'string',
+			'default'           => '',
 			'sanitize_callback' => function ( $value ) {
-				$value = (int) $value;
-				return $value > 0 ? $value : 80;
+				$value = trim( (string) $value );
+				return ( '' === $value || (int) $value <= 0 ) ? '' : (string) (int) $value; // Empty keeps the calculator hidden.
 			},
 		)
 	);
+	register_setting(
+		'daan_ot_automation',
+		'daan_kit_items',
+		array(
+			'type'              => 'string',
+			'default'           => '',
+			'sanitize_callback' => function ( $value ) {
+				$lines = array_filter( array_map( 'sanitize_text_field', explode( "\n", str_replace( "\r", '', (string) $value ) ) ) );
+				return implode( "\n", $lines );
+			},
+		)
+	);
+} );
+
+/* ---- The two kit products ---- */
+
+/** 'interest', 'fitrana' or '' for any product (or variation) id. */
+function daan_kit_type( $product_id ) {
+	$product_id = (int) $product_id;
+	if ( $product_id <= 0 ) {
+		return '';
+	}
+	if ( $product_id === (int) get_option( 'daan_kit_interest_product', 0 ) ) {
+		return 'interest';
+	}
+	if ( $product_id === (int) get_option( 'daan_kit_fitrana_product', 0 ) ) {
+		return 'fitrana';
+	}
+	return '';
+}
+
+function daan_kit_cause( $type ) {
+	return 'interest' === $type ? 'Ration Kit (Interest Money)' : ( 'fitrana' === $type ? 'Zakat al-Fitr' : '' );
+}
+
+function daan_kit_url( $type ) {
+	$id = (int) get_option( 'interest' === $type ? 'daan_kit_interest_product' : 'daan_kit_fitrana_product', 0 );
+	return $id ? get_permalink( $id ) : home_url( '/donate/' );
+}
+
+// Price always comes from the setting (server side); a typed amount is never used for a kit.
+foreach ( array( 'woocommerce_product_get_price', 'woocommerce_product_get_regular_price' ) as $daan_kit_price_hook ) {
+	add_filter( $daan_kit_price_hook, function ( $price, $product ) {
+		return daan_kit_type( $product->get_id() ) ? (string) daan_kit_price() : $price;
+	}, 20, 2 );
+}
+
+// Quantity only on the two kits; every other cause stays at one (theme: inc/donation-wording.php).
+add_filter( 'woocommerce_is_sold_individually', function ( $individually, $product ) {
+	return ( $product && daan_kit_type( $product->get_id() ) ) ? false : $individually;
+}, 20, 2 );
+
+function daan_kit_max_qty() {
+	return defined( 'DAAN_MAX_DONATION' ) ? max( 1, (int) floor( DAAN_MAX_DONATION / daan_kit_price() ) ) : 100;
+}
+
+add_filter( 'woocommerce_quantity_input_args', function ( $args, $product ) {
+	if ( $product && daan_kit_type( $product->get_id() ) ) {
+		$args['min_value'] = 1;
+		$args['max_value'] = daan_kit_max_qty();
+		$args['step']      = 1;
+	}
+	return $args;
+}, 20, 2 );
+
+add_action( 'woocommerce_before_add_to_cart_quantity', function () {
+	global $product;
+	if ( $product && daan_kit_type( $product->get_id() ) ) {
+		echo '<p style="margin:0 0 6px;font-weight:600;">Number of kits (' . daan_rupees( daan_kit_price() ) . ' each)</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+} );
+
+function daan_kit_types_in_cart( $skip_key = '' ) {
+	$types = array();
+	if ( function_exists( 'WC' ) && WC()->cart ) {
+		foreach ( WC()->cart->get_cart() as $key => $item ) {
+			$type = daan_kit_type( $item['product_id'] );
+			if ( $type && $key !== $skip_key ) {
+				$types[ $type ] = true;
+			}
+		}
+	}
+	return array_keys( $types );
+}
+
+function daan_kit_mix_message() {
+	return 'Fitrana Ration Kits and Ration Kits (Interest Money) are kept completely separate. Please give them as two separate donations.';
+}
+
+// Interest kits and Fitrana kits never in one cart (their money is never mixed).
+add_filter( 'woocommerce_add_to_cart_validation', function ( $passed, $product_id, $quantity = 1 ) {
+	$type = daan_kit_type( $product_id );
+	if ( ! $type ) {
+		return $passed;
+	}
+	$other = 'interest' === $type ? 'fitrana' : 'interest';
+	if ( in_array( $other, daan_kit_types_in_cart(), true ) ) {
+		wc_add_notice( daan_kit_mix_message(), 'error' );
+		return false;
+	}
+	if ( (int) $quantity < 1 || (int) $quantity > daan_kit_max_qty() ) {
+		wc_add_notice( 'Please choose between 1 and ' . daan_kit_max_qty() . ' kits.', 'error' );
+		return false;
+	}
+	return $passed;
+}, 20, 3 );
+
+// Cart and checkout (classic and block): amount must be kits x kit price, and no mixing.
+add_action( 'woocommerce_check_cart_items', function () {
+	if ( ! WC()->cart ) {
+		return;
+	}
+	if ( count( daan_kit_types_in_cart() ) > 1 ) {
+		wc_add_notice( daan_kit_mix_message(), 'error' );
+	}
+	foreach ( WC()->cart->get_cart() as $item ) {
+		if ( ! daan_kit_type( $item['product_id'] ) ) {
+			continue;
+		}
+		$qty      = (int) $item['quantity'];
+		$expected = $qty * daan_kit_price();
+		$line     = (float) ( $item['line_subtotal'] ?? ( $item['data']->get_price( 'edit' ) * $qty ) );
+		if ( $qty < 1 || $qty > daan_kit_max_qty() || abs( $line - $expected ) > 0.01 ) {
+			wc_add_notice( 'The kit amount is not correct. Each kit is ' . daan_rupees( daan_kit_price() ) . '. Please update your donation.', 'error' );
+		}
+	}
+} );
+
+// Order line and order: the cause (receipt, digest, export read the line name; this adds the cause).
+add_action( 'woocommerce_checkout_create_order_line_item', function ( $item, $cart_item_key, $values ) {
+	$type = daan_kit_type( $values['product_id'] ?? 0 );
+	if ( $type ) {
+		$item->add_meta_data( 'Cause', daan_kit_cause( $type ), true );
+	}
+}, 10, 3 );
+add_action( 'woocommerce_checkout_create_order', function ( $order ) {
+	foreach ( WC()->cart ? WC()->cart->get_cart() : array() as $item ) {
+		$type = daan_kit_type( $item['product_id'] );
+		if ( $type ) {
+			$order->update_meta_data( '_daan_donation_cause', daan_kit_cause( $type ) );
+			$order->update_meta_data( '_daan_kit_type', $type );
+			break;
+		}
+	}
+} );
+
+// Old Bank Interest product and ?cause=bank-interest go to the Interest kit; ?cause=fitrana goes to the Fitrana kit.
+add_action( 'template_redirect', function () {
+	if ( is_singular( 'product' ) && 'bank-interest' === get_post_field( 'post_name', get_queried_object_id() ) && get_option( 'daan_kit_interest_product' ) ) {
+		wp_safe_redirect( daan_kit_url( 'interest' ), 301 );
+		exit;
+	}
+	if ( isset( $_GET['cause'] ) && function_exists( 'daan_cause_from_link' ) && is_page( 'donate' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$cause = daan_cause_from_link( sanitize_text_field( wp_unslash( $_GET['cause'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( 'Bank Interest' === $cause && get_option( 'daan_kit_interest_product' ) ) {
+			wp_safe_redirect( daan_kit_url( 'interest' ), 301 );
+			exit;
+		}
+		if ( 'Zakat al-Fitr' === $cause && get_option( 'daan_kit_fitrana_product' ) ) {
+			wp_safe_redirect( daan_kit_url( 'fitrana' ), 301 );
+			exit;
+		}
+	}
+}, 5 );
+
+/* ---- Fitrana calculator (D-030): hidden while "Kit food value for Fitrana" is empty ---- */
+
+function daan_fitrana_calc( $counts ) {
+	$food = daan_kit_food_value();
+	if ( ! $food ) {
+		return null;
+	}
+	$total = 0;
+	foreach ( array( 'wheat', 'barley', 'dates', 'raisins' ) as $item ) {
+		$total += max( 0, min( 100, (int) ( $counts[ $item ] ?? 0 ) ) ) * daan_rate( $item );
+	}
+	$kits = $total > 0 ? (int) ceil( $total / $food ) : 0;
+	return array( 'total' => $total, 'kits' => $kits );
+}
+
+add_shortcode( 'daan_fitrana_calculator', function () {
+	if ( ! daan_kit_food_value() || ! get_option( 'daan_kit_fitrana_product' ) ) {
+		return '';
+	}
+	$rows = '';
+	foreach ( array( 'wheat' => 'Wheat', 'barley' => 'Barley', 'dates' => 'Dates', 'raisins' => 'Raisins' ) as $key => $label ) {
+		$rows .= '<label style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 10px;">'
+			. '<span>' . esc_html( $label ) . ' (' . daan_rupees( daan_rate( $key ) ) . ' per person) — number of people</span>'
+			. '<input type="number" min="0" max="100" step="1" value="0" data-item="' . esc_attr( $key ) . '" style="width:80px;border:2px solid #E2E8F0;border-radius:8px;padding:6px 8px;"></label>';
+	}
+	$nonce = wp_create_nonce( 'daan_fitrana_calc' );
+	$ajax  = esc_url( admin_url( 'admin-ajax.php' ) );
+	ob_start();
+	?>
+	<div id="daan-fitrana-calc" style="border:2px solid #E2E8F0;border-radius:16px;padding:20px;margin:16px 0;background:#fff;">
+		<h3 style="margin:0 0 12px;font-size:1.25rem;">Fitrana Calculator</h3>
+		<?php echo $rows; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<button type="button" id="daan-fc-go" style="border:none;border-radius:9999px;background:#C2410C;color:#fff;padding:10px 20px;font-weight:700;cursor:pointer;">Calculate</button>
+		<div id="daan-fc-out" style="display:none;margin-top:14px;">
+			<p style="margin:0 0 6px;font-weight:700;" id="daan-fc-text"></p>
+			<p style="margin:0 0 10px;">The extra amount is counted as voluntary Sadaqah.</p>
+			<a id="daan-fc-cart" href="#" style="display:inline-block;border-radius:9999px;background:#047857;color:#fff;padding:10px 20px;font-weight:700;text-decoration:none;">Give Fitrana Kits</a>
+		</div>
+	</div>
+	<script>
+	(function () {
+		var box = document.getElementById('daan-fitrana-calc');
+		document.getElementById('daan-fc-go').addEventListener('click', function () {
+			var data = new FormData();
+			data.append('action', 'daan_fitrana_calc');
+			data.append('nonce', '<?php echo esc_js( $nonce ); ?>');
+			box.querySelectorAll('input[data-item]').forEach(function (i) { data.append(i.getAttribute('data-item'), i.value || 0); });
+			fetch('<?php echo $ajax; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>', { method: 'POST', body: data, credentials: 'same-origin' })
+				.then(function (r) { return r.json(); })
+				.then(function (r) {
+					if (!r.success) { return; }
+					document.getElementById('daan-fc-text').textContent = "Your family's Fitrana: " + r.data.total_text + '. Kits needed: ' + r.data.kits + '.';
+					document.getElementById('daan-fc-cart').href = r.data.cart;
+					document.getElementById('daan-fc-cart').style.display = r.data.kits > 0 ? 'inline-block' : 'none';
+					document.getElementById('daan-fc-out').style.display = 'block';
+				});
+		});
+	})();
+	</script>
+	<?php
+	return ob_get_clean();
+} );
+
+foreach ( array( 'wp_ajax_daan_fitrana_calc', 'wp_ajax_nopriv_daan_fitrana_calc' ) as $daan_calc_hook ) {
+	add_action( $daan_calc_hook, function () {
+		check_ajax_referer( 'daan_fitrana_calc', 'nonce' );
+		$res = daan_fitrana_calc( array_map( 'intval', wp_unslash( $_POST ) ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		if ( ! $res ) {
+			wp_send_json_error();
+		}
+		$id = (int) get_option( 'daan_kit_fitrana_product', 0 );
+		wp_send_json_success(
+			array(
+				'total_text' => html_entity_decode( daan_rupees( $res['total'] ), ENT_QUOTES, 'UTF-8' ),
+				'kits'       => $res['kits'],
+				'cart'       => add_query_arg( array( 'add-to-cart' => $id, 'quantity' => max( 1, $res['kits'] ) ), get_permalink( $id ) ),
+			)
+		);
+	} );
+}
+
+// Elementor buttons do not run shortcodes: a literal [daan_kit_price] in a button label shows the kit price setting.
+add_filter( 'elementor/frontend/the_content', function ( $content ) {
+	return false === strpos( $content, '[daan_kit_price]' ) ? $content : str_replace( '[daan_kit_price]', daan_rupees( daan_kit_price() ), $content );
 } );

@@ -16,7 +16,13 @@
  */
 function daan_get_page_data( $slug ) {
 	// Fitrana / Fidyah rate: one setting in plugin daan-order-tools (docs/fiqh/decisions.md D-006).
-	$fitra = '₹' . ( function_exists( 'daan_fitrana_rate' ) ? daan_fitrana_rate() : 80 );
+	$fitra = '₹' . number_format( function_exists( 'daan_fitrana_rate' ) ? daan_fitrana_rate() : 90 );
+	// Other Fitrana rates, kit price and kit links: the same settings (docs/fiqh/decisions.md D-021, D-029).
+	$rate_barley      = '₹' . number_format( function_exists( 'daan_rate' ) ? daan_rate( 'barley' ) : 175 );
+	$rate_dates       = '₹' . number_format( function_exists( 'daan_rate' ) ? daan_rate( 'dates' ) : 525 );
+	$rate_raisins     = '₹' . number_format( function_exists( 'daan_rate' ) ? daan_rate( 'raisins' ) : 3500 );
+	$kit_price        = '₹' . number_format( function_exists( 'daan_kit_price' ) ? daan_kit_price() : 1500 );
+	$kit_fitrana_url  = function_exists( 'daan_kit_url' ) ? daan_kit_url( 'fitrana' ) : '/donate/';
 
 	// Core texts, the same wording on every page (docs/fiqh/decisions.md D-007 to D-010).
 	$zakat_use   = 'Your Zakat is given only to eligible Muslim recipients, and always in a way that makes them its owner. In our Community Kitchen, meals are not served at a shared table: each person receives a full plate of food, or has their own container filled, and takes it as their own. Zakat is never used for staff salaries, gas, packing, rent, transport or any other running cost.';
@@ -210,7 +216,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'What is Fitrana (Zakat al-Fitr)?',
 					'paragraphs' => array(
-						'Sadaqat al-Fitr (Fitrana) is a separate obligation, due on Eid al-Fitr at the end of Ramadan, so that people in need can also celebrate Eid with dignity. Through Daan Foundation, Fitrana is ' . $fitra . ' per person.',
+						'Sadaqat al-Fitr (Fitrana) is a separate obligation, due on Eid al-Fitr at the end of Ramadan, so that people in need can also celebrate Eid with dignity. Through Daan Foundation, Fitrana is ' . $fitra . ' per person (wheat, the minimum), and we accept it only as complete ration kits.',
 						'Visit our Zakat al-Fitr page to learn who must pay it and to contribute.'
 					)
 				),
@@ -339,7 +345,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Frequently Asked Questions',
 					'items'   => array(
 						array( 'q' => 'What is the difference between Sadaqah and Zakat?', 'a' => 'Zakat is an obligatory annual charity calculated at 2.5% of wealth, while Sadaqah is voluntary charity that can be given at any time in any amount.' ),
-						array( 'q' => 'What is Sadaqah Jariyah?', 'a' => 'Sadaqah Jariyah is charity whose benefit continues over time, such as a well, a mosque or lasting facilities that keep serving people, so its reward continues even after death. At Daan Foundation, Sadaqah Jariyah donations are used only for lasting kitchen assets, such as utensils, stoves and storage.' ),
+						array( 'q' => 'What is Sadaqah Jariyah?', 'a' => 'Sadaqah Jariyah is charity whose benefit continues over time, such as a well, a mosque or lasting facilities that keep serving people, so its reward continues even after death. At Daan Foundation, your Sadaqah Jariyah supports the lasting needs of our Community Kitchen, such as utensils, stoves and storage. When these needs are met, it supports the kitchen\'s work of feeding people.' ),
 						array( 'q' => 'Can Sadaqah be given to non-Muslims?', 'a' => 'Yes. Voluntary Sadaqah can help anyone in need. Zakat and Fitrana, however, can be given only to eligible Muslims.' ),
 					),
 				),
@@ -370,13 +376,13 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'What is Fidya?',
 					'paragraphs' => array(
 						'Fidya is a charitable compensation for Muslims who are unable to fast during Ramadan due to a lasting reason such as old age or a chronic illness with no hope of recovery. If recovery is possible later, the missed fasts should be made up instead.',
-						'For each missed fast, the fidya is equal to sadaqat-ul-fitr: about 1.75 kg of wheat, or its price. At Daan Foundation this is ' . $fitra . ' per missed fast, the same as our Fitrana rate (Fidyah donations are currently paused). For guidance on paying your fidya, please ask a qualified mufti.'
+						'One fast\'s Fidyah equals Sadaqat al-Fitr (about 1.75 kg of wheat or its value), currently ' . $fitra . '. It is given to people in need as ration or cash that they own. An Iftar kit is not Fidyah. Fidyah donations through Daan Foundation are currently paused. For guidance on paying your fidya, please ask a qualified mufti.'
 					)
 				),
 				array(
 					'type'    => 'quote',
-					'quote'   => '"…And upon those who are able [to fast, but with hardship] — a ransom [as substitute] of feeding a poor person [each day]…"',
-					'source'  => '— Qur\'an 2:184 (Saheeh International)'
+					'quote'   => '"For days few in number. However, should any one of you be sick or on a journey, then (he should fast) a number of other days (equal to the missed ones); and those who have the strength, (still, they do not opt for fasting,) on them there is a fidyah (compensation), that is, the feeding of a poor person. Then whoever does good voluntarily, that is better for him. However, that you fast is better for you, if you only knew."',
+					'source'  => '— Qur\'an 2:184 (translation: Mufti Muhammad Taqi Usmani)'
 				),
 				array(
 					'type'        => 'cta',
@@ -672,8 +678,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'Sadaqah Jariyah at Daan Foundation',
 					'paragraphs' => array(
-						'Sadaqah Jariyah donations are used only for lasting kitchen assets, such as utensils, stoves and storage. These assets keep our Community Kitchen running and continue to serve meals to people in need over many years.',
-						'Day-to-day meals are not counted as Sadaqah Jariyah. If you wish to pay for meals, please give Sadaqah or Zakat to our Community Kitchen; each meal costs ₹60.'
+						'Your Sadaqah Jariyah supports the lasting needs of our Community Kitchen, such as utensils, stoves and storage. When these needs are met, it supports the kitchen\'s work of feeding people.',
 					)
 				),
 				array(
@@ -688,12 +693,12 @@ function daan_get_page_data( $slug ) {
 				array(
 					'type'    => 'notice',
 					'heading' => 'A Lasting Benefit',
-					'content' => 'Your Sadaqah Jariyah through Daan Foundation provides lasting kitchen assets that continue to serve people in need for years.',
+					'content' => 'Your Sadaqah Jariyah supports the lasting needs of our Community Kitchen, such as utensils, stoves and storage. When these needs are met, it supports the kitchen\'s work of feeding people.',
 				),
 				array(
 					'type'        => 'cta',
 					'heading'     => 'Give Sadaqah Jariyah Today',
-					'description' => 'Help equip our Community Kitchen with lasting assets, such as utensils, stoves and storage, that serve people in need for years.',
+					'description' => 'Support the lasting needs of our Community Kitchen, such as utensils, stoves and storage.',
 					'button_text' => 'Give Ongoing Charity',
 					'button_url'  => '/donate/?cause=sadaqah-jariyah',
 				),
@@ -768,32 +773,44 @@ function daan_get_page_data( $slug ) {
 
 		'zakat-al-fitr' => array(
 			'title'         => 'Fitrana (Zakat al-Fitr)',
-			'subtitle'      => 'A compulsory charitable donation given before Eid prayer, ensuring everyone can celebrate Eid with dignity.',
+			'subtitle'      => 'The charity of Eid al-Fitr, so that everyone can celebrate Eid with dignity.',
 			'gradient'      => 'from-indigo-600 to-purple-700',
 			'image'         => '/images/iftaar-distribution.jpg',
-			'default_cause' => 'zakat-al-fitr',
+			'default_cause' => 'where-needed',
 			'sections'      => array(
 				array(
 					'type'    => 'text',
 					'heading' => 'What is Zakat al-Fitr?',
 					'paragraphs' => array(
-						'Sadaqat al-Fitr (Fitrana) is wajib on every Muslim who, on the morning of Eid al-Fitr, owns wealth equal to the Nisab beyond their basic needs. Unlike Zakat, a full year does not need to pass on this wealth. It purifies the fast and helps people in need celebrate Eid with dignity.',
-						'Through Daan Foundation, Fitrana is ' . $fitra . ' per person. It is paid for yourself and for your minor children.'
+						'Sadaqat al-Fitr (Fitrana) is wajib on every Muslim who, on the morning of Eid al-Fitr, owns wealth equal to the Nisab beyond their basic needs. Unlike Zakat, a full year does not need to pass on this wealth. It is paid for yourself and for your minor children. It purifies the fast and helps people in need celebrate Eid with dignity.',
+						'Fitrana can be given from four items (Sahih al-Bukhari 1506, 1508): wheat or wheat flour, half a sa\' (about 1.75 kg) per person; or barley, dates or raisins, one sa\' (about 3.5 kg) per person, according to your means.'
 					)
 				),
 				array(
-					'type'    => 'quote',
-					'quote'   => 'The Prophet Muhammad (peace be upon him) enjoined Zakat al-Fitr as a purification for the fasting person from any idle or obscene speech, and as food for the needy. Whoever pays it before the Eid prayer, it is an accepted Zakat, and whoever pays it after the prayer, it is merely an ordinary charity.',
-					'source'  => '— Sunan Abi Dawud 1609 (graded Hasan by al-Albani); Sunan Ibn Majah 1827'
+					'type'    => 'text',
+					'heading' => 'Fitrana Amount',
+					'paragraphs' => array(
+						'Fitrana: ' . $fitra . ' per person (wheat, the minimum). You may give more according to your means: barley ' . $rate_barley . ', dates ' . $rate_dates . ' or raisins ' . $rate_raisins . ' per person (this year\'s estimate).',
+					)
 				),
 				array(
-					'type'    => 'checklist',
-					'heading' => 'How We Use Fitrana',
-					'items'   => array(
-						'Fitrana is given only to eligible Muslim families who are in need',
-						'It is given as food kits, ration or cash that the family owns',
-						'It is never used for running costs',
+					'type'    => 'text',
+					'heading' => 'How We Accept Fitrana',
+					'paragraphs' => array(
+						'Daan Foundation is unable to track individual Fitrana payments. Therefore we accept Fitrana only as complete ration kits of ' . $kit_price . ' each. One kit can cover the Fitrana of several members of one family. Any amount above your family\'s actual Fitrana is counted as voluntary Sadaqah.',
+						'Please pay at least 3 days before Eid. Payments received later will still be accepted, and we will try our best to deliver them, but we cannot take responsibility for delivery before the Eid prayer.',
+						'If these conditions are acceptable to you, please give your Fitrana through us; otherwise, please give it directly to a deserving person.'
 					)
+				),
+				array(
+					'type'    => 'shortcode',
+					'heading' => 'What Is in the Fitrana Ration Kit',
+					'code'    => '<p>When you give [daan_kit_price] (or the amount we set each year), we deliver this complete ration kit, with the items and quantities listed below, to a family in need. The amount includes the cost of transport and our website. Your Fitrana is counted only from the food items in the kit, not from these costs.</p>[daan_kit_items]',
+				),
+				array(
+					'type'    => 'shortcode',
+					'heading' => '',
+					'code'    => '[daan_fitrana_calculator]',
 				),
 				array(
 					'type'    => 'comparison',
@@ -803,8 +820,8 @@ function daan_get_page_data( $slug ) {
 						'items'   => array(
 							'Every Muslim who owns wealth equal to the Nisab beyond basic needs on Eid morning',
 							'Paid for yourself and your minor children; for your wife or adult children it is not wajib on you, but you may pay with their permission',
-							'Best given before the Eid prayer',
-							$fitra . ' per person through Daan Foundation',
+							'Please pay at least 3 days before Eid',
+							$fitra . ' per person (wheat, the minimum)',
 						)
 					),
 					'col2'    => array(
@@ -819,20 +836,15 @@ function daan_get_page_data( $slug ) {
 				),
 				array(
 					'type'    => 'notice',
-					'heading' => 'Please Give Before Eid Prayer',
-					'content' => 'Please send your Fitrana early in Ramadan, so that it can reach families in need in good time for Eid.',
-				),
-				array(
-					'type'    => 'notice',
 					'heading' => 'Please Note',
 					'content' => $scholar,
 				),
 				array(
 					'type'        => 'cta',
-					'heading'     => 'Pay Your Fitrana Today',
-					'description' => 'Fulfil your obligation and help families in need celebrate Eid with dignity.',
-					'button_text' => 'Pay Fitrana Now',
-					'button_url'  => '/donate/?cause=zakat-al-fitr',
+					'heading'     => 'Give Your Fitrana',
+					'description' => 'Each Fitrana Ration Kit is ' . $kit_price . ' and can cover the Fitrana of several members of one family.',
+					'button_text' => 'Give Fitrana Ration Kits',
+					'button_url'  => $kit_fitrana_url,
 				),
 			),
 		),
@@ -1249,7 +1261,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'paragraphs' => array(
 						'Daan Foundation adapted its charitable efforts to meet these challenges. Alongside food distribution, the organization also introduced the Qurbani Easy platform to help Muslims fulfill their Qurbani obligations conveniently during lockdowns and restrictions.',
-						'The initiative received positive support, and Qurbani meat was also utilized to prepare and distribute cooked meals among vulnerable communities.'
+						'The initiative received positive support, and Qurbani meat was also utilized to prepare and distribute cooked meals among vulnerable communities. Meat from Mannat (vowed) Qurbani is given only to the poor and needy.'
 					)
 				),
 				array(

@@ -27,9 +27,6 @@
 			<option>Community Kitchen</option>
 			<option>Ramadan Iftar</option>
 			<option>Zakat</option>
-			<?php if ( is_page( 'zakat-al-fitr' ) ) : ?>
-				<option selected>Zakat al-Fitr</option>
-			<?php endif; ?>
 			<option>Sadaqah</option>
 			<?php if ( ! daan_fk_hold_on() ) : ?>
 				<option>Fidyah & Kaffarah</option>

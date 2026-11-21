@@ -158,6 +158,17 @@ $page_data = daan_get_page_data( $page_slug );
 						<p class="text-sm text-orange-700"><?php echo esc_html( $section['content'] ?? '' ); ?></p>
 					</section>
 
+				<?php elseif ( 'shortcode' === $type ) : ?>
+					<?php $daan_sc = do_shortcode( $section['code'] ?? '' ); ?>
+					<?php if ( '' !== trim( $daan_sc ) ) : ?>
+						<section>
+							<?php if ( ! empty( $section['heading'] ) ) : ?>
+								<h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4"><?php echo esc_html( $section['heading'] ); ?></h2>
+							<?php endif; ?>
+							<?php echo $daan_sc; // phpcs:ignore WordPress.Security.EscapeOutput -- shortcode output from plugin daan-order-tools (kit list, calculator). ?>
+						</section>
+					<?php endif; ?>
+
 				<?php elseif ( 'cta' === $type && daan_fk_hold_on() && preg_match( '/cause=(fid|kaff)/i', $section['button_url'] ?? '' ) ) : ?>
 					<section><?php echo daan_fk_notice_html(); // phpcs:ignore WordPress.Security.EscapeOutput ?></section>
 

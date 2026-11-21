@@ -129,7 +129,7 @@ function daan_get_faq_data() {
 				array( 'What is the Nisab?', 'The Nisab is the minimum amount of wealth a Muslim must possess before Zakat becomes obligatory. It is calculated based on the value of gold (87.48 grams) or silver (612.36 grams).' ),
 				array( 'How is Zakat calculated?', 'Zakat is calculated as 2.5% of your total zakatable assets minus any debts. Zakatable assets include cash, savings, investments, gold, silver, and business inventory.' ),
 				array( 'When should I pay Zakat?', 'Zakat is due once a full lunar year has passed since your wealth exceeded the Nisab. Many Muslims choose to pay during Ramadan for increased blessings.' ),
-				array( 'Who can receive Zakat?', 'There are eight categories of Zakat recipients mentioned in the Quran: the poor, the needy, Zakat administrators, those whose hearts are to be reconciled, freeing captives, those in debt, in the cause of Allah, and travelers in need.' ),
+				array( 'Who can receive Zakat?', 'Zakat can be given only to a Muslim who is genuinely in need, meaning someone who does not own wealth equal to the Nisab beyond their basic needs, and who is not a Sayyid. It is always given so that the recipient becomes its owner; in our Community Kitchen each eligible person receives a full plate of food, or has their own container filled, and takes it as their own.' ),
 			),
 		),
 		array(
@@ -137,14 +137,14 @@ function daan_get_faq_data() {
 			'faqs'  => array(
 				array( 'What is Sadaqah?', 'Sadaqah is a voluntary act of charity given out of compassion, love, or generosity. Unlike Zakat, there is no minimum amount and it can be given at any time.' ),
 				array( 'What is the difference between Sadaqah and Zakat?', 'Zakat is obligatory and has specific rules about amounts and recipients. Sadaqah is voluntary, can be any amount, and can be given to anyone in need.' ),
-				array( 'What is Sadaqah Jariyah?', "Sadaqah Jariyah means 'ongoing charity.' It refers to charitable acts that continue to benefit others long after the initial gift, such as building a well or school." ),
+				array( 'What is Sadaqah Jariyah?', "Sadaqah Jariyah means 'ongoing charity': charity whose benefit continues over time. Your Sadaqah Jariyah supports the lasting needs of our Community Kitchen, such as utensils, stoves and storage. When these needs are met, it supports the kitchen's work of feeding people." ),
 				array( 'Can I give Sadaqah to non-Muslims?', 'Yes, Sadaqah can be given to anyone in need regardless of their faith. The key is the intention to help those who are struggling.' ),
 			),
 		),
 		array(
 			'topic' => 'Fidya & Kaffarah',
 			'faqs'  => array(
-				array( 'Can I give Fidya or Kaffarah through Daan Foundation right now?', 'Fidyah and Kaffarah donations are temporarily paused while we update this programme with our scholars. Our Iftar and Community Kitchen donations are general charity (Sadaqah), not Fidyah or Kaffarah.' ),
+				array( 'Can I give Fidya or Kaffarah through Daan Foundation right now?', 'Fidyah and Kaffarah donations are temporarily paused while we update this programme with our scholars. Our Iftar and Community Kitchen donations are not Fidyah or Kaffarah; Community Kitchen donations may be given as Zakat or as Sadaqah.' ),
 				array( 'What is Fidya?', 'Fidya is a donation made when someone cannot fast during Ramadan due to illness or old age and cannot make up the fasts later. For each missed fast, the fidya is equal to sadaqat-ul-fitr.' ),
 				array( 'How much is Fidya?', 'One sadaqat-ul-fitr per missed fast: about 1.75 kg of wheat, or its price. An Iftar meal, or an Iftar plus one meal, is not Fidya.' ),
 				array( 'What is Kaffarah?', 'Kaffarah is the expiation for deliberately breaking a Ramadan fast without a valid reason, or for breaking a sworn oath. For a broken oath it is feeding ten needy people two full meals each. For other details, please ask a qualified mufti.' ),
