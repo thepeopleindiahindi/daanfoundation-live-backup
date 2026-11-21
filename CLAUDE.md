@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-> **Islami content rule (owner, 2026-11-20):** Islami content badalne se pehle docs/fiqh/decisions.md padho; uske khilaf kuch mat likho; har naya faisla wahin darj karo.
+> **Islami content rule (owner, 2026-11-20):** Islami content badalne se pehle docs/fiqh/decisions.md padho; uske khilaf kuch mat likho; har naya faisla wahin darj karo. Site par sirf Bhartiya idaron ke hawale/links; bahar ki websites ke link nahi.
 
 ## What this repo is
 
