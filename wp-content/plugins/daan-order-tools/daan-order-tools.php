@@ -1017,8 +1017,8 @@ function daan_rate( $item ) {
 }
 
 function daan_kit_price() {
-	$price = (int) get_option( 'daan_kit_price', 1500 );
-	return $price > 0 ? $price : 1500;
+	$price = (int) get_option( 'daan_kit_price', 1536 );
+	return $price > 0 ? $price : 1536;
 }
 
 /** Internal value of the food items in one kit; 0 while the setting is empty. */
@@ -1093,7 +1093,7 @@ add_action( 'admin_init', function () {
 	register_setting( 'daan_ot_automation', 'daan_rate_barley', array( 'type' => 'integer', 'default' => 175, 'sanitize_callback' => $positive( 175 ) ) );
 	register_setting( 'daan_ot_automation', 'daan_rate_dates', array( 'type' => 'integer', 'default' => 525, 'sanitize_callback' => $positive( 525 ) ) );
 	register_setting( 'daan_ot_automation', 'daan_rate_raisins', array( 'type' => 'integer', 'default' => 3500, 'sanitize_callback' => $positive( 3500 ) ) );
-	register_setting( 'daan_ot_automation', 'daan_kit_price', array( 'type' => 'integer', 'default' => 1500, 'sanitize_callback' => $positive( 1500 ) ) );
+	register_setting( 'daan_ot_automation', 'daan_kit_price', array( 'type' => 'integer', 'default' => 1536, 'sanitize_callback' => $positive( 1536 ) ) );
 	register_setting( 'daan_ot_automation', 'daan_iftar_kit_price', array( 'type' => 'integer', 'default' => 91, 'sanitize_callback' => $positive( 91 ) ) );
 	register_setting( 'daan_ot_automation', 'daan_iftar_kit_items', array( 'type' => 'string', 'default' => '', 'sanitize_callback' => 'sanitize_textarea_field' ) );
 	register_setting(

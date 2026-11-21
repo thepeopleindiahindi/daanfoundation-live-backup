@@ -197,14 +197,14 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
  */
 add_filter( 'rank_math/frontend/title', function ( $title ) {
 	if ( is_singular( 'post' ) && 'kaffara-for-broken-oath-qasam' === get_post_field( 'post_name', get_queried_object_id() ) ) {
-		return 'Kaffara for Broken Oath (Qasam) - Rules & How to Pay';
+		return 'Kaffara for Broken Oath (Qasam) - Rules Explained';
 	}
 	return $title;
 } );
 
 add_filter( 'rank_math/frontend/description', function ( $description ) {
 	if ( is_singular( 'post' ) && 'kaffara-for-broken-oath-qasam' === get_post_field( 'post_name', get_queried_object_id() ) ) {
-		return "Confused about Kaffara for a broken oath? Learn the correct rule - feed 10 people, not 60 - and pay online through Daan Foundation's Community Kitchen, Amroha.";
+		return 'Kaffara for a broken oath: the correct rule is to feed 10 poor people two full meals each, not 60. Kaffarah donations at Daan Foundation are temporarily paused.';
 	}
 	return $description;
 } );
@@ -550,8 +550,8 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'why-no-one-should-sleep-hungry-daan-foundations-food-mission' => 'Daan Foundation\'s food mission: no one should sleep hungry. See how our Community Kitchen and relief work reach vulnerable families across India.',
 		'behind-the-scenes-how-we-cook-1000-meals-a-day' => 'A behind-the-scenes look at how Daan Foundation\'s Community Kitchen prepares over 1,000 meals a day for families facing food insecurity in Amroha.',
 		'feeding-the-poor-daily-life-inside-a-community-kitchen' => 'An inside look at daily life in Daan Foundation\'s Community Kitchen -- how meals are planned, cooked, and distributed to families in need every day.',
-		'where-does-your-iftar-donation-go' => 'See exactly where your iftar donation goes -- funded at Rs.90 per person, tracked from payment to a real Iftar meal at Daan Foundation, Amroha.',
-		'kaffara-missed-ramadan-fast' => 'What is kaffara for a missed Ramadan fast? Daan Foundation explains the correct amount and how to pay it online through real meals for the poor in India.',
+		'where-does-your-iftar-donation-go' => 'See exactly where your iftar donation goes: a ' . "\u{20B9}" . ( function_exists( 'daan_iftar_kit_price' ) ? daan_iftar_kit_price() : 91 ) . ' Iftar kit, tracked from payment to a fasting person at Daan Foundation, Amroha.',
+		'kaffara-missed-ramadan-fast' => 'What is kaffara for a missed Ramadan fast? Daan Foundation explains the rule. Kaffarah donations at Daan Foundation are temporarily paused.',
 		);
 		if ( isset( $descs[ $slug ] ) ) {
 			return $descs[ $slug ];
@@ -586,7 +586,7 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'community-kitchen' => 'Donate to Daan Foundation Community Kitchen, which has served approximately 350,000 free meals since 2020 to people facing food insecurity across India.',
 		'sadqah' => 'Give Sadqah online to Daan Foundation. Your voluntary charity provides consistent food and essential support to needy families, with full transparency.',
 		'bank-interest' => 'Donate disallowed bank interest (riba) to Daan Foundation for distribution to those in need, in line with Islamic guidance on handling interest income.',
-		'fidya-and-kaffara' => 'Pay your Fidya or Kaffara online. Daan Foundation directs each donation to a complete Iftar meal for a deserving individual in need.',
+		'fidya-and-kaffara' => 'Fidyah and Kaffarah donations at Daan Foundation are temporarily paused. Read the rules and see other ways to help families in need.',
 		'zakat' => 'Donate your Zakat online to Daan Foundation. Your Zakat funds our community kitchens and food distribution programs, reaching families in genuine need.',
 		'education-aid' => 'Donate to Daan Foundation\'s Education Aid program, extending support to deserving children and families with limited access to quality education.',
 		);
@@ -686,7 +686,7 @@ function daan_seo27_key() {
 
 add_filter( 'rank_math/frontend/title', function ( $title ) {
 	$fitra = daan_seo27_money( 'daan_fitrana_rate', 90 );
-	$kit   = daan_seo27_money( 'daan_kit_price', 1500 );
+	$kit   = daan_seo27_money( 'daan_kit_price', 1536 );
 	$map   = array(
 		'page:ramadan'                       => 'Donate Iftar in India | Ramadan 2027 Iftar Kits – Daan Foundation',
 		'page:zakat-al-fitr'                 => 'Fitrana 2027 India: Amount ' . $fitra . ', Pay Online | Daan Foundation',
@@ -699,7 +699,7 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 
 add_filter( 'rank_math/frontend/description', function ( $description ) {
 	$fitra = daan_seo27_money( 'daan_fitrana_rate', 90 );
-	$kit   = daan_seo27_money( 'daan_kit_price', 1500 );
+	$kit   = daan_seo27_money( 'daan_kit_price', 1536 );
 	$iftar = daan_seo27_money( 'daan_iftar_kit_price', 91 );
 	$map   = array(
 		'page:ramadan'                       => 'Donate Iftar online for fasting people in Amroha, UP. One Iftar kit ' . $iftar . ': veg biryani, dates, fruit, egg and a soft drink. Give through Daan Foundation.',
@@ -753,7 +753,7 @@ function daan_seo27_bank_interest_pairs() {
 
 /** Visible FAQ added to the ration kit post (its content holds the same strings). */
 function daan_seo27_ration_pairs() {
-	$kit = daan_seo27_money( 'daan_kit_price', 1500 );
+	$kit = daan_seo27_money( 'daan_kit_price', 1536 );
 	return array(
 		array( 'What is the ration kit price?', 'One ration kit is ' . $kit . '.' ),
 		array( 'Can I give interest money for ration kits?', 'Yes. Interest money is given without any intention of reward, only through the Ration Kit (Interest Money). Its delivery cost is paid by Daan Foundation from its general funds.' ),

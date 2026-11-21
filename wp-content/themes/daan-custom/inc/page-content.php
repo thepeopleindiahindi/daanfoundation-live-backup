@@ -21,7 +21,7 @@ function daan_get_page_data( $slug ) {
 	$rate_barley      = '₹' . number_format( function_exists( 'daan_rate' ) ? daan_rate( 'barley' ) : 175 );
 	$rate_dates       = '₹' . number_format( function_exists( 'daan_rate' ) ? daan_rate( 'dates' ) : 525 );
 	$rate_raisins     = '₹' . number_format( function_exists( 'daan_rate' ) ? daan_rate( 'raisins' ) : 3500 );
-	$kit_price        = '₹' . number_format( function_exists( 'daan_kit_price' ) ? daan_kit_price() : 1500 );
+	$kit_price        = '₹' . number_format( function_exists( 'daan_kit_price' ) ? daan_kit_price() : 1536 );
 	$kit_fitrana_url  = function_exists( 'daan_kit_url' ) ? daan_kit_url( 'fitrana' ) : '/donate/';
 
 	// Core texts, the same wording on every page (docs/fiqh/decisions.md D-007 to D-010).
