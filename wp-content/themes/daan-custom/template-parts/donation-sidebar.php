@@ -25,7 +25,6 @@
 		<select id="sidebar-cause" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:10px 12px;font-size:1rem;color:#111;background:#fff;">
 			<option>Where Most Needed</option>
 			<option>Community Kitchen</option>
-			<option>Ramadan Iftar</option>
 			<option>Zakat</option>
 			<option>Sadaqah</option>
 			<?php if ( ! daan_fk_hold_on() ) : ?>

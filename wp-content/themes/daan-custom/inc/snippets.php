@@ -230,12 +230,12 @@ add_action( 'wp_ajax_nopriv_daan_place_order', 'daan_place_order' );
 
 /** Causes the /donate/ form may send: the live causes. */
 function daan_donation_causes() {
-    return array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Sadaqah', 'Sadaqah Jariyah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal', 'Education Aid', 'General' );
+    return array( 'Where Most Needed', 'Community Kitchen', 'Zakat', 'Sadaqah', 'Sadaqah Jariyah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal', 'Education Aid', 'General' );
 }
 
 /** Causes shown as choices on the /donate/ form. */
 function daan_donate_form_causes() {
-    $causes = array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Zakat', 'Sadaqah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal' );
+    $causes = array( 'Where Most Needed', 'Community Kitchen', 'Zakat', 'Sadaqah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal' );
     if ( daan_fk_hold_on() ) {
         $causes = array_values( array_diff( $causes, array( 'Fidyah & Kaffarah' ) ) );
     }

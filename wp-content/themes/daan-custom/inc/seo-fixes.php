@@ -658,3 +658,155 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
 
 	return $data;
 }, 99 );
+
+/* -------------------------------------------------------------------------
+ * SEO Ramadan 2027 (owner approved, 2026-11-21; reports/seo-ramadan-2027/,
+ * docs/fiqh/decisions.md). Runs after the older filters above and replaces
+ * their output where the older text had wrong claims. Old URLs/slugs unchanged.
+ * Amounts come from the settings in plugin daan-order-tools.
+ * ------------------------------------------------------------------------- */
+
+function daan_seo27_money( $fn, $fallback ) {
+	return '₹' . number_format( function_exists( $fn ) ? call_user_func( $fn ) : $fallback );
+}
+
+/** Slug key of the current page/post/product for the maps below ('' if none). */
+function daan_seo27_key() {
+	if ( is_page() ) {
+		return 'page:' . get_post_field( 'post_name', get_queried_object_id() );
+	}
+	if ( is_singular( 'post' ) ) {
+		return 'post:' . get_post_field( 'post_name', get_queried_object_id() );
+	}
+	if ( is_singular( 'product' ) ) {
+		return 'product:' . get_post_field( 'post_name', get_queried_object_id() );
+	}
+	return '';
+}
+
+add_filter( 'rank_math/frontend/title', function ( $title ) {
+	$fitra = daan_seo27_money( 'daan_fitrana_rate', 90 );
+	$kit   = daan_seo27_money( 'daan_kit_price', 1500 );
+	$map   = array(
+		'page:ramadan'                       => 'Donate Iftar in India | Ramadan 2027 Iftar Kits – Daan Foundation',
+		'page:zakat-al-fitr'                 => 'Fitrana 2027 India: Amount ' . $fitra . ', Pay Online | Daan Foundation',
+		'page:bank-interest'                 => 'Donate Bank Interest (Riba) as Ration Kits | Daan Foundation',
+		'post:ration-kit-distribution-india' => 'Ration Kit Donation for Poor Families in India (' . $kit . ') | Daan Foundation',
+	);
+	$key = daan_seo27_key();
+	return isset( $map[ $key ] ) ? $map[ $key ] : $title;
+}, 20 );
+
+add_filter( 'rank_math/frontend/description', function ( $description ) {
+	$fitra = daan_seo27_money( 'daan_fitrana_rate', 90 );
+	$kit   = daan_seo27_money( 'daan_kit_price', 1500 );
+	$iftar = daan_seo27_money( 'daan_iftar_kit_price', 91 );
+	$map   = array(
+		'page:ramadan'                       => 'Donate Iftar online for fasting people in Amroha, UP. One Iftar kit ' . $iftar . ': veg biryani, dates, fruit, egg and a soft drink. Give through Daan Foundation.',
+		'page:zakat-al-fitr'                 => 'Fitrana 2027: ' . $fitra . ' per person (wheat, the minimum). Give your family\'s Fitrana online as a ' . $kit . ' ration kit. Please pay at least 3 days before Eid.',
+		'page:donate'                        => 'Donate online to Daan Foundation by UPI: Community Kitchen meals, Iftar kits, Zakat, Sadaqah and ration kits for families in need in India.',
+		'page:bank-interest'                 => 'Interest money must be given away without any intention of reward. We use it only for ration kits (' . $kit . ') that families own. Not Zakat. Daan Foundation.',
+		'post:ration-kit-distribution-india' => 'Donate a ration kit (' . $kit . ') for a poor family: atta, rice, dal, oil and more. See the full kit list. Daan Foundation, Amroha, Uttar Pradesh.',
+		'product:fitrana-ration-kit'         => 'Give your family\'s Fitrana as a complete ration kit (' . $kit . ') for a family in need. Fitrana from ' . $fitra . ' per person, counted from the food items only.',
+		'product:ramadan-iftar'              => 'Sponsor Iftar kits for fasting people in need. Each kit ' . $iftar . ': veg biryani, dates, fruit, egg and a soft drink. Handed out at our Amroha kitchen.',
+	);
+	$key = daan_seo27_key();
+	return isset( $map[ $key ] ) ? $map[ $key ] : $description;
+}, 30 );
+
+/** FAQPage node from [question, answer] pairs. */
+function daan_seo27_faq( $id_url, $pairs ) {
+	$items = array();
+	foreach ( $pairs as $p ) {
+		$items[] = array(
+			'@type'          => 'Question',
+			'name'           => wp_strip_all_tags( $p[0] ),
+			'acceptedAnswer' => array( '@type' => 'Answer', 'text' => wp_strip_all_tags( $p[1] ) ),
+		);
+	}
+	return array( '@type' => 'FAQPage', '@id' => $id_url . '#faqpage', 'mainEntity' => $items );
+}
+
+/** The visible FAQ items of a sidebar-layout page (inc/page-content.php), so schema and page always match. */
+function daan_seo27_page_faq_pairs( $slug ) {
+	$data  = function_exists( 'daan_get_page_data' ) ? daan_get_page_data( $slug ) : null;
+	$pairs = array();
+	foreach ( (array) ( $data['sections'] ?? array() ) as $section ) {
+		if ( 'faq' === ( $section['type'] ?? '' ) ) {
+			foreach ( $section['items'] as $item ) {
+				$pairs[] = array( $item['q'], $item['a'] );
+			}
+		}
+	}
+	return $pairs;
+}
+
+/** Visible FAQ of the Bank Interest page (its Elementor text holds the same strings). */
+function daan_seo27_bank_interest_pairs() {
+	return array(
+		array( 'Sood ka paisa kisko dena chahiye? (Who should receive interest money?)', 'To people in need, without any intention of reward (Darul Ifta, Darul Uloom Deoband). Daan Foundation uses it only for ration kits that each family receives and owns.' ),
+		array( 'Can I give interest money to charity?', 'Interest money must be given away to people in need, without any intention of reward. Through Daan Foundation it goes only into ration kits.' ),
+		array( 'Is interest money counted as Zakat?', 'No. Interest money is not counted as Zakat.' ),
+		array( 'Who pays for transport and delivery?', 'Your entire interest amount goes into the kit items; the cost of transport and our website is paid by Daan Foundation from its general funds.' ),
+	);
+}
+
+/** Visible FAQ added to the ration kit post (its content holds the same strings). */
+function daan_seo27_ration_pairs() {
+	$kit = daan_seo27_money( 'daan_kit_price', 1500 );
+	return array(
+		array( 'What is the ration kit price?', 'One ration kit is ' . $kit . '.' ),
+		array( 'Can I give interest money for ration kits?', 'Yes. Interest money is given without any intention of reward, only through the Ration Kit (Interest Money). Its delivery cost is paid by Daan Foundation from its general funds.' ),
+		array( 'Can I give my Fitrana as a ration kit?', 'Yes. Daan Foundation accepts Fitrana only as complete Fitrana Ration Kits; Fitrana is counted from the food items in the kit.' ),
+	);
+}
+
+add_filter( 'rank_math/json_ld', function ( $data ) {
+	$key = daan_seo27_key();
+	if ( '' === $key ) {
+		return $data;
+	}
+	$url = get_permalink( get_queried_object_id() );
+	switch ( $key ) {
+		case 'page:ramadan':
+		case 'page:zakat-al-fitr':
+			$pairs = daan_seo27_page_faq_pairs( substr( $key, 5 ) );
+			if ( $pairs ) {
+				$data['faqPage'] = daan_seo27_faq( $url, $pairs );
+			}
+			break;
+		case 'page:bank-interest':
+			$data['faqPage'] = daan_seo27_faq( $url, daan_seo27_bank_interest_pairs() );
+			break;
+		case 'post:ration-kit-distribution-india':
+			$data['faqPage'] = daan_seo27_faq( $url, daan_seo27_ration_pairs() );
+			break;
+		case 'post:kaffara-for-broken-oath-qasam':
+			$data['faqPage'] = daan_seo27_faq( $url, array(
+				array( 'What is Kaffara for breaking an oath (Qasam) in Islam?', "It\u{2019}s the expiation required when a person swears by Allah\u{2019}s name and cannot keep that promise \u{2014} fulfilled by feeding ten needy people two full meals, clothing them, or freeing a slave, with fasting three days as a fallback." ),
+				array( 'How many people do I need to feed for Kaffara-e-Qasam?', 'Ten needy people, each given two full meals (morning and evening).' ),
+				array( 'Can I give oath Kaffara through Daan Foundation?', 'Not at the moment. Kaffara donations through Daan Foundation are temporarily paused.' ),
+				array( 'Is oath-Kaffara the same as Fidyah?', "No. Fidyah applies to someone unable to fast during Ramadan due to illness or old age, while oath-Kaffara applies specifically to a broken promise sworn in Allah\u{2019}s name \u{2014} they are separate obligations with separate rules." ),
+			) );
+			break;
+		case 'post:kaffara-missed-ramadan-fast':
+			$data['faqPage'] = daan_seo27_faq( $url, array(
+				array( 'What is kaffara in Islam for a missed fast?', "It\u{2019}s the compensation required for deliberately breaking a Ramadan fast without a valid excuse \u{2014} fasting 60 consecutive days, or, only if a person cannot fast, feeding 60 poor people two full meals each." ),
+				array( 'Is kaffara the same as fidyah?', 'No. Fidyah is for people with a lasting reason for not fasting (like chronic illness), equal to sadaqat-ul-fitr (about 1.75 kg of wheat or its price) per missed fast. Kaffara is for deliberately breaking a fast without excuse.' ),
+				array( 'Kya abhi Daan Foundation ke zariye roze ka kaffara de sakte hain?', 'Abhi nahi. Kaffara aur Fidyah ki donation kuch samay ke liye ruki hui hai.' ),
+			) );
+			break;
+		case 'post:where-does-your-iftar-donation-go':
+			$iftar = daan_seo27_money( 'daan_iftar_kit_price', 91 );
+			$items = function_exists( 'daan_iftar_kit_items_text' ) ? daan_iftar_kit_items_text() : '';
+			$data['faqPage'] = daan_seo27_faq( $url, array(
+				array( 'Where does my iftar donation actually go?', "It funds a specific Iftar kit \u{2014} " . $items . " \u{2014} prepared fresh at Daan Foundation\u{2019}s Amroha kitchen and handed out the same day after Asr, costed at " . $iftar . ' per kit.' ),
+				array( 'How much does one Iftar kit cost through Daan Foundation?', $iftar . ' per kit. This figure is specific to Iftar kits during Ramadan and is different from the ₹60 figure used for the year-round Community Kitchen program.' ),
+				array( 'Is bank interest used for Iftar meals?', 'No. Bank interest should be given away without any intention of reward, and we use interest donations only to provide ration kits, which each family receives and owns. It is not Zakat.' ),
+				array( 'Is my iftar donation used only in Amroha, or in other cities too?', 'In Amroha, where the daily kitchen runs.' ),
+				array( 'Is Iftar donation the same as Zakat?', "Not automatically \u{2014} Zakat has specific eligibility rules for both giver and recipient. Many donors give Iftar donations as Sadaqah instead, which has no such restrictions and can be given by anyone, to fund a meal for anyone in need." ),
+			) );
+			break;
+	}
+	return $data;
+}, 120 );

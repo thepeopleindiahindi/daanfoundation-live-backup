@@ -51,7 +51,6 @@ get_header();
                 <select id="donate-cause">
                     <option>Where Most Needed</option>
                     <option>Community Kitchen</option>
-                    <option>Ramadan Iftar</option>
                     <option>Zakat</option>
                     <option>Sadaqah</option>
                 </select>

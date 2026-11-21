@@ -28,7 +28,11 @@ function daan_get_page_data( $slug ) {
 	$zakat_use   = 'Your Zakat is given only to eligible Muslim recipients, and always in a way that makes them its owner. In our Community Kitchen, meals are not served at a shared table: each person receives a full plate of food, or has their own container filled, and takes it as their own. Zakat is never used for staff salaries, gas, packing, rent, transport or any other running cost.';
 	$zakat_who   = 'Zakat can be given only to a Muslim who is genuinely in need, meaning someone who does not own wealth equal to the Nisab beyond their basic needs, and who is not from the family of the Prophet ﷺ (Sayyid / Banu Hashim). Being a widow, an orphan or elderly does not by itself make a person eligible; they must also be in need.';
 	$all_welcome = 'Our kitchen serves everyone in need, of every faith, community and background, and turns no one away. Meals for those who are not eligible for Zakat are funded from Sadaqah and general donations, never from Zakat. Zakat is kept in a separate account.';
-	$iftar_kit   = 'Iftar kits are handed out at our Community Kitchen after Asr, and people may take them home. Each kit is given to the person as their own and contains a plate of freshly cooked food, two dates, one banana, and either one egg or one bottle of soft drink. We do not provide Sehri.';
+	// Iftar kit price and items: settings in plugin daan-order-tools (D-012). ₹91 iftar is never the ₹90 Fitrana rate.
+	$iftar_price = '₹' . number_format( function_exists( 'daan_iftar_kit_price' ) ? daan_iftar_kit_price() : 91 );
+	$iftar_items = function_exists( 'daan_iftar_kit_items_text' ) ? daan_iftar_kit_items_text() : 'A full plate of veg biryani, 2 dates, 1 banana or seasonal fruit, 1 egg and 1 soft drink (sometimes 2 eggs instead of the drink).';
+	$kit_iftar_url = function_exists( 'daan_kit_url' ) ? daan_kit_url( 'iftar' ) : '/product/ramadan-iftar/';
+	$iftar_kit   = 'Each Iftar kit is ' . $iftar_price . '. ' . $iftar_items . ' Iftar kits are handed out at our Community Kitchen after Asr, each given to the person as their own, and people may take them home. We do not provide Sehri. An Iftar kit is not Fidyah or Fitrana.';
 	$iftar_zakat = 'Zakat may be given for Iftar kits, because each kit becomes the recipient\'s property. However, we request that you give for Iftar as Sadaqah rather than Zakat. Our Iftar programme is generally funded by Sadaqah, so that it can reach as many fasting people as possible.';
 	$scholar     = 'This page gives general information based on Hanafi fiqh, with reference to rulings of Darul Uloom Deoband. It is not a fatwa. For your own situation, please consult a qualified mufti.';
 
@@ -425,12 +429,24 @@ function daan_get_page_data( $slug ) {
 		),
 
 		'ramadan' => array(
-			'title'         => 'Ramadan With Daan Foundation',
-			'subtitle'      => 'Daan Foundation was born during the blessed month of Ramadan in 2020 through a simple humanitarian effort: providing Iftar meals to people in need.',
+			'title'         => 'Donate Iftar This Ramadan',
+			'subtitle'      => 'Give Iftar kits to fasting people in need in Amroha, Uttar Pradesh. Each kit is given as the person\'s own, after Asr at our Community Kitchen.',
 			'gradient'      => 'from-violet-600 to-purple-700',
 			'image'         => '/images/iftaar-distribution.jpg',
-			'default_cause' => 'ramadan-iftar',
+			'default_cause' => 'where-needed',
 			'sections'      => array(
+				array(
+					'type'    => 'shortcode',
+					'heading' => 'Donate Iftar Kits',
+					'code'    => '[daan_iftar_buy]',
+				),
+				array(
+					'type'    => 'text',
+					'heading' => 'Fitrana and Ration Kits This Ramadan',
+					'paragraphs' => array(
+						'Alongside Iftar, you can give your Fitrana as complete ration kits (Zakat al-Fitr page), or give ration kits for poor families (Ration Kit Donation page). Iftar, Fitrana and ration kits are separate donations.',
+					)
+				),
 				array(
 					'type'    => 'text',
 					'heading' => 'A Journey Built on Compassion & Trust',
@@ -502,6 +518,17 @@ function daan_get_page_data( $slug ) {
 					)
 				),
 				array(
+					'type'    => 'faq',
+					'heading' => 'Iftar Donation: Frequently Asked Questions',
+					'items'   => array(
+						array( 'q' => 'How much does one Iftar kit cost?', 'a' => 'One Iftar kit is ' . $iftar_price . '. You can give as many kits as you like.' ),
+						array( 'q' => 'What is in the Iftar kit?', 'a' => $iftar_items ),
+						array( 'q' => 'Where and when are Iftar kits given?', 'a' => 'At our Community Kitchen in Amroha, Uttar Pradesh, after Asr during Ramadan. Each kit is given to the person as their own, and people may take it home. We do not provide Sehri.' ),
+						array( 'q' => 'Can I give Zakat for Iftar?', 'a' => $iftar_zakat ),
+						array( 'q' => 'Is an Iftar kit Fidyah or Fitrana?', 'a' => 'No. An Iftar kit is not Fidyah or Fitrana. Fitrana is given separately as complete ration kits on our Zakat al-Fitr page.' ),
+					),
+				),
+				array(
 					'type'    => 'notice',
 					'heading' => 'Serving Since 2020',
 					'content' => 'Daan Foundation was born in Ramadan 2020 with a simple iftar distribution. Today, we serve thousands year-round through multiple programmes.',
@@ -511,7 +538,7 @@ function daan_get_page_data( $slug ) {
 					'heading'     => 'Continue the Legacy of Ramadan',
 					'description' => 'Support our Ramadan iftar distribution and Community Kitchen. Your contribution continues the blessed tradition of feeding those in need.',
 					'button_text' => 'Donate for Ramadan',
-					'button_url'  => '/donate/?cause=ramadan-iftar',
+					'button_url'  => $kit_iftar_url,
 				),
 			),
 		),
@@ -772,7 +799,7 @@ function daan_get_page_data( $slug ) {
 		),
 
 		'zakat-al-fitr' => array(
-			'title'         => 'Fitrana (Zakat al-Fitr)',
+			'title'         => 'Fitrana (Zakat al-Fitr) 2027',
 			'subtitle'      => 'The charity of Eid al-Fitr, so that everyone can celebrate Eid with dignity.',
 			'gradient'      => 'from-indigo-600 to-purple-700',
 			'image'         => '/images/iftaar-distribution.jpg',
@@ -832,6 +859,18 @@ function daan_get_page_data( $slug ) {
 							'Zakat can be given at any time once due; Fitrana is due on Eid al-Fitr',
 							'Zakat purifies wealth; Fitrana purifies the fast and feeds the needy',
 						)
+					),
+				),
+				array(
+					'type'    => 'faq',
+					'heading' => 'Fitrana: Frequently Asked Questions',
+					'items'   => array(
+						array( 'q' => 'Fitrana kitna hai 2027 me? (How much is Fitrana in 2027?)', 'a' => 'Fitrana is ' . $fitra . ' per person (wheat, the minimum). You may give more according to your means: barley ' . $rate_barley . ', dates ' . $rate_dates . ' or raisins ' . $rate_raisins . ' per person (this year\'s estimate).' ),
+						array( 'q' => 'Fitra kitna dena hai? (How much Fitra should I give?)', 'a' => 'One Fitrana for yourself and one for each of your minor children, at the rate of the item you choose (wheat ' . $fitra . ' per person is the minimum). For your wife or adult children it is not wajib on you, but you may pay with their permission.' ),
+						array( 'q' => 'Fitra kis par wajib hai? (Who must pay Fitrana?)', 'a' => 'Every Muslim who, on the morning of Eid al-Fitr, owns wealth equal to the Nisab beyond their basic needs. A full year does not need to pass on this wealth.' ),
+						array( 'q' => 'Fitrana kab tak dena chahiye? (By when should I pay?)', 'a' => 'Please pay at least 3 days before Eid. Payments received later will still be accepted, and we will try our best to deliver them, but we cannot take responsibility for delivery before the Eid prayer.' ),
+						array( 'q' => 'Can I pay Fitrana online in India?', 'a' => 'Yes. We accept Fitrana only as complete ration kits of ' . $kit_price . ' each. One kit can cover the Fitrana of several members of one family.' ),
+						array( 'q' => 'What if my family\'s Fitrana is less than one kit?', 'a' => 'Any amount above your family\'s actual Fitrana is counted as voluntary Sadaqah.' ),
 					),
 				),
 				array(

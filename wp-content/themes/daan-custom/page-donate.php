@@ -14,6 +14,11 @@ $fk_link_held  = 'Fidyah & Kaffarah' === $preset_cause && daan_fk_hold_on();
 if ( $fk_link_held ) {
     $preset_cause = '';
 }
+// Ramadan Iftar is now a fixed-price kit (D-012): an iftar link points the donor to the Iftar kit, not a free amount.
+$iftar_link    = 'Ramadan Iftar' === $preset_cause && function_exists( 'daan_kit_url' );
+if ( $iftar_link ) {
+    $preset_cause = '';
+}
 if ( '' !== $preset_cause && ! in_array( $preset_cause, $causes, true ) ) {
     $causes[] = $preset_cause; // A valid cause without its own line on the form, reached from a link.
 }
@@ -92,6 +97,12 @@ get_header();
 
 			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Choose a Cause</h3>
 			<?php if ( $fk_link_held ) { echo daan_fk_notice_html(); } // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			<?php if ( $iftar_link ) : ?>
+				<div role="status" style="border:2px solid #FDBA74;background:#FFF7ED;color:#7C2D12;border-radius:12px;padding:16px 20px;margin:16px 0;font-size:1rem;line-height:1.6;">
+					<strong style="display:block;margin-bottom:6px;">Iftar is given as Iftar kits (<?php echo daan_rupees( daan_iftar_kit_price() ); // phpcs:ignore WordPress.Security.EscapeOutput ?> each).</strong>
+					<a href="<?php echo esc_url( daan_kit_url( 'iftar' ) ); ?>" style="color:#C2410C;font-weight:700;text-decoration:underline;">Choose the number of Iftar kits</a>
+				</div>
+			<?php endif; ?>
 			<div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
 				<?php foreach ( $causes as $cause ) :
 					$is_selected = $cause === $preset_cause; ?>
