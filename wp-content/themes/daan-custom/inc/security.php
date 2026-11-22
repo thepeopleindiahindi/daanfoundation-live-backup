@@ -111,19 +111,21 @@ add_action('wp_login', function (string $username) {
 remove_action('wp_head', 'wp_generator');
 add_filter('the_generator', '__return_empty_string');
 
-add_filter('style_loader_src', function ($src) {
-    if ($src) {
-        $src = remove_query_arg('ver', $src);
+// Only a ?ver= equal to the WordPress version is removed (that is what reveals the version). Other versions stay:
+// the theme's own files use filemtime, so a changed theme.js / CSS gets a new URL and browsers never keep an old copy.
+// (Until 2026-11-22 every ?ver= was removed, so returning visitors ran an old cached theme.js.)
+function daan_strip_wp_ver($src) {
+    if ($src && false !== strpos($src, 'ver=')) {
+        $ver = wp_parse_url($src, PHP_URL_QUERY);
+        parse_str((string) $ver, $q);
+        if (isset($q['ver']) && (string) $q['ver'] === (string) get_bloginfo('version')) {
+            $src = remove_query_arg('ver', $src);
+        }
     }
     return $src;
-});
-
-add_filter('script_loader_src', function ($src) {
-    if ($src) {
-        $src = remove_query_arg('ver', $src);
-    }
-    return $src;
-});
+}
+add_filter('style_loader_src', 'daan_strip_wp_ver');
+add_filter('script_loader_src', 'daan_strip_wp_ver');
 
 // ── 5. Disable user enumeration ───────────────────────────────────────────
 add_filter('rest_user_query', function (array $args, $request): array {

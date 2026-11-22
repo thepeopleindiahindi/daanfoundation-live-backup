@@ -26,7 +26,7 @@
 	<div style="margin-bottom: 20px;">
 		<label for="sidebar-cause" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin-bottom:8px;">Choose a Cause</label>
 		<select id="sidebar-cause" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:10px 12px;font-size:1rem;color:#111;background:#fff;">
-			<?php echo daan_widget_cause_options(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php echo daan_widget_cause_options( $GLOBALS['daan_sidebar_cause'] ?? '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</select>
 	</div>
 

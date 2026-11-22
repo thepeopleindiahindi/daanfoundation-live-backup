@@ -246,7 +246,13 @@ function daan_donate_form_causes() {
 }
 
 /** <option>s for the homepage widget and the sidebars: same causes as the /donate/ form, fixed ones with their price. */
-function daan_widget_cause_options() {
+/** "₹1,536" style price for menus, from the plugin setting function (fallback when the plugin is off). */
+function daan_menu_price( $fn, $fallback ) {
+    $n = function_exists( $fn ) ? (int) call_user_func( $fn ) : (int) $fallback;
+    return '₹' . number_format_i18n( $n > 0 ? $n : $fallback );
+}
+
+function daan_widget_cause_options( $selected = '' ) {
     $fixed = function_exists( 'daan_fixed_causes' ) ? daan_fixed_causes() : array();
     $out   = '';
     foreach ( daan_donate_form_causes() as $cause ) {
@@ -254,7 +260,7 @@ function daan_widget_cause_options() {
             continue; // Seasonal: on the /donate/ form only (as before).
         }
         $label = isset( $fixed[ $cause ] ) ? $cause . ' (₹' . number_format_i18n( $fixed[ $cause ]['unit'] ) . ' per ' . $fixed[ $cause ]['one'] . ')' : $cause;
-        $out  .= '<option value="' . esc_attr( $cause ) . '">' . esc_html( $label ) . '</option>';
+        $out  .= '<option value="' . esc_attr( $cause ) . '"' . selected( $cause, $selected, false ) . '>' . esc_html( $label ) . '</option>';
     }
     return $out;
 }

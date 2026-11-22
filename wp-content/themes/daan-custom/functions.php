@@ -62,6 +62,15 @@ function daan_cache_bust_style( $tag, $handle, $href, $media ) {
     return $tag;
 }
 
+// Same safety net for theme.js (donation widgets, calculator): never served without its version.
+add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) {
+    if ( 'daan-theme' === $handle && false === strpos( $src, 'ver=' ) ) {
+        $versioned = add_query_arg( 'ver', filemtime( get_template_directory() . '/assets/js/theme.js' ), $src );
+        $tag       = str_replace( $src, esc_url( $versioned ), $tag );
+    }
+    return $tag;
+}, 10, 3 );
+
 /**
  * Auto-add width and height to images in content
  * Prevents Cumulative Layout Shift (CLS)

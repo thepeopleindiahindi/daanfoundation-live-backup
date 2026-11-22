@@ -368,7 +368,7 @@ function daan_get_page_data( $slug ) {
 			'subtitle'      => 'A charitable compensation for those unable to fast during Ramadan due to valid long-term reasons.',
 			'gradient'      => 'from-emerald-600 to-teal-700',
 			'image'         => '/images/extra-2.jpg',
-			'default_cause' => 'ramadan-iftar',
+			'default_cause' => 'where-needed',
 			'sections'      => array(
 				array(
 					'type'    => 'notice',
@@ -403,7 +403,7 @@ function daan_get_page_data( $slug ) {
 			'subtitle'      => 'Feeding those in need through Daan Foundation — fulfil your Kaffarah with compassion.',
 			'gradient'      => 'from-red-600 to-rose-700',
 			'image'         => '/images/food-distribution-ramadan.jpg',
-			'default_cause' => 'ramadan-iftar',
+			'default_cause' => 'where-needed',
 			'sections'      => array(
 				array(
 					'type'    => 'notice',
@@ -433,7 +433,7 @@ function daan_get_page_data( $slug ) {
 			'subtitle'      => 'Give Iftar kits to fasting people in need in Amroha, Uttar Pradesh. Each kit is given as the person\'s own, after Asr at our Community Kitchen.',
 			'gradient'      => 'from-violet-600 to-purple-700',
 			'image'         => '/images/iftaar-distribution.jpg',
-			'default_cause' => 'where-needed',
+			'default_cause' => 'ramadan-iftar',
 			'sections'      => array(
 				array(
 					'type'    => 'shortcode',
@@ -684,7 +684,7 @@ function daan_get_page_data( $slug ) {
 			'subtitle'      => 'Ongoing charity that continues benefiting people, even after the donor has passed away.',
 			'gradient'      => 'from-cyan-600 to-teal-700',
 			'image'         => '/images/extra-1.jpg',
-			'default_cause' => 'community-kitchen',
+			'default_cause' => 'where-needed',
 			'sections'      => array(
 				array(
 					'type'    => 'text',
@@ -803,7 +803,7 @@ function daan_get_page_data( $slug ) {
 			'subtitle'      => 'The charity of Eid al-Fitr, so that everyone can celebrate Eid with dignity.',
 			'gradient'      => 'from-indigo-600 to-purple-700',
 			'image'         => '/images/iftaar-distribution.jpg',
-			'default_cause' => 'where-needed',
+			'default_cause' => 'fitrana-kit',
 			'sections'      => array(
 				array(
 					'type'    => 'text',
@@ -1849,6 +1849,8 @@ function daan_get_page_data( $slug ) {
  * @param string $default_cause Default cause for donation sidebar.
  */
 function daan_sidebar_page_start( $default_cause = 'where-needed' ) {
+	// The page's own cause is pre-selected in the sidebar (Community Kitchen page → meals, Fitrana page → kit, ...).
+	$GLOBALS['daan_sidebar_cause'] = function_exists( 'daan_cause_from_link' ) ? daan_cause_from_link( $default_cause ) : '';
 	?>
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
 		<div class="lg:grid lg:grid-cols-3 lg:gap-10">

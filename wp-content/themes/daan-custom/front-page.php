@@ -93,7 +93,7 @@ get_header();
             );
             $qa_items = array(
                 array( 'Community Kitchen', 'Feed the hungry — ₹60 provides one meal', '/community-kitchen/', 'linear-gradient(135deg, #F59E0B, #EA580C)', 0 ),
-                array( 'Fidyah & Kaffarah', 'Fulfil your Islamic obligation by feeding the needy', '/fidya/', 'linear-gradient(135deg, #8B5CF6, #7C3AED)', 1 ),
+                array( 'Fidyah & Kaffarah', daan_fk_hold_on() ? 'Temporarily paused · read the rules' : 'Read the rules of Fidyah and Kaffarah', '/fidya/', 'linear-gradient(135deg, #8B5CF6, #7C3AED)', 1 ),
                 array( 'Ramadan Iftar Appeal', 'Iftar meals for those fasting in need', '/ramadan/', 'linear-gradient(135deg, #F43F5E, #E11D48)', 2 ),
                 array( 'Donate Ration Kit', 'A complete ration kit for a family in need — ' . ( function_exists( 'daan_kit_price' ) ? '₹' . number_format_i18n( daan_kit_price() ) : '₹1,536' ) . ' per kit', '/product/ration-kit-donation/', 'linear-gradient(135deg, #06B6D4, #0D9488)', 3 ),
                 array( 'Zakat', 'Calculate and pay your Zakat accurately', '/zakat/', 'linear-gradient(135deg, #F97316, #EA580C)', 4 ),
@@ -142,9 +142,9 @@ get_header();
             <?php
             $campaigns = array(
                 array( 'Community Kitchen', 'Free daily meals for people in need — serving with dignity since 2020', '/images/food-distribution-ramadan.jpg', 250000, 500000, '/community-kitchen/' ),
-                array( 'Ration Kits Distribution', 'Essential food ration kits for poor families and vulnerable communities', '/images/ration-kit-front.jpg', 120000, 250000, '/where-most-needed/' ),
+                array( 'Donate Ration Kit', 'A complete ration kit for a poor family — ' . daan_menu_price( 'daan_kit_price', 1536 ) . ' per kit, as Zakat or Sadaqah', '/images/ration-kit-front.jpg', 120000, 250000, '/product/ration-kit-donation/' ),
                 array( 'Education Support', 'Helping poor children continue education and supporting families with school needs', '/images/aid-distribution-elderly.jpg', 85000, 200000, '/our-work/impact/' ),
-                array( 'Fidyah & Kaffarah', 'Feed the needy through Fidyah and Kaffarah — fulfil your Islamic obligation', '/images/iftaar-distribution.jpg', 180000, 300000, '/fidya/' ),
+                array( 'Fidyah & Kaffarah', daan_fk_hold_on() ? 'Fidyah & Kaffarah donations are temporarily paused. Read the rules.' : 'Read the rules of Fidyah and Kaffarah.', '/images/iftaar-distribution.jpg', 180000, 300000, '/fidya/' ),
             );
             foreach ( $campaigns as $c ) :
                 $progress = round( ( $c[3] / $c[4] ) * 100 );

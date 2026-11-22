@@ -63,8 +63,15 @@
                                     array( 'Zakat', '/zakat/' ),
                                     array( 'Sadaqah', '/sadaqah/' ),
                                     array( 'Sadaqah Jariyah', '/sadaqah-jariyah/' ),
-                                    array( 'Fidyah', '/fidya/' ),
-                                    array( 'Kaffarah', '/kaffarah/' ),
+                                    array( daan_fk_hold_on() ? 'Fidyah (paused)' : 'Fidyah', '/fidya/' ),
+                                    array( daan_fk_hold_on() ? 'Kaffarah (paused)' : 'Kaffarah', '/kaffarah/' ),
+                                ),
+                                'Give by Kit or Meal' => array(
+                                    array( 'Donate Ration Kit (' . daan_menu_price( 'daan_kit_price', 1536 ) . ')', '/product/ration-kit-donation/' ),
+                                    array( 'Iftar Kit (' . daan_menu_price( 'daan_iftar_kit_price', 91 ) . ')', '/product/ramadan-iftar/' ),
+                                    array( 'Community Kitchen (' . daan_menu_price( 'daan_meal_price', 60 ) . ' per meal)', '/donate/?cause=community-kitchen' ),
+                                    array( 'Fitrana Kit', '/product/fitrana-ration-kit/' ),
+                                    array( 'Bank Interest → Ration Kit', '/product/ration-kit-interest-money/' ),
                                 ),
                                 'Programs' => array(
                                     array( 'Community Kitchen', '/community-kitchen/' ),
