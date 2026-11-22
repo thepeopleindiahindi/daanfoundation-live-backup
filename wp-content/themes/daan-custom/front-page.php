@@ -27,13 +27,14 @@ get_header();
 <div class="donate-quickactions-row">
 <section class="section hero-donate-section">
     <div class="container" style="display:flex;justify-content:center;">
-        <div class="donation-widget">
+        <div class="donation-widget" data-daan-donate>
             <h2>Make a Donation</h2>
             <p class="widget-sub">Every contribution makes a difference</p>
 
+            <div data-daan-free>
             <div class="amount-grid">
                 <?php foreach ( array( 500, 1000, 2500, 5000 ) as $amount ) : ?>
-                    <button class="amount-btn <?php echo $amount === 1000 ? 'active' : ''; ?>"
+                    <button type="button" data-amount="<?php echo $amount; ?>" class="amount-btn <?php echo $amount === 1000 ? 'active' : ''; ?>"
                             onclick="selectAmount(this, <?php echo $amount; ?>)">
                         ₹<?php echo $amount; ?>
                     </button>
@@ -45,18 +46,16 @@ get_header();
                 <input type="number" class="custom-amount" aria-label="Other amount" placeholder="Other amount"
                        oninput="clearAmounts(this)">
             </div>
+            </div>
 
             <div class="cause-select">
                 <label for="donate-cause">Select a Cause</label>
                 <select id="donate-cause">
-                    <option>Where Most Needed</option>
-                    <option>Community Kitchen</option>
-                    <option>Zakat</option>
-                    <option>Sadaqah</option>
+                    <?php echo daan_widget_cause_options(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                 </select>
             </div>
 
-            <button class="donate-now-btn" onclick="handleDonate()">Donate Now</button>
+            <button type="button" class="donate-now-btn" onclick="daanWidgetGo(this)">Donate Now</button>
 
             <div class="trust-indicators">
                 <span class="trust-item">
@@ -96,7 +95,7 @@ get_header();
                 array( 'Community Kitchen', 'Feed the hungry — ₹60 provides one meal', '/community-kitchen/', 'linear-gradient(135deg, #F59E0B, #EA580C)', 0 ),
                 array( 'Fidyah & Kaffarah', 'Fulfil your Islamic obligation by feeding the needy', '/fidya/', 'linear-gradient(135deg, #8B5CF6, #7C3AED)', 1 ),
                 array( 'Ramadan Iftar Appeal', 'Iftar meals for those fasting in need', '/ramadan/', 'linear-gradient(135deg, #F43F5E, #E11D48)', 2 ),
-                array( 'Ration Kit Distribution', 'Essential food rations for poor families', '/where-most-needed/', 'linear-gradient(135deg, #06B6D4, #0D9488)', 3 ),
+                array( 'Donate Ration Kit', 'A complete ration kit for a family in need — ' . ( function_exists( 'daan_kit_price' ) ? '₹' . number_format_i18n( daan_kit_price() ) : '₹1,536' ) . ' per kit', '/product/ration-kit-donation/', 'linear-gradient(135deg, #06B6D4, #0D9488)', 3 ),
                 array( 'Zakat', 'Calculate and pay your Zakat accurately', '/zakat/', 'linear-gradient(135deg, #F97316, #EA580C)', 4 ),
                 array( 'Sadaqah', 'Earn ongoing rewards with voluntary charity', '/sadaqah/', 'linear-gradient(135deg, #3B82F6, #4F46E5)', 5 ),
             );

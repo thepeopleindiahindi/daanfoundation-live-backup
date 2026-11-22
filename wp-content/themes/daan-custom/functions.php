@@ -45,6 +45,9 @@ function daan_enqueue_assets() {
 
     // Scripts
     wp_enqueue_script( 'daan-theme', get_template_directory_uri() . '/assets/js/theme.js', [], filemtime( get_template_directory() . '/assets/js/theme.js' ), true );
+    // Fixed-price causes for the donation widgets (homepage, sidebars): price per meal/kit from the settings.
+    $fixed = function_exists( 'daan_fixed_causes' ) ? daan_fixed_causes() : array();
+    wp_add_inline_script( 'daan-theme', 'window.DAAN_FIXED=' . wp_json_encode( (object) $fixed ) . ';window.DAAN_MAX=' . (int) DAAN_MAX_DONATION . ';', 'before' );
 }
 
 /**

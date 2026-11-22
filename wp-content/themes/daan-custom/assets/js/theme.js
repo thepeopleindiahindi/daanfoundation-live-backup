@@ -116,6 +116,84 @@
         window.location.href = '/donate/?amount=' + amount + '&cause=' + encodeURIComponent(causeText);
     };
 
+    /* ── Fixed-price causes in the widgets (meals, kits): choose a number, total = number × price ── */
+    var FIXED = window.DAAN_FIXED || {};
+    var LIMIT = window.DAAN_MAX || 1000000;
+    function inr(n) { return '₹' + n.toLocaleString('en-IN'); }
+    function fixedFor(cause) { return Object.prototype.hasOwnProperty.call(FIXED, cause) ? FIXED[cause] : null; }
+
+    document.querySelectorAll('[data-daan-donate]').forEach(function(root) {
+        var sel = root.querySelector('select');
+        var free = root.querySelector('[data-daan-free]');
+        if (!sel || !free) return;
+        var box = document.createElement('div');
+        box.style.cssText = 'display:none;margin-bottom:16px;';
+        free.parentNode.insertBefore(box, free.nextSibling);
+        // The cause comes first when a number is needed: move the cause list above the amount area.
+        var causeWrap = sel.parentNode;
+        root.daanQty = 1;
+
+        function mark() {
+            box.querySelectorAll('.daan-qty-btn').forEach(function(b) {
+                var on = parseInt(b.getAttribute('data-qty'), 10) === root.daanQty;
+                b.style.background = on ? '#F97316' : '#F1F5F9';
+                b.style.color = on ? '#fff' : '#334155';
+            });
+        }
+        function render() {
+            var f = fixedFor(sel.value);
+            free.style.display = f ? 'none' : '';
+            box.style.display = f ? 'block' : 'none';
+            if (!f) return;
+            var max = Math.max(1, Math.floor(LIMIT / f.unit));
+            root.daanQty = 1;
+            box.innerHTML = '<p style="margin:0 0 8px;font-size:0.875rem;font-weight:600;color:#334155;">Number of ' + f.many + ' (' + inr(f.unit) + ' per ' + f.one + ')</p>';
+            var grid = document.createElement('div');
+            grid.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;';
+            [1, 2, 3, 5, 10].forEach(function(n) {
+                if (n > max) return;
+                var b = document.createElement('button');
+                b.type = 'button'; b.className = 'daan-qty-btn'; b.setAttribute('data-qty', n);
+                b.style.cssText = 'padding:8px 4px;border-radius:12px;border:none;cursor:pointer;line-height:1.3;font-size:0.8125rem;';
+                b.innerHTML = '<b style="display:block;font-size:0.9375rem;">' + n + ' ' + (n === 1 ? f.one : f.many) + '</b>' + inr(n * f.unit);
+                b.onclick = function() { root.daanQty = n; inp.value = ''; mark(); };
+                grid.appendChild(b);
+            });
+            box.appendChild(grid);
+            var inp = document.createElement('input');
+            inp.type = 'number'; inp.min = 1; inp.max = max; inp.step = 1; inp.placeholder = 'Other number';
+            inp.setAttribute('aria-label', 'Number of ' + f.many);
+            inp.style.cssText = 'width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:10px 12px;font-size:1rem;color:#111;';
+            inp.oninput = function() { root.daanQty = parseInt(inp.value, 10) || 0; mark(); };
+            box.appendChild(inp);
+            mark();
+        }
+        // Cause list above the amounts, so the amount area follows the cause.
+        if (causeWrap && causeWrap !== root && causeWrap.parentNode === free.parentNode) {
+            free.parentNode.insertBefore(causeWrap, free);
+        }
+        sel.addEventListener('change', render);
+        render();
+    });
+
+    window.daanWidgetGo = function(btn) {
+        var root = btn.closest('[data-daan-donate]');
+        var sel = root ? root.querySelector('select') : null;
+        var cause = sel ? sel.value : 'Where Most Needed';
+        var f = fixedFor(cause);
+        if (f) {
+            var max = Math.max(1, Math.floor(LIMIT / f.unit));
+            var q = root.daanQty || 0;
+            if (q < 1 || q > max) { alert('Please choose between 1 and ' + max + ' ' + f.many + '.'); return; }
+            window.location.href = '/donate/?cause=' + encodeURIComponent(cause) + '&qty=' + q;
+            return;
+        }
+        var custom = root ? root.querySelector('.custom-amount') : null;
+        var active = root ? root.querySelector('.amount-btn.active') : null;
+        var amount = (custom && parseInt(custom.value, 10) > 0) ? parseInt(custom.value, 10) : (active ? active.getAttribute('data-amount') : 1000);
+        window.location.href = '/donate/?amount=' + amount + '&cause=' + encodeURIComponent(cause);
+    };
+
     /* ── Smooth Scroll for anchor links ────────────────────────────────── */
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {

@@ -692,6 +692,7 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 		'page:zakat-al-fitr'                 => 'Fitrana 2027 India: Amount ' . $fitra . ', Pay Online | Daan Foundation',
 		'page:bank-interest'                 => 'Donate Bank Interest (Riba) as Ration Kits | Daan Foundation',
 		'post:ration-kit-distribution-india' => 'Ration Kit Donation for Poor Families in India (' . $kit . ') | Daan Foundation',
+		'product:ration-kit-donation'        => 'Donate Ration Kit for Poor Families in India | ' . $kit,
 	);
 	$key = daan_seo27_key();
 	return isset( $map[ $key ] ) ? $map[ $key ] : $title;
@@ -708,6 +709,7 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'page:bank-interest'                 => 'Interest money must be given away without any intention of reward. We use it only for ration kits (' . $kit . ') that families own. Not Zakat. Daan Foundation.',
 		'post:ration-kit-distribution-india' => 'Donate a ration kit (' . $kit . ') for a poor family: atta, rice, dal, oil and more. See the full kit list. Daan Foundation, Amroha, Uttar Pradesh.',
 		'product:fitrana-ration-kit'         => 'Give your family\'s Fitrana as a complete ration kit (' . $kit . ') for a family in need. Fitrana from ' . $fitra . ' per person, counted from the food items only.',
+		'product:ration-kit-donation'        => 'Donate a complete ration kit (' . $kit . ') to a poor family in India: atta, rice, dal, oil and more. Give it as Zakat or Sadaqah. Daan Foundation, Amroha.',
 		'product:ramadan-iftar'              => 'Sponsor Iftar kits for fasting people in need. Each kit ' . $iftar . ': veg biryani, dates, fruit, egg and a soft drink. Handed out at our Amroha kitchen.',
 	);
 	$key = daan_seo27_key();

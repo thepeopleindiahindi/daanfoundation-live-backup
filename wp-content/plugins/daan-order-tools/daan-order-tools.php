@@ -852,7 +852,8 @@ add_action( 'admin_menu', function () {
 					<tr><th>Fitrana: raisins (₹ per person)</th><td><input type="number" min="1" step="1" style="width:110px" name="daan_rate_raisins" value="<?php echo esc_attr( daan_rate( 'raisins' ) ); ?>"></td></tr>
 					<tr><th>Iftar kit price (₹ per kit)</th><td><input type="number" min="1" step="1" style="width:110px" name="daan_iftar_kit_price" value="<?php echo esc_attr( daan_iftar_kit_price() ); ?>"> <span class="description">Ramadan Iftar product (quantity). Iftar is never Fidyah or Fitrana (D-012).</span></td></tr>
 					<tr><th>Iftar kit items</th><td><textarea name="daan_iftar_kit_items" rows="3" cols="60"><?php echo esc_textarea( daan_iftar_kit_items_text() ); ?></textarea></td></tr>
-					<tr><th>Ration kit price (₹ per kit)</th><td><input type="number" min="1" step="1" style="width:110px" name="daan_kit_price" value="<?php echo esc_attr( daan_kit_price() ); ?>"> <span class="description">Both kit products: Ration Kit (Interest Money) and Fitrana Ration Kit.</span></td></tr>
+					<tr><th>Ration kit price (₹ per kit)</th><td><input type="number" min="1" step="1" style="width:110px" name="daan_kit_price" value="<?php echo esc_attr( daan_kit_price() ); ?>"> <span class="description">All three ration kit products: Ration Kit (Zakat/Sadaqah), Ration Kit (Interest Money) and Fitrana Ration Kit.</span></td></tr>
+					<tr><th>Community Kitchen meal price (₹ per meal)</th><td><input type="number" min="1" step="1" style="width:110px" name="daan_meal_price" value="<?php echo esc_attr( daan_meal_price() ); ?>"> <span class="description">Donation forms: Community Kitchen is chosen as a number of meals.</span></td></tr>
 					<tr><th>Kit food value for Fitrana (internal, not shown)</th><td><input type="number" min="0" step="1" style="width:110px" name="daan_kit_food_value" value="<?php echo esc_attr( (string) get_option( 'daan_kit_food_value', '' ) ); ?>"> <span class="description">₹ value of the food items in one kit. Leave EMPTY until confirmed: while empty, the Fitrana calculator stays hidden.</span></td></tr>
 					<tr><th>Ration kit items (one per line)</th><td><textarea name="daan_kit_items" rows="18" cols="60"><?php echo esc_textarea( daan_kit_items_text() ); ?></textarea><p class="description">Name and weight only, no prices. The same list shows on both kit products, the Bank Interest page and the Zakat al-Fitr page.</p></td></tr>
 				</table>
@@ -1095,6 +1096,7 @@ add_action( 'admin_init', function () {
 	register_setting( 'daan_ot_automation', 'daan_rate_raisins', array( 'type' => 'integer', 'default' => 3500, 'sanitize_callback' => $positive( 3500 ) ) );
 	register_setting( 'daan_ot_automation', 'daan_kit_price', array( 'type' => 'integer', 'default' => 1536, 'sanitize_callback' => $positive( 1536 ) ) );
 	register_setting( 'daan_ot_automation', 'daan_iftar_kit_price', array( 'type' => 'integer', 'default' => 91, 'sanitize_callback' => $positive( 91 ) ) );
+	register_setting( 'daan_ot_automation', 'daan_meal_price', array( 'type' => 'integer', 'default' => 60, 'sanitize_callback' => $positive( 60 ) ) );
 	register_setting( 'daan_ot_automation', 'daan_iftar_kit_items', array( 'type' => 'string', 'default' => '', 'sanitize_callback' => 'sanitize_textarea_field' ) );
 	register_setting(
 		'daan_ot_automation',
@@ -1157,7 +1159,48 @@ function daan_kit_type( $product_id ) {
 	if ( $product_id === (int) get_option( 'daan_kit_iftar_product', 0 ) ) {
 		return 'iftar';
 	}
+	if ( $product_id === (int) get_option( 'daan_kit_general_product', 0 ) ) {
+		return 'general';
+	}
 	return '';
+}
+
+/** Community Kitchen: price of one meal (setting; ₹60). */
+function daan_meal_price() {
+	$price = (int) get_option( 'daan_meal_price', 60 );
+	return $price > 0 ? $price : 60;
+}
+
+/** General Ration Kit: the donor's own choice, 'zakat' or 'sadaqah' ('' when missing or wrong). */
+function daan_kit_fund( $raw ) {
+	$raw = strtolower( sanitize_text_field( (string) $raw ) );
+	return in_array( $raw, array( 'zakat', 'sadaqah' ), true ) ? $raw : '';
+}
+
+/** Order cause of a General Ration Kit: "Ration Kit (Zakat)" or "Ration Kit (Sadaqah)" (Zakat kept apart, D-008). */
+function daan_kit_general_cause( $fund ) {
+	return 'zakat' === $fund ? 'Ration Kit (Zakat)' : 'Ration Kit (Sadaqah)';
+}
+
+/**
+ * Fixed-price causes on the donation forms (homepage, /donate/, sidebars). Amount = unit × count; units from settings.
+ * kit = kit type ('' = Community Kitchen, a fee line); fund = donor chooses Zakat or Sadaqah.
+ */
+function daan_fixed_causes() {
+	$kit = daan_kit_price();
+	return array(
+		'Community Kitchen'           => array( 'unit' => daan_meal_price(), 'one' => 'meal', 'many' => 'meals', 'kit' => '', 'fund' => false ),
+		'Ramadan Iftar'               => array( 'unit' => daan_iftar_kit_price(), 'one' => 'kit', 'many' => 'kits', 'kit' => 'iftar', 'fund' => false ),
+		'Ration Kit'                  => array( 'unit' => $kit, 'one' => 'kit', 'many' => 'kits', 'kit' => 'general', 'fund' => true ),
+		'Ration Kit (Interest Money)' => array( 'unit' => $kit, 'one' => 'kit', 'many' => 'kits', 'kit' => 'interest', 'fund' => false ),
+		'Fitrana Ration Kit'          => array( 'unit' => $kit, 'one' => 'kit', 'many' => 'kits', 'kit' => 'fitrana', 'fund' => false ),
+	);
+}
+
+/** Most units in one donation for a fixed cause (₹10,00,000 limit ÷ unit). */
+function daan_fixed_max_qty( $unit ) {
+	$limit = defined( 'DAAN_MAX_DONATION' ) ? DAAN_MAX_DONATION : 1000000;
+	return max( 1, (int) floor( $limit / max( 1, (int) $unit ) ) );
 }
 
 /** Price of one kit of this type, always from the settings. */
@@ -1166,12 +1209,12 @@ function daan_kit_unit_price( $type ) {
 }
 
 function daan_kit_cause( $type ) {
-	$causes = array( 'interest' => 'Ration Kit (Interest Money)', 'fitrana' => 'Zakat al-Fitr', 'iftar' => 'Ramadan Iftar' );
+	$causes = array( 'interest' => 'Ration Kit (Interest Money)', 'fitrana' => 'Zakat al-Fitr', 'iftar' => 'Ramadan Iftar', 'general' => 'Ration Kit' );
 	return $causes[ $type ] ?? '';
 }
 
 function daan_kit_url( $type ) {
-	$options = array( 'interest' => 'daan_kit_interest_product', 'fitrana' => 'daan_kit_fitrana_product', 'iftar' => 'daan_kit_iftar_product' );
+	$options = array( 'interest' => 'daan_kit_interest_product', 'fitrana' => 'daan_kit_fitrana_product', 'iftar' => 'daan_kit_iftar_product', 'general' => 'daan_kit_general_product' );
 	$id      = isset( $options[ $type ] ) ? (int) get_option( $options[ $type ], 0 ) : 0;
 	return $id ? get_permalink( $id ) : home_url( '/donate/' );
 }
@@ -1227,12 +1270,29 @@ function daan_kit_types_in_cart( $skip_key = '' ) {
 }
 
 function daan_kit_mix_message() {
-	return 'Fitrana Ration Kits and Ration Kits (Interest Money) are kept completely separate. Please give them as two separate donations.';
+	return 'Ration Kits, Fitrana Ration Kits and Ration Kits (Interest Money) are kept completely separate. Please give them as separate donations.';
 }
 
-/** True when the cart (plus an optional new type) holds both Interest and Fitrana kits. */
+/** True when the cart (plus an optional new type) holds Interest + Fitrana kits, or a Ration Kit with any other kit. */
 function daan_kit_mixed( $types ) {
+	$types = array_values( array_unique( $types ) );
+	if ( in_array( 'general', $types, true ) && count( $types ) > 1 ) {
+		return true;
+	}
 	return in_array( 'interest', $types, true ) && in_array( 'fitrana', $types, true );
+}
+
+/** Zakat/Sadaqah choices of the Ration Kits already in the cart. */
+function daan_kit_funds_in_cart() {
+	$funds = array();
+	if ( function_exists( 'WC' ) && WC()->cart ) {
+		foreach ( WC()->cart->get_cart() as $item ) {
+			if ( 'general' === daan_kit_type( $item['product_id'] ) && ! empty( $item['daan_kit_fund'] ) ) {
+				$funds[ $item['daan_kit_fund'] ] = true;
+			}
+		}
+	}
+	return array_keys( $funds );
 }
 
 // Interest kits and Fitrana kits never in one cart (their money is never mixed). Iftar kits may go with either.
@@ -1249,8 +1309,54 @@ add_filter( 'woocommerce_add_to_cart_validation', function ( $passed, $product_i
 		wc_add_notice( 'Please choose between 1 and ' . daan_kit_max_qty( $type ) . ' kits.', 'error' );
 		return false;
 	}
+	if ( 'general' === $type ) {
+		$fund = daan_kit_fund( wp_unslash( $_POST['daan_kit_fund'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( ! $fund ) {
+			wc_add_notice( 'Please choose whether this is your Zakat or Sadaqah.', 'error' );
+			return false;
+		}
+		$funds = daan_kit_funds_in_cart();
+		if ( $funds && ! in_array( $fund, $funds, true ) ) {
+			wc_add_notice( 'Zakat and Sadaqah Ration Kits are kept separate. Please give them as two separate donations.', 'error' );
+			return false;
+		}
+	}
 	return $passed;
 }, 20, 3 );
+
+// General Ration Kit: the Zakat/Sadaqah choice on the product page (required), kept on the cart line.
+add_action( 'woocommerce_before_add_to_cart_button', function () {
+	global $product;
+	if ( ! $product || 'general' !== daan_kit_type( $product->get_id() ) ) {
+		return;
+	}
+	?>
+	<fieldset class="daan-kit-fund" style="border:2px solid #FDBA74;border-radius:12px;padding:12px 16px;margin:0 0 14px;background:#FFF7ED;">
+		<legend style="font-weight:700;padding:0 6px;">This is my: <span style="color:#B91C1C;">*</span></legend>
+		<label style="display:inline-flex;align-items:center;gap:8px;margin:4px 20px 4px 0;cursor:pointer;"><input type="radio" name="daan_kit_fund" value="zakat" required onchange="document.getElementById('daan-zakat-line').style.display='block'"> Zakat</label>
+		<label style="display:inline-flex;align-items:center;gap:8px;margin:4px 0;cursor:pointer;"><input type="radio" name="daan_kit_fund" value="sadaqah" required onchange="document.getElementById('daan-zakat-line').style.display='none'"> Sadaqah</label>
+		<p id="daan-zakat-line" style="display:none;margin:8px 0 0;font-size:0.9375rem;"><?php echo esc_html( DAAN_OT_ZAKAT_KIT_LINE ); ?></p>
+	</fieldset>
+	<?php
+} );
+const DAAN_OT_ZAKAT_KIT_LINE = 'Your Zakat is given only to eligible Muslim families, who receive and own the kit.';
+
+add_filter( 'woocommerce_add_cart_item_data', function ( $data, $product_id ) {
+	if ( 'general' === daan_kit_type( $product_id ) ) {
+		$fund = daan_kit_fund( wp_unslash( $_POST['daan_kit_fund'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( $fund ) {
+			$data['daan_kit_fund'] = $fund;
+		}
+	}
+	return $data;
+}, 10, 2 );
+
+add_filter( 'woocommerce_get_item_data', function ( $rows, $item ) {
+	if ( 'general' === daan_kit_type( $item['product_id'] ?? 0 ) && ! empty( $item['daan_kit_fund'] ) ) {
+		$rows[] = array( 'key' => 'This is my', 'value' => 'zakat' === $item['daan_kit_fund'] ? 'Zakat' : 'Sadaqah' );
+	}
+	return $rows;
+}, 10, 2 );
 
 // Cart and checkout (classic and block): amount must be kits x kit price, and no mixing.
 add_action( 'woocommerce_check_cart_items', function () {
@@ -1272,6 +1378,12 @@ add_action( 'woocommerce_check_cart_items', function () {
 		if ( $qty < 1 || $qty > daan_kit_max_qty( $type ) || abs( $line - $expected ) > 0.01 ) {
 			wc_add_notice( 'The kit amount is not correct. Each kit is ' . daan_rupees( $unit ) . '. Please update your donation.', 'error' );
 		}
+		if ( 'general' === $type && empty( $item['daan_kit_fund'] ) ) {
+			wc_add_notice( 'Please remove the Ration Kit and add it again, choosing Zakat or Sadaqah.', 'error' );
+		}
+	}
+	if ( count( daan_kit_funds_in_cart() ) > 1 ) {
+		wc_add_notice( 'Zakat and Sadaqah Ration Kits are kept separate. Please give them as two separate donations.', 'error' );
 	}
 } );
 
@@ -1279,14 +1391,14 @@ add_action( 'woocommerce_check_cart_items', function () {
 add_action( 'woocommerce_checkout_create_order_line_item', function ( $item, $cart_item_key, $values ) {
 	$type = daan_kit_type( $values['product_id'] ?? 0 );
 	if ( $type ) {
-		$item->add_meta_data( 'Cause', daan_kit_cause( $type ), true );
+		$item->add_meta_data( 'Cause', 'general' === $type ? daan_kit_general_cause( $values['daan_kit_fund'] ?? '' ) : daan_kit_cause( $type ), true );
 	}
 }, 10, 3 );
 add_action( 'woocommerce_checkout_create_order', function ( $order ) {
 	foreach ( WC()->cart ? WC()->cart->get_cart() : array() as $item ) {
 		$type = daan_kit_type( $item['product_id'] );
 		if ( $type && 'iftar' !== $type ) {
-			$order->update_meta_data( '_daan_donation_cause', daan_kit_cause( $type ) );
+			$order->update_meta_data( '_daan_donation_cause', 'general' === $type ? daan_kit_general_cause( $item['daan_kit_fund'] ?? '' ) : daan_kit_cause( $type ) );
 			$order->update_meta_data( '_daan_kit_type', $type );
 			break;
 		}

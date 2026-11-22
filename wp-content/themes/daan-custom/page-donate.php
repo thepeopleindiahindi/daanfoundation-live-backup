@@ -14,11 +14,10 @@ $fk_link_held  = 'Fidyah & Kaffarah' === $preset_cause && daan_fk_hold_on();
 if ( $fk_link_held ) {
     $preset_cause = '';
 }
-// Ramadan Iftar is now a fixed-price kit (D-012): an iftar link points the donor to the Iftar kit, not a free amount.
-$iftar_link    = 'Ramadan Iftar' === $preset_cause && function_exists( 'daan_kit_url' );
-if ( $iftar_link ) {
-    $preset_cause = '';
-}
+// Fixed-price causes (meals, kits): chosen as a number; amount = number × price from the settings (server checks it).
+$fixed_causes  = function_exists( 'daan_fixed_causes' ) ? daan_fixed_causes() : array();
+$preset_qty    = isset( $_GET['qty'] ) ? max( 1, min( 100000, intval( $_GET['qty'] ) ) ) : 1;
+$preset_fund   = function_exists( 'daan_kit_fund' ) && isset( $_GET['fund'] ) ? daan_kit_fund( wp_unslash( $_GET['fund'] ) ) : '';
 if ( '' !== $preset_cause && ! in_array( $preset_cause, $causes, true ) ) {
     $causes[] = $preset_cause; // A valid cause without its own line on the form, reached from a link.
 }
@@ -84,6 +83,19 @@ get_header();
 				<button type="button" id="giving-monthly" onclick="setGivingType('monthly')" style="flex:1;padding:12px 0;border-radius:12px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:600;font-size:0.9375rem;cursor:pointer;transition:all 0.2s;">Monthly</button>
 			</div>
 
+			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Choose a Cause</h3>
+			<?php if ( $fk_link_held ) { echo daan_fk_notice_html(); } // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			<div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+				<?php foreach ( $causes as $cause ) :
+					$is_selected = $cause === $preset_cause; ?>
+					<label style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;border:1px solid #E2E8F0;cursor:pointer;transition:border-color 0.2s,background 0.2s;background:<?php echo $is_selected ? '#FFF7ED' : '#fff'; ?>;border-color:<?php echo $is_selected ? '#F97316' : '#E2E8F0'; ?>;">
+						<input type="radio" name="cause" value="<?php echo esc_attr( $cause ); ?>" <?php echo $is_selected ? 'checked' : ''; ?> onchange="selectCause(this)" style="accent-color:#F97316;width:18px;height:18px;">
+						<span style="font-size:0.9375rem;font-weight:500;color:#334155;"><?php echo esc_html( $cause ); ?><?php if ( isset( $fixed_causes[ $cause ] ) ) : ?> <span style="color:#C2410C;font-weight:600;white-space:nowrap;">₹<?php echo esc_html( number_format_i18n( $fixed_causes[ $cause ]['unit'] ) ); ?> per <?php echo esc_html( $fixed_causes[ $cause ]['one'] ); ?></span><?php endif; ?></span>
+					</label>
+				<?php endforeach; ?>
+			</div>
+
+			<div id="donate-amount-free">
 			<h2 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Select Amount</h2>
 			<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
 				<?php foreach ( array( 500, 1000, 2500, 5000 ) as $amt ) : ?>
@@ -95,22 +107,19 @@ get_header();
 				<input type="number" id="custom-donate-amount" aria-label="Other amount" max="<?php echo (int) DAAN_MAX_DONATION; ?>" placeholder="Other amount" oninput="customDonateAmount(this)" style="width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:14px 16px 14px 36px;font-size:1.125rem;font-weight:500;color:#111;transition:border-color 0.2s;">
 			</div>
 
-			<h3 style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 16px;">Choose a Cause</h3>
-			<?php if ( $fk_link_held ) { echo daan_fk_notice_html(); } // phpcs:ignore WordPress.Security.EscapeOutput ?>
-			<?php if ( $iftar_link ) : ?>
-				<div role="status" style="border:2px solid #FDBA74;background:#FFF7ED;color:#7C2D12;border-radius:12px;padding:16px 20px;margin:16px 0;font-size:1rem;line-height:1.6;">
-					<strong style="display:block;margin-bottom:6px;">Iftar is given as Iftar kits (<?php echo daan_rupees( daan_iftar_kit_price() ); // phpcs:ignore WordPress.Security.EscapeOutput ?> each).</strong>
-					<a href="<?php echo esc_url( daan_kit_url( 'iftar' ) ); ?>" style="color:#C2410C;font-weight:700;text-decoration:underline;">Choose the number of Iftar kits</a>
-				</div>
-			<?php endif; ?>
-			<div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
-				<?php foreach ( $causes as $cause ) :
-					$is_selected = $cause === $preset_cause; ?>
-					<label style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;border:1px solid #E2E8F0;cursor:pointer;transition:border-color 0.2s,background 0.2s;background:<?php echo $is_selected ? '#FFF7ED' : '#fff'; ?>;border-color:<?php echo $is_selected ? '#F97316' : '#E2E8F0'; ?>;">
-						<input type="radio" name="cause" value="<?php echo esc_attr( $cause ); ?>" <?php echo $is_selected ? 'checked' : ''; ?> onchange="selectCause(this)" style="accent-color:#F97316;width:18px;height:18px;">
-						<span style="font-size:0.9375rem;font-weight:500;color:#334155;"><?php echo esc_html( $cause ); ?></span>
-					</label>
-				<?php endforeach; ?>
+			</div>
+			<div id="donate-amount-qty" style="display:none;margin-bottom:32px;">
+				<h2 id="donate-qty-title" style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 6px;">How many?</h2>
+				<p id="donate-qty-unit" style="margin:0 0 14px;color:#475569;font-size:0.9375rem;"></p>
+				<div id="donate-qty-buttons" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:12px;"></div>
+				<label for="donate-qty-input" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin:0 0 6px;">Or enter your own number</label>
+				<input type="number" id="donate-qty-input" min="1" step="1" inputmode="numeric" oninput="donateQtyInput(this)" style="width:100%;max-width:220px;border-radius:12px;border:2px solid #E2E8F0;padding:12px 14px;font-size:1.125rem;font-weight:500;color:#111;">
+				<fieldset id="donate-fund" style="display:none;border:2px solid #FDBA74;border-radius:12px;padding:12px 16px;margin:16px 0 0;background:#FFF7ED;">
+					<legend style="font-weight:700;padding:0 6px;color:#111827;">This is my: <span style="color:#B91C1C;">*</span></legend>
+					<label style="display:inline-flex;align-items:center;gap:8px;margin:4px 20px 4px 0;cursor:pointer;"><input type="radio" name="kit_fund" value="zakat" onchange="donateFund(this.value)" <?php checked( 'zakat', $preset_fund ); ?> style="accent-color:#F97316;width:18px;height:18px;"> Zakat</label>
+					<label style="display:inline-flex;align-items:center;gap:8px;margin:4px 0;cursor:pointer;"><input type="radio" name="kit_fund" value="sadaqah" onchange="donateFund(this.value)" <?php checked( 'sadaqah', $preset_fund ); ?> style="accent-color:#F97316;width:18px;height:18px;"> Sadaqah</label>
+					<p id="donate-zakat-line" style="display:none;margin:8px 0 0;font-size:0.9375rem;color:#7C2D12;">Your Zakat is given only to eligible Muslim families, who receive and own the kit.</p>
+				</fieldset>
 			</div>
 
 			<button type="button" onclick="goToStep(2)" style="width:100%;border-radius:12px;background:#C2410C;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;">
@@ -297,14 +306,73 @@ get_header();
 
 	// Pre-select from URL params or defaults
 	var selectedAmount = <?php echo $preset_amount; ?>;
+	var freeAmount = selectedAmount;
 	var causeText = <?php echo wp_json_encode( $preset_cause ); ?>;
+	var FIXED = <?php echo wp_json_encode( (object) $fixed_causes ); ?>;
+	var maxDonationAll = <?php echo (int) DAAN_MAX_DONATION; ?>;
+	var qty = <?php echo (int) $preset_qty; ?>;
+	var fund = <?php echo wp_json_encode( $preset_fund ); ?>;
+	function inr(n) { return '₹' + n.toLocaleString('en-IN'); }
+	function fixedNow() { return Object.prototype.hasOwnProperty.call(FIXED, causeText) ? FIXED[causeText] : null; }
+	function maxQty(f) { return Math.max(1, Math.floor(maxDonationAll / f.unit)); }
+	function showTotal() {
+		var f = fixedNow();
+		document.getElementById('step1-amount-display').textContent = inr(selectedAmount > 0 ? selectedAmount : 0);
+		document.getElementById('summary-amount').textContent = f
+			? qty + ' ' + (qty === 1 ? f.one : f.many) + ' × ' + inr(f.unit) + ' = ' + inr(selectedAmount)
+			: inr(selectedAmount > 0 ? selectedAmount : 0);
+		var sc = document.getElementById('summary-cause');
+		if (sc) sc.textContent = causeText + (f && f.fund && fund ? ' (' + (fund === 'zakat' ? 'Zakat' : 'Sadaqah') + ')' : '');
+	}
+	function setQty(n, fromInput) {
+		var f = fixedNow(); if (!f) return;
+		qty = n;
+		selectedAmount = n > 0 ? n * f.unit : 0;
+		document.querySelectorAll('.donate-qty-btn').forEach(function(b) {
+			var on = parseInt(b.getAttribute('data-qty'), 10) === n;
+			b.style.borderColor = on ? '#F97316' : '#E2E8F0'; b.style.background = on ? '#FFF7ED' : '#fff'; b.style.color = on ? '#C2410C' : '#334155';
+		});
+		if (!fromInput) document.getElementById('donate-qty-input').value = '';
+		showTotal();
+	}
+	window.donateQtyInput = function(input) { setQty(parseInt(input.value, 10) || 0, true); };
+	window.donateFund = function(v) {
+		fund = v;
+		document.getElementById('donate-zakat-line').style.display = v === 'zakat' ? 'block' : 'none';
+		showTotal();
+	};
+	function applyCauseMode() {
+		var f = fixedNow();
+		document.getElementById('donate-amount-free').style.display = f ? 'none' : 'block';
+		document.getElementById('donate-amount-qty').style.display = f ? 'block' : 'none';
+		if (!f) { selectedAmount = freeAmount; showTotal(); return; }
+		document.getElementById('donate-qty-title').textContent = 'Number of ' + f.many;
+		document.getElementById('donate-qty-unit').textContent = inr(f.unit) + ' per ' + f.one + '. The amount is worked out for you.';
+		var box = document.getElementById('donate-qty-buttons');
+		box.innerHTML = '';
+		[1, 2, 3, 5, 10].forEach(function(n) {
+			if (n > maxQty(f)) return;
+			var b = document.createElement('button');
+			b.type = 'button'; b.className = 'donate-qty-btn'; b.setAttribute('data-qty', n);
+			b.style.cssText = 'padding:10px 6px;border-radius:12px;border:2px solid #E2E8F0;background:#fff;color:#334155;cursor:pointer;line-height:1.3;transition:all 0.2s;';
+			b.innerHTML = '<span style="display:block;font-weight:700;font-size:1rem;">' + n + ' ' + (n === 1 ? f.one : f.many) + '</span><span style="display:block;font-size:0.9375rem;">' + inr(n * f.unit) + '</span>';
+			b.onclick = function() { setQty(n, false); };
+			box.appendChild(b);
+		});
+		var inp = document.getElementById('donate-qty-input');
+		inp.max = maxQty(f);
+		document.getElementById('donate-fund').style.display = f.fund ? 'block' : 'none';
+		if (f.fund && fund) donateFund(fund);
+		if (qty < 1 || qty > maxQty(f)) qty = 1;
+		if ([1, 2, 3, 5, 10].indexOf(qty) === -1) { inp.value = qty; setQty(qty, true); } else { setQty(qty, false); }
+	}
 
 	window.selectDonateAmount = function(btn, amt) {
 		document.querySelectorAll('.donate-amount-btn').forEach(function(b) {
 			b.style.borderColor = '#E2E8F0'; b.style.background = '#fff'; b.style.color = '#334155';
 		});
 		btn.style.borderColor = '#F97316'; btn.style.background = '#FFF7ED'; btn.style.color = '#C2410C';
-		selectedAmount = amt;
+		selectedAmount = amt; freeAmount = amt;
 		document.getElementById('custom-donate-amount').value = '';
 		document.getElementById('step1-amount-display').textContent = '\u20b9' + amt.toLocaleString('en-IN');
 		document.getElementById('summary-amount').textContent = '\u20b9' + amt.toLocaleString('en-IN');
@@ -315,7 +383,7 @@ get_header();
 			b.style.borderColor = '#E2E8F0'; b.style.background = '#fff'; b.style.color = '#334155';
 		});
 		var val = parseInt(input.value) || 0;
-		selectedAmount = val;
+		selectedAmount = val; freeAmount = val;
 		document.getElementById('step1-amount-display').textContent = '\u20b9' + (val > 0 ? val.toLocaleString('en-IN') : '0');
 		document.getElementById('summary-amount').textContent = '\u20b9' + (val > 0 ? val.toLocaleString('en-IN') : '0');
 	};
@@ -329,6 +397,7 @@ get_header();
 		radio.closest('label').style.background = '#FFF7ED';
 		radio.closest('label').style.borderColor = '#F97316';
 		document.getElementById('summary-cause').textContent = causeText;
+		applyCauseMode();
 	};
 
 	var maxDonation = <?php echo (int) DAAN_MAX_DONATION; ?>;
@@ -337,6 +406,9 @@ get_header();
 	window.goToStep = function(step) {
 		if (step > 1 && selectedAmount > maxDonation) { alert(maxDonationText); return; }
 		if (step > 1 && !causeText) { alert('Please choose a cause.'); return; }
+		var fx = fixedNow();
+		if (step > 1 && fx && (qty < 1 || qty > maxQty(fx))) { alert('Please choose between 1 and ' + maxQty(fx) + ' ' + fx.many + '.'); return; }
+		if (step > 1 && fx && fx.fund && !fund) { alert('Please choose whether this is your Zakat or Sadaqah.'); document.getElementById('donate-fund').scrollIntoView({block: 'center'}); return; }
 		[1,2,3].forEach(function(s) {
 			var el = document.getElementById('step-' + s);
 			if (el) el.style.display = s === step ? 'block' : 'none';
@@ -414,6 +486,12 @@ get_header();
 		formData.append('daan_order_nonce', '<?php echo esc_js( wp_create_nonce( 'daan_place_order' ) ); ?>');
 		formData.append('amount', selectedAmount);
 		formData.append('cause', causeText);
+		var fxc = fixedNow();
+		if (fxc) {
+			if (qty < 1 || qty > maxQty(fxc)) { alert('Please choose between 1 and ' + maxQty(fxc) + ' ' + fxc.many + '.'); processing.style.display = 'none'; btn.disabled = false; btn.textContent = 'Confirm Donation'; return; }
+			formData.append('qty', qty);
+			if (fxc.fund) formData.append('kit_fund', fund);
+		}
 		formData.append('first_name', first);
 		formData.append('last_name', last);
 		formData.append('email', email);

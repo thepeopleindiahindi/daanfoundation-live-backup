@@ -230,16 +230,33 @@ add_action( 'wp_ajax_nopriv_daan_place_order', 'daan_place_order' );
 
 /** Causes the /donate/ form may send: the live causes. */
 function daan_donation_causes() {
-    return array( 'Where Most Needed', 'Community Kitchen', 'Zakat', 'Sadaqah', 'Sadaqah Jariyah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal', 'Education Aid', 'General' );
+    return array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Ration Kit', 'Ration Kit (Interest Money)', 'Fitrana Ration Kit', 'Zakat', 'Sadaqah', 'Sadaqah Jariyah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal', 'Education Aid', 'General' );
 }
 
 /** Causes shown as choices on the /donate/ form. */
 function daan_donate_form_causes() {
-    $causes = array( 'Where Most Needed', 'Community Kitchen', 'Zakat', 'Sadaqah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal' );
+    $causes = array( 'Where Most Needed', 'Community Kitchen', 'Ramadan Iftar', 'Ration Kit', 'Ration Kit (Interest Money)', 'Fitrana Ration Kit', 'Zakat', 'Sadaqah', 'Fidyah & Kaffarah', 'Eid Gifts', 'Winter Appeal' );
+    if ( ! function_exists( 'daan_fixed_causes' ) ) { // Plugin off: the fixed-price causes cannot be priced.
+        $causes = array_values( array_diff( $causes, array( 'Ramadan Iftar', 'Ration Kit', 'Ration Kit (Interest Money)', 'Fitrana Ration Kit' ) ) );
+    }
     if ( daan_fk_hold_on() ) {
         $causes = array_values( array_diff( $causes, array( 'Fidyah & Kaffarah' ) ) );
     }
     return $causes;
+}
+
+/** <option>s for the homepage widget and the sidebars: same causes as the /donate/ form, fixed ones with their price. */
+function daan_widget_cause_options() {
+    $fixed = function_exists( 'daan_fixed_causes' ) ? daan_fixed_causes() : array();
+    $out   = '';
+    foreach ( daan_donate_form_causes() as $cause ) {
+        if ( in_array( $cause, array( 'Eid Gifts', 'Winter Appeal' ), true ) ) {
+            continue; // Seasonal: on the /donate/ form only (as before).
+        }
+        $label = isset( $fixed[ $cause ] ) ? $cause . ' (₹' . number_format_i18n( $fixed[ $cause ]['unit'] ) . ' per ' . $fixed[ $cause ]['one'] . ')' : $cause;
+        $out  .= '<option value="' . esc_attr( $cause ) . '">' . esc_html( $label ) . '</option>';
+    }
+    return $out;
 }
 
 /** Temporary hold on new Fidyah & Kaffarah donations (setting in plugin daan-order-tools). */
@@ -264,6 +281,9 @@ function daan_cause_from_link( $raw ) {
         'Winter Appeal'     => array( 'winter appeal', 'winter' ),
         'Education Aid'     => array( 'education aid', 'education' ),
         'Bank Interest'     => array( 'bank interest' ),
+        'Ration Kit'        => array( 'ration kit', 'ration kits', 'ration', 'ration kit donation' ),
+        'Ration Kit (Interest Money)' => array( 'ration kit (interest money)', 'ration kit interest money', 'interest money', 'interest' ),
+        'Fitrana Ration Kit' => array( 'fitrana ration kit', 'fitrana kit' ),
         'General'           => array( 'general', 'general donation' ),
     );
     foreach ( $map as $cause => $names ) {
@@ -313,6 +333,33 @@ function daan_place_order() {
     if ( 'Fidyah & Kaffarah' === $cause && daan_fk_hold_on() ) {
         wp_send_json_error( array( 'message' => DAAN_OT_FK_MESSAGE ) );
     }
+    // Fixed-price causes (meals, kits): amount must be count × price from the settings, checked here on the server.
+    $fixed = function_exists( 'daan_fixed_causes' ) ? ( daan_fixed_causes()[ $cause ] ?? null ) : null;
+    if ( ! $fixed && in_array( $cause, array( 'Ramadan Iftar', 'Ration Kit', 'Ration Kit (Interest Money)', 'Fitrana Ration Kit' ), true ) ) {
+        wp_send_json_error( array( 'message' => 'Please choose a cause from the list.' ) );
+    }
+    $qty  = 0;
+    $fund = '';
+    if ( $fixed ) {
+        $qty = intval( $_POST['qty'] ?? 0 );
+        if ( $qty < 1 || $qty > daan_fixed_max_qty( $fixed['unit'] ) ) {
+            wp_send_json_error( array( 'message' => 'Please choose between 1 and ' . daan_fixed_max_qty( $fixed['unit'] ) . ' ' . $fixed['many'] . '.' ) );
+        }
+        if ( $amount !== $qty * (int) $fixed['unit'] ) {
+            wp_send_json_error( array( 'message' => 'The amount is not correct. Each ' . $fixed['one'] . ' is ₹' . number_format_i18n( $fixed['unit'] ) . '. Please refresh the page and try again.' ) );
+        }
+        if ( $fixed['fund'] ) {
+            $fund = daan_kit_fund( wp_unslash( $_POST['kit_fund'] ?? '' ) );
+            if ( ! $fund ) {
+                wp_send_json_error( array( 'message' => 'Please choose whether this is your Zakat or Sadaqah.' ) );
+            }
+        }
+    }
+    $kit_type    = $fixed ? $fixed['kit'] : '';
+    $kit_product = $kit_type ? wc_get_product( (int) get_option( 'daan_kit_' . $kit_type . '_product', 0 ) ) : null;
+    if ( $kit_type && ! $kit_product ) { // Kit product missing: refuse instead of taking a free amount.
+        wp_send_json_error( array( 'message' => 'This kit is not available right now. Please try again later.' ) );
+    }
     if ( ! in_array( $frequency, array( 'one-time', 'monthly' ), true ) ) {
         wp_send_json_error( array( 'message' => 'Please choose one-time or monthly.' ) );
     }
@@ -354,7 +401,7 @@ function daan_place_order() {
     }
 
     // The same form sent again (double click, retry on a slow network) goes to the order already made.
-    $idem_key = daan_idem_key( $_POST['daan_token'] ?? '', array( $email, $amount, $cause ) );
+    $idem_key = daan_idem_key( $_POST['daan_token'] ?? '', array( $email, $amount, $cause, $qty, $fund ) );
     $existing = daan_idem_begin( $idem_key );
     if ( $existing ) {
         wp_send_json_success( array( 'order_id' => $existing->get_id(), 'redirect_url' => $existing->get_checkout_order_received_url() ) );
@@ -377,12 +424,26 @@ function daan_place_order() {
     );
     $order->set_address( $address, 'billing' );
 
-    $fee = new WC_Order_Item_Fee();
-    $fee->set_name( "Donation — $cause" );
-    $fee->set_amount( $amount );
-    $fee->set_total( $amount );
-    $fee->set_tax_status( 'none' );
-    $order->add_item( $fee );
+    $saved_cause = $cause;
+    if ( $kit_type ) {
+        // A kit: the kit product with its number of kits (same line as the product page makes; no execution e-mail).
+        $saved_cause = 'general' === $kit_type ? daan_kit_general_cause( $fund ) : daan_kit_cause( $kit_type );
+        $item_id     = $order->add_product( $kit_product, $qty, array( 'subtotal' => $amount, 'total' => $amount ) );
+        if ( $item_id ) {
+            wc_add_order_item_meta( $item_id, 'Cause', $saved_cause );
+        }
+        $order->update_meta_data( '_daan_kit_type', $kit_type );
+    } else {
+        $fee = new WC_Order_Item_Fee();
+        $fee->set_name( "Donation — $cause" ); // Community Kitchen keeps its line name (receipts, digest, execution e-mail).
+        $fee->set_amount( $amount );
+        $fee->set_total( $amount );
+        $fee->set_tax_status( 'none' );
+        if ( $fixed ) {
+            $fee->add_meta_data( 'Meals', $qty, true );
+        }
+        $order->add_item( $fee );
+    }
 
     if ( function_exists( 'upq_is_upi_order' ) ) {
         $order->set_payment_method( 'upq_manual_qr' ); // UPI QR (manual verification).
@@ -392,7 +453,7 @@ function daan_place_order() {
         $order->set_payment_method( 'cheque' ); // fallback if the plugin is off.
     }
 
-    $order->update_meta_data( '_daan_donation_cause', $cause );
+    $order->update_meta_data( '_daan_donation_cause', $saved_cause );
     $order->update_meta_data( '_daan_donation_frequency', $frequency );
     $order->update_meta_data( '_daan_donation_type', 'custom_form' );
     if ( $pan ) {
