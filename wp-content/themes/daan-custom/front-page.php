@@ -230,26 +230,39 @@ get_header();
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<!-- EMERGENCY APPEAL — draft placement/content, to be finalised -->
+<!-- EMERGENCY APPEAL — Ration Kits (owner, 2026-11-23) + Community Kitchen -->
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<section class="section" style="padding-top:2rem;padding-bottom:2rem;">
+<?php $daan_rk = function_exists( 'daan_ration_appeal' ) ? daan_ration_appeal() : null; ?>
+<section class="section daan-emergency" style="padding-top:2rem;padding-bottom:2rem;">
     <div class="container">
-        <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);min-height:320px;display:flex;align-items:flex-end;">
-            <img src="<?php echo esc_url( home_url( '/images/aid-distribution-elderly.jpg' ) ); ?>" alt="Emergency Appeal — urgent relief distribution" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-            <div class="gradient-overlay-dark" style="position:absolute;inset:0;"></div>
-            <div style="position:relative;padding:2rem;max-width:32rem;">
-                <span style="display:inline-block;background:#C2410C;color:#fff;border-radius:9999px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.75rem;">Urgent</span>
-                <h2 style="color:#fff;font-size:1.75rem;font-weight:800;margin:0 0 0.5rem;">Emergency Appeal</h2>
-                <p style="color:rgba(255,255,255,0.9);margin:0 0 1.25rem;font-size:1rem;line-height:1.6;">Support our urgent relief efforts — help us respond quickly when it matters most.</p>
-                <a href="<?php echo esc_url( home_url( '/appeals/' ) ); ?>"
-                   style="display:inline-flex;align-items:center;gap:0.5rem;border-radius:9999px;background:#fff;padding:0.875rem 1.75rem;font-weight:700;color:#C2410C;text-decoration:none;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);transition:box-shadow 0.2s;"
-                   onmouseover="this.style.boxShadow='0 10px 15px -3px rgba(0,0,0,0.1)'"
-                   onmouseout="this.style.boxShadow='0 4px 6px -1px rgba(0,0,0,0.1)'">
-                    View Emergency Appeals
-                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </a>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:1rem;">
+            <h2 class="h2" style="margin:0;">Emergency Appeal</h2>
+            <a href="<?php echo esc_url( home_url( '/appeals/' ) ); ?>" style="font-weight:700;color:#C2410C;text-decoration:none;">View all appeals →</a>
+        </div>
+        <div class="daan-emergency-grid">
+            <?php if ( $daan_rk ) : ?>
+            <div class="daan-emergency-card">
+                <img src="<?php echo esc_url( home_url( '/images/ration-kit-front.jpg' ) ); ?>" alt="Families receiving ration kits from Daan Foundation" loading="lazy">
+                <div class="gradient-overlay-dark daan-emergency-shade"></div>
+                <div class="daan-emergency-body">
+                    <span class="daan-emergency-tag">Urgent</span>
+                    <h3><?php echo esc_html( $daan_rk['title'] ); ?></h3>
+                    <p><?php echo esc_html( $daan_rk['text'] ); ?></p>
+                    <p class="daan-emergency-price"><?php echo esc_html( $daan_rk['price'] ); ?></p>
+                    <a class="daan-emergency-btn" href="<?php echo esc_url( home_url( $daan_rk['url'] ) ); ?>">Donate Ration Kit</a>
+                </div>
+            </div>
+            <?php endif; ?>
+            <div class="daan-emergency-card">
+                <img src="<?php echo esc_url( home_url( '/images/food-distribution-ramadan.jpg' ) ); ?>" alt="Meals being served at Daan Foundation's Community Kitchen" loading="lazy">
+                <div class="gradient-overlay-dark daan-emergency-shade"></div>
+                <div class="daan-emergency-body">
+                    <span class="daan-emergency-tag">Urgent</span>
+                    <h3>Community Kitchen</h3>
+                    <p>Every day, our Community Kitchen in Amroha serves a hot, freshly cooked meal to 100–120 people in need.</p>
+                    <p class="daan-emergency-price"><?php echo esc_html( daan_menu_price( 'daan_meal_price', 60 ) ); ?> per meal</p>
+                    <a class="daan-emergency-btn" href="<?php echo esc_url( home_url( '/product/community-kitchen/' ) ); ?>">Donate</a>
+                </div>
             </div>
         </div>
     </div>

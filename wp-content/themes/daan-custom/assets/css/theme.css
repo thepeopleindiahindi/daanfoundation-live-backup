@@ -2279,3 +2279,17 @@ table.shop_table.cart .product-quantity{display:none!important}
  .site-header .mega-menu-col .mega-price{font-size:.75rem;font-weight:500;color:#94A3B8;white-space:nowrap}
 }
 
+/* Homepage emergency appeal: Ration Kit + Community Kitchen (owner, 2026-11-23). */
+.daan-emergency-grid{display:grid;grid-template-columns:1fr;gap:1.25rem}
+@media (min-width:900px){.daan-emergency-grid{grid-template-columns:1fr 1fr}}
+.daan-emergency-card{position:relative;border-radius:16px;overflow:hidden;min-height:360px;display:flex;align-items:flex-end;box-shadow:0 1px 2px 0 rgba(0,0,0,.05)}
+.daan-emergency-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.daan-emergency-shade{position:absolute;inset:0}
+.daan-emergency-body{position:relative;padding:1.5rem;color:#fff}
+.daan-emergency-tag{display:inline-block;background:#C2410C;color:#fff;border-radius:9999px;padding:4px 14px;font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.75rem}
+.daan-emergency-body h3{color:#fff;font-size:1.5rem;font-weight:800;margin:0 0 .5rem}
+.daan-emergency-body p{color:rgba(255,255,255,.92);margin:0 0 .75rem;line-height:1.6}
+.daan-emergency-body .daan-emergency-price{font-weight:800;font-size:1.125rem;color:#fff}
+.daan-emergency-btn{display:inline-flex;align-items:center;min-height:44px;border-radius:12px;background:#C2410C;color:#fff;padding:.75rem 1.5rem;font-weight:700;text-decoration:none}
+.daan-emergency-btn:hover{background:#9A3412}
+.daan-emergency-card .daan-emergency-shade{background:linear-gradient(to top,rgba(15,23,42,.94) 0%,rgba(15,23,42,.82) 55%,rgba(15,23,42,.45) 100%)!important}

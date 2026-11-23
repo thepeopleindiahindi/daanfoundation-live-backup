@@ -43,6 +43,7 @@
                             'columns' => array(
                                 'Emergency Appeal' => array(
                                     array( 'Community Kitchen', '/community-kitchen/' ),
+                                    array( 'Ration Kits for Families', '/product/ration-kit-donation/', daan_menu_price( 'daan_kit_price', 1536 ) ),
                                 ),
                                 'Seasonal Giving' => array(
                                     array( 'Ramadan Iftar', '/ramadan/' ),

@@ -36,10 +36,24 @@ get_header();
 		// deleting its data (title/image/raised/target all stay right here,
 		// ready to re-enable by flipping the flag back to true). Nothing here
 		// reads from a CMS/status field; this array *is* the source of truth.
+		$daan_rk = function_exists( 'daan_ration_appeal' ) ? daan_ration_appeal() : null;
 		$emergency_appeals = array(
+			array(
+				'active' => (bool) $daan_rk,
+				'title'  => $daan_rk ? $daan_rk['title'] : '',
+				'image'  => '/images/ration-kit-front.jpg',
+				'alt'    => 'Families receiving ration kits from Daan Foundation',
+				'urgent' => true,
+				'desc'   => $daan_rk ? $daan_rk['text'] : '',
+				'price'  => $daan_rk ? $daan_rk['price'] : '',
+				'href'   => '/product/ration-kit-donation/',
+				'button' => 'Donate Ration Kit',
+			),
 			array(
 				'active' => true,
 				'title'  => 'Community Kitchen Daily Meals',
+				'desc'   => 'Every day, our Community Kitchen in Amroha serves a hot, freshly cooked meal to 100–120 people in need.',
+				'href'   => '/product/community-kitchen/',
 				'image'  => '/images/food-distribution-ramadan.jpg',
 				'alt'    => 'Community Kitchen daily meals distribution',
 				'urgent' => true,
@@ -82,7 +96,9 @@ get_header();
 					<div style="padding:20px;">
 						<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 12px;"><?php echo esc_html( $appeal['title'] ); ?></h3>
 						<?php // No raised/target amounts or progress bars (owner, 2026-11-23, D-037). ?>
-						<a href="/donate/" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#C2410C;padding:10px 24px;font-weight:700;color:#fff;text-decoration:none;font-size:0.875rem;transition:background 0.2s;" onmouseover="this.style.background='#9A3412'" onmouseout="this.style.background='#C2410C'">Donate Now</a>
+						<?php if ( ! empty( $appeal['desc'] ) ) : ?><p style="font-size:0.9375rem;color:#475569;line-height:1.6;margin:0 0 10px;"><?php echo esc_html( $appeal['desc'] ); ?></p><?php endif; ?>
+						<?php if ( ! empty( $appeal['price'] ) ) : ?><p style="font-size:1.0625rem;font-weight:800;color:#C2410C;margin:0 0 14px;"><?php echo esc_html( $appeal['price'] ); ?></p><?php endif; ?>
+						<a href="<?php echo esc_url( $appeal['href'] ?? '/donate/' ); ?>" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#C2410C;padding:10px 24px;font-weight:700;color:#fff;text-decoration:none;font-size:0.875rem;transition:background 0.2s;" onmouseover="this.style.background='#9A3412'" onmouseout="this.style.background='#C2410C'"><?php echo esc_html( $appeal['button'] ?? 'Donate Now' ); ?></a>
 					</div>
 				</div>
 			<?php endforeach; ?>

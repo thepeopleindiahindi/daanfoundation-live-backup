@@ -299,3 +299,15 @@ add_filter( 'the_content', function ( $content ) {
 	return $content;
 }, 25 );
 
+/* Ration Kit appeal text (owner, 2026-11-23; verbatim, numbers from settings). */
+function daan_ration_appeal() {
+	$d     = function_exists( 'daan_kit_groups' ) ? daan_kit_groups() : array( 'count' => 18, 'weight' => '18+ kg' );
+	$price = '₹' . number_format_i18n( function_exists( 'daan_kit_price' ) ? daan_kit_price() : 1536 );
+	return array(
+		'title' => 'Ration Kits for Families in Need',
+		'text'  => 'For many families in Amroha, putting food on the table every day is a struggle. One ration kit gives a family ' . (int) $d['count'] . ' essential items (' . $d['weight'] . '): grains, pulses, oil, spices and daily essentials, delivered by our team to a household in need.',
+		'price' => $price . ' per kit',
+		'url'   => '/product/ration-kit-donation/',
+	);
+}
+
