@@ -9,11 +9,11 @@
 	<h2 style="font-size: 1.25rem; font-weight: 700; color: #111827; text-align: center; margin-bottom: 4px;">Make a Donation</h2>
 	<p style="text-align: center; font-size: 0.875rem; color: #64748B; margin-bottom: 20px;">Every contribution makes a difference</p>
 
-	<style>[data-daan-donate] .amount-btn.active{background:#F97316 !important;color:#fff !important}</style>
+	<style>[data-daan-donate] .amount-btn.active{background:#C2410C !important;color:#fff !important}</style>
 	<div data-daan-free>
 	<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
 		<?php foreach ( array( 500, 1000, 2500, 5000 ) as $amt ) : ?>
-			<button type="button" data-amount="<?php echo $amt; ?>" onclick="selectAmount(this, <?php echo $amt; ?>)" class="amount-btn <?php echo $amt === 1000 ? 'active' : ''; ?>" style="padding:10px 0;border-radius:12px;font-size:0.875rem;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;background:<?php echo $amt === 1000 ? '#F97316' : '#F1F5F9'; ?>;color:<?php echo $amt === 1000 ? '#fff' : '#334155'; ?>">₹<?php echo $amt; ?></button>
+			<button type="button" data-amount="<?php echo $amt; ?>" onclick="selectAmount(this, <?php echo $amt; ?>)" class="amount-btn <?php echo $amt === 1000 ? 'active' : ''; ?>" style="padding:10px 0;border-radius:12px;font-size:0.875rem;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;background:<?php echo $amt === 1000 ? '#C2410C' : '#F1F5F9'; ?>;color:<?php echo $amt === 1000 ? '#fff' : '#334155'; ?>">₹<?php echo $amt; ?></button>
 		<?php endforeach; ?>
 	</div>
 

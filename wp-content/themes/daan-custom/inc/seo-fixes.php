@@ -698,6 +698,8 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 		'product:ration-kit-donation'        => 'Donate Ration Kit for Poor Families in India | ' . $kit,
 		// Quick wins (owner, 2026-11-23, D-038): high impressions, low CTR.
 		'page:home'                          => 'Daan Foundation – Iftar Kits, Ration Kits & Community Kitchen, Amroha',
+		'post:volunteers-speak-serving-food-changed-my-life' => 'Volunteers Speak: Serving Food at Our Amroha Community Kitchen',
+		'post:zakat-distribution-drive-2027' => 'Zakat 2027 with Daan Foundation – How Your Zakat Is Used | Amroha',
 		'page:about'                         => 'About Daan Foundation – Community Kitchen in Amroha Since 2020',
 		'post:what-is-a-community-kitchen-and-how-does-it-work-in-india' => 'Community Kitchen Meaning & How It Works in India | Daan Foundation',
 		'post:how-%e2%82%b955-can-feed-a-hungry-person-for-a-day-a-ground-reality-from-the-daan-foundations-community-kitchen' => 'How ' . daan_seo27_money( 'daan_meal_price', 60 ) . ' Feeds a Hungry Person a Full Meal – Amroha Community Kitchen',
@@ -721,6 +723,8 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'product:ramadan-iftar'              => 'Sponsor Iftar kits for fasting people in need. Each kit ' . $iftar . ': veg biryani, dates, fruit, egg and a soft drink. Handed out at our Amroha kitchen.',
 		// Quick wins (owner, 2026-11-23, D-038).
 		'page:home'                          => 'Daan Foundation (founded 2020) runs a Community Kitchen in Amroha, UP, feeding 100–120 people every day. Donate an Iftar kit (' . $iftar . ') or a ration kit (' . $kit . ') by UPI.',
+		'post:volunteers-speak-serving-food-changed-my-life' => 'Volunteers share what serving food at Daan Foundation\'s Community Kitchen in Amroha means to them. The kitchen feeds 100–120 people every day.',
+		'post:zakat-distribution-drive-2027' => 'Zakat with Daan Foundation in 2027: given only to eligible Muslim recipients as their own, never used for running costs. Calculate and give your Zakat.',
 		'page:about'                         => 'Daan Foundation was founded in 2020 in Amroha, UP, by a team with 12–15 years of community service. Our Community Kitchen feeds 100–120 people every day.',
 		'page:kaffarah'                      => 'What is Kaffarah? The rules for a broken fast and a broken oath (feed 10 poor people two full meals each at two separate times of the day). Daan Foundation no longer accepts Kaffarah donations.',
 		'post:what-is-a-community-kitchen-and-how-does-it-work-in-india' => 'Community kitchen meaning: a kitchen that cooks and serves free meals to people in need. See how ours in Amroha feeds 100–120 people every day, ' . daan_seo27_money( 'daan_meal_price', 60 ) . ' a meal.',
@@ -770,10 +774,22 @@ function daan_seo27_bank_interest_pairs() {
 /** Visible FAQ added to the ration kit post (its content holds the same strings). */
 function daan_seo27_ration_pairs() {
 	$kit = daan_seo27_money( 'daan_kit_price', 1536 );
-	return array(
+	return array_merge( array(
 		array( 'What is the ration kit price?', 'One ration kit is ' . $kit . '.' ),
 		array( 'Can I give interest money for ration kits?', 'Yes. Interest money is given without any intention of reward, only through the Ration Kit (Interest Money). Its delivery cost is paid by Daan Foundation from its general funds.' ),
 		array( 'Can I give my Fitrana as a ration kit?', 'Yes. Daan Foundation accepts Fitrana only as complete Fitrana Ration Kits; Fitrana is counted from the food items in the kit.' ),
+	), daan_ration_hinglish_pairs() );
+}
+/** Hinglish FAQ on the ration hub (D-038); also shown on the page (inc/seo-2027.php). */
+function daan_ration_hinglish_pairs() {
+	$kit = daan_seo27_money( 'daan_kit_price', 1536 );
+	return array(
+		array( 'Rashan kit kitne ka hai?', 'One complete ration kit is ' . $kit . ', including transport and our website costs.' ),
+		array( 'Rashan kit me kya kya milta hai?', '18 essential items: aata, chawal, five dals, kala chana, aaloo, refined oil, cheeni, namak, haldi, lal mirch, dhaniya, garam masala, chai patti and surf. The full list with quantities is on this page.' ),
+		array( 'Rashan kit kaise de?', 'Open the Ration Kit page, choose how many kits, and pay by UPI. We deliver each kit to a family in need.' ),
+		array( 'Kya zakat se rashan kit de sakte hain?', 'Our kits are given to families based on need, and we do not keep Zakat and Sadaqah kits separately. Which head you give under is a matter between you and Allah; please consult a trusted Maulana or Mufti.' ),
+		array( 'Kya sood ka paisa rashan kit me de sakte hain?', 'Yes, only through the Ration Kit (Interest Money), without any intention of reward. It is kept separate from other kits.' ),
+		array( 'Kya fitrana rashan kit ke roop me de sakte hain?', 'Yes, through the Fitrana Ration Kit. Please give at least 3 days before Eid.' ),
 	);
 }
 

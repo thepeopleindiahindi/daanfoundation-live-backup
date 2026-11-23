@@ -585,7 +585,19 @@ function daan_get_page_data( $slug ) {
 						array( 'q' => 'Where and when are Iftar kits given?', 'a' => 'At our Community Kitchen in Amroha, Uttar Pradesh, after Asr during Ramadan. Each kit is given to the person as their own, and people may take it home. We do not provide Sehri.' ),
 						array( 'q' => 'Can I give Zakat for Iftar?', 'a' => $iftar_zakat ),
 						array( 'q' => 'Is an Iftar kit Fidyah or Fitrana?', 'a' => 'No. An Iftar kit is not Fidyah or Fitrana. Fitrana is given separately as complete ration kits on our Zakat al-Fitr page.' ),
+						// Hinglish questions (D-038).
+						array( 'q' => 'Roza iftar karane ka sawab kya hai?', 'a' => 'The Prophet Muhammad (peace be upon him) said: "Whoever gives food to a fasting person to break his fast will have the same reward as him, without the fasting person\'s reward being reduced in the slightest." (Jami\' at-Tirmidhi 807, graded Sahih)' ),
+						array( 'q' => 'Iftar kit kitne ka hai?', 'a' => 'One Iftar kit is ' . $iftar_price . '. Choose any number of kits; the total is worked out for you.' ),
+						array( 'q' => 'Iftar kit me kya milta hai?', 'a' => $iftar_items ),
+						array( 'q' => 'Kya iftar ke liye zakat de sakte hain?', 'a' => $iftar_zakat ),
+						array( 'q' => 'Iftar kahan aur kab diya jata hai?', 'a' => 'At our Community Kitchen in Amroha, Uttar Pradesh, after Asr during Ramadan. During Ramadan, we serve iftar to 200–300 people every day.' ),
+						array( 'q' => 'Kya aap sehri bhi dete hain?', 'a' => 'No. We provide iftar only.' ),
 					),
+				),
+				array(
+					'type'    => 'shortcode',
+					'heading' => 'Read more',
+					'code'    => '<ul><li><a href="/whats-inside-iftar-kit/">What\'s inside an Iftar kit</a></li><li><a href="/roza-iftar-karane-ka-sawab/">Roza iftar karane ka sawab (Tirmidhi 807)</a></li><li><a href="/where-does-your-iftar-donation-go/">Where does your iftar donation go?</a></li><li><a href="/donate-iftar-safely-upi/">How to donate iftar safely by UPI</a></li><li><a href="/inside-amroha-community-kitchen/">Inside our Amroha Community Kitchen</a></li><li><a href="/ration-kit-distribution-india/">Ration kits for families (all year)</a></li></ul>',
 				),
 				array(
 					'type'    => 'notice',

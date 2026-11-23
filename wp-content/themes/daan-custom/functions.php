@@ -232,6 +232,7 @@ require_once get_template_directory() . '/inc/whatsapp.php';
 require_once get_template_directory() . '/inc/donation-wording.php';
 require_once get_template_directory() . '/inc/product-suggestions.php';
 require_once get_template_directory() . '/inc/donation-stepper.php';
+require_once get_template_directory() . '/inc/seo-2027.php';
 
 add_filter( 'woocommerce_checkout_fields', 'daan_make_phone_mandatory' );
 function daan_make_phone_mandatory( $fields ) {
