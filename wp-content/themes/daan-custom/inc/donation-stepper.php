@@ -311,3 +311,21 @@ function daan_ration_appeal() {
 	);
 }
 
+/* Product page hero: subtitle (prices from settings) + a real site photo (owner, 2026-11-23). */
+function daan_product_hero( $id ) {
+	$slug  = get_post_field( 'post_name', $id );
+	$kit   = '₹' . number_format_i18n( function_exists( 'daan_kit_price' ) ? daan_kit_price() : 1536 );
+	$iftar = '₹' . number_format_i18n( function_exists( 'daan_iftar_kit_price' ) ? daan_iftar_kit_price() : 91 );
+	$meal  = '₹' . number_format_i18n( function_exists( 'daan_meal_price' ) ? daan_meal_price() : 60 );
+	$items = function_exists( 'daan_kit_groups' ) ? (int) daan_kit_groups()['count'] : 18;
+	$map   = array(
+		'ration-kit-donation'       => array( $kit . ' per kit · ' . $items . ' essential items', '/images/hero-p-ration-kit.webp', 'Families receiving ration kits from Daan Foundation' ),
+		'ramadan-iftar'             => array( $iftar . ' per kit · Iftar for fasting people in Amroha', '/images/hero-p-iftar-kit.webp', 'Iftar being served at Daan Foundation in Ramadan' ),
+		'community-kitchen'         => array( $meal . ' per meal · 100–120 people fed every day', '/images/hero-p-community-kitchen.webp', 'Meals being served at Daan Foundation\'s Community Kitchen' ),
+		'fitrana-ration-kit'        => array( $kit . ' per kit · Give your family\'s Fitrana as a ration kit', '/images/hero-p-fitrana-kit.webp', 'Ration delivered to a family by Daan Foundation' ),
+		'ration-kit-interest-money' => array( $kit . ' per kit · Interest money goes only into ration kits', '/images/hero-p-interest-kit.webp', 'Packed ration kits ready for families' ),
+	);
+	$h = $map[ $slug ] ?? array( '', '/images/community-queue.jpg', '' );
+	return array( 'subtitle' => $h[0], 'image' => $h[1], 'alt' => $h[2] );
+}
+

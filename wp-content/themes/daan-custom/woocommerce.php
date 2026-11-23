@@ -13,27 +13,19 @@ if ( $daan_is_product && function_exists( 'daan_product_cause' ) ) {
 	$GLOBALS['daan_sidebar_cause'] = daan_product_cause( get_queried_object_id() );
 }
 ?>
-    <!-- Breadcrumbs -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
-        <nav class="flex items-center gap-2 text-sm text-slate-500" aria-label="Breadcrumb">
-          <a href="/" class="hover:text-orange-600 transition-colors">Home</a>
-          <span>/</span>
-          <a href="/donate/" class="hover:text-orange-600 transition-colors">Donate</a>
-          <span>/</span>
-          <span class="text-slate-900 font-medium"><?php echo esc_html( $daan_title ); ?></span>
-        </nav>
-      </div>
-    </div>
-
-    <!-- Hero -->
-    <section class="relative bg-gradient-to-br from-orange-600 to-orange-700">
-      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div class="max-w-3xl">
-          <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4"><?php echo esc_html( $daan_title ); ?></h1>
-        </div>
-      </div>
-    </section>
+    <?php
+    // Same hero as the cause pages (template-parts/hero-banner.php), breadcrumb inside it (owner, 2026-11-23).
+    $daan_hero = ( $daan_is_product && function_exists( 'daan_product_hero' ) ) ? daan_product_hero( get_queried_object_id() ) : array( 'subtitle' => '', 'image' => '/images/community-queue.jpg', 'alt' => '' );
+    get_template_part( 'template-parts/hero-banner', null, array(
+        'title'      => $daan_title,
+        'subtitle'   => $daan_hero['subtitle'],
+        'gradient'   => 'from-orange-600 to-orange-700',
+        'image'      => $daan_hero['image'],
+        'image_alt'  => $daan_hero['alt'] ? $daan_hero['alt'] : $daan_title,
+        'priority'   => false, // fetchpriority is added to the first hero image automatically (as on cause pages)
+        'breadcrumb' => array( array( 'Home', home_url( '/' ) ), array( 'Donate', home_url( '/donate/' ) ), array( $daan_title, '' ) ),
+    ) );
+    ?>
 
     <!-- Content + Sidebar -->
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
