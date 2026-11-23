@@ -144,7 +144,7 @@ function daan_get_faq_data() {
 		array(
 			'topic' => 'Fidya & Kaffarah',
 			'faqs'  => array(
-				array( 'Can I give Fidya or Kaffarah through Daan Foundation right now?', 'Fidyah and Kaffarah donations are temporarily paused while we update this programme with our scholars. Our Iftar and Community Kitchen donations are not Fidyah or Kaffarah; Community Kitchen donations may be given as Zakat or as Sadaqah.' ),
+				array( 'Can I give Fidya or Kaffarah through Daan Foundation right now?', 'No. Daan Foundation is no longer accepting Fidyah or Kaffarah donations. Our kitchen serves one meal a day, and Kaffarah for a broken oath needs two full meals for each of ten people. Our Iftar and Community Kitchen donations are not Fidyah or Kaffarah; Community Kitchen donations may be given as Zakat or as Sadaqah.' ),
 				array( 'What is Fidya?', 'Fidya is a donation made when someone cannot fast during Ramadan due to illness or old age and cannot make up the fasts later. For each missed fast, the fidya is equal to sadaqat-ul-fitr.' ),
 				array( 'How much is Fidya?', 'One sadaqat-ul-fitr per missed fast: about 1.75 kg of wheat, or its price. An Iftar meal, or an Iftar plus one meal, is not Fidya.' ),
 				array( 'What is Kaffarah?', 'Kaffarah is the expiation for deliberately breaking a Ramadan fast without a valid reason, or for breaking a sworn oath. For a broken oath it is feeding ten needy people two full meals each. For other details, please ask a qualified mufti.' ),
@@ -204,7 +204,7 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 
 add_filter( 'rank_math/frontend/description', function ( $description ) {
 	if ( is_singular( 'post' ) && 'kaffara-for-broken-oath-qasam' === get_post_field( 'post_name', get_queried_object_id() ) ) {
-		return 'Kaffara for a broken oath: the correct rule is to feed 10 poor people two full meals each, not 60. Kaffarah donations at Daan Foundation are temporarily paused.';
+		return 'Kaffara for a broken oath: the correct rule is to feed 10 poor people two full meals each, not 60. Daan Foundation no longer accepts Kaffarah donations.';
 	}
 	return $description;
 } );
@@ -265,6 +265,9 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
 }, 99 );
 
 add_filter( 'rank_math/json_ld', function ( $data ) {
+	// D-039 (2026-11-23): this older FAQ said kaffara could be paid through Daan and fidyah = one meal (wrong).
+	// The corrected FAQ for this post comes from the SEO27 json_ld filter (daan_seo27_*), so this one is off.
+	return $data;
 	if ( ! is_singular( 'post' ) || 'kaffara-missed-ramadan-fast' !== get_post_field( 'post_name', get_queried_object_id() ) ) {
 		return $data;
 	}
@@ -551,7 +554,7 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'behind-the-scenes-how-we-cook-1000-meals-a-day' => 'A behind-the-scenes look at how Daan Foundation\'s Community Kitchen in Amroha serves a hot, freshly cooked meal to 100–120 people in need every day.',
 		'feeding-the-poor-daily-life-inside-a-community-kitchen' => 'An inside look at daily life in Daan Foundation\'s Community Kitchen -- how meals are planned, cooked, and distributed to families in need every day.',
 		'where-does-your-iftar-donation-go' => 'See exactly where your iftar donation goes: a ' . "\u{20B9}" . ( function_exists( 'daan_iftar_kit_price' ) ? daan_iftar_kit_price() : 91 ) . ' Iftar kit, tracked from payment to a fasting person at Daan Foundation, Amroha.',
-		'kaffara-missed-ramadan-fast' => 'What is kaffara for a missed Ramadan fast? Daan Foundation explains the rule. Kaffarah donations at Daan Foundation are temporarily paused.',
+		'kaffara-missed-ramadan-fast' => 'What is kaffara for a missed Ramadan fast? Daan Foundation explains the rule. Daan Foundation no longer accepts Kaffarah donations.',
 		);
 		if ( isset( $descs[ $slug ] ) ) {
 			return $descs[ $slug ];
@@ -586,7 +589,7 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'community-kitchen' => 'Donate to Daan Foundation\'s Community Kitchen in Amroha, which serves a hot meal to 100–120 people in need every day, since 2020. ₹' . ( function_exists( 'daan_meal_price' ) ? daan_meal_price() : 60 ) . ' feeds one person.',
 		'sadqah' => 'Give Sadqah online to Daan Foundation. Your voluntary charity provides consistent food and essential support to needy families, with full transparency.',
 		'bank-interest' => 'Donate disallowed bank interest (riba) to Daan Foundation for distribution to those in need, in line with Islamic guidance on handling interest income.',
-		'fidya-and-kaffara' => 'Fidyah and Kaffarah donations at Daan Foundation are temporarily paused. Read the rules and see other ways to help families in need.',
+		'fidya-and-kaffara' => 'Daan Foundation is no longer accepting Fidyah or Kaffarah donations. Read the rules and see other ways to help families in need.',
 		'zakat' => 'Donate your Zakat online to Daan Foundation. Your Zakat funds our community kitchens and food distribution programs, reaching families in genuine need.',
 		'education-aid' => 'Donate to Daan Foundation\'s Education Aid program, extending support to deserving children and families with limited access to quality education.',
 		);
@@ -719,7 +722,7 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		// Quick wins (owner, 2026-11-23, D-038).
 		'page:home'                          => 'Daan Foundation (founded 2020) runs a Community Kitchen in Amroha, UP, feeding 100–120 people every day. Donate an Iftar kit (' . $iftar . ') or a ration kit (' . $kit . ') by UPI.',
 		'page:about'                         => 'Daan Foundation was founded in 2020 in Amroha, UP, by a team with 12–15 years of community service. Our Community Kitchen feeds 100–120 people every day.',
-		'page:kaffarah'                      => 'What is Kaffarah? The rules for a broken fast and a broken oath (feed 10 poor people two full meals each). Kaffarah donations at Daan Foundation are temporarily paused.',
+		'page:kaffarah'                      => 'What is Kaffarah? The rules for a broken fast and a broken oath (feed 10 poor people two full meals each). Daan Foundation no longer accepts Kaffarah donations.',
 		'post:what-is-a-community-kitchen-and-how-does-it-work-in-india' => 'Community kitchen meaning: a kitchen that cooks and serves free meals to people in need. See how ours in Amroha feeds 100–120 people every day, ' . daan_seo27_money( 'daan_meal_price', 60 ) . ' a meal.',
 		'post:how-%e2%82%b955-can-feed-a-hungry-person-for-a-day-a-ground-reality-from-the-daan-foundations-community-kitchen' => 'Just ' . daan_seo27_money( 'daan_meal_price', 60 ) . ' feeds one person a full, freshly cooked meal at our Community Kitchen in Amroha, which serves 100–120 people every day.',
 	);
@@ -798,7 +801,7 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
 			$data['faqPage'] = daan_seo27_faq( $url, array(
 				array( 'What is Kaffara for breaking an oath (Qasam) in Islam?', "It\u{2019}s the expiation required when a person swears by Allah\u{2019}s name and cannot keep that promise \u{2014} fulfilled by feeding ten needy people two full meals, clothing them, or freeing a slave, with fasting three days as a fallback." ),
 				array( 'How many people do I need to feed for Kaffara-e-Qasam?', 'Ten needy people, each given two full meals (morning and evening).' ),
-				array( 'Can I give oath Kaffara through Daan Foundation?', 'Not at the moment. Kaffara donations through Daan Foundation are temporarily paused.' ),
+				array( 'Can I give oath Kaffara through Daan Foundation?', 'No. Daan Foundation is no longer accepting Kaffarah donations, because our kitchen serves one meal a day and cannot serve the two meals that Kaffarah needs.' ),
 				array( 'Is oath-Kaffara the same as Fidyah?', "No. Fidyah applies to someone unable to fast during Ramadan due to illness or old age, while oath-Kaffara applies specifically to a broken promise sworn in Allah\u{2019}s name \u{2014} they are separate obligations with separate rules." ),
 			) );
 			break;
@@ -806,7 +809,7 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
 			$data['faqPage'] = daan_seo27_faq( $url, array(
 				array( 'What is kaffara in Islam for a missed fast?', "It\u{2019}s the compensation required for deliberately breaking a Ramadan fast without a valid excuse \u{2014} fasting 60 consecutive days, or, only if a person cannot fast, feeding 60 poor people two full meals each." ),
 				array( 'Is kaffara the same as fidyah?', 'No. Fidyah is for people with a lasting reason for not fasting (like chronic illness), equal to sadaqat-ul-fitr (about 1.75 kg of wheat or its price) per missed fast. Kaffara is for deliberately breaking a fast without excuse.' ),
-				array( 'Kya abhi Daan Foundation ke zariye roze ka kaffara de sakte hain?', 'Abhi nahi. Kaffara aur Fidyah ki donation kuch samay ke liye ruki hui hai.' ),
+				array( 'Kya abhi Daan Foundation ke zariye roze ka kaffara de sakte hain?', 'Nahi. Daan Foundation ab Kaffara aur Fidyah ki donation nahi leta, kyunki hamara kitchen din me ek hi waqt ka khana deta hai.' ),
 			) );
 			break;
 		case 'post:where-does-your-iftar-donation-go':

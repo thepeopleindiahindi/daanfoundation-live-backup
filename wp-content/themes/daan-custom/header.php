@@ -63,8 +63,7 @@
                                     array( 'Zakat', '/zakat/' ),
                                     array( 'Sadaqah', '/sadaqah/' ),
                                     array( 'Sadaqah Jariyah', '/sadaqah-jariyah/' ),
-                                    array( daan_fk_hold_on() ? 'Fidyah (paused)' : 'Fidyah', '/fidya/' ),
-                                    array( daan_fk_hold_on() ? 'Kaffarah (paused)' : 'Kaffarah', '/kaffarah/' ),
+                                    array( 'Fidyah & Kaffarah: not accepted', '/fidya/' ), // D-039
                                 ),
                                 'Give by Kit or Meal' => array(
                                     array( 'Donate Ration Kit', '/product/ration-kit-donation/', daan_menu_price( 'daan_kit_price', 1536 ) ),

@@ -101,7 +101,7 @@ get_header();
             );
             $qa_items = array(
                 array( 'Community Kitchen', 'Feed the hungry — ₹60 provides one meal', '/community-kitchen/', 'linear-gradient(135deg, #F59E0B, #EA580C)', 0 ),
-                array( 'Fidyah & Kaffarah', daan_fk_hold_on() ? 'Temporarily paused · read the rules' : 'Read the rules of Fidyah and Kaffarah', '/fidya/', 'linear-gradient(135deg, #8B5CF6, #7C3AED)', 1 ),
+                array( 'Fidyah & Kaffarah', 'Fidyah & Kaffarah: not accepted · read the rules', '/fidya/', 'linear-gradient(135deg, #8B5CF6, #7C3AED)', 1 ),
                 array( 'Ramadan Iftar Appeal', 'Iftar meals for those fasting in need', '/ramadan/', 'linear-gradient(135deg, #F43F5E, #E11D48)', 2 ),
                 array( 'Donate Ration Kit', 'A complete ration kit for a family in need — ' . ( function_exists( 'daan_kit_price' ) ? '₹' . number_format_i18n( daan_kit_price() ) : '₹1,536' ) . ' per kit', '/product/ration-kit-donation/', 'linear-gradient(135deg, #06B6D4, #0D9488)', 3 ),
                 array( 'Zakat', 'Calculate and pay your Zakat accurately', '/zakat/', 'linear-gradient(135deg, #F97316, #EA580C)', 4 ),
@@ -156,7 +156,7 @@ get_header();
                 array( 'Ration Kit', daan_menu_price( 'daan_kit_price', 1536 ) . ' per kit, as Zakat or Sadaqah', '/images/ration-kit-front.jpg', '/ration-kit-distribution-india/', '/product/ration-kit-donation/', 'Donate' ),
                 array( 'Zakat', 'Given only to eligible Muslim families, as their own', '/images/aid-distribution-elderly.jpg', '/zakat/', '/product/zakat/', 'Donate' ),
                 array( 'Winter Appeal', 'Warm blankets and clothing for families in the cold', '/images/community-queue.jpg', '/winter-appeal/', '/donate/?cause=Winter%20Appeal', 'Donate' ),
-                array( 'Fidyah & Kaffarah', $fk_paused ? 'Donations are temporarily paused. Read the rules.' : 'Read the rules of Fidyah and Kaffarah.', '/images/extra-2.jpg', '/fidya/', '/fidya/', $fk_paused ? 'Read the rules' : 'Learn more' ),
+                array( 'Fidyah & Kaffarah', 'Fidyah & Kaffarah: not accepted. Read our update and the rules.', '/images/extra-2.jpg', '/fidya/', '/fidya/', $fk_paused ? 'Read the rules' : 'Learn more' ),
             );
             foreach ( $campaigns as $c ) : ?>
                 <div class="campaign-card">

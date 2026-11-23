@@ -874,7 +874,7 @@ add_action( 'admin_menu', function () {
 const DAAN_OT_FK_PAUSE_OPTION = 'daan_ot_fk_paused';
 const DAAN_OT_FK_PRODUCTS     = array( 6812, 5922 );
 const DAAN_OT_FK_POSTS        = array( 5849, 6768, 6946, 6978 ); // Pages/posts about Fidyah or Kaffarah.
-const DAAN_OT_FK_MESSAGE      = 'Fidyah & Kaffarah donations are temporarily paused. Please choose another cause.';
+const DAAN_OT_FK_MESSAGE      = 'Daan Foundation is no longer accepting Fidyah or Kaffarah donations. Please choose another cause.';
 
 function daan_fk_paused() {
 	return 'yes' === get_option( DAAN_OT_FK_PAUSE_OPTION, 'no' );
@@ -897,8 +897,8 @@ function daan_fk_is_product( $product ) {
 
 function daan_fk_notice_html() {
 	return '<div class="daan-fk-notice" role="status" style="border:2px solid #F59E0B;background:#FFFBEB;color:#78350F;border-radius:12px;padding:16px 20px;margin:16px 0;text-align:left;font-size:1rem;line-height:1.6;">'
-		. '<strong style="display:block;font-size:1.0625rem;margin-bottom:6px;color:#78350F;">Fidyah &amp; Kaffarah donations are temporarily paused.</strong>'
-		. 'We are reviewing how these donations are distributed with our scholars, to make sure they fully meet the religious requirements. We will reopen this soon. For any question, contact us on WhatsApp '
+		. '<strong style="display:block;font-size:1.0625rem;margin-bottom:6px;color:#78350F;">We are no longer accepting Fidyah or Kaffarah donations.</strong>'
+		. 'Our kitchen serves one meal a day, so we cannot serve the two meals that Kaffarah requires. Please read our update on the <a href="/fidya/" style="color:#B45309;font-weight:700;text-decoration:underline;">Fidyah page</a>. For guidance, contact us on WhatsApp '
 		. '<a href="https://wa.me/919528206525" target="_blank" rel="noopener" style="color:#B45309;font-weight:700;text-decoration:underline;">+91 95282 06525</a>.'
 		. '</div>';
 }

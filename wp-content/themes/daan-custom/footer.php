@@ -73,8 +73,7 @@
                         <li><a href="<?php echo esc_url( home_url( '/sadaqah-jariyah/' ) ); ?>">Sadaqah Jariyah</a></li>
                         <li><a href="<?php echo esc_url( home_url( '/product/ration-kit-donation/' ) ); ?>">Donate Ration Kit</a></li>
                         <li><a href="<?php echo esc_url( home_url( '/product/ramadan-iftar/' ) ); ?>">Iftar Kit</a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/fidya/' ) ); ?>"><?php echo daan_fk_hold_on() ? 'Fidyah (paused)' : 'Fidyah'; ?></a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/kaffarah/' ) ); ?>"><?php echo daan_fk_hold_on() ? 'Kaffarah (paused)' : 'Kaffarah'; ?></a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/fidya/' ) ); ?>">Fidyah &amp; Kaffarah: not accepted</a></li>
                     </ul>
                 </div>
 

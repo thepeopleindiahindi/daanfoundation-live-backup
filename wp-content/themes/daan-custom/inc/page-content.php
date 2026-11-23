@@ -374,16 +374,16 @@ function daan_get_page_data( $slug ) {
 			'default_cause' => 'where-needed',
 			'sections'      => array(
 				array(
-					'type'    => 'notice',
-					'heading' => 'Fidyah & Kaffarah donations are temporarily paused',
-					'content' => 'We are updating this programme with our scholars. Meanwhile, please note that our Iftar and Community Kitchen donations are not Fidyah or Kaffarah. An Iftar meal, or an Iftar plus one meal, is not Fidyah.',
+					'type'    => 'shortcode',
+					'heading' => '',
+					'code'    => '[daan_fk_update]',
 				),
 				array(
 					'type'    => 'text',
 					'heading' => 'What is Fidya?',
 					'paragraphs' => array(
 						'Fidya is a charitable compensation for Muslims who are unable to fast during Ramadan due to a lasting reason such as old age or a chronic illness with no hope of recovery. If recovery is possible later, the missed fasts should be made up instead.',
-						'One fast\'s Fidyah equals Sadaqat al-Fitr (about 1.75 kg of wheat or its value), currently ' . $fitra . '. It is given to people in need as ration or cash that they own. An Iftar kit is not Fidyah. Fidyah donations through Daan Foundation are currently paused. For guidance on paying your fidya, please ask a qualified mufti.'
+						'One fast\'s Fidyah equals Sadaqat al-Fitr (about 1.75 kg of wheat or its value), currently ' . $fitra . '. It is given to people in need as ration or cash that they own. An Iftar kit is not Fidyah. Daan Foundation is no longer accepting Fidyah donations. For guidance on paying your fidya, please ask a qualified mufti.'
 					)
 				),
 				array(
@@ -414,9 +414,9 @@ function daan_get_page_data( $slug ) {
 			'default_cause' => 'where-needed',
 			'sections'      => array(
 				array(
-					'type'    => 'notice',
-					'heading' => 'Kaffarah & Fidyah donations are temporarily paused',
-					'content' => 'We are updating this programme with our scholars. Meanwhile, please note that our Iftar and Community Kitchen donations are not Kaffarah or Fidyah.',
+					'type'    => 'shortcode',
+					'heading' => '',
+					'code'    => '[daan_fk_update]',
 				),
 				array(
 					'type'    => 'text',
