@@ -548,7 +548,7 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'zakat-distribution-drive-2027' => 'Daan Foundation\'s Zakat Distribution Drive 2027 channels Zakat directly to eligible families in India, with full transparency on every rupee.',
 		'reliable-ramadan-iftar-donation-websites' => 'Looking for a trustworthy Ramadan donation website? Learn what makes an Iftar platform reliable, and how Daan Foundation reaches fasting families.',
 		'why-no-one-should-sleep-hungry-daan-foundations-food-mission' => 'Daan Foundation\'s food mission: no one should sleep hungry. See how our Community Kitchen and relief work reach vulnerable families across India.',
-		'behind-the-scenes-how-we-cook-1000-meals-a-day' => 'A behind-the-scenes look at how Daan Foundation\'s Community Kitchen prepares over 1,000 meals a day for families facing food insecurity in Amroha.',
+		'behind-the-scenes-how-we-cook-1000-meals-a-day' => 'A behind-the-scenes look at how Daan Foundation\'s Community Kitchen in Amroha serves a hot, freshly cooked meal to 100–120 people in need every day.',
 		'feeding-the-poor-daily-life-inside-a-community-kitchen' => 'An inside look at daily life in Daan Foundation\'s Community Kitchen -- how meals are planned, cooked, and distributed to families in need every day.',
 		'where-does-your-iftar-donation-go' => 'See exactly where your iftar donation goes: a ' . "\u{20B9}" . ( function_exists( 'daan_iftar_kit_price' ) ? daan_iftar_kit_price() : 91 ) . ' Iftar kit, tracked from payment to a fasting person at Daan Foundation, Amroha.',
 		'kaffara-missed-ramadan-fast' => 'What is kaffara for a missed Ramadan fast? Daan Foundation explains the rule. Kaffarah donations at Daan Foundation are temporarily paused.',
@@ -583,7 +583,7 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		$slug  = get_post_field( 'post_name', get_queried_object_id() );
 		$descs = array(
 		'serving-iftar' => 'Donate to fund Iftar meals for families in need this Ramadan. Every contribution goes directly to Daan Foundation\'s Iftar program.',
-		'community-kitchen' => 'Donate to Daan Foundation Community Kitchen, which has served approximately 350,000 free meals since 2020 to people facing food insecurity across India.',
+		'community-kitchen' => 'Donate to Daan Foundation\'s Community Kitchen in Amroha, which serves a hot meal to 100–120 people in need every day, since 2020. ₹' . ( function_exists( 'daan_meal_price' ) ? daan_meal_price() : 60 ) . ' feeds one person.',
 		'sadqah' => 'Give Sadqah online to Daan Foundation. Your voluntary charity provides consistent food and essential support to needy families, with full transparency.',
 		'bank-interest' => 'Donate disallowed bank interest (riba) to Daan Foundation for distribution to those in need, in line with Islamic guidance on handling interest income.',
 		'fidya-and-kaffara' => 'Fidyah and Kaffarah donations at Daan Foundation are temporarily paused. Read the rules and see other ways to help families in need.',

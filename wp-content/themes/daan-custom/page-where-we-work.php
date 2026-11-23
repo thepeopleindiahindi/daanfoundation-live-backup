@@ -52,8 +52,8 @@ get_header();
 					<div style="font-size:0.9375rem;color:#fff;">Years of Service</div>
 				</div>
 				<div>
-					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 4px;">500K+</div>
-					<div style="font-size:0.9375rem;color:#fff;">Meals Distributed</div>
+					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 4px;">100–120</div>
+					<div style="font-size:0.9375rem;color:#fff;">People Fed Every Day · Since 2020</div>
 				</div>
 			</div>
 		</div>

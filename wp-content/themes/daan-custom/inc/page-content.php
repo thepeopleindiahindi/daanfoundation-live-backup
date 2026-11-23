@@ -17,6 +17,9 @@
 function daan_get_page_data( $slug ) {
 	// Fitrana / Fidyah rate: one setting in plugin daan-order-tools (docs/fiqh/decisions.md D-006).
 	$fitra = '₹' . number_format( function_exists( 'daan_fitrana_rate' ) ? daan_fitrana_rate() : 90 );
+	// Community Kitchen facts (owner, 2026-11-23, D-037): 100–120 people a day, Amroha, since 2020; meal price from the setting.
+	$meal    = '₹' . number_format( function_exists( 'daan_meal_price' ) ? daan_meal_price() : 60 );
+	$ck_long = 'Every day, our Community Kitchen in Amroha serves a hot, freshly cooked meal to 100–120 people in need, and on special days and occasions, many more. We have kept this kitchen running, day after day, since 2020. Just ' . $meal . ' feeds one person a full meal.';
 	// Other Fitrana rates, kit price and kit links: the same settings (docs/fiqh/decisions.md D-021, D-029).
 	$rate_barley      = '₹' . number_format( function_exists( 'daan_rate' ) ? daan_rate( 'barley' ) : 175 );
 	$rate_dates       = '₹' . number_format( function_exists( 'daan_rate' ) ? daan_rate( 'dates' ) : 525 );
@@ -51,17 +54,17 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'A Daily Mission Against Hunger',
 					'paragraphs' => array(
-						'Daan Foundation\'s Community Kitchen is a daily mission to fight hunger across India, serving free, nutritious meals to thousands of individuals and families. Every single evening, our dedicated team prepares and distributes freshly cooked meals, ensuring that no one in our community goes to bed hungry. What began as a small iftar distribution effort during Ramadan 2020 has blossomed into a full-scale, year-round feeding programme that touches countless lives.',
-						'Since our inception, we have served over 500,000 meals, each one prepared with care and delivered with dignity. Our kitchen operates on the simple yet profound belief that access to food is a fundamental human right, and we are committed to upholding that right for every person who comes to us. The cost of providing each meal is just ₹60, a small price for the immense impact it carries.',
+						'Daan Foundation\'s Community Kitchen in Amroha is a daily mission to fight hunger. Every single evening, our dedicated team prepares and distributes freshly cooked meals, ensuring that no one in our community goes to bed hungry. What began as a small iftar distribution effort during Ramadan 2020 has blossomed into a full-scale, year-round feeding programme that touches countless lives.',
+						$ck_long . ' Each meal is prepared with care and delivered with dignity. Our kitchen operates on the simple yet profound belief that access to food is a fundamental human right, and we are committed to upholding that right for every person who comes to us.',
 						'We serve all community members without any discrimination of caste, creed, religion, or background. Every person who walks through our doors is welcomed with respect and offered a warm, nutritious meal. Our commitment to inclusive service has made the Community Kitchen a trusted and beloved institution in the communities we serve.'
 					)
 				),
 				array(
 					'type'    => 'grid',
-					'heading' => '500,000+ Meals Served',
+					'heading' => '100–120 People Fed Every Day',
 					'items'   => array(
-						array( 'icon' => 'rice', 'title' => '500,000+ Meals', 'desc' => 'Served since 2020 with love and care' ),
-						array( 'icon' => 'rupee', 'title' => '₹60/Meal', 'desc' => 'Cost to provide one nutritious meal' ),
+						array( 'icon' => 'rice', 'title' => '100–120 Daily', 'desc' => '100–120 people fed every day · Since 2020' ),
+						array( 'icon' => 'rupee', 'title' => $meal . '/Meal', 'desc' => 'Cost to provide one nutritious meal' ),
 						array( 'icon' => 'calendar', 'title' => 'Daily', 'desc' => 'Evening meal service, 365 days a year' ),
 						array( 'icon' => 'users', 'title' => 'All Communities', 'desc' => 'Served without any discrimination' ),
 					)
@@ -146,14 +149,14 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'A Vision for the Future',
 					'paragraphs' => array(
-						'Our vision is to expand the Community Kitchen model to cities across India, establishing a network of kitchens that serve fresh, nutritious meals to all who need them. We are actively working on partnerships with local governments, businesses, and community organisations to make this vision a reality. The goal is to reach a million meals annually within the next three years.',
+						'Our aim is to keep our Community Kitchen in Amroha running every single day, and to feed many more people on special days and occasions, when the need is greatest.',
 						'With your support, we can scale our operations, improve our infrastructure, and reach even more vulnerable communities. Every contribution, no matter how small, brings us one step closer to a hunger-free India where no one is left behind.'
 					)
 				),
 				array(
 					'type'    => 'notice',
 					'heading' => 'Serving Humanity Since 2020',
-					'content' => 'Daan Foundation\'s Community Kitchen has been serving free meals with dignity and compassion since our founding in Ramadan 2020. Over 500,000 meals served and counting.',
+					'content' => 'Daan Foundation\'s Community Kitchen in Amroha has been serving free meals with dignity and compassion since our founding in Ramadan 2020: 100–120 people fed every day, and many more on special days and occasions.',
 				),
 				array(
 					'type'        => 'cta',
@@ -205,7 +208,7 @@ function daan_get_page_data( $slug ) {
 					'paragraphs' => array(
 						$zakat_use,
 						$all_welcome,
-						'Each meal costs ₹60, so your Zakat can feed many eligible people. Since our founding, we have distributed over 500,000 meals through our Community Kitchen.'
+						'Each meal costs ' . $meal . ', so your Zakat can feed many eligible people. Our Community Kitchen in Amroha feeds 100–120 people every day, and many more on special days and occasions.'
 					)
 				),
 				array(
@@ -316,7 +319,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'Community Kitchen',
 					'paragraphs' => array(
-						'Your Sadaqah directly supports our Community Kitchen programme, which serves over 500,000 free meals to individuals and families in need. Every contribution helps us prepare and distribute nutritious meals to those who cannot afford them, serving all community members without any discrimination.',
+						'Your Sadaqah directly supports our Community Kitchen programme, which feeds 100–120 people in need every day in Amroha, and many more on special days and occasions. Every contribution helps us prepare and distribute nutritious meals to those who cannot afford them, serving all community members without any discrimination.',
 						'Whether you give ₹60 for one meal or ₹6,000 for a hundred meals, every rupee of your Sadaqah creates an immediate and tangible impact in someone\'s life. You can also consider Sadaqah Jariyah (ongoing charity), which we use only for the lasting assets of our kitchen, such as utensils, stoves and storage.'
 					)
 				),
@@ -543,7 +546,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'Community Kitchen',
 					'paragraphs' => array(
-						'Building on the iftar distribution, we established our year-round Community Kitchen that continues the spirit of Ramadan every single day. The kitchen serves free, nutritious meals to anyone in need, 365 days a year, with the same love and dedication that characterised our first Ramadan distribution. Over 500,000 meals have been served since our founding.',
+						'Building on the iftar distribution, we established our year-round Community Kitchen that continues the spirit of Ramadan every single day. The kitchen serves free, nutritious meals to anyone in need, 365 days a year, with the same love and dedication that characterised our first Ramadan distribution. Today it feeds 100–120 people every day, and many more on special days and occasions.',
 						'The Community Kitchen embodies the Ramadan spirit of generosity throughout the year, ensuring that the hunger-alleviating work that began in the holy month never stops. Each meal costs just ₹60, making every contribution a meaningful investment in human dignity.'
 					)
 				),
@@ -686,7 +689,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'Community Kitchen',
 					'paragraphs' => array(
-						'A significant portion of this fund supports our Community Kitchen, which serves over 500,000 free meals to individuals and families in need. Your donation helps us maintain this vital service daily, ensuring that no one in our community goes hungry. Each meal costs just ₹60, and every contribution translates directly into nourishment for someone in need.',
+						'A significant portion of this fund supports our Community Kitchen, which feeds 100–120 people in need every day in Amroha, and many more on special days and occasions. Your donation helps us maintain this vital service daily, ensuring that no one in our community goes hungry. Each meal costs just ₹60, and every contribution translates directly into nourishment for someone in need.',
 						'The Community Kitchen serves all community members without discrimination, welcoming everyone with dignity and respect. Whether it is a daily wage labourer who earned nothing today, a widow struggling to feed her children, or an elderly person living alone, our kitchen is a reliable source of warmth and nourishment.'
 					)
 				),
@@ -948,7 +951,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'grid',
 					'heading' => 'Our Impact in Numbers',
 					'items'   => array(
-						array( 'title' => '500,000+', 'desc' => 'Meals Distributed' ),
+						array( 'title' => '100–120', 'desc' => 'People Fed Every Day · Since 2020' ),
 						array( 'title' => '100K+', 'desc' => 'Iftar Kits Distributed' ),
 						array( 'title' => '6+', 'desc' => 'Years of Service' ),
 						array( 'title' => '600K+', 'desc' => 'Beneficiaries Reached' ),
@@ -1071,7 +1074,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => '2026 — Continuing the Journey of Humanity',
 					'paragraphs' => array(
-						'By 2026, Daan Foundation had distributed more than 500,000 food plates and meals through its various humanitarian activities. From a small 15-day Ramadan effort to a growing charitable foundation, the journey reflects the power of sincere intentions, community support, and consistent humanitarian work.'
+						'By 2026, Daan Foundation\'s Community Kitchen in Amroha was feeding 100–120 people every day, and many more on special days and occasions. From a small 15-day Ramadan effort to a growing charitable foundation, the journey reflects the power of sincere intentions, community support, and consistent humanitarian work.'
 					)
 				),
 				array(
@@ -1387,7 +1390,7 @@ function daan_get_page_data( $slug ) {
 				array(
 					'type'    => 'grid',
 					'items'   => array(
-						array( 'title' => '500,000+', 'desc' => 'Meals Distributed' ),
+						array( 'title' => '100–120', 'desc' => 'People Fed Every Day · Since 2020' ),
 						array( 'title' => '1,000s', 'desc' => 'Served Annually During Ramadan' ),
 						array( 'title' => '365', 'desc' => 'Days of Daily Meals' ),
 					)

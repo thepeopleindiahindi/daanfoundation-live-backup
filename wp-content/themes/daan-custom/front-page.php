@@ -207,7 +207,7 @@ get_header();
                 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2 M9 3a4 4 0 100 8 4 4 0 000-8z M23 21v-2a4 4 0 00-3-3.87 M16 3.13a4 4 0 010 7.75',
             );
             $stats = array(
-                array( '500K+', 'Food Packets Distributed', 'Meals and food packets served since 2020', '/images/food-distribution-ramadan.jpg', 0 ),
+                array( '100–120', 'People Fed Every Day', 'Community Kitchen in Amroha · Since 2020', '/images/food-distribution-ramadan.jpg', 0 ),
                 array( '100K+', 'Iftar Kits Distributed', 'Food and Iftar kits provided during Ramadan', '/images/iftaar-distribution.jpg', 1 ),
                 array( '6+', 'Years of Experience', 'Serving communities with compassion since 2020', '/images/community-queue.jpg', 2 ),
                 array( '600K+', 'Beneficiaries Reached', 'Total lives touched across India', '/images/aid-distribution-elderly.jpg', 3 ),
@@ -283,8 +283,8 @@ get_header();
             </p>
             <div class="mission-stats">
                 <div>
-                    <div class="mission-stat-num">500K+</div>
-                    <div class="mission-stat-label">Meals Distributed</div>
+                    <div class="mission-stat-num">100–120</div>
+                    <div class="mission-stat-label">People Fed Every Day · Since 2020</div>
                 </div>
                 <div>
                     <div class="mission-stat-num">600K+</div>

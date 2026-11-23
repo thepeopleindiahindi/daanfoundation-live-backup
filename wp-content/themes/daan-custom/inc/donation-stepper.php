@@ -155,3 +155,8 @@ add_action( 'wp_head', function () {
 </script>
 	<?php
 }, 5 );
+
+/* [daan_meal_price] → "₹60" from the "Community Kitchen meal price" setting (used in DB texts, D-037). */
+add_shortcode( 'daan_meal_price', function () {
+	return '₹' . number_format_i18n( function_exists( 'daan_meal_price' ) ? daan_meal_price() : 60 );
+} );

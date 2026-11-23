@@ -99,7 +99,7 @@ get_header();
 						<?php endforeach; ?>
 					</div>
 					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 8px;text-align:justify;">Meals include dal-roti, rice, vegetables, and seasonal items. During Ramadan, we serve special Iftar meals.</p>
-					<p style="font-size:1.125rem;font-weight:700;color:#C2410C;margin:0;"><strong>500,000+ meals served since 2020 — ₹60 per meal</strong></p>
+					<p style="font-size:1.125rem;font-weight:700;color:#C2410C;margin:0;"><strong>100–120 people fed every day · Since 2020 — <?php echo esc_html( '₹' . number_format( function_exists( 'daan_meal_price' ) ? daan_meal_price() : 60 ) ); ?> per meal</strong></p>
 				</div>
 
 				<!-- 6. Our Mission -->
@@ -153,7 +153,7 @@ get_header();
 					<div style="display:flex;flex-direction:column;gap:12px;">
 						<?php
 						$achievements = array(
-							'✅ 500,000+ meals served since 2020',
+							'✅ 100–120 people fed every day · Since 2020',
 							'✅ Annual Ramadan Iftar programs serving thousands',
 							'✅ Regular food and ration distribution drives',
 							'✅ Ongoing support for widows and the elderly',
