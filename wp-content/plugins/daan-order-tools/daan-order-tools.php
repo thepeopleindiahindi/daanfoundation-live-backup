@@ -1181,8 +1181,10 @@ function daan_kit_fund( $raw ) {
 }
 
 /** Order cause of a General Ration Kit: "Ration Kit (Zakat)" or "Ration Kit (Sadaqah)" (Zakat kept apart, D-008). */
-function daan_kit_general_cause( $fund ) {
-	return 'zakat' === $fund ? 'Ration Kit (Zakat)' : 'Ration Kit (Sadaqah)';
+function daan_kit_general_cause( $fund = '' ) {
+	// D-040 (owner, 2026-11-23): no Zakat/Sadaqah head for the general Ration Kit; new orders are simply "Ration Kit".
+	// Old orders keep the cause saved on them ("Ration Kit (Zakat)" / "Ration Kit (Sadaqah)").
+	return 'Ration Kit';
 }
 
 /**
@@ -1194,7 +1196,7 @@ function daan_fixed_causes() {
 	return array(
 		'Community Kitchen'           => array( 'unit' => daan_meal_price(), 'one' => 'meal', 'many' => 'meals', 'kit' => '', 'fund' => false ),
 		'Ramadan Iftar'               => array( 'unit' => daan_iftar_kit_price(), 'one' => 'kit', 'many' => 'kits', 'kit' => 'iftar', 'fund' => false ),
-		'Ration Kit'                  => array( 'unit' => $kit, 'one' => 'kit', 'many' => 'kits', 'kit' => 'general', 'fund' => true ),
+		'Ration Kit'                  => array( 'unit' => $kit, 'one' => 'kit', 'many' => 'kits', 'kit' => 'general', 'fund' => false ), // D-040: no head choice
 		'Ration Kit (Interest Money)' => array( 'unit' => $kit, 'one' => 'kit', 'many' => 'kits', 'kit' => 'interest', 'fund' => false ),
 		'Fitrana Ration Kit'          => array( 'unit' => $kit, 'one' => 'kit', 'many' => 'kits', 'kit' => 'fitrana', 'fund' => false ),
 	);
@@ -1327,23 +1329,12 @@ add_filter( 'woocommerce_add_to_cart_validation', function ( $passed, $product_i
 		wc_add_notice( 'Please choose between 1 and ' . daan_kit_max_qty( $type ) . ' ' . daan_kit_unit_words( $type )[1] . '.', 'error' );
 		return false;
 	}
-	if ( 'general' === $type ) {
-		$fund = daan_kit_fund( wp_unslash( $_POST['daan_kit_fund'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		if ( ! $fund ) {
-			wc_add_notice( 'Please choose whether this is your Zakat or Sadaqah.', 'error' );
-			return false;
-		}
-		$funds = daan_kit_funds_in_cart();
-		if ( $funds && ! in_array( $fund, $funds, true ) ) {
-			wc_add_notice( 'Zakat and Sadaqah Ration Kits are kept separate. Please give them as two separate donations.', 'error' );
-			return false;
-		}
-	}
-	return $passed;
+	return $passed; // D-040: the general Ration Kit has no Zakat/Sadaqah choice.
 }, 20, 3 );
 
 // General Ration Kit: the Zakat/Sadaqah choice on the product page (required), kept on the cart line.
 add_action( 'woocommerce_before_add_to_cart_button', function () {
+	return; // D-040: no Zakat/Sadaqah choice on the general Ration Kit any more.
 	global $product;
 	if ( ! $product || 'general' !== daan_kit_type( $product->get_id() ) ) {
 		return;
@@ -1397,11 +1388,11 @@ add_action( 'woocommerce_check_cart_items', function () {
 		if ( $qty < 1 || $qty > daan_kit_max_qty( $type ) || abs( $line - $expected ) > 0.01 ) {
 			wc_add_notice( 'meal' === $type ? 'The amount is not correct. Each meal is ' . daan_rupees( $unit ) . '. Please update your donation.' : 'The kit amount is not correct. Each kit is ' . daan_rupees( $unit ) . '. Please update your donation.', 'error' );
 		}
-		if ( 'general' === $type && empty( $item['daan_kit_fund'] ) ) {
+		if ( false && 'general' === $type && empty( $item['daan_kit_fund'] ) ) { // D-040: choice removed
 			wc_add_notice( 'Please remove the Ration Kit and add it again, choosing Zakat or Sadaqah.', 'error' );
 		}
 	}
-	if ( count( daan_kit_funds_in_cart() ) > 1 ) {
+	if ( false && count( daan_kit_funds_in_cart() ) > 1 ) { // D-040
 		wc_add_notice( 'Zakat and Sadaqah Ration Kits are kept separate. Please give them as two separate donations.', 'error' );
 	}
 } );

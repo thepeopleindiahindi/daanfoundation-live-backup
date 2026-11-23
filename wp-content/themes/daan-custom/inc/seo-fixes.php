@@ -717,7 +717,7 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'page:bank-interest'                 => 'Interest money must be given away without any intention of reward. We use it only for ration kits (' . $kit . ') that families own. Not Zakat. Daan Foundation.',
 		'post:ration-kit-distribution-india' => 'Donate a ration kit (' . $kit . ') for a poor family: atta, rice, dal, oil and more. See the full kit list. Daan Foundation, Amroha, Uttar Pradesh.',
 		'product:fitrana-ration-kit'         => 'Give your family\'s Fitrana as a complete ration kit (' . $kit . ') for a family in need. Fitrana from ' . $fitra . ' per person, counted from the food items only.',
-		'product:ration-kit-donation'        => 'Donate a complete ration kit (' . $kit . ') to a poor family in India: atta, rice, dal, oil and more. Give it as Zakat or Sadaqah. Daan Foundation, Amroha.',
+		'product:ration-kit-donation'        => 'Donate a complete ration kit (' . $kit . ') to a poor family in India: 18 essential items including atta, rice, dal, oil and spices. Daan Foundation, Amroha.',
 		'product:ramadan-iftar'              => 'Sponsor Iftar kits for fasting people in need. Each kit ' . $iftar . ': veg biryani, dates, fruit, egg and a soft drink. Handed out at our Amroha kitchen.',
 		// Quick wins (owner, 2026-11-23, D-038).
 		'page:home'                          => 'Daan Foundation (founded 2020) runs a Community Kitchen in Amroha, UP, feeding 100–120 people every day. Donate an Iftar kit (' . $iftar . ') or a ration kit (' . $kit . ') by UPI.',

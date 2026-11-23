@@ -433,7 +433,7 @@ function daan_place_order() {
     $saved_cause = $cause;
     if ( $kit_type ) {
         // A kit: the kit product with its number of kits (same line as the product page makes; no execution e-mail).
-        $saved_cause = 'general' === $kit_type ? daan_kit_general_cause( $fund ) : daan_kit_cause( $kit_type );
+        $saved_cause = 'general' === $kit_type ? daan_kit_general_cause() : daan_kit_cause( $kit_type );
         $item_id     = $order->add_product( $kit_product, $qty, array( 'subtotal' => $amount, 'total' => $amount ) );
         if ( $item_id ) {
             wc_add_order_item_meta( $item_id, 'Cause', $saved_cause );

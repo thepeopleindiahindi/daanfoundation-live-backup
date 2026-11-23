@@ -227,3 +227,75 @@ add_filter( 'the_title', function ( $title, $id = 0 ) {
 	}
 	return $title;
 }, 10, 2 );
+
+/* Ration kit list (owner, 2026-11-23): one component for the kit product, the ration hub and the Fitrana/Interest
+   kit pages. Items, their count and the weight come from the "Ration kit items" setting (daan_kit_items_text()). */
+function daan_kit_groups() {
+	$groups = array(
+		'grains'  => array( 'Grains', '🌾', array( 'aata', 'atta', 'chawal', 'rice' ) ),
+		'pulses'  => array( 'Pulses', '🫘', array( 'dal', 'chana', 'rajma' ) ),
+		'veg'     => array( 'Vegetables', '🥔', array( 'aaloo', 'aloo', 'potato', 'pyaaz', 'onion' ) ),
+		'oil'     => array( 'Oil, Sugar & Salt', '🫙', array( 'oil', 'cheeni', 'sugar', 'namak', 'salt' ) ),
+		'spices'  => array( 'Spices', '🌶️', array( 'haldi', 'mirch', 'dhaniya', 'masala', 'jeera' ) ),
+		'daily'   => array( 'Daily Essentials', '🧺', array( 'patti', 'chai', 'tea', 'surf', 'soap', 'sabun' ) ),
+	);
+	$out = array(); foreach ( $groups as $k => $g ) { $out[ $k ] = array( 'label' => $g[0], 'icon' => $g[1], 'items' => array() ); }
+	$lines = function_exists( 'daan_kit_items_text' ) ? array_filter( array_map( 'trim', explode( "\n", daan_kit_items_text() ) ) ) : array();
+	$kg = 0.0; $unknown = false; $count = 0;
+	foreach ( $lines as $line ) {
+		$parts = preg_split( '/\s+[—–-]\s+/u', $line, 2 );
+		$name  = trim( $parts[0] ); $qty = isset( $parts[1] ) ? trim( $parts[1] ) : '';
+		if ( 'patti' === strtolower( $name ) ) { $name = 'Chai Patti'; }
+		$count++;
+		if ( preg_match( '/([\d.]+)\s*(kg|g)\b/i', $qty, $m ) ) { $kg += ( 'kg' === strtolower( $m[2] ) ) ? (float) $m[1] : (float) $m[1] / 1000; } else { $unknown = true; }
+		$key = 'daily';
+		foreach ( $groups as $k => $g ) { foreach ( $g[2] as $w ) { if ( false !== stripos( $name, $w ) ) { $key = $k; break 2; } } }
+		$out[ $key ]['items'][] = array( $name, $qty );
+	}
+	$weight = $unknown ? ( (int) ceil( $kg ) ) . '+ kg' : rtrim( rtrim( number_format( $kg, 1 ), '0' ), '.' ) . ' kg';
+	return array( 'groups' => array_filter( $out, function ( $g ) { return ! empty( $g['items'] ); } ), 'count' => $count, 'weight' => $weight );
+}
+function daan_kit_list_html() {
+	$d     = daan_kit_groups();
+	$price = '₹' . number_format_i18n( function_exists( 'daan_kit_price' ) ? daan_kit_price() : 1536 );
+	$h  = '<div class="daan-kit-list">';
+	$h .= '<p class="daan-kit-hl"><span>' . (int) $d['count'] . ' essential items</span><span aria-hidden="true">·</span><span>' . esc_html( $d['weight'] ) . '</span><span aria-hidden="true">·</span><span>' . esc_html( $price ) . '</span></p>';
+	$h .= '<div class="daan-kit-grid">';
+	foreach ( $d['groups'] as $g ) {
+		$h .= '<div class="daan-kit-card"><p class="daan-kit-card-h"><span aria-hidden="true">' . $g['icon'] . '</span> ' . esc_html( $g['label'] ) . '</p><ul>';
+		foreach ( $g['items'] as $it ) {
+			$h .= '<li><span>' . esc_html( $it[0] ) . '</span><span class="daan-kit-qty">' . esc_html( $it[1] ) . '</span></li>';
+		}
+		$h .= '</ul></div>';
+	}
+	$h .= '</div><p class="daan-kit-note">Covers a family\'s basic kitchen needs: grains, pulses, oil, spices and daily essentials.</p></div>';
+	return $h;
+}
+add_action( 'init', function () {
+	remove_shortcode( 'daan_kit_items' );
+	add_shortcode( 'daan_kit_items', 'daan_kit_list_html' );
+}, 20 );
+add_action( 'wp_head', function () {
+	echo '<style id="daan-kit-list-css">.daan-kit-list{margin:12px 0 20px}.daan-kit-hl{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 0 14px;padding:12px 16px;border-radius:14px;background:#FFF7ED;border:2px solid #FDBA74;color:#9A3412;font-weight:800;font-size:1.125rem}.daan-kit-grid{display:grid;grid-template-columns:1fr;gap:12px}@media(min-width:640px){.daan-kit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(min-width:1100px){.daan-kit-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}.daan-kit-card{background:#fff;border:1px solid #E2E8F0;border-radius:14px;padding:14px 16px}.daan-kit-card-h{margin:0 0 8px;font-weight:700;color:#111827}.daan-kit-card ul{list-style:none;margin:0;padding:0}.daan-kit-card li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px solid #F1F5F9;font-size:.9375rem;color:#334155}.daan-kit-card li:first-child{border-top:0}.daan-kit-qty{color:#64748B;text-align:right;white-space:normal;max-width:55%}.daan-kit-note{margin:12px 0 0;color:#475569;font-size:.9375rem}</style>' . "\n";
+}, 6 );
+
+/* [daan_ration_about] (owner text, verbatim; D-040). On the Ration Kit product and the ration hub post. */
+add_shortcode( 'daan_ration_about', function () {
+	return '<section class="daan-ration-about" style="border:1px solid #E2E8F0;border-left:5px solid #C2410C;background:#fff;border-radius:14px;padding:16px 18px;margin:16px 0;">'
+		. '<h2 style="margin:0 0 8px;font-size:1.25rem;color:#111827;">About this Ration Kit</h2>'
+		. '<p style="margin:0 0 10px;color:#334155;line-height:1.7;">Daan Foundation receives your donation and delivers a complete ration kit to a family in need. Our kits are given to families based on need, and we do not keep Zakat and Sadaqah kits separately.</p>'
+		. '<p style="margin:0;color:#334155;line-height:1.7;">Which head (Zakat, Sadaqah or any other) you give this under is a matter between you and Allah. Please consult a trusted Maulana or Mufti about whether it is suitable for your intention. Daan Foundation does not take responsibility for the head under which a donation is given; our responsibility is to deliver the kit to a family in need.</p>'
+		. '</section>';
+} );
+add_action( 'woocommerce_single_product_summary', function () {
+	if ( 'ration-kit-donation' === get_post_field( 'post_name', get_queried_object_id() ) ) {
+		echo do_shortcode( '[daan_ration_about]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+}, 35 );
+add_filter( 'the_content', function ( $content ) {
+	if ( is_singular( 'post' ) && in_the_loop() && is_main_query() && 'ration-kit-distribution-india' === get_post_field( 'post_name', get_the_ID() ) ) {
+		$content .= do_shortcode( '[daan_ration_about]' );
+	}
+	return $content;
+}, 25 );
+

@@ -153,7 +153,7 @@ get_header();
             $campaigns = array(
                 array( 'Community Kitchen', '100–120 people every day · ' . daan_menu_price( 'daan_meal_price', 60 ) . ' a meal', '/images/food-distribution-ramadan.jpg', '/community-kitchen/', '/product/community-kitchen/', 'Donate' ),
                 array( 'Ramadan Iftar', '200–300 people every day in Ramadan · ' . daan_menu_price( 'daan_iftar_kit_price', 91 ) . ' a kit', '/images/iftaar-distribution.jpg', '/ramadan/', '/product/ramadan-iftar/', 'Donate' ),
-                array( 'Ration Kit', daan_menu_price( 'daan_kit_price', 1536 ) . ' per kit, as Zakat or Sadaqah', '/images/ration-kit-front.jpg', '/ration-kit-distribution-india/', '/product/ration-kit-donation/', 'Donate' ),
+                array( 'Ration Kit', daan_menu_price( 'daan_kit_price', 1536 ) . ' per kit · 18 essential items for a family', '/images/ration-kit-front.jpg', '/ration-kit-distribution-india/', '/product/ration-kit-donation/', 'Donate' ),
                 array( 'Zakat', 'Given only to eligible Muslim families, as their own', '/images/aid-distribution-elderly.jpg', '/zakat/', '/product/zakat/', 'Donate' ),
                 array( 'Winter Appeal', 'Warm blankets and clothing for families in the cold', '/images/community-queue.jpg', '/winter-appeal/', '/donate/?cause=Winter%20Appeal', 'Donate' ),
                 array( 'Fidyah & Kaffarah', 'Fidyah & Kaffarah: not accepted. Read our update and the rules.', '/images/extra-2.jpg', '/fidya/', '/fidya/', $fk_paused ? 'Read the rules' : 'Learn more' ),
