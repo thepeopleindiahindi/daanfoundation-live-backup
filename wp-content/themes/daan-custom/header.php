@@ -38,7 +38,7 @@
                                 'title' => 'Community Kitchen',
                                 'desc'  => 'Free food for everyone, every day',
                                 'href'  => home_url( '/community-kitchen/' ),
-                                'style' => 'background: linear-gradient(135deg, #F59E0B, #EA580C);',
+                                'style' => 'background: linear-gradient(135deg, #F97316, #EA580C);',
                             ),
                             'columns' => array(
                                 'Emergency Appeal' => array(
@@ -67,9 +67,9 @@
                                     array( daan_fk_hold_on() ? 'Kaffarah (paused)' : 'Kaffarah', '/kaffarah/' ),
                                 ),
                                 'Give by Kit or Meal' => array(
-                                    array( 'Donate Ration Kit (' . daan_menu_price( 'daan_kit_price', 1536 ) . ')', '/product/ration-kit-donation/' ),
-                                    array( 'Iftar Kit (' . daan_menu_price( 'daan_iftar_kit_price', 91 ) . ')', '/product/ramadan-iftar/' ),
-                                    array( 'Community Kitchen (' . daan_menu_price( 'daan_meal_price', 60 ) . ' per meal)', '/donate/?cause=community-kitchen' ),
+                                    array( 'Donate Ration Kit', '/product/ration-kit-donation/', daan_menu_price( 'daan_kit_price', 1536 ) ),
+                                    array( 'Iftar Kit', '/product/ramadan-iftar/', daan_menu_price( 'daan_iftar_kit_price', 91 ) ),
+                                    array( 'Community Kitchen', '/donate/?cause=community-kitchen', daan_menu_price( 'daan_meal_price', 60 ) . '/meal' ),
                                     array( 'Fitrana Kit', '/product/fitrana-ration-kit/' ),
                                     array( 'Bank Interest → Ration Kit', '/product/ration-kit-interest-money/' ),
                                 ),
@@ -86,6 +86,12 @@
                         ),
                         'Our Work' => array(
                             'href' => home_url( '/our-work/' ),
+                            'featured' => array(
+                                'title' => 'Annual Impact Report',
+                                'desc'  => 'Our journey and work since 2020',
+                                'href'  => home_url( '/our-work/annual-report/' ),
+                                'style' => 'background: linear-gradient(135deg, #F97316, #EA580C);',
+                            ),
                             'columns' => array(
                                 'Impact for Good' => array(
                                     array( 'Our Impact', '/our-work/impact/' ),
@@ -116,7 +122,7 @@
                                     <span class="nav-arrow"></span>
                                 </a>
                                 <div class="mega-menu">
-                                    <div class="mega-menu-inner <?php echo ! isset( $data['featured'] ) ? 'no-featured' : ''; ?>">
+                                    <div class="mega-menu-inner cols-<?php echo (int) count( $data['columns'] ); ?> <?php echo ! isset( $data['featured'] ) ? 'no-featured' : ''; ?>">
                                         <?php if ( isset( $data['featured'] ) ) : ?>
                                             <a href="<?php echo esc_url( $data['featured']['href'] ); ?>" class="mega-menu-featured" style="<?php echo $data['featured']['style']; ?>">
                                                 <span class="featured-label">Featured</span>
@@ -130,7 +136,7 @@
                                                     <h4><?php echo esc_html( $heading ); ?></h4>
                                                     <ul>
                                                         <?php foreach ( $links as $link ) : ?>
-                                                            <li><a href="<?php echo esc_url( home_url( $link[1] ) ); ?>"><?php echo esc_html( $link[0] ); ?></a></li>
+                                                            <li><a href="<?php echo esc_url( home_url( $link[1] ) ); ?>"><?php echo esc_html( $link[0] ); ?><?php if ( ! empty( $link[2] ) ) : ?><span class="mega-price"> · <?php echo esc_html( $link[2] ); ?></span><?php endif; ?></a></li>
                                                         <?php endforeach; ?>
                                                     </ul>
                                                 </div>
@@ -188,7 +194,7 @@
                             </button>
                             <div class="mobile-submenu">
                                 <?php foreach ( $all_links as $link ) : ?>
-                                    <a href="<?php echo esc_url( home_url( $link[1] ) ); ?>"><?php echo esc_html( $link[0] ); ?></a>
+                                    <a href="<?php echo esc_url( home_url( $link[1] ) ); ?>"><?php echo esc_html( $link[0] . ( empty( $link[2] ) ? '' : ' · ' . $link[2] ) ); ?></a>
                                 <?php endforeach; ?>
                             </div>
                         </div>
