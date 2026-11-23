@@ -67,6 +67,23 @@ add_action( 'wp_head', function () {
 	<?php
 }, 1 );
 
+// Product pages (2026-11-23, mobile LCP): drop stylesheets a simple donation product never uses.
+// WooCommerce layout/general stay (form, stepper, notices). dashicons only for logged-out visitors (admin bar needs it).
+function daan_product_drop_css() {
+	if ( ! function_exists( 'is_product' ) || ! is_product() ) {
+		return;
+	}
+	$handles = array( 'wp-block-library', 'hm-wcdon-frontend-styles', 'brands-styles', 'wc-blocks-style', 'cfvsw_swatches_product' );
+	if ( ! is_user_logged_in() ) {
+		$handles[] = 'dashicons';
+	}
+	foreach ( $handles as $h ) {
+		wp_dequeue_style( $h );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'daan_product_drop_css', 101 );
+add_action( 'wp_print_styles', 'daan_product_drop_css', 101 );
+
 // WooCommerce registers its blocks stylesheet late; dequeue it again right before printing.
 add_action( 'wp_print_styles', function () {
 	if ( is_front_page() || is_page( 'donate' ) ) {

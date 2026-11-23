@@ -9,6 +9,11 @@ $button_url   = $args['button_url'] ?? '';
 $breadcrumb   = $args['breadcrumb'] ?? array(); // optional [ [label, url], ... ] (product pages, 2026-11-23)
 $image_alt    = $args['image_alt'] ?? $title;
 $priority     = ! empty( $args['priority'] );
+// Product hero photos have 480/640/800 w versions (mobile LCP, 2026-11-23).
+$srcset = '';
+if ( $image && preg_match( '#^(/images/hero-p-[a-z-]+)\.webp$#', $image, $m ) ) {
+	$srcset = $m[1] . '-480.webp 480w, ' . $m[1] . '-640.webp 640w, ' . $image . ' 800w';
+}
 ?>
 <section class="relative bg-gradient-to-br <?php echo esc_attr( $gradient ); ?> overflow-hidden">
 	<div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
@@ -38,7 +43,7 @@ $priority     = ! empty( $args['priority'] );
 			<?php if ( $image ) : ?>
 				<div class="flex-1 w-full md:max-w-md">
 					<div class="rounded-2xl overflow-hidden shadow-lg">
-						<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" width="800" height="600" decoding="async"<?php echo $priority ? ' fetchpriority="high"' : ''; ?> class="w-full h-[260px] md:h-[320px] object-cover">
+						<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>"<?php if ( $srcset ) : ?> srcset="<?php echo esc_attr( $srcset ); ?>" sizes="(min-width: 768px) 448px, calc(100vw - 32px)"<?php endif; ?> width="800" height="600" decoding="async"<?php echo $priority ? ' fetchpriority="high"' : ''; ?> class="w-full h-[260px] md:h-[320px] object-cover">
 					</div>
 				</div>
 			<?php endif; ?>

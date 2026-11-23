@@ -329,3 +329,14 @@ function daan_product_hero( $id ) {
 	return array( 'subtitle' => $h[0], 'image' => $h[1], 'alt' => $h[2] );
 }
 
+/* Preload the product hero photo (LCP element on product pages; 2026-11-23). */
+add_action( 'wp_head', function () {
+	if ( ! function_exists( 'is_product' ) || ! is_product() || ! function_exists( 'daan_product_hero' ) ) {
+		return;
+	}
+	$img = daan_product_hero( get_queried_object_id() )['image'];
+	if ( preg_match( '#^(/images/hero-p-[a-z-]+)\.webp$#', $img, $m ) ) {
+		echo '<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="' . esc_attr( $m[1] . '-480.webp 480w, ' . $m[1] . '-640.webp 640w, ' . $img . ' 800w' ) . '" imagesizes="(min-width: 768px) 448px, calc(100vw - 32px)">' . "\n";
+	}
+}, 2 );
+
