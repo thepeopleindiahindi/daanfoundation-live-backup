@@ -2212,3 +2212,11 @@ table.shop_table.cart .product-quantity{display:none!important}
 .site-footer #newsletter-msg:empty{display:none}
 .site-footer .footer-logo-wrap{flex-direction:column;align-items:flex-start;gap:.75rem}
 
+/* Header logo: cropped wordmark, 2x file (owner, 2026-11-23; was a 192px square with padding) */
+.site-header .site-logo img.site-logo-wordmark{height:24px;width:auto;flex-shrink:0}
+@media (min-width:640px){.site-header .site-logo img.site-logo-wordmark{height:40px}}
+@media (min-width:1024px){.site-header .site-logo img.site-logo-wordmark{height:52px}}
+
+/* Bigger header logo moves the nav right: keep the 3rd mega-menu inside the screen up to 1439 px too. */
+@media (min-width:1366px) and (max-width:1439px){.desktop-nav .nav-item:nth-child(3) .mega-menu{left:auto;right:0}}
+
