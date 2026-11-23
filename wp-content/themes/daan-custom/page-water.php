@@ -46,20 +46,7 @@ get_header();
 	<div style="max-width:1280px;margin:0 auto;">
 		<div style="display:grid;grid-template-columns:1fr;gap:24px;text-align:center;">
 			<style>@media (min-width:640px){.water-stats-grid{grid-template-columns:repeat(3,1fr)!important;}}</style>
-			<div class="water-stats-grid" style="display:grid;grid-template-columns:1fr;gap:24px;">
-				<div style="background:#fff;border-radius:16px;padding:32px 16px;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);">
-					<div style="font-size:2.5rem;font-weight:800;color:#C2410C;margin:0 0 8px;">785M</div>
-					<div style="font-size:0.9375rem;color:#475569;font-weight:600;">people lack clean water</div>
-				</div>
-				<div style="background:#fff;border-radius:16px;padding:32px 16px;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);">
-					<div style="font-size:2.5rem;font-weight:800;color:#C2410C;margin:0 0 8px;">2B</div>
-					<div style="font-size:0.9375rem;color:#475569;font-weight:600;">use contaminated water</div>
-				</div>
-				<div style="background:#fff;border-radius:16px;padding:32px 16px;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);">
-					<div style="font-size:2.5rem;font-weight:800;color:#C2410C;margin:0 0 8px;">1,000</div>
-					<div style="font-size:0.9375rem;color:#475569;font-weight:600;">children die daily from water diseases</div>
-				</div>
-			</div>
+			<p style="margin:0;font-size:1.125rem;font-weight:600;color:#334155;">Clean, safe water protects families from illness and gives children a healthier start.</p>
 		</div>
 	</div>
 </section>

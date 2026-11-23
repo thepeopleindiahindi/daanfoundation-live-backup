@@ -22,7 +22,7 @@ get_header();
     <div class="hero-iftar-text">
         <div class="hero-iftar-inner">
             <h1 id="hero-iftar-title">Feed a fasting person this Ramadan</h1>
-            <p class="hero-iftar-sub">100–120 people fed every day · Since 2020</p>
+            <p class="hero-iftar-sub">200–300 people get iftar every day in Ramadan · Since 2020</p>
             <div class="hero-iftar-btns">
                 <a class="hero-iftar-btn" href="<?php echo esc_url( home_url( '/product/ramadan-iftar/' ) ); ?>">Donate Iftar Kit (<?php echo esc_html( $daan_iftar_price ); ?>)</a>
                 <a class="hero-iftar-btn-ghost" href="<?php echo esc_url( home_url( '/donate/' ) ); ?>">Other ways to give</a>
