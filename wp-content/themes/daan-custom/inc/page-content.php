@@ -500,8 +500,8 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'A Journey Built on Compassion & Trust',
 					'paragraphs' => array(
-						'Daan Foundation was born during the blessed month of Ramadan in 2020, emerging from a simple yet powerful humanitarian vision: to provide Iftar meals to those in need. What began as a modest 15-day plan to distribute meals during the holy month has grown into a year-round mission serving thousands of people across India. The founders, driven by the spirit of Ramadan, started with a small group of volunteers and limited resources, but their unwavering commitment and the community\'s overwhelming response turned this temporary initiative into a permanent institution of service.',
-						'Today, Daan Foundation stands as a testament to what can be achieved when faith meets action. From that first Ramadan, serving a handful of people each evening, we have expanded to provide not just iftar meals but comprehensive support including a daily Community Kitchen, winter aid, medical assistance, educational sponsorship, and much more. The seed planted in Ramadan 2020 has grown into a tree of compassion that shelters thousands.'
+						'Daan Foundation was born during the blessed month of Ramadan in 2020, emerging from a simple yet powerful humanitarian vision: to provide Iftar meals to those in need. What began as a modest 15-day plan to distribute meals during the holy month has grown into a year-round mission serving families across Amroha. The founders, driven by the spirit of Ramadan, started with a small group of volunteers and limited resources, but their unwavering commitment and the community\'s overwhelming response turned this temporary initiative into a permanent institution of service.',
+						'Today, Daan Foundation stands as a testament to what can be achieved when faith meets action. From that first Ramadan, serving a handful of people each evening, we have expanded to provide not just iftar meals but comprehensive support including a daily Community Kitchen, winter aid, medical assistance, educational sponsorship, and much more. The seed planted in Ramadan 2020 has grown into a tree of compassion that shelters many families.'
 					)
 				),
 				array(
@@ -517,14 +517,14 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Ramadan — A Month of Compassion',
 					'paragraphs' => array(
 						'Ramadan is the holiest month in the Islamic calendar, a time of fasting, prayer, reflection, and heightened charity. During this month, Muslims fast from dawn to sunset, experiencing hunger and thirst to develop empathy for the less fortunate. It is a month of mercy in which the Prophet ﷺ was at his most generous (Sahih al-Bukhari 6), and the act of feeding a fasting person carries immense spiritual merit.',
-						'The Prophet Muhammad (peace be upon him) said: "Whoever gives food to a fasting person to break his fast will have the same reward as him, without the fasting person\'s reward being reduced in the slightest." (Jami\' at-Tirmidhi 807, graded Sahih) This beautiful teaching inspires thousands of our donors to contribute generously during Ramadan, ensuring that those who are fasting can break their fast with a nutritious meal provided with love and respect.'
+						'The Prophet Muhammad (peace be upon him) said: "Whoever gives food to a fasting person to break his fast will have the same reward as him, without the fasting person\'s reward being reduced in the slightest." (Jami\' at-Tirmidhi 807, graded Sahih) This beautiful teaching inspires our donors to contribute generously during Ramadan, ensuring that those who are fasting can break their fast with a nutritious meal provided with love and respect.'
 					)
 				),
 				array(
 					'type'    => 'text',
 					'heading' => 'Iftar Distribution Since 2020',
 					'paragraphs' => array(
-						'Since 2020, Daan Foundation has been distributing iftar meals to thousands of people every evening during Ramadan. Our iftar distribution serves daily wage labourers, homeless individuals, orphans, widows, elderly persons, disabled persons, low-income families, students, rickshaw pullers, and construction workers. What began with distributing 1,000 meals in our first year has grown to serving thousands daily by 2025.',
+						'Since 2020, Daan Foundation has distributed iftar every evening during Ramadan. During Ramadan, we serve iftar to 200–300 people every day. Our iftar distribution serves daily wage labourers, homeless individuals, orphans, widows, elderly persons, disabled persons, low-income families, students, rickshaw pullers, and construction workers.',
 						'Our volunteers ensure that every person receives their kit with a smile and a greeting of "Ramadan Mubarak," making the distribution a truly compassionate experience.'
 					)
 				),
@@ -580,7 +580,7 @@ function daan_get_page_data( $slug ) {
 				array(
 					'type'    => 'notice',
 					'heading' => 'Serving Since 2020',
-					'content' => 'Daan Foundation was born in Ramadan 2020 with a simple iftar distribution. Today, we serve thousands year-round through multiple programmes.',
+					'content' => 'Daan Foundation was born in Ramadan 2020 with a simple iftar distribution. Today, our Community Kitchen in Amroha feeds 100–120 people every day, and during Ramadan we serve iftar to 200–300 people every day.',
 				),
 				array(
 					'type'        => 'cta',
@@ -829,7 +829,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Our Responsibility',
 					'paragraphs' => array(
 						'We take great care in selecting and distributing Eid gifts. Each gift is age-appropriate, culturally sensitive, and of good quality. We work with local communities and community leaders to identify the children who need support the most, ensuring that our gifts reach those who would otherwise go without any celebration.',
-						'Our volunteers personally distribute the gifts, spending time with the children and making them feel special and loved. The smiles we receive in return are the greatest reward, reminding us why this work is so important. Last year, we brought joy to thousands of children across multiple cities, and with your support, we can reach even more this Eid.'
+						'Our volunteers personally distribute the gifts, spending time with the children and making them feel special and loved. The smiles we receive in return are the greatest reward, reminding us why this work is so important. Last year, we brought joy to children in Amroha, and with your support, we can reach even more this Eid.'
 					)
 				),
 				array(
@@ -952,9 +952,9 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Our Impact in Numbers',
 					'items'   => array(
 						array( 'title' => '100–120', 'desc' => 'People Fed Every Day · Since 2020' ),
-						array( 'title' => '100K+', 'desc' => 'Iftar Kits Distributed' ),
+						array( 'title' => '200–300', 'desc' => 'People Served Iftar Every Day in Ramadan' ),
 						array( 'title' => '6+', 'desc' => 'Years of Service' ),
-						array( 'title' => '600K+', 'desc' => 'Beneficiaries Reached' ),
+						array( 'title' => '12–15', 'desc' => 'Years of Team Experience in Community Service' ),
 					)
 				),
 				array(
@@ -1044,7 +1044,7 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => '2022 — Building a Stronger Community Kitchen',
 					'paragraphs' => array(
-						'By 2022, the Community Kitchen had become one of the foundation\'s most important humanitarian initiatives. Hundreds of meals were being prepared and distributed regularly to laborers, elderly individuals, patients, travelers, and poor families.',
+						'By 2022, the Community Kitchen had become one of the foundation\'s most important humanitarian initiatives. Meals were being prepared and distributed every day to laborers, elderly individuals, patients, travelers, and poor families.',
 						'The organization also expanded its welfare activities by distributing clothes to needy families, helping financially struggling families during marriages, and supporting patients with medical treatment assistance. The work was no longer limited to Ramadan — it had become a year-round mission of service.'
 					)
 				),
@@ -1064,10 +1064,10 @@ function daan_get_page_data( $slug ) {
 				),
 				array(
 					'type'    => 'text',
-					'heading' => '2025 — Thousands Benefiting During Ramadan',
+					'heading' => '2025 — Iftar Every Day in Ramadan',
 					'paragraphs' => array(
-						'What once started with helping around 1,000 people during Ramadan had now expanded dramatically. During Ramadan 2025, Daan Foundation was able to provide Iftar support to thousands of fasting individuals through cooked meals, food distribution, and ration assistance programs.',
-						'The Community Kitchen continued serving hundreds of meals daily through the support of Zakat, Sadaqah, charity donations, and community contributions — a scale of humanitarian work far beyond what anyone imagined in 2020.'
+						'During Ramadan, we serve iftar to 200–300 people every day. In Ramadan 2025, this support reached fasting people through cooked meals, food distribution and ration assistance.',
+						'The Community Kitchen continued to feed 100–120 people every day through the support of Zakat, Sadaqah, charity donations and community contributions.'
 					)
 				),
 				array(
@@ -1149,7 +1149,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Community Kitchen Initiative',
 					'paragraphs' => array(
 						'One of the foundation\'s important ongoing humanitarian efforts is its Community Kitchen, which has continued operating regularly since 2020.',
-						'Through this initiative, cooked meals are prepared and distributed daily to needy individuals, laborers, poor families, patients, travelers, and other vulnerable members of society. Every day, hundreds of people benefit from this food support program. This community kitchen operates through the generosity of people who contribute through:'
+						'Through this initiative, cooked meals are prepared and distributed daily to needy individuals, laborers, poor families, patients, travelers, and other vulnerable members of society. Every day, 100–120 people benefit from this food support program. This community kitchen operates through the generosity of people who contribute through:'
 					)
 				),
 				array(
@@ -1373,7 +1373,7 @@ function daan_get_page_data( $slug ) {
 		'annual-report' => array(
 			'title'             => 'Annual Impact Report (2023–2026)',
 			'subtitle'          => 'A Transparent Look at Our Journey and Impact',
-			'hero_description'  => 'Founded in 2020 and officially registered in 2023 — from a small iftar initiative to an organisation serving hundreds of thousands.',
+			'hero_description'  => 'Founded in 2020 and officially registered in 2023 — from a small iftar initiative to a daily Community Kitchen in Amroha.',
 			'gradient'          => 'from-orange-600 to-amber-600',
 			'image'             => '/images/impact-2.jpg',
 			'button_text'       => 'Donate Now',
@@ -1384,14 +1384,14 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'text',
 					'heading' => 'Foundation Overview',
 					'paragraphs' => array(
-						'Daan Foundation was founded in 2020 and officially registered in 2023. From humble beginnings as a small iftar initiative, we have grown into an organisation serving hundreds of thousands of people across communities in need.'
+						'Daan Foundation was founded in 2020 and officially registered in 2023. From humble beginnings as a small iftar initiative, we have grown into an organisation that feeds 100–120 people every day at our Community Kitchen in Amroha and, during Ramadan, serves iftar to 200–300 people every day.'
 					)
 				),
 				array(
 					'type'    => 'grid',
 					'items'   => array(
 						array( 'title' => '100–120', 'desc' => 'People Fed Every Day · Since 2020' ),
-						array( 'title' => '1,000s', 'desc' => 'Served Annually During Ramadan' ),
+						array( 'title' => '200–300', 'desc' => 'Iftar Every Day in Ramadan' ),
 						array( 'title' => '365', 'desc' => 'Days of Daily Meals' ),
 					)
 				),
@@ -1410,14 +1410,14 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Community Kitchen',
 					'paragraphs' => array(
 						'The Community Kitchen is at the heart of everything we do. Every evening, freshly cooked meals are prepared and distributed to labourers, families, elderly individuals, and anyone in need.',
-						'Approximate cost per meal: ₹60. Operating daily since 2020, the Community Kitchen has served hundreds of thousands of meals — one plate at a time.'
+						'Approximate cost per meal: ' . $meal . '. Operating daily since 2020, the Community Kitchen feeds 100–120 people every day — one plate at a time.'
 					)
 				),
 				array(
 					'type'    => 'text',
 					'heading' => 'Ramadan Programme',
 					'paragraphs' => array(
-						'What began as a small iftar for a few families has grown into a large-scale Ramadan programme. Each year, we serve thousands of fasting individuals with iftar meals and distribute ration kits to struggling families throughout the holy month. Our volunteer-driven team works tirelessly to ensure every family is served.'
+						'What began as a small iftar for a few families has grown into a large-scale Ramadan programme. During Ramadan, we serve iftar to 200–300 people every day and distribute ration kits to struggling families throughout the holy month. Our volunteer-driven team works tirelessly to ensure every family is served.'
 					)
 				),
 				array(
@@ -1668,7 +1668,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'Why Trust Matters',
 					'paragraphs' => array(
 						'Daan Foundation believes trust is built through consistent humanitarian work, responsible use of donations, direct community engagement, and sincere service to humanity.',
-						'Since 2020, thousands of people have benefited from the foundation\'s charitable efforts through daily meal distribution, Ramadan Iftar programs, ration kit support, clothing distribution, medical assistance, and welfare activities.'
+						'Since 2020, families across Amroha have benefited from the foundation\'s charitable efforts through daily meal distribution, Ramadan Iftar programs, ration kit support, clothing distribution, medical assistance, and welfare activities.'
 					)
 				),
 				array(

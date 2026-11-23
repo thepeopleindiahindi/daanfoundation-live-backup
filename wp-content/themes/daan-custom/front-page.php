@@ -64,8 +64,6 @@ get_header();
                     </svg>
                     Secure
                 </span>
-                                <span>&bull;</span>
-                <span>100% Transparent</span>
             </div>
         </div>
     </div>
@@ -138,42 +136,29 @@ get_header();
             </a>
         </div>
 
-        <div class="campaign-grid">
+        <div class="campaign-grid daan-campaigns">
             <?php
+            // Owner, 2026-11-23 (D-037): only true facts; no raised/goal amounts or progress bars. Rates from the settings.
+            $fk_paused = function_exists( 'daan_fk_hold_on' ) && daan_fk_hold_on();
             $campaigns = array(
-                array( 'Community Kitchen', 'Free daily meals for people in need — serving with dignity since 2020', '/images/food-distribution-ramadan.jpg', 250000, 500000, '/community-kitchen/' ),
-                array( 'Donate Ration Kit', 'A complete ration kit for a poor family — ' . daan_menu_price( 'daan_kit_price', 1536 ) . ' per kit, as Zakat or Sadaqah', '/images/ration-kit-front.jpg', 120000, 250000, '/product/ration-kit-donation/' ),
-                array( 'Education Support', 'Helping poor children continue education and supporting families with school needs', '/images/aid-distribution-elderly.jpg', 85000, 200000, '/our-work/impact/' ),
-                array( 'Fidyah & Kaffarah', daan_fk_hold_on() ? 'Fidyah & Kaffarah donations are temporarily paused. Read the rules.' : 'Read the rules of Fidyah and Kaffarah.', '/images/iftaar-distribution.jpg', 180000, 300000, '/fidya/' ),
+                array( 'Community Kitchen', '100–120 people every day · ' . daan_menu_price( 'daan_meal_price', 60 ) . ' a meal', '/images/food-distribution-ramadan.jpg', '/community-kitchen/', '/product/community-kitchen/', 'Donate' ),
+                array( 'Ramadan Iftar', '200–300 people every day in Ramadan · ' . daan_menu_price( 'daan_iftar_kit_price', 91 ) . ' a kit', '/images/iftaar-distribution.jpg', '/ramadan/', '/product/ramadan-iftar/', 'Donate' ),
+                array( 'Ration Kit', daan_menu_price( 'daan_kit_price', 1536 ) . ' per kit, as Zakat or Sadaqah', '/images/ration-kit-front.jpg', '/ration-kit-distribution-india/', '/product/ration-kit-donation/', 'Donate' ),
+                array( 'Zakat', 'Given only to eligible Muslim families, as their own', '/images/aid-distribution-elderly.jpg', '/zakat/', '/product/zakat/', 'Donate' ),
+                array( 'Winter Appeal', 'Warm blankets and clothing for families in the cold', '/images/community-queue.jpg', '/winter-appeal/', '/donate/?cause=Winter%20Appeal', 'Donate' ),
+                array( 'Fidyah & Kaffarah', $fk_paused ? 'Donations are temporarily paused. Read the rules.' : 'Read the rules of Fidyah and Kaffarah.', '/images/extra-2.jpg', '/fidya/', '/fidya/', $fk_paused ? 'Read the rules' : 'Learn more' ),
             );
-            foreach ( $campaigns as $c ) :
-                $progress = round( ( $c[3] / $c[4] ) * 100 );
-            ?>
-                <a href="<?php echo esc_url( home_url( $c[5] ) ); ?>" class="campaign-card">
-                    <div class="campaign-image-wrap">
-                        <img src="<?php echo esc_url( $c[2] ); ?>" alt="<?php echo esc_attr( $c[0] ); ?>" loading="lazy">
-                        <div class="campaign-overlay"></div>
-                        <div class="campaign-progress">
-                            <div class="campaign-progress-text">
-                                <span class="raised">₹<?php echo number_format( $c[3] ); ?></span>
-                                <span class="percent"><?php echo $progress; ?>%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width:<?php echo $progress; ?>%"></div>
-                            </div>
-                        </div>
-                    </div>
+            foreach ( $campaigns as $c ) : ?>
+                <div class="campaign-card">
+                    <a href="<?php echo esc_url( home_url( $c[3] ) ); ?>" class="campaign-image-wrap" tabindex="-1" aria-hidden="true">
+                        <img src="<?php echo esc_url( $c[2] ); ?>" alt="" loading="lazy">
+                    </a>
                     <div class="campaign-body">
-                        <h3><?php echo esc_html( $c[0] ); ?></h3>
+                        <h3><a href="<?php echo esc_url( home_url( $c[3] ) ); ?>"><?php echo esc_html( $c[0] ); ?></a></h3>
                         <p><?php echo esc_html( $c[1] ); ?></p>
-                        <span class="campaign-link">
-                            <?php echo ( 'Fidyah & Kaffarah' === $c[0] && daan_fk_hold_on() ) ? 'Temporarily paused &middot; learn more' : 'Donate now'; ?>
-                            <svg class="arrow" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </span>
+                        <a href="<?php echo esc_url( home_url( $c[4] ) ); ?>" class="campaign-donate-btn"><?php echo esc_html( $c[5] ); ?></a>
                     </div>
-                </a>
+                </div>
             <?php endforeach; ?>
         </div>
 
@@ -208,9 +193,9 @@ get_header();
             );
             $stats = array(
                 array( '100–120', 'People Fed Every Day', 'Community Kitchen in Amroha · Since 2020', '/images/food-distribution-ramadan.jpg', 0 ),
-                array( '100K+', 'Iftar Kits Distributed', 'Food and Iftar kits provided during Ramadan', '/images/iftaar-distribution.jpg', 1 ),
+                array( '200–300', 'Iftar Every Day in Ramadan', 'People served iftar daily during Ramadan', '/images/iftaar-distribution.jpg', 1 ),
                 array( '6+', 'Years of Experience', 'Serving communities with compassion since 2020', '/images/community-queue.jpg', 2 ),
-                array( '600K+', 'Beneficiaries Reached', 'Total lives touched across India', '/images/aid-distribution-elderly.jpg', 3 ),
+                array( '12–15', 'Years of Team Experience', 'Founded in 2020 by a team experienced in community service', '/images/aid-distribution-elderly.jpg', 3 ),
             );
             foreach ( $stats as $s ) : ?>
                 <div class="impact-card">
@@ -278,8 +263,8 @@ get_header();
             <p>
                 Daan Foundation is an India-based charitable organisation committed to helping
                 poor, needy and vulnerable people through food support, community welfare and
-                social assistance programmes. By strengthening our community kitchen and outreach
-                programs, we aim to serve 25,000 beneficiaries annually.
+                social assistance programmes. Our Community Kitchen in Amroha feeds 100–120 people
+                every day, and during Ramadan we serve iftar to 200–300 people every day.
             </p>
             <div class="mission-stats">
                 <div>
@@ -287,8 +272,8 @@ get_header();
                     <div class="mission-stat-label">People Fed Every Day · Since 2020</div>
                 </div>
                 <div>
-                    <div class="mission-stat-num">600K+</div>
-                    <div class="mission-stat-label">Beneficiaries Reached</div>
+                    <div class="mission-stat-num">200–300</div>
+                    <div class="mission-stat-label">Iftar Every Day in Ramadan</div>
                 </div>
             </div>
             <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"

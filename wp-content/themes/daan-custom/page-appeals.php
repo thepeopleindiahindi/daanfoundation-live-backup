@@ -71,7 +71,6 @@ get_header();
 				if ( empty( $appeal['active'] ) ) {
 					continue;
 				}
-				$percent = round( ( $appeal['raised'] / $appeal['target'] ) * 100 );
 			?>
 				<div style="background:#fff;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);overflow:hidden;">
 					<div style="position:relative;height:200px;overflow:hidden;">
@@ -82,16 +81,7 @@ get_header();
 					</div>
 					<div style="padding:20px;">
 						<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 12px;"><?php echo esc_html( $appeal['title'] ); ?></h3>
-						<div style="margin-bottom:12px;">
-							<div style="display:flex;justify-content:space-between;font-size:0.8125rem;color:#64748B;margin-bottom:6px;">
-								<span>₹<?php echo number_format( $appeal['raised'] ); ?> raised</span>
-								<span><?php echo $percent; ?>%</span>
-							</div>
-							<div style="height:8px;background:#F3F4F6;border-radius:9999px;overflow:hidden;">
-								<div style="height:100%;width:<?php echo $percent; ?>%;background:#C2410C;border-radius:9999px;"></div>
-							</div>
-						</div>
-						<p style="font-size:0.875rem;color:#64748B;margin:0 0 16px;">₹<?php echo number_format( $appeal['raised'] ); ?> raised of ₹<?php echo number_format( $appeal['target'] ); ?></p>
+						<?php // No raised/target amounts or progress bars (owner, 2026-11-23, D-037). ?>
 						<a href="/donate/" style="display:inline-flex;align-items:center;gap:6px;border-radius:9999px;background:#C2410C;padding:10px 24px;font-weight:700;color:#fff;text-decoration:none;font-size:0.875rem;transition:background 0.2s;" onmouseover="this.style.background='#9A3412'" onmouseout="this.style.background='#C2410C'">Donate Now</a>
 					</div>
 				</div>

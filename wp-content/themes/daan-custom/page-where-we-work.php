@@ -40,12 +40,12 @@ get_header();
 			<style>@media (min-width:640px){.ww-stats-grid{grid-template-columns:repeat(4,1fr)!important;}}</style>
 			<div class="ww-stats-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
 				<div>
-					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 4px;">6+</div>
-					<div style="font-size:0.9375rem;color:#fff;">States Covered</div>
+					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 4px;">Amroha</div>
+					<div style="font-size:0.9375rem;color:#fff;">Uttar Pradesh</div>
 				</div>
 				<div>
-					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 4px;">600K+</div>
-					<div style="font-size:0.9375rem;color:#fff;">Beneficiaries Reached</div>
+					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 4px;">200–300</div>
+					<div style="font-size:0.9375rem;color:#fff;">Iftar Every Day in Ramadan</div>
 				</div>
 				<div>
 					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 4px;">6+</div>

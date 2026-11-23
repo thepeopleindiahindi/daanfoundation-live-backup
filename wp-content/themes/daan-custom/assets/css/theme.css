@@ -2220,3 +2220,14 @@ table.shop_table.cart .product-quantity{display:none!important}
 /* Bigger header logo moves the nav right: keep the 3rd mega-menu inside the screen up to 1439 px too. */
 @media (min-width:1366px) and (max-width:1439px){.desktop-nav .nav-item:nth-child(3) .mega-menu{left:auto;right:0}}
 
+/* Homepage campaign cards (owner, 2026-11-23): no progress bars, a clear Donate button, 3 columns on desktop. */
+@media (min-width:1024px){.campaign-grid.daan-campaigns{grid-template-columns:repeat(3,1fr)}}
+.daan-campaigns .campaign-card{display:flex;flex-direction:column}
+.daan-campaigns .campaign-image-wrap{display:block}
+.daan-campaigns .campaign-body{display:flex;flex-direction:column;flex:1}
+.daan-campaigns .campaign-body h3 a{color:inherit;text-decoration:none}
+.daan-campaigns .campaign-body p{flex:1}
+.daan-campaigns .campaign-donate-btn{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;min-height:44px;margin-top:12px;padding:10px 28px;border-radius:12px;background:#C2410C;color:#fff;font-weight:700;text-decoration:none;transition:background .2s}
+.daan-campaigns .campaign-donate-btn:hover{background:#9A3412}
+@media (max-width:639px){.daan-campaigns .campaign-donate-btn{align-self:stretch}}
+

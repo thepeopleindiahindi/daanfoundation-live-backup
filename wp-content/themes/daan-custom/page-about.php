@@ -70,7 +70,7 @@ get_header();
 				<!-- 4. Our Journey -->
 				<div>
 					<h2 style="font-size:1.875rem;font-weight:700;color:#111827;margin:0 0 24px;">Our Journey</h2>
-					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 24px;text-align:justify;">In 2020, during the COVID-19 lockdown, thousands of daily wage earners in Amroha, UP, found themselves without work, income, or food. A small group of friends and community members started distributing food packets from their own pockets. That small act of kindness grew into the Daan Foundation — a registered charitable organisation serving thousands every day.</p>
+					<p style="font-size:1rem;color:#475569;line-height:1.625;margin:0 0 24px;text-align:justify;">In 2020, during the COVID-19 lockdown, thousands of daily wage earners in Amroha, UP, found themselves without work, income, or food. A small group of friends and community members started distributing food packets from their own pockets. That small act of kindness grew into the Daan Foundation — a registered charitable organisation whose Community Kitchen in Amroha feeds 100–120 people every day.</p>
 					<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;">
 						<?php
 						$journey_items = array(
@@ -154,7 +154,7 @@ get_header();
 						<?php
 						$achievements = array(
 							'✅ 100–120 people fed every day · Since 2020',
-							'✅ Annual Ramadan Iftar programs serving thousands',
+							'✅ Ramadan iftar for 200–300 people every day',
 							'✅ Regular food and ration distribution drives',
 							'✅ Ongoing support for widows and the elderly',
 							'✅ Helping poor children and families',

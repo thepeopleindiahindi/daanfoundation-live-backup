@@ -510,7 +510,7 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 		'how-to-calculate-fidyah-for-sick-person-in-ramadan-2026-fidyah-payment-kaffara-feeding-zakat-donation-sadqah-charity-guide-india' => 'How to Calculate Fidyah in Ramadan 2026',
 		'meals-with-dignity-how-we-maintain-hygiene-and-respect-at-daan-foundation' => 'Meals with Dignity: Hygiene & Respect',
 		'volunteers-speak-serving-food-changed-my-life' => 'Volunteers Speak: Food Changed My Life',
-		'behind-the-scenes-how-we-cook-1000-meals-a-day' => 'Behind the Scenes: 1000+ Meals a Day',
+		'behind-the-scenes-how-we-cook-1000-meals-a-day' => 'How Our Community Kitchen Cooks for 100–120 People Every Day',
 		'feeding-the-poor-daily-life-inside-a-community-kitchen' => 'Daily Life Inside a Community Kitchen',
 		'what-is-a-community-kitchen-and-how-does-it-work-in-india' => 'What is a Community Kitchen in India?',
 		'the-timeless-virtue-of-feeding-a-fasting-person-a-tradition-over-a-millennium-old' => 'The Virtue of Feeding a Fasting Person',

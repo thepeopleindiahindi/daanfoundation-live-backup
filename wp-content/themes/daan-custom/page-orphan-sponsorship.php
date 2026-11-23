@@ -85,22 +85,9 @@ get_header();
 	<div style="max-width:1280px;margin:0 auto;">
 		<div style="display:grid;grid-template-columns:1fr;gap:24px;text-align:center;">
 			<style>@media (min-width:640px){.orphan-stats-grid{grid-template-columns:repeat(3,1fr)!important;}}</style>
-			<div class="orphan-stats-grid" style="display:grid;grid-template-columns:1fr;gap:24px;">
-				<div>
-					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 8px;">5,000+</div>
-					<div style="font-size:1rem;color:#fff;font-weight:600;">orphans supported</div>
-				</div>
-				<div>
-					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 8px;">6+</div>
-					<div style="font-size:1rem;color:#fff;font-weight:600;">States Covered</div>
-				</div>
-				<div>
-					<div style="font-size:2.5rem;font-weight:800;color:#fff;margin:0 0 8px;">98%</div>
-					<div style="font-size:1rem;color:#fff;font-weight:600;">school attendance</div>
-				</div>
+			<p style="margin:0;color:#fff;font-size:1.125rem;font-weight:600;">We support orphaned children and their families in Amroha with care and dignity.</p>
 			</div>
 		</div>
-	</div>
 </section>
 
 <!-- CTA Section -->
