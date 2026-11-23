@@ -898,7 +898,7 @@ function daan_fk_is_product( $product ) {
 function daan_fk_notice_html() {
 	return '<div class="daan-fk-notice" role="status" style="border:2px solid #F59E0B;background:#FFFBEB;color:#78350F;border-radius:12px;padding:16px 20px;margin:16px 0;text-align:left;font-size:1rem;line-height:1.6;">'
 		. '<strong style="display:block;font-size:1.0625rem;margin-bottom:6px;color:#78350F;">We are no longer accepting Fidyah or Kaffarah donations.</strong>'
-		. 'Our kitchen serves one meal a day, so we cannot serve the two meals that Kaffarah requires. Please read our update on the <a href="/fidya/" style="color:#B45309;font-weight:700;text-decoration:underline;">Fidyah page</a>. For guidance, contact us on WhatsApp '
+		. 'Our kitchen serves food at only one time of the day, so we cannot serve at two separate times, as Kaffarah requires. Please read our update on the <a href="/fidya/" style="color:#B45309;font-weight:700;text-decoration:underline;">Fidyah page</a>. For guidance, contact us on WhatsApp '
 		. '<a href="https://wa.me/919528206525" target="_blank" rel="noopener" style="color:#B45309;font-weight:700;text-decoration:underline;">+91 95282 06525</a>.'
 		. '</div>';
 }

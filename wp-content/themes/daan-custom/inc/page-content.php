@@ -423,7 +423,7 @@ function daan_get_page_data( $slug ) {
 					'heading' => 'What is Kaffarah?',
 					'paragraphs' => array(
 						'Kaffarah (expiation) is due when a Ramadan fast is intentionally broken without a valid reason, or when a sworn oath (Qasam) is broken.',
-						'For a broken oath, the kaffarah is feeding ten needy people two full meals each (morning and evening) (Qur\'an 5:89). One meal is not enough. For a broken fast, and for any other details, please ask a qualified mufti.'
+						'For a broken oath, the kaffarah is feeding ten needy people two full meals each at two separate times of the day (such as morning and evening) (Qur\'an 5:89). One meal is not enough. For a broken fast, and for any other details, please ask a qualified mufti.'
 					)
 				),
 				array(

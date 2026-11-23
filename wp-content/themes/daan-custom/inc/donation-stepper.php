@@ -190,13 +190,13 @@ add_shortcode( 'daan_fk_update', function () {
 	$p     = '<p style="margin:0 0 12px;line-height:1.7;color:#1F2937;">';
 	return '<section class="daan-fk-update" aria-labelledby="daan-fk-update-h" style="border:2px solid #F97316;border-left-width:6px;background:#FFF7ED;border-radius:16px;padding:20px 20px 16px;margin:0 0 28px;">'
 		. '<h2 id="daan-fk-update-h" style="margin:0 0 12px;font-size:1.375rem;line-height:1.3;color:#9A3412;">An Important Update on Fidyah and Kaffarah</h2>'
-		. $p . 'From the first day, Daan Foundation&#8217;s Community Kitchen has served one meal a day. Until recently, to the best of our knowledge, we understood that feeding a person in need one meal fulfils Kaffarah, and that giving one iftar fulfils Fidyah.</p>'
+		. $p . 'From the first day, Daan Foundation&#8217;s Community Kitchen has served food at one time of the day. Until recently, to the best of our knowledge, we understood that feeding a person in need one meal fulfils Kaffarah, and that giving one iftar fulfils Fidyah.</p>'
 		. $p . 'As we sought more guidance from our scholars, our knowledge has grown, and we have learned that:</p>'
 		. '<ul style="margin:0 0 12px 1.25rem;padding:0;line-height:1.7;color:#1F2937;list-style:disc;">'
-		. '<li>Kaffarah for a broken oath requires feeding ten people in need two full meals each.</li>'
+		. '<li>Kaffarah for a broken oath requires feeding ten people in need two full meals at two separate times of the day (such as morning and evening).</li>'
 		. '<li>One fast&#8217;s Fidyah equals Sadaqat al-Fitr (about 1.75 kg of wheat or its value), not one iftar.</li></ul>'
 		. $p . 'We have shared this openly so that you know exactly what was done until now. Whatever we did, we did with sincere intention and to the best of our knowledge. May Allah forgive us, and may Allah accept your Fidyah and Kaffarah.</p>'
-		. $p . '<strong>Because our kitchen serves only one meal a day and we are not able to serve two meals, we are no longer accepting Fidyah or Kaffarah donations.</strong> We will share an update if we are able to make a proper arrangement in the future.</p>'
+		. $p . '<strong>Because our kitchen serves food at only one time of the day and we are not able to serve at two separate times, we are no longer accepting Fidyah or Kaffarah donations.</strong> We will share an update if we are able to make a proper arrangement in the future.</p>'
 		. $p . 'Our Community Kitchen continues to serve a meal to people in need every day, and you can still support it as Sadaqah. For guidance about your own Fidyah or Kaffarah, you may consult a trusted scholar or contact us on WhatsApp <a href="https://wa.me/919528206525" target="_blank" rel="noopener" style="color:#9A3412;font-weight:700;text-decoration:underline;">+91 95282 06525</a>.</p>'
 		. '<p style="margin:16px 0 0;display:flex;flex-wrap:wrap;gap:10px;">'
 		. '<a href="' . esc_url( home_url( '/product/community-kitchen/' ) ) . '" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 20px;border-radius:12px;background:#C2410C;color:#fff;font-weight:700;text-decoration:none;">Support our Community Kitchen as Sadaqah (' . esc_html( $meal ) . ' per meal)</a>'
@@ -218,3 +218,12 @@ add_action( 'woocommerce_before_single_product', function () {
 	}
 } );
 
+
+/* ₹55 post (6544): the H1 shows the current meal price from the setting, like the SEO title (owner, 2026-11-23).
+   post_title and slug are unchanged. */
+add_filter( 'the_title', function ( $title, $id = 0 ) {
+	if ( 6544 === (int) $id && ! is_admin() && function_exists( 'daan_meal_price' ) ) {
+		$title = str_replace( '₹55', '₹' . number_format_i18n( daan_meal_price() ), $title );
+	}
+	return $title;
+}, 10, 2 );
