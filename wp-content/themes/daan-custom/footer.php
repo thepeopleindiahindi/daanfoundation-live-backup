@@ -25,10 +25,9 @@
                 <!-- Logo & Contact -->
                 <div class="footer-brand">
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo-wrap">
-                        <img src="<?php echo esc_url( home_url( '/images/daan-foundation-logo-192.png' ) ); ?>"
+                        <img class="footer-logo-light" src="<?php echo esc_url( home_url( '/images/logo-footer-light.png' ) ); ?>"
                              alt=""
-                             width="192" height="192" loading="lazy"
-                             onerror="this.src='<?php echo esc_url( home_url( '/images/daan-foundation-logo-192.png' ) ); ?>'">
+                             width="164" height="56" loading="lazy" decoding="async">
                         <div class="footer-logo-text">
                             <h3>Daan Foundation</h3>
                             <span>Serving humanity with compassion</span>

@@ -2198,3 +2198,17 @@ p,.prose p,.description,.leading-relaxed{text-align:left}
 .woocommerce div.product div.images img{width:auto;max-width:100%;margin:0 auto}
 @media (min-width:1024px) and (max-width:1279px){.desktop-nav .nav-link,.desktop-nav .nav-item>a{white-space:nowrap;font-size:.875rem}.site-header .donate-btn,.header-donate-btn,.nav-donate-btn{white-space:nowrap}}
 table.shop_table.cart .product-quantity{display:none!important}
+
+/* Footer: newsletter in the same container as the footer, light logo (owner, 2026-11-23) */
+.site-footer .newsletter-inner{padding:3.5rem 1rem;gap:1.5rem;grid-template-columns:1fr}
+.site-footer .newsletter-form{flex-direction:column;width:100%}
+.site-footer .newsletter-form input,.site-footer .newsletter-form button{width:100%;min-height:48px}
+@media (min-width:640px){.site-footer .newsletter-inner{padding-left:1.5rem;padding-right:1.5rem}}
+@media (min-width:1024px){.site-footer .newsletter-inner{padding:4rem 2rem;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem}.site-footer .newsletter-form{flex-direction:row}.site-footer .newsletter-form button{width:auto}#newsletter-msg{grid-column:2}}
+.site-footer .footer-logo-wrap{gap:1rem;align-items:center}
+.site-footer .footer-logo-wrap img.footer-logo-light{height:48px;width:auto;filter:none;background:none;border:0;border-radius:0;box-shadow:none;flex:0 0 auto}
+@media (min-width:768px){.site-footer .footer-logo-wrap img.footer-logo-light{height:56px}}
+
+.site-footer #newsletter-msg:empty{display:none}
+.site-footer .footer-logo-wrap{flex-direction:column;align-items:flex-start;gap:.75rem}
+
