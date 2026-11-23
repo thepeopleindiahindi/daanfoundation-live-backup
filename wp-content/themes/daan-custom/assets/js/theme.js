@@ -133,13 +133,7 @@
         var causeWrap = sel.parentNode;
         root.daanQty = 1;
 
-        function mark() {
-            box.querySelectorAll('.daan-qty-btn').forEach(function(b) {
-                var on = parseInt(b.getAttribute('data-qty'), 10) === root.daanQty;
-                b.style.background = on ? '#F97316' : '#F1F5F9';
-                b.style.color = on ? '#fff' : '#334155';
-            });
-        }
+        // Fixed-price causes: one stepper [ − ] [n] [ + ] with a live total (window.daanStepper, inc/donation-stepper.php).
         function render() {
             var f = fixedFor(sel.value);
             free.style.display = f ? 'none' : '';
@@ -147,26 +141,14 @@
             if (!f) return;
             var max = Math.max(1, Math.floor(LIMIT / f.unit));
             root.daanQty = 1;
-            box.innerHTML = '<p style="margin:0 0 8px;font-size:0.875rem;font-weight:600;color:#334155;">Number of ' + f.many + ' (' + inr(f.unit) + ' per ' + f.one + ')</p>';
-            var grid = document.createElement('div');
-            grid.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;';
-            [1, 2, 3, 5, 10].forEach(function(n) {
-                if (n > max) return;
-                var b = document.createElement('button');
-                b.type = 'button'; b.className = 'daan-qty-btn'; b.setAttribute('data-qty', n);
-                b.style.cssText = 'padding:8px 4px;border-radius:12px;border:none;cursor:pointer;line-height:1.3;font-size:0.8125rem;';
-                b.innerHTML = '<b style="display:block;font-size:0.9375rem;">' + n + ' ' + (n === 1 ? f.one : f.many) + '</b>' + inr(n * f.unit);
-                b.onclick = function() { root.daanQty = n; inp.value = ''; mark(); };
-                grid.appendChild(b);
-            });
-            box.appendChild(grid);
-            var inp = document.createElement('input');
-            inp.type = 'number'; inp.min = 1; inp.max = max; inp.step = 1; inp.placeholder = 'Other number';
-            inp.setAttribute('aria-label', 'Number of ' + f.many);
-            inp.style.cssText = 'width:100%;border-radius:12px;border:2px solid #E2E8F0;padding:10px 12px;font-size:1rem;color:#111;';
-            inp.oninput = function() { root.daanQty = parseInt(inp.value, 10) || 0; mark(); };
-            box.appendChild(inp);
-            mark();
+            box.innerHTML = '';
+            if (typeof window.daanStepper !== 'function') return;
+            box.appendChild(window.daanStepper({
+                label: window.daanQtyLabel(sel.value, f),
+                note: inr(f.unit) + ' per ' + f.one,
+                unit: f.unit, max: max, value: 1,
+                onChange: function(n) { root.daanQty = n; }
+            }));
         }
         // Cause list above the amounts, so the amount area follows the cause.
         if (causeWrap && causeWrap !== root && causeWrap.parentNode === free.parentNode) {

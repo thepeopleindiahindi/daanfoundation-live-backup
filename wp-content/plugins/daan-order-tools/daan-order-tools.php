@@ -1162,6 +1162,9 @@ function daan_kit_type( $product_id ) {
 	if ( $product_id === (int) get_option( 'daan_kit_general_product', 0 ) ) {
 		return 'general';
 	}
+	if ( DAAN_OT_MEAL_PRODUCT === $product_id ) {
+		return 'meal'; // Community Kitchen product: meals x meal price (owner, 2026-11-23).
+	}
 	return '';
 }
 
@@ -1205,11 +1208,25 @@ function daan_fixed_max_qty( $unit ) {
 
 /** Price of one kit of this type, always from the settings. */
 function daan_kit_unit_price( $type ) {
+	if ( 'meal' === $type ) {
+		return daan_meal_price();
+	}
 	return 'iftar' === $type ? daan_iftar_kit_price() : daan_kit_price();
 }
 
+/** "kits" / "meals" for messages; "Number of iftar kits" style label for the product page. */
+function daan_kit_unit_words( $type ) {
+	return 'meal' === $type ? array( 'meal', 'meals' ) : array( 'kit', 'kits' );
+}
+function daan_kit_qty_label( $type ) {
+	if ( 'meal' === $type ) {
+		return 'Number of meals';
+	}
+	return 'iftar' === $type ? 'Number of iftar kits' : 'Number of kits';
+}
+
 function daan_kit_cause( $type ) {
-	$causes = array( 'interest' => 'Ration Kit (Interest Money)', 'fitrana' => 'Zakat al-Fitr', 'iftar' => 'Ramadan Iftar', 'general' => 'Ration Kit' );
+	$causes = array( 'interest' => 'Ration Kit (Interest Money)', 'fitrana' => 'Zakat al-Fitr', 'iftar' => 'Ramadan Iftar', 'general' => 'Ration Kit', 'meal' => 'Community Kitchen' );
 	return $causes[ $type ] ?? '';
 }
 
@@ -1252,7 +1269,8 @@ add_action( 'woocommerce_before_add_to_cart_quantity', function () {
 	global $product;
 	$type = $product ? daan_kit_type( $product->get_id() ) : '';
 	if ( $type ) {
-		echo '<p style="margin:0 0 6px;font-weight:600;">Number of kits (' . daan_rupees( daan_kit_unit_price( $type ) ) . ' each)</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$w = daan_kit_unit_words( $type );
+		printf( '<p class="daan-qty-label" data-unit="%1$d" data-max="%2$d" data-one="%3$s" data-many="%4$s" style="margin:0 0 6px;font-weight:600;">%5$s (%6$s each)</p>', (int) daan_kit_unit_price( $type ), (int) daan_kit_max_qty( $type ), esc_attr( $w[0] ), esc_attr( $w[1] ), esc_html( daan_kit_qty_label( $type ) ), daan_rupees( daan_kit_unit_price( $type ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 } );
 
@@ -1275,7 +1293,7 @@ function daan_kit_mix_message() {
 
 /** True when the cart (plus an optional new type) holds Interest + Fitrana kits, or a Ration Kit with any other kit. */
 function daan_kit_mixed( $types ) {
-	$types = array_values( array_unique( $types ) );
+	$types = array_values( array_diff( array_unique( $types ), array( 'meal' ) ) ); // meals mix with anything
 	if ( in_array( 'general', $types, true ) && count( $types ) > 1 ) {
 		return true;
 	}
@@ -1306,7 +1324,7 @@ add_filter( 'woocommerce_add_to_cart_validation', function ( $passed, $product_i
 		return false;
 	}
 	if ( (int) $quantity < 1 || (int) $quantity > daan_kit_max_qty( $type ) ) {
-		wc_add_notice( 'Please choose between 1 and ' . daan_kit_max_qty( $type ) . ' kits.', 'error' );
+		wc_add_notice( 'Please choose between 1 and ' . daan_kit_max_qty( $type ) . ' ' . daan_kit_unit_words( $type )[1] . '.', 'error' );
 		return false;
 	}
 	if ( 'general' === $type ) {
@@ -1339,6 +1357,7 @@ add_action( 'woocommerce_before_add_to_cart_button', function () {
 	</fieldset>
 	<?php
 } );
+const DAAN_OT_MEAL_PRODUCT = 5925;
 const DAAN_OT_ZAKAT_KIT_LINE = 'Your Zakat is given only to eligible Muslim families, who receive and own the kit.';
 
 add_filter( 'woocommerce_add_cart_item_data', function ( $data, $product_id ) {
@@ -1376,7 +1395,7 @@ add_action( 'woocommerce_check_cart_items', function () {
 		$expected = $qty * $unit;
 		$line     = (float) ( $item['line_subtotal'] ?? ( $item['data']->get_price( 'edit' ) * $qty ) );
 		if ( $qty < 1 || $qty > daan_kit_max_qty( $type ) || abs( $line - $expected ) > 0.01 ) {
-			wc_add_notice( 'The kit amount is not correct. Each kit is ' . daan_rupees( $unit ) . '. Please update your donation.', 'error' );
+			wc_add_notice( 'meal' === $type ? 'The amount is not correct. Each meal is ' . daan_rupees( $unit ) . '. Please update your donation.' : 'The kit amount is not correct. Each kit is ' . daan_rupees( $unit ) . '. Please update your donation.', 'error' );
 		}
 		if ( 'general' === $type && empty( $item['daan_kit_fund'] ) ) {
 			wc_add_notice( 'Please remove the Ration Kit and add it again, choosing Zakat or Sadaqah.', 'error' );

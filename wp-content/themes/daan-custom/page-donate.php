@@ -111,9 +111,8 @@ get_header();
 			<div id="donate-amount-qty" style="display:none;margin-bottom:32px;">
 				<h2 id="donate-qty-title" style="font-size:1.25rem;font-weight:700;color:#111827;margin:0 0 6px;">How many?</h2>
 				<p id="donate-qty-unit" style="margin:0 0 14px;color:#475569;font-size:0.9375rem;"></p>
-				<div id="donate-qty-buttons" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:12px;"></div>
-				<label for="donate-qty-input" style="display:block;font-size:0.875rem;font-weight:600;color:#334155;margin:0 0 6px;">Or enter your own number</label>
-				<input type="number" id="donate-qty-input" min="1" step="1" inputmode="numeric" oninput="donateQtyInput(this)" style="width:100%;max-width:220px;border-radius:12px;border:2px solid #E2E8F0;padding:12px 14px;font-size:1.125rem;font-weight:500;color:#111;">
+				<style>#donate-qty-stepper .daan-stepper-label{display:none}</style>
+				<div id="donate-qty-stepper"></div>
 				<fieldset id="donate-fund" style="display:none;border:2px solid #FDBA74;border-radius:12px;padding:12px 16px;margin:16px 0 0;background:#FFF7ED;">
 					<legend style="font-weight:700;padding:0 6px;color:#111827;">This is my: <span style="color:#B91C1C;">*</span></legend>
 					<label style="display:inline-flex;align-items:center;gap:8px;margin:4px 20px 4px 0;cursor:pointer;"><input type="radio" name="kit_fund" value="zakat" onchange="donateFund(this.value)" <?php checked( 'zakat', $preset_fund ); ?> style="accent-color:#F97316;width:18px;height:18px;"> Zakat</label>
@@ -328,14 +327,8 @@ get_header();
 		var f = fixedNow(); if (!f) return;
 		qty = n;
 		selectedAmount = n > 0 ? n * f.unit : 0;
-		document.querySelectorAll('.donate-qty-btn').forEach(function(b) {
-			var on = parseInt(b.getAttribute('data-qty'), 10) === n;
-			b.style.borderColor = on ? '#F97316' : '#E2E8F0'; b.style.background = on ? '#FFF7ED' : '#fff'; b.style.color = on ? '#C2410C' : '#334155';
-		});
-		if (!fromInput) document.getElementById('donate-qty-input').value = '';
 		showTotal();
 	}
-	window.donateQtyInput = function(input) { setQty(parseInt(input.value, 10) || 0, true); };
 	window.donateFund = function(v) {
 		fund = v;
 		document.getElementById('donate-zakat-line').style.display = v === 'zakat' ? 'block' : 'none';
@@ -346,25 +339,16 @@ get_header();
 		document.getElementById('donate-amount-free').style.display = f ? 'none' : 'block';
 		document.getElementById('donate-amount-qty').style.display = f ? 'block' : 'none';
 		if (!f) { selectedAmount = freeAmount; showTotal(); return; }
-		document.getElementById('donate-qty-title').textContent = 'Number of ' + f.many;
+		var label = window.daanQtyLabel ? window.daanQtyLabel(causeText, f) : 'Number of ' + f.many;
+		document.getElementById('donate-qty-title').textContent = label;
 		document.getElementById('donate-qty-unit').textContent = inr(f.unit) + ' per ' + f.one + '. The amount is worked out for you.';
-		var box = document.getElementById('donate-qty-buttons');
-		box.innerHTML = '';
-		[1, 2, 3, 5, 10].forEach(function(n) {
-			if (n > maxQty(f)) return;
-			var b = document.createElement('button');
-			b.type = 'button'; b.className = 'donate-qty-btn'; b.setAttribute('data-qty', n);
-			b.style.cssText = 'padding:10px 6px;border-radius:12px;border:2px solid #E2E8F0;background:#fff;color:#334155;cursor:pointer;line-height:1.3;transition:all 0.2s;';
-			b.innerHTML = '<span style="display:block;font-weight:700;font-size:1rem;">' + n + ' ' + (n === 1 ? f.one : f.many) + '</span><span style="display:block;font-size:0.9375rem;">' + inr(n * f.unit) + '</span>';
-			b.onclick = function() { setQty(n, false); };
-			box.appendChild(b);
-		});
-		var inp = document.getElementById('donate-qty-input');
-		inp.max = maxQty(f);
 		document.getElementById('donate-fund').style.display = f.fund ? 'block' : 'none';
 		if (f.fund && fund) donateFund(fund);
 		if (qty < 1 || qty > maxQty(f)) qty = 1;
-		if ([1, 2, 3, 5, 10].indexOf(qty) === -1) { inp.value = qty; setQty(qty, true); } else { setQty(qty, false); }
+		var box = document.getElementById('donate-qty-stepper');
+		box.innerHTML = '';
+		// One stepper; the number chosen in a widget arrives as ?qty= and is shown here, still changeable.
+		box.appendChild(window.daanStepper({ label: label, unit: f.unit, max: maxQty(f), value: qty, onChange: function(n) { setQty(n, true); } }));
 	}
 
 	window.selectDonateAmount = function(btn, amt) {
