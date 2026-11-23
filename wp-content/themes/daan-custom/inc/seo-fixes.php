@@ -515,7 +515,7 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 		'what-is-a-community-kitchen-and-how-does-it-work-in-india' => 'What is a Community Kitchen in India?',
 		'the-timeless-virtue-of-feeding-a-fasting-person-a-tradition-over-a-millennium-old' => 'The Virtue of Feeding a Fasting Person',
 		'where-does-your-iftar-donation-go' => 'Where Does Your Iftar Donation Go?',
-		'kaffara-missed-ramadan-fast' => 'Kaffara for a Missed Ramadan Fast',
+		'kaffara-missed-ramadan-fast' => 'Kaffara for a Missed Ramadan Fast: Meaning, Amount & Rules',
 		);
 		if ( isset( $titles[ $slug ] ) ) {
 			return $titles[ $slug ] . ' - Daan Foundation';

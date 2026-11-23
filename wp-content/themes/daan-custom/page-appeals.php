@@ -125,7 +125,6 @@ get_header();
 					</div>
 					<h3 style="font-size:1.125rem;font-weight:700;color:#111827;margin:0 0 8px;">Back to School</h3>
 					<p style="font-size:0.9375rem;color:#475569;margin:0 0 16px;">Help children return to school with books, uniforms, and supplies.</p>
-					<a href="<?php echo esc_url( home_url( '/education-aid/' ) ); ?>" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;color:#C2410C;text-decoration:none;font-size:0.875rem;">Learn More →</a>
 				</div>
 				<div style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);">
 					<div style="width:56px;height:56px;border-radius:9999px;background:linear-gradient(135deg,#F97316,#EA580C);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
