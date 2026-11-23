@@ -398,6 +398,11 @@ function daan_get_page_data( $slug ) {
 					'button_text' => 'Donate Iftar',
 					'button_url'  => '/ramadan/',
 				),
+				array(
+					'type'    => 'shortcode',
+					'heading' => '',
+					'code'    => '[daan_more_box]',
+				),
 			),
 		),
 
@@ -427,6 +432,11 @@ function daan_get_page_data( $slug ) {
 					'description' => 'Iftar donation is general charity (Sadaqah), not Fidyah or Kaffarah.',
 					'button_text' => 'Donate Iftar',
 					'button_url'  => '/ramadan/',
+				),
+				array(
+					'type'    => 'shortcode',
+					'heading' => '',
+					'code'    => '[daan_more_box]',
 				),
 			),
 		),

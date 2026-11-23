@@ -124,6 +124,7 @@ get_header();
 			<button type="button" onclick="goToStep(2)" style="width:100%;border-radius:12px;background:#C2410C;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;">
 				Continue — <span id="step1-amount-display">₹<?php echo number_format($preset_amount); ?></span>
 			</button>
+			<p style="margin:12px 0 0;text-align:center;font-size:0.875rem;color:#475569;">We accept donations only from within India (UPI).</p>
 		</div>
 	</div>
 

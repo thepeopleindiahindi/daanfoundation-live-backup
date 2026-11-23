@@ -693,6 +693,11 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 		'page:bank-interest'                 => 'Donate Bank Interest (Riba) as Ration Kits | Daan Foundation',
 		'post:ration-kit-distribution-india' => 'Ration Kit Donation for Poor Families in India (' . $kit . ') | Daan Foundation',
 		'product:ration-kit-donation'        => 'Donate Ration Kit for Poor Families in India | ' . $kit,
+		// Quick wins (owner, 2026-11-23, D-038): high impressions, low CTR.
+		'page:home'                          => 'Daan Foundation – Iftar Kits, Ration Kits & Community Kitchen, Amroha',
+		'page:about'                         => 'About Daan Foundation – Community Kitchen in Amroha Since 2020',
+		'post:what-is-a-community-kitchen-and-how-does-it-work-in-india' => 'Community Kitchen Meaning & How It Works in India | Daan Foundation',
+		'post:how-%e2%82%b955-can-feed-a-hungry-person-for-a-day-a-ground-reality-from-the-daan-foundations-community-kitchen' => 'How ' . daan_seo27_money( 'daan_meal_price', 60 ) . ' Feeds a Hungry Person a Full Meal – Amroha Community Kitchen',
 	);
 	$key = daan_seo27_key();
 	return isset( $map[ $key ] ) ? $map[ $key ] : $title;
@@ -711,6 +716,12 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		'product:fitrana-ration-kit'         => 'Give your family\'s Fitrana as a complete ration kit (' . $kit . ') for a family in need. Fitrana from ' . $fitra . ' per person, counted from the food items only.',
 		'product:ration-kit-donation'        => 'Donate a complete ration kit (' . $kit . ') to a poor family in India: atta, rice, dal, oil and more. Give it as Zakat or Sadaqah. Daan Foundation, Amroha.',
 		'product:ramadan-iftar'              => 'Sponsor Iftar kits for fasting people in need. Each kit ' . $iftar . ': veg biryani, dates, fruit, egg and a soft drink. Handed out at our Amroha kitchen.',
+		// Quick wins (owner, 2026-11-23, D-038).
+		'page:home'                          => 'Daan Foundation (founded 2020) runs a Community Kitchen in Amroha, UP, feeding 100–120 people every day. Donate an Iftar kit (' . $iftar . ') or a ration kit (' . $kit . ') by UPI.',
+		'page:about'                         => 'Daan Foundation was founded in 2020 in Amroha, UP, by a team with 12–15 years of community service. Our Community Kitchen feeds 100–120 people every day.',
+		'page:kaffarah'                      => 'What is Kaffarah? The rules for a broken fast and a broken oath (feed 10 poor people two full meals each). Kaffarah donations at Daan Foundation are temporarily paused.',
+		'post:what-is-a-community-kitchen-and-how-does-it-work-in-india' => 'Community kitchen meaning: a kitchen that cooks and serves free meals to people in need. See how ours in Amroha feeds 100–120 people every day, ' . daan_seo27_money( 'daan_meal_price', 60 ) . ' a meal.',
+		'post:how-%e2%82%b955-can-feed-a-hungry-person-for-a-day-a-ground-reality-from-the-daan-foundations-community-kitchen' => 'Just ' . daan_seo27_money( 'daan_meal_price', 60 ) . ' feeds one person a full, freshly cooked meal at our Community Kitchen in Amroha, which serves 100–120 people every day.',
 	);
 	$key = daan_seo27_key();
 	return isset( $map[ $key ] ) ? $map[ $key ] : $description;

@@ -160,3 +160,24 @@ add_action( 'wp_head', function () {
 add_shortcode( 'daan_meal_price', function () {
 	return '₹' . number_format_i18n( function_exists( 'daan_meal_price' ) ? daan_meal_price() : 60 );
 } );
+
+/* [daan_more_box] (owner, 2026-11-23, D-038): under Fidyah/Kaffarah information pages. Never says that an
+   Iftar kit or a Ration Kit is Fidyah or Kaffarah; both are given as Sadaqah. Prices from the settings. */
+add_shortcode( 'daan_more_box', function () {
+	$iftar = '₹' . number_format_i18n( function_exists( 'daan_iftar_kit_price' ) ? daan_iftar_kit_price() : 91 );
+	$kit   = '₹' . number_format_i18n( function_exists( 'daan_kit_price' ) ? daan_kit_price() : 1536 );
+	return '<div class="daan-more-box" style="border:2px solid #FDBA74;background:#FFF7ED;border-radius:16px;padding:20px;margin:24px 0;">'
+		. '<p style="margin:0 0 6px;font-weight:700;font-size:1.125rem;color:#111827;">Want to do more?</p>'
+		. '<p style="margin:0 0 14px;color:#334155;">Sponsor an Iftar kit (' . esc_html( $iftar ) . ') or a Ration Kit (' . esc_html( $kit ) . ') as Sadaqah. These are general charity, separate from Fidyah and Kaffarah.</p>'
+		. '<p style="margin:0;display:flex;flex-wrap:wrap;gap:10px;">'
+		. '<a href="' . esc_url( home_url( '/product/ramadan-iftar/' ) ) . '" style="display:inline-flex;align-items:center;min-height:44px;padding:10px 20px;border-radius:12px;background:#C2410C;color:#fff;font-weight:700;text-decoration:none;">Sponsor an Iftar Kit (' . esc_html( $iftar ) . ')</a>'
+		. '<a href="' . esc_url( home_url( '/product/ration-kit-donation/' ) ) . '" style="display:inline-flex;align-items:center;min-height:44px;padding:10px 20px;border-radius:12px;border:2px solid #C2410C;color:#C2410C;font-weight:700;text-decoration:none;">Give a Ration Kit (' . esc_html( $kit ) . ')</a>'
+		. '</p></div>';
+} );
+add_filter( 'the_content', function ( $content ) {
+	if ( ! is_singular( 'post' ) || ! in_the_loop() || ! is_main_query() ) {
+		return $content;
+	}
+	$slugs = array( 'kaffara-for-broken-oath-qasam', 'kaffara-missed-ramadan-fast', 'how-to-calculate-fidyah-for-sick-person-in-ramadan-2026-fidyah-payment-kaffara-feeding-zakat-donation-sadqah-charity-guide-india' );
+	return in_array( get_post_field( 'post_name', get_the_ID() ), $slugs, true ) ? $content . do_shortcode( '[daan_more_box]' ) : $content;
+}, 30 );

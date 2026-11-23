@@ -116,6 +116,7 @@
                     <p class="upi-card-text">Scan the QR code with any UPI app to donate.</p>
                     <p class="upi-card-id"><span class="upi-card-label">UPI ID:</span> <span class="upi-card-value" id="footer-upi-id">sbibhim.instant90923460741799790@sbipay</span> <button type="button" class="upi-copy-btn" data-copy="sbibhim.instant90923460741799790@sbipay" aria-label="Copy UPI ID">Copy</button></p>
                     <p class="upi-card-contact">Contact: <a href="tel:+919528206525">+91 95282 06525</a></p>
+                    <p class="upi-card-contact">We accept donations only from within India (UPI).</p>
                 </div>
             </div>
         </div>
