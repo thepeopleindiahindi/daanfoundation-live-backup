@@ -428,6 +428,52 @@ function daan_get_page_data( $slug ) {
 			),
 		),
 
+		// Moved from the 2024 Elementor page 5856 to the theme design (D-036, 2026-11-23); text unchanged.
+		'bank-interest' => array(
+			'title'         => 'Donate Bank Interest as Ration Kits',
+			'subtitle'      => 'Donate Your Bank Interest with Daan Foundation',
+			'gradient'      => 'from-cyan-600 to-teal-700',
+			'image'         => '/images/ration-kit-front.jpg',
+			'default_cause' => 'ration kit interest money',
+			'sections'      => array(
+				array(
+					'type'       => 'text',
+					'heading'    => 'Bank Interest',
+					'paragraphs' => array(
+						'Interest (riba) earned in a bank account is not permissible to keep or use. Scholars advise giving it away to people in need without any intention of reward (Darul Ifta, Darul Uloom Deoband).',
+						'Interest money must be given away, without any intention of reward, to people in need. Daan Foundation uses it only for ration kits, which each family receives and owns. Your entire interest amount goes into the kit items; the cost of transport and our website is paid by Daan Foundation from its general funds. It is not counted as Zakat and is never used for staff, buildings or running costs.',
+					),
+				),
+				array(
+					'type'    => 'shortcode',
+					'heading' => '',
+					'code'    => '<p><strong>Each kit: [daan_kit_price]. What is in one kit:</strong></p>[daan_kit_items]',
+				),
+				array(
+					'type'        => 'cta',
+					'heading'     => 'Give Ration Kits',
+					'description' => 'Interest money goes only into ration kits that families receive and own.',
+					'button_text' => 'Give Ration Kits (₹' . number_format_i18n( function_exists( 'daan_kit_price' ) ? daan_kit_price() : 1536 ) . ' each)',
+					'button_url'  => '/product/ration-kit-interest-money/',
+				),
+				array(
+					'type'    => 'faq',
+					'heading' => 'Frequently Asked Questions',
+					'items'   => array(
+						array( 'q' => 'Sood ka paisa kisko dena chahiye? (Who should receive interest money?)', 'a' => 'To people in need, without any intention of reward (Darul Ifta, Darul Uloom Deoband). Daan Foundation uses it only for ration kits that each family receives and owns.' ),
+						array( 'q' => 'Can I give interest money to charity?', 'a' => 'Interest money must be given away to people in need, without any intention of reward. Through Daan Foundation it goes only into ration kits.' ),
+						array( 'q' => 'Is interest money counted as Zakat?', 'a' => 'No. Interest money is not counted as Zakat.' ),
+						array( 'q' => 'Who pays for transport and delivery?', 'a' => 'Your entire interest amount goes into the kit items; the cost of transport and our website is paid by Daan Foundation from its general funds.' ),
+					),
+				),
+				array(
+					'type'    => 'shortcode',
+					'heading' => '',
+					'code'    => '<p>More about ration kits: <a href="/ration-kit-distribution-india/">Ration Kit Donation for Poor Families</a>. During Ramadan: <a href="/ramadan/">Donate Iftar</a>.</p>',
+				),
+			),
+		),
+
 		'ramadan' => array(
 			'title'         => 'Donate Iftar This Ramadan',
 			'subtitle'      => 'Give Iftar kits to fasting people in need in Amroha, Uttar Pradesh. Each kit is given as the person\'s own, after Asr at our Community Kitchen.',

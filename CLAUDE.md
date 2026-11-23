@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 > **Islami content rule (owner, 2026-11-20):** Islami content badalne se pehle docs/fiqh/decisions.md padho; uske khilaf kuch mat likho; har naya faisla wahin darj karo. Site par sirf Bhartiya idaron ke hawale/links; bahar ki websites ke link nahi.
 
-> **URL rule (owner, 2026-11-21):** Purane URLs aur unki Google ranking hamari property hain. Koi bhi purana URL redirect, delete, draft ya slug change karne se pehle owner se poochho.
+> **URL rule (owner, 2026-11-21):** Purane URLs aur unki Google ranking hamari property hain. Koi bhi purana URL redirect, delete, draft ya slug change karne se pehle owner se poochho. **Apvaad D-036 (owner, 2026-11-23):** 2024 site ke jin pages/products ka current barabar page saaf tha, unhe 301 (.htaccess, ek hop) kiya gaya (list: docs/fiqh/decisions.md D-036). Aage ke har naye redirect ke liye phir bhi pehle owner se poochho.
 
 ## What this repo is
 
