@@ -55,9 +55,8 @@ add_action( 'wp_head', function () {
 	echo '<link rel="preload" href="' . esc_url( $base . 'opensans-latin.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "
 ";
 	if ( is_front_page() ) {
-		echo '<link rel="preload" as="image" href="/images/hero-mobile-828.webp" imagesrcset="/images/hero-mobile-828.webp 828w, /images/hero-mobile.webp 1024w" imagesizes="100vw" media="(max-width: 767px)" type="image/webp" fetchpriority="high">' . "
-";
-		echo '<link rel="preload" as="image" href="/images/hero-new-banner.webp" media="(min-width: 768px)" type="image/webp" fetchpriority="high">' . "
+		// Homepage hero (owner, 2026-11-23): "Ramadan 2027: Bringing Smiles" image, full image on every width.
+		echo '<link rel="preload" as="image" imagesrcset="/images/hero-r27-480.webp 480w, /images/hero-r27-768.webp 768w, /images/hero-r27-1024.webp 1024w, /images/hero-r27-1536.webp 1536w" imagesizes="(min-width: 1024px) 62vw, 100vw" type="image/webp" fetchpriority="high">' . "
 ";
 	}
 	?>

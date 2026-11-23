@@ -10,15 +10,25 @@ get_header();
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <!-- HERO SECTION — responsive image (mobile crop vs desktop banner) -->
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<section class="hero">
-    <h1 class="sr-only">No one should sleep hungry — Daan Foundation</h1>
-    <picture class="hero-picture">
-        <source media="(max-width: 767px)" srcset="<?php echo esc_url( '/images/hero-mobile-828.webp' ); ?> 828w, <?php echo esc_url( '/images/hero-mobile.webp' ); ?> 1024w" sizes="100vw" type="image/webp">
-        <source media="(max-width: 767px)" srcset="<?php echo esc_url( '/images/hero-mobile.jpg' ); ?>">
-        <img class="hero-img" src="<?php echo esc_url( '/images/hero-new-banner.webp' ); ?>" alt="No one should sleep hungry — Daan Foundation" width="1456" height="819">
+<section class="hero hero-iftar" aria-labelledby="hero-iftar-title">
+    <?php
+    // Owner, 2026-11-23: new hero photo; text in HTML (not in the image). Price from the "Iftar kit price" setting.
+    $daan_iftar_price = function_exists( 'daan_menu_price' ) ? daan_menu_price( 'daan_iftar_kit_price', 91 ) : '₹91';
+    ?>
+    <picture class="hero-iftar-media">
+        <img class="hero-iftar-img" src="/images/hero-r27-1536.webp" srcset="/images/hero-r27-480.webp 480w, /images/hero-r27-768.webp 768w, /images/hero-r27-1024.webp 1024w, /images/hero-r27-1536.webp 1536w" sizes="(min-width: 1024px) 62vw, 100vw" width="1536" height="1024" fetchpriority="high" alt="Ramadan 2027: Bringing Smiles Through Free Iftar. A boy holding an iftar kit and a food container from Daan Foundation's Community Kitchen">
     </picture>
-
-    <div class="hero-overlay-bottom"></div>
+    <div class="hero-iftar-shade" aria-hidden="true"></div>
+    <div class="hero-iftar-text">
+        <div class="hero-iftar-inner">
+            <h1 id="hero-iftar-title">Feed a fasting person this Ramadan</h1>
+            <p class="hero-iftar-sub">100–120 people fed every day · Since 2020</p>
+            <div class="hero-iftar-btns">
+                <a class="hero-iftar-btn" href="<?php echo esc_url( home_url( '/product/ramadan-iftar/' ) ); ?>">Donate Iftar Kit (<?php echo esc_html( $daan_iftar_price ); ?>)</a>
+                <a class="hero-iftar-btn-ghost" href="<?php echo esc_url( home_url( '/donate/' ) ); ?>">Other ways to give</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->

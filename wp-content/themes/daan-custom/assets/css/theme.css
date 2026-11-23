@@ -2230,4 +2230,30 @@ table.shop_table.cart .product-quantity{display:none!important}
 .daan-campaigns .campaign-donate-btn{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;min-height:44px;margin-top:12px;padding:10px 28px;border-radius:12px;background:#C2410C;color:#fff;font-weight:700;text-decoration:none;transition:background .2s}
 .daan-campaigns .campaign-donate-btn:hover{background:#9A3412}
 @media (max-width:639px){.daan-campaigns .campaign-donate-btn{align-self:stretch}}
-
+/* New homepage hero (owner, 2026-11-23): "Ramadan 2027: Bringing Smiles" image (its own text stays visible, never covered).
+   Phones/tablets: full image, then HTML text on dark. Desktop: full image left, text panel right. */
+.hero.hero-iftar{min-height:0!important;aspect-ratio:auto!important;background:#0F172A;display:flex;flex-direction:column;overflow:hidden}
+.hero-iftar .hero-iftar-media{position:relative;display:block;width:100%}
+.hero-iftar .hero-iftar-img{display:block;width:100%;height:auto;aspect-ratio:1536/1024}
+.hero-iftar .hero-iftar-shade{display:none}
+.hero-iftar .hero-iftar-text{position:relative;z-index:2;padding:24px 16px 36px}
+.hero-iftar .hero-iftar-inner{max-width:var(--max-width);margin:0 auto}
+.hero-iftar h1{color:#fff;font-size:1.75rem;line-height:1.15;font-weight:800;margin:0 0 10px;letter-spacing:-.01em}
+.hero-iftar .hero-iftar-sub{color:#E2E8F0;font-size:1.0625rem;font-weight:600;margin:0 0 20px}
+.hero-iftar .hero-iftar-btns{display:flex;flex-direction:column;gap:12px}
+.hero-iftar .hero-iftar-btn,.hero-iftar .hero-iftar-btn-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 26px;border-radius:12px;font-weight:700;font-size:1.0625rem;text-decoration:none;transition:background .2s,color .2s}
+.hero-iftar .hero-iftar-btn{background:#C2410C;color:#fff}
+.hero-iftar .hero-iftar-btn:hover{background:#9A3412}
+.hero-iftar .hero-iftar-btn-ghost{border:2px solid rgba(255,255,255,.85);color:#fff;background:transparent}
+.hero-iftar .hero-iftar-btn-ghost:hover{background:#fff;color:#0F172A}
+@media (min-width:640px){.hero-iftar .hero-iftar-text{padding:28px 24px 40px}.hero-iftar h1{font-size:2.25rem}.hero-iftar .hero-iftar-btns{flex-direction:row;flex-wrap:wrap}}
+@media (min-width:1024px){
+ .hero.hero-iftar{display:grid;grid-template-columns:62% 38%;align-items:stretch}
+ .hero-iftar .hero-iftar-media{grid-column:1;grid-row:1}
+ .hero-iftar .hero-iftar-text{grid-column:2;grid-row:1;display:flex;align-items:center;padding:32px clamp(24px,3vw,56px)}
+ .hero-iftar .hero-iftar-inner{margin:0}
+ .hero-iftar h1{font-size:2.5rem}
+ .hero-iftar .hero-iftar-sub{font-size:1.125rem}
+ .hero-iftar .hero-iftar-btns{flex-direction:column;align-items:flex-start}
+}
+@media (min-width:1280px){.hero-iftar h1{font-size:3rem}.hero-iftar .hero-iftar-btns{flex-direction:row}}
