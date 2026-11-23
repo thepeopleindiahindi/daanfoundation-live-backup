@@ -281,8 +281,8 @@ add_action( 'wp_head', function () {
 
 /* [daan_ration_about] (owner text, verbatim; D-040). On the Ration Kit product and the ration hub post. */
 add_shortcode( 'daan_ration_about', function () {
-	return '<section class="daan-ration-about" style="border:1px solid #E2E8F0;border-left:5px solid #C2410C;background:#fff;border-radius:14px;padding:16px 18px;margin:16px 0;">'
-		. '<h2 style="margin:0 0 8px;font-size:1.25rem;color:#111827;">About this Ration Kit</h2>'
+	return '<section id="ration-kit-note" class="daan-ration-about" style="border:2px solid #F97316;border-left-width:6px;background:#FFF7ED;border-radius:14px;padding:16px 18px;margin:0 0 20px;scroll-margin-top:110px;">'
+		. '<h2 style="margin:0 0 8px;font-size:1.25rem;color:#9A3412;">About this Ration Kit</h2>'
 		. '<p style="margin:0 0 10px;color:#334155;line-height:1.7;">Daan Foundation receives your donation and delivers a complete ration kit to a family in need. Our kits are given to families based on need, and we do not keep Zakat and Sadaqah kits separately.</p>'
 		. '<p style="margin:0;color:#334155;line-height:1.7;">Which head (Zakat, Sadaqah or any other) you give this under is a matter between you and Allah. Please consult a trusted Maulana or Mufti about whether it is suitable for your intention. Daan Foundation does not take responsibility for the head under which a donation is given; our responsibility is to deliver the kit to a family in need.</p>'
 		. '</section>';
@@ -291,10 +291,10 @@ add_action( 'woocommerce_single_product_summary', function () {
 	if ( 'ration-kit-donation' === get_post_field( 'post_name', get_queried_object_id() ) ) {
 		echo do_shortcode( '[daan_ration_about]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
-}, 35 );
+}, 4 ); // top of the summary: under the heading, before the price and the stepper/Donate button
 add_filter( 'the_content', function ( $content ) {
 	if ( is_singular( 'post' ) && in_the_loop() && is_main_query() && 'ration-kit-distribution-india' === get_post_field( 'post_name', get_the_ID() ) ) {
-		$content .= do_shortcode( '[daan_ration_about]' );
+		$content = do_shortcode( '[daan_ration_about]' ) . $content; // top of the hub, before its Donate button
 	}
 	return $content;
 }, 25 );

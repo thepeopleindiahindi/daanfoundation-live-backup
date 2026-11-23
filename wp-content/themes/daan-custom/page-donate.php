@@ -17,7 +17,6 @@ if ( $fk_link_held ) {
 // Fixed-price causes (meals, kits): chosen as a number; amount = number × price from the settings (server checks it).
 $fixed_causes  = function_exists( 'daan_fixed_causes' ) ? daan_fixed_causes() : array();
 $preset_qty    = isset( $_GET['qty'] ) ? max( 1, min( 100000, intval( $_GET['qty'] ) ) ) : 1;
-$preset_fund   = function_exists( 'daan_kit_fund' ) && isset( $_GET['fund'] ) ? daan_kit_fund( wp_unslash( $_GET['fund'] ) ) : '';
 if ( '' !== $preset_cause && ! in_array( $preset_cause, $causes, true ) ) {
     $causes[] = $preset_cause; // A valid cause without its own line on the form, reached from a link.
 }
@@ -113,12 +112,7 @@ get_header();
 				<p id="donate-qty-unit" style="margin:0 0 14px;color:#475569;font-size:0.9375rem;"></p>
 				<style>#donate-qty-stepper .daan-stepper-label{display:none}</style>
 				<div id="donate-qty-stepper"></div>
-				<fieldset id="donate-fund" style="display:none;border:2px solid #FDBA74;border-radius:12px;padding:12px 16px;margin:16px 0 0;background:#FFF7ED;">
-					<legend style="font-weight:700;padding:0 6px;color:#111827;">This is my: <span style="color:#B91C1C;">*</span></legend>
-					<label style="display:inline-flex;align-items:center;gap:8px;margin:4px 20px 4px 0;cursor:pointer;"><input type="radio" name="kit_fund" value="zakat" onchange="donateFund(this.value)" <?php checked( 'zakat', $preset_fund ); ?> style="accent-color:#F97316;width:18px;height:18px;"> Zakat</label>
-					<label style="display:inline-flex;align-items:center;gap:8px;margin:4px 0;cursor:pointer;"><input type="radio" name="kit_fund" value="sadaqah" onchange="donateFund(this.value)" <?php checked( 'sadaqah', $preset_fund ); ?> style="accent-color:#F97316;width:18px;height:18px;"> Sadaqah</label>
-					<p id="donate-zakat-line" style="display:none;margin:8px 0 0;font-size:0.9375rem;color:#7C2D12;">Your Zakat is given only to eligible Muslim families, who receive and own the kit.</p>
-				</fieldset>
+				<p id="donate-rk-note" style="display:none;margin:10px 0 0;font-size:0.9375rem;"><a href="/product/ration-kit-donation/#ration-kit-note" style="color:#9A3412;font-weight:600;text-decoration:underline;">Please read: which head you give under is your decision</a></p>
 			</div>
 
 			<button type="button" onclick="goToStep(2)" style="width:100%;border-radius:12px;background:#C2410C;color:#fff;padding:16px 0;font-size:1.125rem;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(249,115,22,0.3);transition:background 0.2s;">
@@ -311,7 +305,6 @@ get_header();
 	var FIXED = <?php echo wp_json_encode( (object) $fixed_causes ); ?>;
 	var maxDonationAll = <?php echo (int) DAAN_MAX_DONATION; ?>;
 	var qty = <?php echo (int) $preset_qty; ?>;
-	var fund = <?php echo wp_json_encode( $preset_fund ); ?>;
 	function inr(n) { return '₹' + n.toLocaleString('en-IN'); }
 	function fixedNow() { return Object.prototype.hasOwnProperty.call(FIXED, causeText) ? FIXED[causeText] : null; }
 	function maxQty(f) { return Math.max(1, Math.floor(maxDonationAll / f.unit)); }
@@ -322,7 +315,7 @@ get_header();
 			? qty + ' ' + (qty === 1 ? f.one : f.many) + ' × ' + inr(f.unit) + ' = ' + inr(selectedAmount)
 			: inr(selectedAmount > 0 ? selectedAmount : 0);
 		var sc = document.getElementById('summary-cause');
-		if (sc) sc.textContent = causeText + (f && f.fund && fund ? ' (' + (fund === 'zakat' ? 'Zakat' : 'Sadaqah') + ')' : '');
+		if (sc) sc.textContent = causeText;
 	}
 	function setQty(n, fromInput) {
 		var f = fixedNow(); if (!f) return;
@@ -330,21 +323,15 @@ get_header();
 		selectedAmount = n > 0 ? n * f.unit : 0;
 		showTotal();
 	}
-	window.donateFund = function(v) {
-		fund = v;
-		document.getElementById('donate-zakat-line').style.display = v === 'zakat' ? 'block' : 'none';
-		showTotal();
-	};
 	function applyCauseMode() {
 		var f = fixedNow();
 		document.getElementById('donate-amount-free').style.display = f ? 'none' : 'block';
 		document.getElementById('donate-amount-qty').style.display = f ? 'block' : 'none';
-		if (!f) { selectedAmount = freeAmount; showTotal(); return; }
+		if (!f) { selectedAmount = freeAmount; showTotal(); document.getElementById('donate-rk-note').style.display = 'none'; return; }
 		var label = window.daanQtyLabel ? window.daanQtyLabel(causeText, f) : 'Number of ' + f.many;
 		document.getElementById('donate-qty-title').textContent = label;
 		document.getElementById('donate-qty-unit').textContent = inr(f.unit) + ' per ' + f.one + '. The amount is worked out for you.';
-		document.getElementById('donate-fund').style.display = f.fund ? 'block' : 'none';
-		if (f.fund && fund) donateFund(fund);
+		document.getElementById('donate-rk-note').style.display = causeText === 'Ration Kit' ? 'block' : 'none';
 		if (qty < 1 || qty > maxQty(f)) qty = 1;
 		var box = document.getElementById('donate-qty-stepper');
 		box.innerHTML = '';
@@ -393,7 +380,6 @@ get_header();
 		if (step > 1 && !causeText) { alert('Please choose a cause.'); return; }
 		var fx = fixedNow();
 		if (step > 1 && fx && (qty < 1 || qty > maxQty(fx))) { alert('Please choose between 1 and ' + maxQty(fx) + ' ' + fx.many + '.'); return; }
-		if (step > 1 && fx && fx.fund && !fund) { alert('Please choose whether this is your Zakat or Sadaqah.'); document.getElementById('donate-fund').scrollIntoView({block: 'center'}); return; }
 		[1,2,3].forEach(function(s) {
 			var el = document.getElementById('step-' + s);
 			if (el) el.style.display = s === step ? 'block' : 'none';
@@ -475,7 +461,6 @@ get_header();
 		if (fxc) {
 			if (qty < 1 || qty > maxQty(fxc)) { alert('Please choose between 1 and ' + maxQty(fxc) + ' ' + fxc.many + '.'); processing.style.display = 'none'; btn.disabled = false; btn.textContent = 'Confirm Donation'; return; }
 			formData.append('qty', qty);
-			if (fxc.fund) formData.append('kit_fund', fund);
 		}
 		formData.append('first_name', first);
 		formData.append('last_name', last);

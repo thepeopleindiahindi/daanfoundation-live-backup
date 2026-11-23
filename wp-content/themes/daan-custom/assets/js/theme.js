@@ -149,6 +149,12 @@
                 unit: f.unit, max: max, value: 1,
                 onChange: function(n) { root.daanQty = n; }
             }));
+            if (sel.value === 'Ration Kit') {
+                var rk = document.createElement('p');
+                rk.style.cssText = 'margin:8px 0 0;font-size:0.875rem;';
+                rk.innerHTML = '<a href="/product/ration-kit-donation/#ration-kit-note" style="color:#9A3412;font-weight:600;text-decoration:underline;">Please read: which head you give under is your decision</a>';
+                box.appendChild(rk);
+            }
         }
         // Cause list above the amounts, so the amount area follows the cause.
         if (causeWrap && causeWrap !== root && causeWrap.parentNode === free.parentNode) {
