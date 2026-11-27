@@ -597,7 +597,7 @@ function daan_get_page_data( $slug ) {
 				array(
 					'type'    => 'shortcode',
 					'heading' => 'Read more',
-					'code'    => '<ul><li><a href="/whats-inside-iftar-kit/">What\'s inside an Iftar kit</a></li><li><a href="/roza-iftar-karane-ka-sawab/">Roza iftar karane ka sawab (Tirmidhi 807)</a></li><li><a href="/where-does-your-iftar-donation-go/">Where does your iftar donation go?</a></li><li><a href="/donate-iftar-safely-upi/">How to donate iftar safely by UPI</a></li><li><a href="/inside-amroha-community-kitchen/">Inside our Amroha Community Kitchen</a></li><li><a href="/ration-kit-distribution-india/">Ration kits for families (all year)</a></li></ul>',
+					'code'    => '<ul><li><a href="/ramadan-2027-iftar-donation-guide-india/">Ramadan 2027 iftar donation guide</a></li><li><a href="/iftar-ki-dua-roza-kholne-ki-dua/">Iftar ki dua (roza kholne ki dua)</a></li><li><a href="/whats-inside-iftar-kit/">What\'s inside an Iftar kit</a></li><li><a href="/roza-iftar-karane-ka-sawab/">Roza iftar karane ka sawab (Tirmidhi 807)</a></li><li><a href="/where-does-your-iftar-donation-go/">Where does your iftar donation go?</a></li><li><a href="/donate-iftar-safely-upi/">How to donate iftar safely by UPI</a></li><li><a href="/inside-amroha-community-kitchen/">Inside our Amroha Community Kitchen</a></li><li><a href="/ration-kit-distribution-india/">Ration kits for families (all year)</a></li></ul>',
 				),
 				array(
 					'type'    => 'notice',
