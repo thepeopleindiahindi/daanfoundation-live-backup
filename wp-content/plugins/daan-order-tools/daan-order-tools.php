@@ -479,6 +479,10 @@ function daan_ot_exec_is_due( $order ) {
 	if ( ! $order instanceof WC_Order || ! $order->has_status( 'completed' ) || $order->get_meta( DAAN_OT_EXEC_FLAG ) || ! daan_order_after_cutoff( $order ) ) {
 		return false;
 	}
+	// D-042: orders completed after the new update rule went live are handled only by donor-updates.php.
+	if ( function_exists( 'daan_upd_completed_at' ) && daan_upd_completed_at( $order ) >= daan_upd_live_at() ) {
+		return false;
+	}
 	if ( time() < $order->get_date_created()->getTimestamp() + DAAN_OT_EXEC_DELAY || $order->get_total_refunded() > 0 || ! is_email( $order->get_billing_email() ) ) {
 		return false;
 	}
@@ -840,6 +844,7 @@ add_action( 'admin_menu', function () {
 				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_ENABLED_OPTION ); ?>" value="yes" <?php checked( daan_ot_automation_on() ); ?>> Send execution e-mails and auto-cancel unpaid donations</label></p>
 				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_PAUSE_OPTION ); ?>" value="yes" <?php checked( daan_ot_autocancel_paused() ); ?>> Pause auto-cancel</label></p>
 				<p class="description">No button pressed: cancelled 6 hours after the second digest. "Payment not received": cancelled after 24 hours. While paused, nothing is cancelled and digests are not counted; timers continue from where they stopped. Execution e-mails are not affected.</p>
+				<?php if ( function_exists( 'daan_upd_settings_rows' ) ) { daan_upd_settings_rows(); } ?>
 				<h2>Fidyah &amp; Kaffarah</h2>
 				<p><label><input type="checkbox" name="<?php echo esc_attr( DAAN_OT_FK_PAUSE_OPTION ); ?>" value="yes" <?php checked( daan_fk_paused() ); ?>> Pause Fidyah &amp; Kaffarah donations</label></p>
 				<p class="description">While ticked, no NEW Fidyah &amp; Kaffarah donation can be made (form, links, product page, checkout) and donors see a notice. Existing orders are not affected: digest, buttons, auto-cancel, receipts and execution e-mails continue. Untick to reopen.</p>
@@ -1592,3 +1597,6 @@ foreach ( array( 'wp_ajax_daan_fitrana_calc', 'wp_ajax_nopriv_daan_fitrana_calc'
 add_filter( 'elementor/frontend/the_content', function ( $content ) {
 	return false === strpos( $content, '[daan_kit_price]' ) ? $content : str_replace( '[daan_kit_price]', daan_rupees( daan_kit_price() ), $content );
 } );
+
+// D-042 donor update emails (2026-11-27).
+require_once __DIR__ . '/donor-updates.php';

@@ -635,6 +635,9 @@ function daan_pay_digest_html( $evening = false ) {
 		$h .= '</table>';
 	}
 	$h .= daan_mail_failed_digest_html();
+	if ( function_exists( 'daan_upd_digest_line' ) ) {
+		$h .= daan_upd_digest_line(); // D-042
+	}
 	$h .= '<p><strong>' . count( $orders ) . '</strong> on-hold donations · <strong>' . count( $old ) . '</strong> older than 3 days · <strong>' . $withutr . '</strong> with a UTR from the donor.</p>';
 	$h .= '<p>Compare each UTR with your bank/UPI statement; if the money is there, open the donation and set it to <em>Completed</em> (the donor then gets the receipt e-mail). With no button pressed, a donation is cancelled at 3 PM on the day of its second 9 AM digest; after "Not received" (the donor gets one e-mail asking for the screenshot or UTR), 24 hours later.</p>';
 	$h .= $table;
