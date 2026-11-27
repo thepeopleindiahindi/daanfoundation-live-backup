@@ -311,6 +311,22 @@ function daan_ration_appeal() {
 	);
 }
 
+/* srcset for /images/hero-p-*.webp (480/640/800, plus 1200 when that file exists; 2026-11-27). */
+function daan_hero_srcset( $image ) {
+	if ( ! preg_match( '#^(/images/hero-p-[a-z-]+)\.webp$#', $image, $m ) ) {
+		return '';
+	}
+	$set = $m[1] . '-480.webp 480w, ' . $m[1] . '-640.webp 640w, ' . $image . ' 800w';
+	if ( file_exists( ABSPATH . ltrim( $m[1], '/' ) . '-1200.webp' ) ) {
+		$set .= ', ' . $m[1] . '-1200.webp 1200w';
+	}
+	return $set;
+}
+/* Ration kit photo (owner, 2026-11-27): Head Office Amroha, Ramadan 2026 distribution. */
+function daan_ration_photo() {
+	return array( 'src' => '/images/hero-p-ration-warehouse.webp', 'alt' => "Ration kits packed and ready for distribution at Daan Foundation's head office in Amroha" );
+}
+
 /* Product page hero: subtitle (prices from settings) + a real site photo (owner, 2026-11-23). */
 function daan_product_hero( $id ) {
 	$slug  = get_post_field( 'post_name', $id );
@@ -319,7 +335,7 @@ function daan_product_hero( $id ) {
 	$meal  = '₹' . number_format_i18n( function_exists( 'daan_meal_price' ) ? daan_meal_price() : 60 );
 	$items = function_exists( 'daan_kit_groups' ) ? (int) daan_kit_groups()['count'] : 18;
 	$map   = array(
-		'ration-kit-donation'       => array( $kit . ' per kit · ' . $items . ' essential items', '/images/hero-p-ration-kit.webp', 'Families receiving ration kits from Daan Foundation' ),
+		'ration-kit-donation'       => array( $kit . ' per kit · ' . $items . ' essential items', '/images/hero-p-ration-warehouse.webp', "Ration kits packed and ready for distribution at Daan Foundation's head office in Amroha" ),
 		'ramadan-iftar'             => array( $iftar . ' per kit · Iftar for fasting people in Amroha', '/images/hero-p-iftar-kit.webp', 'Iftar being served at Daan Foundation in Ramadan' ),
 		'community-kitchen'         => array( $meal . ' per meal · 100–120 people fed every day', '/images/hero-p-community-kitchen.webp', 'Meals being served at Daan Foundation\'s Community Kitchen' ),
 		'fitrana-ration-kit'        => array( $kit . ' per kit · Give your family\'s Fitrana as a ration kit', '/images/hero-p-fitrana-kit.webp', 'Ration delivered to a family by Daan Foundation' ),
@@ -335,8 +351,9 @@ add_action( 'wp_head', function () {
 		return;
 	}
 	$img = daan_product_hero( get_queried_object_id() )['image'];
-	if ( preg_match( '#^(/images/hero-p-[a-z-]+)\.webp$#', $img, $m ) ) {
-		echo '<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="' . esc_attr( $m[1] . '-480.webp 480w, ' . $m[1] . '-640.webp 640w, ' . $img . ' 800w' ) . '" imagesizes="(min-width: 768px) 448px, calc(100vw - 32px)">' . "\n";
+	$set = daan_hero_srcset( $img );
+	if ( $set ) {
+		echo '<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="' . esc_attr( $set ) . '" imagesizes="(min-width: 768px) 448px, calc(100vw - 32px)">' . "\n";
 	}
 }, 2 );
 

@@ -242,7 +242,7 @@ get_header();
         <div class="daan-emergency-grid">
             <?php if ( $daan_rk ) : ?>
             <div class="daan-emergency-card">
-                <img src="<?php echo esc_url( home_url( '/images/ration-kit-front.jpg' ) ); ?>" alt="Families receiving ration kits from Daan Foundation" loading="lazy">
+                <img src="/images/hero-p-ration-warehouse-640.webp" srcset="<?php echo esc_attr( daan_hero_srcset( '/images/hero-p-ration-warehouse.webp' ) ); ?>" sizes="(min-width: 1024px) 600px, calc(100vw - 32px)" alt="<?php echo esc_attr( daan_ration_photo()['alt'] ); ?>" width="800" height="500" loading="lazy" decoding="async">
                 <div class="gradient-overlay-dark daan-emergency-shade"></div>
                 <div class="daan-emergency-body">
                     <span class="daan-emergency-tag">Urgent</span>

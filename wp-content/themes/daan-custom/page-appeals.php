@@ -41,8 +41,9 @@ get_header();
 			array(
 				'active' => (bool) $daan_rk,
 				'title'  => $daan_rk ? $daan_rk['title'] : '',
-				'image'  => '/images/ration-kit-front.jpg',
-				'alt'    => 'Families receiving ration kits from Daan Foundation',
+				'image'  => '/images/hero-p-ration-warehouse-640.webp',
+				'srcset' => daan_hero_srcset( '/images/hero-p-ration-warehouse.webp' ),
+				'alt'    => daan_ration_photo()['alt'],
 				'urgent' => true,
 				'desc'   => $daan_rk ? $daan_rk['text'] : '',
 				'price'  => $daan_rk ? $daan_rk['price'] : '',
@@ -88,7 +89,7 @@ get_header();
 			?>
 				<div style="background:#fff;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);overflow:hidden;">
 					<div style="position:relative;height:200px;overflow:hidden;">
-						<img src="<?php echo esc_url( $appeal['image'] ); ?>" alt="<?php echo esc_attr( $appeal['alt'] ); ?>" width="800" height="600" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+						<img src="<?php echo esc_url( $appeal['image'] ); ?>"<?php if ( ! empty( $appeal['srcset'] ) ) : ?> srcset="<?php echo esc_attr( $appeal['srcset'] ); ?>" sizes="(min-width: 768px) 50vw, calc(100vw - 32px)"<?php endif; ?> alt="<?php echo esc_attr( $appeal['alt'] ); ?>" width="800" height="600" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
 						<?php if ( ! empty( $appeal['urgent'] ) ) : ?>
 							<div style="position:absolute;top:12px;right:12px;background:#B91C1C;color:#fff;border-radius:9999px;padding:4px 12px;font-size:0.75rem;font-weight:700;">Urgent</div>
 						<?php endif; ?>

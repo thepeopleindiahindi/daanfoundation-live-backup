@@ -21,6 +21,39 @@ add_filter( 'rank_math/frontend/robots', function ( $robots ) {
 	return $robots;
 } );
 
+/* Featured image of a post = its LCP (ration photo on hub + ration posts, 2026-11-27): preload + right sizes. */
+function daan_post_thumb_sizes() {
+	return '(min-width: 1280px) 789px, (min-width: 1024px) calc(66vw - 60px), calc(100vw - 32px)';
+}
+add_filter( 'wp_get_attachment_image_attributes', function ( $attr, $att, $size ) {
+	if ( 'full' === $size && is_singular( 'post' ) && (int) get_post_thumbnail_id( get_queried_object_id() ) === (int) $att->ID ) {
+		$attr['sizes']         = daan_post_thumb_sizes();
+		$attr['fetchpriority'] = 'high';
+		$attr['decoding']      = 'async';
+		unset( $attr['loading'] );
+	}
+	return $attr;
+}, 20, 3 );
+add_action( 'wp_head', function () {
+	if ( ! is_singular( 'post' ) || ! has_post_thumbnail( get_queried_object_id() ) ) {
+		return;
+	}
+	$tid = get_post_thumbnail_id( get_queried_object_id() );
+	$set = wp_get_attachment_image_srcset( $tid, 'full' );
+	$src = wp_get_attachment_image_url( $tid, 'full' );
+	if ( $src ) {
+		echo '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url( $src ) . '"' . ( $set ? ' imagesrcset="' . esc_attr( $set ) . '" imagesizes="' . esc_attr( daan_post_thumb_sizes() ) . '"' : '' ) . ">\n";
+	}
+}, 2 );
+
+/* Old Ramadan 2026 guide (post 6555): pointer to the 2027 guide at the top (owner OK, 2026-11-27). URL/title unchanged. */
+add_filter( 'the_content', function ( $content ) {
+	if ( is_singular( 'post' ) && in_the_loop() && is_main_query() && 'ramadan-2026-iftar-donation-guide-how-to-support-families-in-need' === get_post_field( 'post_name', get_the_ID() ) ) {
+		$content = '<p class="daan-guide-2027" style="background:#FFF7ED;border:1px solid #FDBA74;border-left:6px solid #C2410C;border-radius:12px;padding:14px 18px;margin:0 0 24px;font-weight:700;color:#7C2D12;"><a href="' . esc_url( home_url( '/ramadan-2027-iftar-donation-guide-india/' ) ) . '" style="color:#9A3412;text-decoration:underline;text-underline-offset:3px;">For Ramadan 2027, see our updated guide &rarr;</a></p>' . $content;
+	}
+	return $content;
+}, 1 );
+
 /* Internal links (D-038): every related post links to its hub; the ration hub shows its Hinglish FAQ. */
 function daan_related_groups() {
 	return array(
@@ -136,3 +169,16 @@ add_filter( 'rank_math/frontend/description', function ( $d ) {
 	);
 	return isset( $map[ $slug ] ) ? $map[ $slug ] : $d;
 }, 40 );
+
+/* Ration photo attachment: add the lighter 480/640 WebP files to its srcset (mobile LCP on the ration hub, 2026-11-27). */
+add_filter( 'wp_calculate_image_srcset', function ( $sources, $size_array, $image_src, $meta, $attachment_id ) {
+	if ( false !== strpos( (string) ( $meta['file'] ?? '' ), 'ration-kits-head-office-amroha' ) ) {
+		foreach ( array( 480, 640 ) as $w ) {
+			if ( file_exists( ABSPATH . 'images/hero-p-ration-warehouse-' . $w . '.webp' ) ) {
+				$sources[ $w ] = array( 'url' => home_url( '/images/hero-p-ration-warehouse-' . $w . '.webp' ), 'descriptor' => 'w', 'value' => $w );
+			}
+		}
+		ksort( $sources );
+	}
+	return $sources;
+}, 10, 5 );

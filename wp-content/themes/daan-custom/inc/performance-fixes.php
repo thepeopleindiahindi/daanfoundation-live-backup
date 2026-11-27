@@ -119,3 +119,12 @@ add_action( 'wp_print_footer_scripts', function () {
 		wp_dequeue_script( $h );
 	}
 }, 1 );
+
+// Blog posts have no WooCommerce markup: drop its 3 render-blocking stylesheets there (ration hub LCP, 2026-11-27).
+add_action( 'wp_print_styles', function () {
+	if ( is_singular( 'post' ) ) {
+		foreach ( array( 'woocommerce-general', 'woocommerce-layout', 'woocommerce-smallscreen' ) as $h ) {
+			wp_dequeue_style( $h );
+		}
+	}
+}, 101 );
