@@ -153,7 +153,7 @@ get_header();
             $campaigns = array(
                 array( 'Community Kitchen', '100–120 people every day · ' . daan_menu_price( 'daan_meal_price', 60 ) . ' a meal', '/images/food-distribution-ramadan.jpg', '/community-kitchen/', '/product/community-kitchen/', 'Donate' ),
                 array( 'Ramadan Iftar', '200–300 people every day in Ramadan · ' . daan_menu_price( 'daan_iftar_kit_price', 91 ) . ' a kit', '/images/iftaar-distribution.jpg', '/ramadan/', '/product/ramadan-iftar/', 'Donate' ),
-                array( 'Ration Kit', daan_menu_price( 'daan_kit_price', 1536 ) . ' per kit · 18 essential items for a family', '/images/ration-kit-front.jpg', '/ration-kit-distribution-india/', '/product/ration-kit-donation/', 'Donate' ),
+                array( 'Ration Kit', daan_menu_price( 'daan_kit_price', 1536 ) . ' per kit · 18 essential items for a family', '/images/hero-p-ration-warehouse.webp', '/ration-kit-distribution-india/', '/product/ration-kit-donation/', 'Donate' ),
                 array( 'Zakat', 'Given only to eligible Muslim families, as their own', '/images/aid-distribution-elderly.jpg', '/zakat/', '/product/zakat/', 'Donate' ),
                 array( 'Winter Appeal', 'Warm blankets and clothing for families in the cold', '/images/community-queue.jpg', '/winter-appeal/', '/donate/?cause=Winter%20Appeal', 'Donate' ),
                 array( 'Fidyah & Kaffarah', 'Fidyah & Kaffarah: not accepted. Read our update and the rules.', '/images/extra-2.jpg', '/fidya/', '/fidya/', $fk_paused ? 'Read the rules' : 'Learn more' ),
@@ -161,7 +161,8 @@ get_header();
             foreach ( $campaigns as $c ) : ?>
                 <div class="campaign-card">
                     <a href="<?php echo esc_url( home_url( $c[3] ) ); ?>" class="campaign-image-wrap" tabindex="-1" aria-hidden="true">
-                        <img src="<?php echo esc_url( $c[2] ); ?>" alt="" loading="lazy">
+                        <?php $c_set = function_exists( 'daan_hero_srcset' ) ? daan_hero_srcset( $c[2] ) : ''; ?>
+                        <img src="<?php echo esc_url( $c_set ? str_replace( '.webp', '-640.webp', $c[2] ) : $c[2] ); ?>"<?php if ( $c_set ) : ?> srcset="<?php echo esc_attr( $c_set ); ?>" sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, calc(100vw - 32px)"<?php endif; ?> alt="<?php echo esc_attr( $c_set && function_exists( 'daan_ration_photo' ) ? daan_ration_photo()['alt'] : '' ); ?>" loading="lazy" decoding="async">
                     </a>
                     <div class="campaign-body">
                         <h3><a href="<?php echo esc_url( home_url( $c[3] ) ); ?>"><?php echo esc_html( $c[0] ); ?></a></h3>
@@ -371,7 +372,7 @@ get_header();
                     : $story_fallback_images[ $i % count( $story_fallback_images ) ];
                 ?>
                 <a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" class="story-card">
-                    <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
+                    <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $post_id ) ); ?>" loading="lazy">
                     <div class="story-overlay"></div>
 
                     <div class="story-content">
@@ -425,7 +426,7 @@ get_header();
                     : $news_fallback_images[ $i % count( $news_fallback_images ) ];
                 ?>
                 <a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" class="story-card">
-                    <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
+                    <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $post_id ) ); ?>" loading="lazy">
                     <div class="story-overlay"></div>
                     <div class="story-content">
                         <h3><?php echo esc_html( wp_trim_words( get_the_title( $post_id ), 10, '…' ) ); ?></h3>
@@ -469,7 +470,7 @@ get_header();
             <img src="/images/news-2.jpg" alt="News" width="800" height="600" loading="lazy">
             <img src="/images/news-3.jpg" alt="News" width="800" height="600" loading="lazy">
             <img src="/images/extra-6.jpg" alt="Community support" width="800" height="360" loading="lazy">
-            <img src="/images/ration-kit-front.jpg" alt="Ration Kit" width="800" height="360" loading="lazy">
+            <img src="/images/hero-p-ration-warehouse-640.webp" srcset="<?php echo esc_attr( daan_hero_srcset( '/images/hero-p-ration-warehouse.webp' ) ); ?>" sizes="(min-width: 1024px) 400px, calc(100vw - 32px)" alt="<?php echo esc_attr( daan_ration_photo()['alt'] ); ?>" width="800" height="360" loading="lazy" decoding="async">
             <img src="/images/extra-7.jpg" alt="Charity work" width="800" height="360" loading="lazy">
         </div>
     </div>

@@ -37,6 +37,7 @@ $page_data = daan_get_page_data( $page_slug );
 			'description'   => $page_data['hero_description'] ?? '',
 			'gradient'      => $page_data['gradient'] ?? 'from-orange-600 to-orange-700',
 			'image'         => $page_data['image'] ?? '',
+			'image_alt'     => $page_data['image_alt'] ?? ( $page_data['title'] ?? '' ),
 			'button_text'   => $page_data['button_text'] ?? '',
 			'button_url'    => $page_data['button_url'] ?? '',
 			'default_cause' => $page_data['default_cause'] ?? 'where-needed',

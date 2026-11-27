@@ -446,7 +446,8 @@ function daan_get_page_data( $slug ) {
 			'title'         => 'Donate Bank Interest as Ration Kits',
 			'subtitle'      => 'Donate Your Bank Interest with Daan Foundation',
 			'gradient'      => 'from-cyan-600 to-teal-700',
-			'image'         => '/images/ration-kit-front.jpg',
+			'image'         => '/images/hero-p-ration-warehouse.webp', // owner 2026-11-27: real ration kit photo
+			'image_alt'     => "Ration kits packed and ready for distribution at Daan Foundation's head office in Amroha",
 			'default_cause' => 'ration kit interest money',
 			'sections'      => array(
 				array(
