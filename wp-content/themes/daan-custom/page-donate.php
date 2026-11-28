@@ -39,14 +39,11 @@ get_header();
 	<div style="position:relative;max-width:1280px;margin:0 auto;padding:48px 16px;">
 		<div style="max-width:768px;">
 			<h1 style="font-size:2.25rem;font-weight:800;color:#fff;line-height:1.1;margin:0 0 16px;">Make a Donation</h1>
-			<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);line-height:1.625;max-width:576px;margin:0;">Your generosity transforms lives. 100% of your donation goes directly to those in need.</p>
+			<p style="font-size:1.125rem;color:rgba(255,255,255,0.9);line-height:1.625;max-width:576px;margin:0;">Your generosity transforms lives. Give by UPI from within India; every confirmed donation gets a receipt by email.</p>
 		</div>
 	</div>
 </section>
 
-<!-- Plugin shortcode placeholders (uncomment when plugin is configured) -->
-<!-- WooCommerce: <?php echo do_shortcode('[products limit="6" columns="3" category="donations"]'); ?> -->
-<!-- GiveWP: <?php echo do_shortcode('[give_form id="DONATION_FORM_ID"]'); ?> -->
 
 <!-- Step Progress Bar -->
 <div style="max-width:800px;margin:0 auto;padding:40px 16px 0;">

@@ -27,7 +27,7 @@ add_filter( 'rank_math/frontend/description', function ( $description ) {
 		$slug = get_post_field( 'post_name', get_queried_object_id() );
 
 		$fallbacks = array(
-			'donate'             => 'Your generosity transforms lives. 100% of your donation goes directly to those in need.',
+			'donate'             => 'Your generosity transforms lives. Give by UPI from within India; every confirmed donation gets a receipt by email.',
 			'faq'                => 'Answers to common questions about Zakat, Sadaqah, Fidya, and Kaffarah.',
 			'about'              => 'Daan Foundation – Serving Humanity With Compassion Since 2020.',
 			'zakat-calculator'   => "Calculate your Zakat accurately with Daan Foundation's free online Zakat calculator, based on current Nisab and market rates.",

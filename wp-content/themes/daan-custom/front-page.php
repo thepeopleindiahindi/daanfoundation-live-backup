@@ -155,7 +155,7 @@ get_header();
                 array( 'Ramadan Iftar', '200–300 people every day in Ramadan · ' . daan_menu_price( 'daan_iftar_kit_price', 91 ) . ' a kit', '/images/iftaar-distribution.jpg', '/ramadan/', '/product/ramadan-iftar/', 'Donate' ),
                 array( 'Ration Kit', daan_menu_price( 'daan_kit_price', 1536 ) . ' per kit · 18 essential items for a family', '/images/hero-p-ration-warehouse.webp', '/ration-kit-distribution-india/', '/product/ration-kit-donation/', 'Donate' ),
                 array( 'Zakat', 'Given only to eligible Muslim families, as their own', '/images/aid-distribution-elderly.jpg', '/zakat/', '/product/zakat/', 'Donate' ),
-                array( 'Winter Appeal', 'Warm blankets and clothing for families in the cold', '/images/community-queue.jpg', '/winter-appeal/', '/donate/?cause=Winter%20Appeal', 'Donate' ),
+                array( 'Winter Appeal', 'Warm blankets and clothing for families in the cold', '/images/community-queue.jpg', '/winter-appeal/', '/donate/?cause=winter-appeal', 'Donate' ),
                 array( 'Fidyah & Kaffarah', 'Fidyah & Kaffarah: not accepted. Read our update and the rules.', '/images/extra-2.jpg', '/fidya/', '/fidya/', $fk_paused ? 'Read the rules' : 'Learn more' ),
             );
             foreach ( $campaigns as $c ) : ?>

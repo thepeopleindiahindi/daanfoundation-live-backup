@@ -489,7 +489,7 @@ function daan_get_page_data( $slug ) {
 		),
 
 		'ramadan' => array(
-			'title'         => 'Donate Iftar This Ramadan',
+			'title'         => 'Donate Iftar in India This Ramadan',
 			'subtitle'      => 'Give Iftar kits to fasting people in need in Amroha, Uttar Pradesh. Each kit is given as the person\'s own, after Asr at our Community Kitchen.',
 			'gradient'      => 'from-violet-600 to-purple-700',
 			'image'         => '/images/iftaar-distribution.jpg',
@@ -499,6 +499,33 @@ function daan_get_page_data( $slug ) {
 					'type'    => 'shortcode',
 					'heading' => 'Donate Iftar Kits',
 					'code'    => '[daan_iftar_buy]',
+				),
+				// Round 4 (owner, 2026-11-28): hub depth for "iftar donation India". Facts: D-012, D-037a, footer, D-042.
+				array(
+					'type'    => 'text',
+					'heading' => 'Iftar Donation in India: What, Where, When and How Much',
+					'paragraphs' => array(
+						'What: an Iftar donation with Daan Foundation pays for one Iftar kit for a fasting person in need. ' . $iftar_items,
+						'Where: at our Community Kitchen in Amroha, Uttar Pradesh. The same kitchen serves 100–120 people every day of the year.',
+						'When: every day of Ramadan, after Asr. Ramadan 2027 is expected to begin around February 2027, depending on the moon sighting. If you give before Ramadan, your kits are kept for Ramadan 2027.',
+						'How much: one Iftar kit is ' . $iftar_price . '. You can give one kit or many; the total is worked out for you.',
+						'How: choose the number of kits above and pay by UPI. We accept donations only from within India.',
+					),
+				),
+				array(
+					'type'    => 'shortcode',
+					'heading' => 'Iftar Kit Prices',
+					'code'    => '[daan_hub_prices type="iftar"]',
+				),
+				array(
+					'type'    => 'shortcode',
+					'heading' => 'How Your Iftar Donation Reaches Fasting People',
+					'code'    => '[daan_hub_steps type="iftar"]',
+				),
+				array(
+					'type'    => 'shortcode',
+					'heading' => 'Why Donors Trust Daan Foundation',
+					'code'    => '[daan_trust]',
 				),
 				array(
 					'type'    => 'text',
@@ -593,6 +620,11 @@ function daan_get_page_data( $slug ) {
 						array( 'q' => 'Kya iftar ke liye zakat de sakte hain?', 'a' => $iftar_zakat ),
 						array( 'q' => 'Iftar kahan aur kab diya jata hai?', 'a' => 'At our Community Kitchen in Amroha, Uttar Pradesh, after Asr during Ramadan. During Ramadan, we serve iftar to 200–300 people every day.' ),
 						array( 'q' => 'Kya aap sehri bhi dete hain?', 'a' => 'No. We provide iftar only.' ),
+						// Round 4 (2026-11-28).
+						array( 'q' => 'Iftar donation online kaise karein?', 'a' => 'Choose the number of Iftar kits on this page and pay by UPI. One kit is ' . $iftar_price . '.' ),
+						array( 'q' => 'Kya donation ki receipt milegi?', 'a' => 'Yes. Every confirmed donation gets a receipt by email showing our PAN. Daan Foundation is not registered under Section 80G, so there is no 80G tax benefit.' ),
+						array( 'q' => 'Ramadan se pehle iftar donate karein to kya hoga?', 'a' => 'Your kits are kept for Ramadan 2027 (expected around February 2027, by moon sighting). For most donations we also email you to confirm this.' ),
+						array( 'q' => 'Kya India ke bahar se donate kar sakte hain?', 'a' => 'No. We accept donations only from within India (UPI).' ),
 					),
 				),
 				array(
