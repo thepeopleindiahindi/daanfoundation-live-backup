@@ -691,7 +691,7 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 	$fitra = daan_seo27_money( 'daan_fitrana_rate', 90 );
 	$kit   = daan_seo27_money( 'daan_kit_price', 1536 );
 	$map   = array(
-		'page:ramadan'                       => 'Donate Iftar in India | Ramadan 2027 Iftar Kits – Daan Foundation',
+		'page:ramadan'                       => 'Iftar Donation India: Sponsor Ramadan 2027 Iftar Kits | Daan Foundation',
 		'page:zakat-al-fitr'                 => 'Fitrana 2027 India: Amount ' . $fitra . ', Pay Online | Daan Foundation',
 		'page:bank-interest'                 => 'Donate Bank Interest (Riba) as Ration Kits | Daan Foundation',
 		'post:ration-kit-distribution-india' => 'Ration Kit Donation for Poor Families in India (' . $kit . ') | Daan Foundation',
